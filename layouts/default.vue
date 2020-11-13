@@ -5,9 +5,12 @@
 </template>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap');
+
+
 html {
   font-family:
-    'Source Sans Pro',
+    'Cormorant Garamond',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -34,10 +37,41 @@ html {
 .button--green {
   display: inline-block;
   border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+  border: 1px solid #013011;
+  color: #013011;
   text-decoration: none;
   padding: 10px 30px;
+}
+
+.main-btn {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 0.15em;
+  border: 1px solid #004b19;
+  color: #004b19;
+  font-family: 'arial';
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  /* box-shadow: -1px 1px 2px 1px #01301177; */
+  &:hover {
+    color: #fff;
+    background-color: #004b19;
+  }
+}
+
+.container-main {
+  margin: 0 auto;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  z-index:1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .button--green:hover {

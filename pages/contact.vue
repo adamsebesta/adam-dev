@@ -1,34 +1,65 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        adamDev
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div class="container-main">
+    <!-- <span class="title-pop">
+          GET IN TOUCH!
+    </span> -->
+    <nuxt-link to="/">
+      <img class='logo-top' draggable="false" src='~static/logo.png'/>
+    </nuxt-link>
+
+    <div class='form-background'>
+      <div class='background-img'>
       </div>
+      
+       <FormulateForm
+        class="form"
+        v-model="formValues"
+      >
+      <img class='logo-small' draggable="false" src='~static/logo text trans.png'/>
+
+        
+        <FormulateInput
+          name="name"
+          type="text"
+          label=" Name"
+          placeholder="Your name"
+          validation="required"
+        />
+        <FormulateInput
+          name="email"
+          type="email"
+          label="Email"
+          placeholder="Your email address"
+          validation="required|email"
+        />
+          <FormulateInput
+            name="phone"
+            type="tel"
+            label="Phone"
+            placeholder="Your phone number"
+          />
+      
+        <FormulateInput
+          type="submit"
+          label="SEND"
+        />
+        <pre
+          class="code"
+          v-text="formValues"
+        />
+      </FormulateForm>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      formValues: {}
+    }
+  }
+}
 </script>
 
 <style>
@@ -37,6 +68,11 @@ export default {}
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+
+* {
+  overflow: hidden;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -46,9 +82,65 @@ export default {}
   text-align: center;
 }
 
-.title {
+
+
+.logo-small {
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  z-index: 10;
+}
+
+.logo-top {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 10px;
+  top: 0;
+  left: 0;
+  height: 50px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  z-index: 2;
+}
+
+.background-img {
+  transition: all 1.5s ease;
+  background-image: url('~static/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.form-background {
+  /* margin:  4% 0%; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  /* box-shadow: -5px 1px 10px 5px #4f654e; */
+}
+
+.form {
+  position: absolute;
+  width: 50%;
+  background-color: white;
+  /* border: 1px solid #004b19 !important; */
+  /* box-shadow: -5px 1px 10px 5px #4f654e; */
+}
+
+.title-pop {
+  position: absolute;
+  top: 0;
+  left: 10;
+  /* z-index: -1; */
+  text-shadow: 1px 1px grey;
   font-family:
-    'Quicksand',
+    'Arial',
     'Source Sans Pro',
     -apple-system,
     BlinkMacSystemFont,
@@ -57,11 +149,17 @@ export default {}
     'Helvetica Neue',
     Arial,
     sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
+  font-weight: 600;
+  font-size: 150px;
+  color: #013011;
   letter-spacing: 1px;
+  opacity: 0.08;
+  color: white;
+  text-shadow:
+  -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
 }
 
 .subtitle {
@@ -74,5 +172,75 @@ export default {}
 
 .links {
   padding-top: 15px;
+}
+
+.form {
+  padding: 2em;
+  border-radius: .5em;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+.form-title {
+  margin-top: 0;
+}
+.form::v-deep .formulate-input .formulate-input-element {
+  margin: 0 auto;
+}
+
+.formulate-input .formulate-input-element {
+  max-width: none !important;
+}
+
+.formulate-input .formulate-input-label {
+  color: #013011;
+  font-family: 'arial';
+  
+}
+
+.formulate-input-wrapper {
+  /* display: flex;
+  flex-direction: column;
+  align-content: end;
+  align-items: center; */
+}
+
+* {
+  font-family: 'arial';
+}
+
+li {
+  color: #004b19 !important;
+}
+
+input {
+  text-align: center !important;
+  border: none !important;
+  background-color: #f5f5f5 !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .title-pop {
+    font-size: 100px;
+     margin-top: 20px;
+  }
+  .form-background {
+    margin-top :0;
+  }
+  .form {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .title-pop {
+    font-size: 60px;
+    margin-top: 40px;
+  }
+  .form-background {
+    margin-top :0;
+  }
+  .form {
+    width: 80%;
+  }
 }
 </style>
