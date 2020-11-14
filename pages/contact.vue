@@ -4,7 +4,8 @@
           GET IN TOUCH!
     </span> -->
     <nuxt-link to="/">
-      <img class='logo-top' draggable="false" src='~static/logo.png'/>
+      <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
+      <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
     </nuxt-link>
 
     <div class='form-background'>
@@ -33,16 +34,20 @@
           validation="required|email"
         />
           <FormulateInput
-            name="phone"
-            type="tel"
-            label="Phone"
-            placeholder="Your phone number"
+            name="message"
+            type="textarea"
+            label="Message"
+            placeholder="Your message"
+            validation="required"
           />
       
-        <FormulateInput
-          type="submit"
-          label="SEND"
-        />
+         <a
+            type='submit'
+            class='main-btn'
+            :style= "{'margin-bottom': '20px', 'margin-left': '0'}"
+          >
+            Send
+          </a>
         <pre
           class="code"
           v-text="formValues"
@@ -56,8 +61,19 @@
 export default {
   data() {
     return {
-      formValues: {}
+      formValues: {},
+      logo: false
     }
+  },
+  methods: {
+     moveLogo() {
+      setTimeout(() => {
+        this.logo = true;
+      }, 750);
+    }
+  },
+  created() {
+    this.moveLogo();
   }
 }
 </script>
@@ -85,19 +101,29 @@ export default {
 
 
 .logo-small {
-  height: 50px;
+  height: 100px;
   margin: 0 auto;
   margin-bottom: 25px;
   z-index: 10;
+}
+
+.green-sqr {
+  transition: all 1.5s ease;
+  height: 38px;
+  width: 38px;
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  background-color: #82ab71;
 }
 
 .logo-top {
   position: absolute;
   margin-top: 20px;
   margin-left: 10px;
-  top: 0;
-  left: 0;
-  height: 50px;
+  top: 10px;
+  left: 10px;
+  height: 40px;
   margin: 0 auto;
   margin-bottom: 25px;
   z-index: 2;
@@ -129,6 +155,7 @@ export default {
   position: absolute;
   width: 50%;
   background-color: white;
+  font-size: 20px !important;
   /* border: 1px solid #004b19 !important; */
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
 }
@@ -197,22 +224,17 @@ export default {
   
 }
 
-.formulate-input-wrapper {
-  /* display: flex;
-  flex-direction: column;
-  align-content: end;
-  align-items: center; */
-}
-
 * {
   font-family: 'arial';
 }
 
 li {
   color: #004b19 !important;
+  font-size: 12px !important;
+  
 }
 
-input {
+input, textarea {
   text-align: center !important;
   border: none !important;
   background-color: #f5f5f5 !important;
@@ -231,6 +253,14 @@ input {
   }
 }
 
+.code {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;   
+}
+
 @media only screen and (max-width: 800px) {
   .title-pop {
     font-size: 60px;
@@ -241,6 +271,9 @@ input {
   }
   .form {
     width: 80%;
+  }
+  .logo-small {
+    height: 70px;
   }
 }
 </style>

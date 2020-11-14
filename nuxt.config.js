@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'adamDev',
@@ -30,6 +30,9 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
   ],
+  server: {
+    host: '0.0.0.0'
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
