@@ -5,7 +5,7 @@
 </template>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap');
+  /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap'); */
 
 
 html {

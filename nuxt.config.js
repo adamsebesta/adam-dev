@@ -9,7 +9,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
-      { rel: 'stylesheet', href: 'http://192.168.178.46:3000/url(https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&display=swap' }
     ]
   },
 
