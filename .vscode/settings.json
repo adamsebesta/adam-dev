@@ -4,5 +4,11 @@
     ".vscode{,/**}"
   ],
   "appService.defaultWebAppToDeploy": "/subscriptions/27302324-52bc-4d9b-9858-eff9dfb39424/resourceGroups/adamDev/providers/Microsoft.Web/sites/adamDev",
-  "appService.deploySubpath": "."
+  "appService.deploySubpath": ".",
+  "azureFunctions.deploySubpath": ".",
+  "azureFunctions.postDeployTask": "npm install",
+  "azureFunctions.projectLanguage": "JavaScript",
+  "azureFunctions.projectRuntime": "~3",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.preDeployTask": "npm prune"
 }

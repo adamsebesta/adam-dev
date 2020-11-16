@@ -1,6 +1,7 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+// const contactRoutes = require("./app/routes/contact.routes");
 const app = express()
 
 // Import and Set Nuxt.js options
@@ -22,9 +23,11 @@ async function start () {
     await nuxt.ready()
   }
 
+  app.use('/contact', contactRoutes)
+
   // Give nuxt middleware to express
   app.use(nuxt.render)
-
+  console.log(`Server listening on http://${host}:${port}`)
   // Listen the server
   app.listen(port, host)
   consola.ready({
@@ -33,5 +36,4 @@ async function start () {
   })
 }
 
-console.log(`Server listening on http://${host}:${port}`)
 start()

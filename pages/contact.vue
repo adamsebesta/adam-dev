@@ -7,14 +7,20 @@
       <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
       <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
     </nuxt-link>
-
-    <div class='form-background'>
+    <div v-if="sent" class='thanks'>
+      <h2> THANK YOU, </h2>
+      <p> I WILL RESPOND AS SOON AS POSSIBLE </p> 
+    </div>
+    <div v-if="sent" class='background-img'> </div>
+    <div v-if="!sent" class='form-background'>
       <div class='background-img'>
       </div>
       
        <FormulateForm
         class="form"
         v-model="formValues"
+        @submit='send'
+        name='contact'
       >
       <img class='logo-small' draggable="false" src='~static/logo text trans.png'/>
 
@@ -40,18 +46,26 @@
             placeholder="Your message"
             validation="required"
           />
-      
-         <a
-            type='submit'
-            class='main-btn'
-            :style= "{'margin-bottom': '20px', 'margin-left': '0'}"
-          >
-            Send
-          </a>
-        <pre
+
+          <div class="actions">
+            <FormulateInput
+              type="submit"
+              name="Send"
+              input-class='main-btn small'
+              />
+
+            <FormulateInput
+              type="button"
+              label="Reset"
+              data-ghost
+              @click="reset"
+              input-class='main-btn small'
+            />
+        </div>
+        <!-- <pre
           class="code"
           v-text="formValues"
-        />
+        /> -->
       </FormulateForm>
     </div>
   </div>
@@ -62,7 +76,8 @@ export default {
   data() {
     return {
       formValues: {},
-      logo: false
+      logo: false,
+      sent: false
     }
   },
   methods: {
@@ -70,6 +85,19 @@ export default {
       setTimeout(() => {
         this.logo = true;
       }, 750);
+    },
+    async send() {
+      let res = await fetch(process.env.LOGIC_APP_URL, {
+         method: 'POST',
+          body: JSON.stringify(this.formValues),
+          headers: {
+          'Content-Type': 'application/json'
+          }
+      });
+        this.sent = true;
+      },
+    reset () {
+      this.$formulate.reset('contact')
     }
   },
   created() {
@@ -78,25 +106,24 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-
 * {
   overflow: hidden;
 }
 
-.container {
+/* .container {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
+} */
 
 
 
@@ -115,6 +142,10 @@ export default {
   top: 11px;
   left: 10px;
   background-color: #82ab71;
+}
+
+.small {
+  padding: 10px 30px !important;
 }
 
 .logo-top {
@@ -231,6 +262,7 @@ export default {
 li {
   color: #004b19 !important;
   font-size: 12px !important;
+  position: relative;
   
 }
 
@@ -240,16 +272,50 @@ input, textarea {
   background-color: #f5f5f5 !important;
 }
 
+.thanks {
+  color: #013011;
+  position: absolute;
+  p {
+  font-weight: 600;
+  font-family: "arial", "sans-serif";
+  font-size: 16px;
+  color: #013011;
+  letter-spacing: 1px;
+  }
+  h2 {
+    font-family:
+    'Cormorant Garamond',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    font-size: 50px;
+  }
+}
+
+.actions {
+  display: flex;
+  margin: 40px 0px;
+  justify-content: center;
+}
+.actions .formulate-input {
+  margin-right: 0.5em;
+  margin-bottom: 0;
+}
+
 @media only screen and (max-width: 1200px) {
   .title-pop {
     font-size: 100px;
      margin-top: 20px;
   }
   .form-background {
-    margin-top :0;
+    margin-top: 0;
   }
   .form {
-    width: 70%;
+    width: 80%;
   }
 }
 
@@ -270,10 +336,41 @@ input, textarea {
     margin-top :0;
   }
   .form {
-    width: 80%;
+    width: 70%;
   }
   .logo-small {
     height: 70px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .title-pop {
+    font-size: 60px;
+    margin-top: 40px;
+  }
+  .form-background {
+    margin-top :0;
+  }
+  .form {
+    width: 90%;
+    font-size: 14px !important;
+  }
+  .logo-small {
+    height: 60px;
+  }
+
+  li {
+    font-size: 8px !important;
+  }
+
+  .thanks {
+    h2 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 10px; 
+    }
   }
 }
 </style>
