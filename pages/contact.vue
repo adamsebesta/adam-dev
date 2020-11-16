@@ -92,7 +92,7 @@ export default {
       }, 750);
     },
     async send() {
-      let res = await fetch(this.logicAppUrl, {
+      let res = await fetch('https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM', {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
@@ -282,7 +282,15 @@ input, textarea {
   position: absolute;
   p {
   font-weight: 600;
-  font-family: "arial", "sans-serif";
+    font-family:
+    'Cormorant Garamond',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
   font-size: 16px;
   color: #013011;
   letter-spacing: 1px;
