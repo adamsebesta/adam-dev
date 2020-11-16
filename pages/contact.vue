@@ -80,6 +80,11 @@ export default {
       sent: false
     }
   },
+  computed: {
+    logicAppUrl() {
+      return this.$config.logicAppUrl.replace(/\\\//g, "/");
+    }
+  },
   methods: {
      moveLogo() {
       setTimeout(() => {
@@ -87,7 +92,7 @@ export default {
       }, 750);
     },
     async send() {
-      let res = await fetch(this.$config.logicAppUrl.replace(/\\\//g, "/"), {
+      let res = await fetch(this.logicAppUrl, {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
