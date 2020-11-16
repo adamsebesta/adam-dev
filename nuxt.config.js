@@ -1,7 +1,7 @@
 module.exports = {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'Adam Sebesta Development',
+    title: 'dam Sebesta Development',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -22,6 +22,10 @@ module.exports = {
   plugins: [
     '~/plugins/vue-formulate',
   ],
+
+  privateRuntimeConfig: {
+    logicAppUrl: process.env.LOGIC_APP_URL
+  },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

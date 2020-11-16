@@ -9,7 +9,7 @@
     </nuxt-link>
     <div v-if="sent" class='thanks'>
       <h2> THANK YOU, </h2>
-      <p> I WILL RESPOND AS SOON AS POSSIBLE </p> 
+      <p> I WILL RESPOND TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
     <div v-if="sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>
@@ -87,7 +87,7 @@ export default {
       }, 750);
     },
     async send() {
-      let res = await fetch(process.env.LOGIC_APP_URL, {
+      let res = await fetch(this.$config.logicAppUrl, {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
