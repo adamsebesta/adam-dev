@@ -7,6 +7,7 @@
     <div class="container-main">
       <div>
         <img class="logo" draggable="false" src='~static/logo text trans.png' />
+        <p>Our Url is: {{ $config.logicAppUrl}}</p>
         <div class="links">
           <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
           <a
