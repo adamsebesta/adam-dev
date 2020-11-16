@@ -1,14 +1,15 @@
 module.exports = {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'adamDev',
+    title: 'Adam Sebesta Development',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
+      { rel: 'stylesheet', href: 'http://192.168.178.46:3000/url(https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400' }
     ]
   },
 

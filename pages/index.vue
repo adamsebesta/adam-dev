@@ -121,4 +121,32 @@ export default {
   margin-right: auto;
   /* margin-bottom: 10px; */
 }
+
+@media only screen and (max-width: 600px) {
+  .logo {
+    height: 86px;
+  }
+
+  .main-btn {
+    font-size: 10px;
+    padding: 10px 15px;
+  }
+
+  .background-lower {
+    
+    height: 100vh;
+    bottom: -32px;
+  }
+
+  html, body {
+  overflow-x: hidden;
+  }
+  body {
+    position: relative;
+  }
+
+  .background {
+    transform: translateX(300);
+  }
+}
 </style>

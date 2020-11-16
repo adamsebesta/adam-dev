@@ -44,22 +44,23 @@ html {
 }
 
 .main-btn {
-  display: inline-block;
-  cursor: pointer;
-  border-radius: 4px;
-  letter-spacing: 0.15em;
-  border: 1px solid #004b19;
-  color: #004b19;
-  font-family: 'arial';
-  text-decoration: none;
+  display: inline-block !important;
+  cursor: pointer !important;
+  border-radius: 4px !important;
+  letter-spacing: 0.15em !important;
+  border: 1px solid #004b19 !important;
+  color: #004b19 !important;
+  font-family: 'arial' !important;
+  text-decoration: none !important;
   padding: 10px 30px;
-  margin-left: 15px;
-  font-weight: 400;
+  margin-left: 15px !important;
+  font-weight: 400 !important;
   font-size: 14px;
+  background-color: transparent !important;
   /* box-shadow: -1px 1px 2px 1px #01301177; */
   &:hover {
-    color: #fff;
-    background-color: #004b19;
+    color: #fff !important;
+    background-color: #004b19 !important;
   }
 }
 
