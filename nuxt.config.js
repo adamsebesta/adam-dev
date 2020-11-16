@@ -23,7 +23,7 @@ module.exports = {
     '~/plugins/vue-formulate',
   ],
 
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     logicAppUrl: process.env.LOGIC_APP_URL
   },
 
