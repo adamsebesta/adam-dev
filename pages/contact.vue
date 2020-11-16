@@ -87,7 +87,7 @@ export default {
       }, 750);
     },
     async send() {
-      let res = await fetch(this.$config.logicAppUrl, {
+      let res = await fetch(this.$config.logicAppUrl.replace(/\\\//g, "/"), {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
