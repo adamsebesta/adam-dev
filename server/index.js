@@ -6,6 +6,10 @@ const { Nuxt, Builder } = require('nuxt')
 const app = express()
 const https = require('https')
 
+//export logic app variable
+const LOGIC_APP_URI = 'test'
+module.exports = LOGIC_APP_URI;
+
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'

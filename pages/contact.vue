@@ -9,7 +9,7 @@
     </nuxt-link>
     <div v-if="sent" class='thanks'>
       <h2> THANK YOU, </h2>
-      <p> I WILL RESPOND TO YOUR REQUEST WITHIN 24 HRS </p> 
+      <p> YOU RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
     <div v-if="sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>

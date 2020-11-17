@@ -9,6 +9,7 @@
         <img class="logo" draggable="false" src='~static/logo text trans.png' />
         <div class="links">
           <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
+          <nuxt-link class='main-btn' to="/portfolio">PORTFOLIO</nuxt-link>
           <a
             href="https://www.linkedin.com/company/adam-sebesta-development"
             target="_blank"
