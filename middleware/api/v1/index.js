@@ -1,20 +1,16 @@
 const httpProxy = require('http-proxy')
-let API_URL = process.env.LOGIC_APP_URL
+let API_URL = this.$config.logicAppUrl
 const proxy = httpProxy.createProxyServer({
   target: API_URL,
-  secure: false,
+  secure: true,
   changeOrigin: true
 })
+const qs = require("qs"); 
+// const API_URL = process.env.LOGIC_APP_URL
 
 export default async function(req, res, next) {
-  console.log(API_URL);
-  // await fetch(API_URL, {
-  //   method: 'POST',
-  //   body: JSON.stringify(req.body),
-  //   headers: {
-  //   'Content-Type': 'application/json',
-  //   'Access-Control-Allow-Origin': 'https://localhost:3000'
-  //   }
-// })
-    proxy.web(req, res, {});
+  req.url = qs.stringify(req.query, {
+    addQueryPrefix: true
+  })
+    proxy.web(req, res, {target: API_URL});
 }

@@ -99,7 +99,6 @@ export default {
           headers: {
           'Content-Type': 'application/json',
           'Connection': 'keep-alive',
-          'access-control-allow-origin': 'null'
           }
       });
         this.sent = true;
@@ -173,9 +172,11 @@ export default {
   background-image: url('~static/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
+  width: 50%;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .form-background {

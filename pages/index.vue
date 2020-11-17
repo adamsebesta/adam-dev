@@ -59,9 +59,11 @@ export default {
   background-image: url('~static/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .background-lower {
@@ -70,7 +72,7 @@ export default {
   background-image: url('~static/background lower.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50%;
+  width: 70%;
   height: 100vh;
   position: absolute;
 }
