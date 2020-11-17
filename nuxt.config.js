@@ -24,7 +24,8 @@ module.exports = {
   ],
 
   privateRuntimeConfig: {
-    logicAppUrl: process.env.LOGIC_APP_URL 
+    logicAppUrl: process.env.LOGIC_APP_URL,
+    test: 'test'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
