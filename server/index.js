@@ -1,8 +1,10 @@
 const express = require('express')
+var router = express.Router();
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 // const contactRoutes = require("./app/routes/contact.routes");
 const app = express()
+const https = require('https')
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -23,8 +25,6 @@ async function start () {
     await nuxt.ready()
   }
 
-  app.use('/contact', contactRoutes)
-
   // Give nuxt middleware to express
   app.use(nuxt.render)
   console.log(`Server listening on http://${host}:${port}`)
@@ -34,6 +34,7 @@ async function start () {
     message: `Server listening on http://${host}:${port}`,
     badge: true
   })
+  
 }
 
 start()

@@ -23,7 +23,7 @@ module.exports = {
     '~/plugins/vue-formulate',
   ],
 
-  publicRuntimeConfig: {
+  privateRuntimeConfig: {
     logicAppUrl: process.env.LOGIC_APP_URL 
   },
 
@@ -38,6 +38,13 @@ module.exports = {
   server: {
     host: '0.0.0.0'
   },
+
+  serverMiddleware: [
+    {
+      path: 'api/v1',
+      handler: '~middleware/api/v1/index.js'
+    }
+  ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [

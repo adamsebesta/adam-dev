@@ -12,6 +12,7 @@
     "@braid/vue-formulate": "^2.4.5",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "http-proxy": "^1.18.1",
     "nuxt": "^2.14.6",
     "vue-formulate": "^0.12.1"
   },
