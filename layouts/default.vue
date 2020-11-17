@@ -27,6 +27,10 @@ html {
   box-sizing: border-box;
 }
 
+.nuxt-link-active {
+    font-weight: bold;
+}
+
 *,
 *::before,
 *::after {

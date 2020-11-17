@@ -90,3 +90,5 @@ sw.*
 *.swp
 
 .nuxt
+
+/middleware/api/vi/index.js

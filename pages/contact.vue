@@ -7,6 +7,11 @@
       <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
       <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
     </nuxt-link>
+    <div class='nav-links'>
+      <nuxt-link to="/home">  <span></span> </nuxt-link>
+      <nuxt-link to="/portfolio"> <span></span> </nuxt-link>
+      <nuxt-link to="/contact"> <span></span> </nuxt-link>
+    </div>
     <div v-if="sent" class='thanks'>
       <h2> THANK YOU, </h2>
       <p> YOU RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
