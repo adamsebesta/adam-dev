@@ -4,9 +4,8 @@
   </div>
 </template>
 
-<style>
+<style lang='scss'>
   /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap'); */
-
 
 html {
   font-family:
@@ -27,10 +26,27 @@ html {
   box-sizing: border-box;
 }
 
-.nuxt-link-active {
+.nuxt-link-exact-active {
     font-weight: bold;
 }
 
+
+.nav-links {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  top: 60px;
+  left: 10px;
+  a {
+    z-index: 10;
+  color:#35495e;
+  height: 10%;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 1px;
+  }
+}
 *,
 *::before,
 *::after {

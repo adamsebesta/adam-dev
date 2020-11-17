@@ -16,16 +16,23 @@ module.exports = {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
     '@/assets/css/main.scss',
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    
+  ],
+  scss: [
+   'swiper/swiper.scss'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/vue-formulate',
+    { src: '~/plugins/vue-awesome-swiper', mode: 'client' },
+    { src: './plugins/vue-slick-carousel.js' },
   ],
 
   privateRuntimeConfig: {
     logicAppUrl: process.env.LOGIC_APP_URL,
-    test: 'test'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -53,5 +60,6 @@ module.exports = {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+      
   }
 }

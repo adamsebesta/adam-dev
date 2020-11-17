@@ -7,14 +7,10 @@
       <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
       <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
     </nuxt-link>
-    <div class='nav-links'>
-      <nuxt-link to="/home">  <span></span> </nuxt-link>
-      <nuxt-link to="/portfolio"> <span></span> </nuxt-link>
-      <nuxt-link to="/contact"> <span></span> </nuxt-link>
-    </div>
+    <Nav/>
     <div v-if="sent" class='thanks'>
       <h2> THANK YOU, </h2>
-      <p> YOU RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
+      <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
     <div v-if="sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>
@@ -77,7 +73,10 @@
 </template>
 
 <script>
+import Nav from '../components/Nav'
+
 export default {
+  components: {Nav},
   data() {
     return {
       formValues: {},
@@ -97,6 +96,7 @@ export default {
       }, 750);
     },
     async send() {
+      this.sent = true;
       // https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM
       let res = await fetch('http://localhost:3000/api/v1', {
          method: 'POST',
@@ -106,7 +106,6 @@ export default {
           'Connection': 'keep-alive',
           }
       });
-        this.sent = true;
       },
     reset () {
       this.$formulate.reset('contact')
