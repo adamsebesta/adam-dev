@@ -12,7 +12,7 @@ module.exports = {
         property: 'og:url',
         content: 'https://asdevelopment.ca'
       },
-      { hid: 'og:image', property: 'og:image', content: '~/static/meta.png' },
+      { hid: 'og:image', property: 'og:image', content: '/meta.png' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
