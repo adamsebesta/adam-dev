@@ -11,7 +11,8 @@ module.exports = {
         hid: 'og:url',
         property: 'og:url',
         content: 'https://asdevelopment.ca'
-      }
+      },
+      { hid: 'og:image', property: 'og:image', content: '~/static/meta.png' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
