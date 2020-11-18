@@ -6,7 +6,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Web and Mobile App Development' },
+      { hid: 'description', name: 'description', content: 'Web and Mobile App Development.' },
       {
         hid: 'og:url',
         property: 'og:url',
