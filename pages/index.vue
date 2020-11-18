@@ -26,6 +26,16 @@
 
 <script>
 export default {
+  head: {
+    title: 'Home',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Web and Mobile App Development'
+      }
+    ],
+  },
   data() {
     return {
       background: null
