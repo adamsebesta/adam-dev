@@ -7,9 +7,10 @@
       <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
       <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
     </nuxt-link>
+    <Nav/>
     <div v-if="sent" class='thanks'>
       <h2> THANK YOU, </h2>
-      <p> I WILL RESPOND TO YOUR REQUEST WITHIN 24 HRS </p> 
+      <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
     <div v-if="sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>
@@ -28,29 +29,29 @@
         <FormulateInput
           name="name"
           type="text"
-          label=" Name"
-          placeholder="Your name"
+          label=" NAME"
+          placeholder="YOUR NAME"
           validation="required"
         />
         <FormulateInput
           name="email"
           type="email"
-          label="Email"
-          placeholder="Your email address"
+          label="EMAIL"
+          placeholder="YOUR EMAIL ADDRESS"
           validation="required|email"
         />
           <FormulateInput
             name="message"
             type="textarea"
-            label="Message"
-            placeholder="Your message"
+            label="MESSAGE"
+            placeholder="YOUR MESSAGE"
             validation="required"
           />
 
           <div class="actions">
             <FormulateInput
               type="submit"
-              name="Send"
+              name="SEND"
               input-class='main-btn small'
               />
 
@@ -72,12 +73,20 @@
 </template>
 
 <script>
+import Nav from '../components/Nav'
+
 export default {
+  components: {Nav},
   data() {
     return {
       formValues: {},
       logo: false,
       sent: false
+    }
+  },
+  computed: {
+    logicAppUrl() {
+      return this.$config.logicAppUrl.replace(/\\\//g, "/");
     }
   },
   methods: {
@@ -87,14 +96,16 @@ export default {
       }, 750);
     },
     async send() {
-      let res = await fetch(this.$config.logicAppUrl, {
+      this.sent = true;
+      // https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM
+      let res = await fetch('http://localhost:3000/api/v1', {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Connection': 'keep-alive',
           }
       });
-        this.sent = true;
       },
     reset () {
       this.$formulate.reset('contact')
@@ -165,9 +176,11 @@ export default {
   background-image: url('~static/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
+  width: 50%;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .form-background {
@@ -270,6 +283,14 @@ input, textarea {
   text-align: center !important;
   border: none !important;
   background-color: #f5f5f5 !important;
+  letter-spacing: 2px !important;
+  font-size: 12px !important;
+  padding: 20px !important;
+}
+
+label {
+  letter-spacing: 2px !important;
+  font-size: 14px !important;
 }
 
 .thanks {
@@ -277,7 +298,15 @@ input, textarea {
   position: absolute;
   p {
   font-weight: 600;
-  font-family: "arial", "sans-serif";
+    font-family:
+    'Cormorant Garamond',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
   font-size: 16px;
   color: #013011;
   letter-spacing: 1px;

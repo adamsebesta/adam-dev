@@ -9,6 +9,7 @@
         <img class="logo" draggable="false" src='~static/logo text trans.png' />
         <div class="links">
           <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
+          <nuxt-link class='main-btn' to="/portfolio">PORTFOLIO</nuxt-link>
           <a
             href="https://www.linkedin.com/company/adam-sebesta-development"
             target="_blank"
@@ -59,9 +60,11 @@ export default {
   background-image: url('~static/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100%;
+  width: 80%;
   height: 100vh;
   position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .background-lower {
@@ -70,7 +73,7 @@ export default {
   background-image: url('~static/background lower.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 50%;
+  width: 70%;
   height: 100vh;
   position: absolute;
 }
@@ -135,7 +138,7 @@ export default {
   .background-lower {
     
     height: 100vh;
-    bottom: -32px;
+    bottom: -94px;
   }
 
   html, body {

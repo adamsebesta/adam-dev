@@ -12,8 +12,14 @@
     "@braid/vue-formulate": "^2.4.5",
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "http-proxy": "^1.18.1",
     "nuxt": "^2.14.6",
-    "vue-formulate": "^0.12.1"
+    "swiper": "^6.3.5",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-formulate": "^0.12.1",
+    "vue-slick-carousel": "^1.0.6"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^3.1.0",
