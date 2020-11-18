@@ -43,7 +43,7 @@ html {
   color:#35495e;
   height: 10%;
   text-align: left;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1px;
   }
 }

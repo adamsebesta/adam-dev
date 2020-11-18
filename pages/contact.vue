@@ -29,29 +29,29 @@
         <FormulateInput
           name="name"
           type="text"
-          label=" Name"
-          placeholder="Your name"
+          label=" NAME"
+          placeholder="YOUR NAME"
           validation="required"
         />
         <FormulateInput
           name="email"
           type="email"
-          label="Email"
-          placeholder="Your email address"
+          label="EMAIL"
+          placeholder="YOUR EMAIL ADDRESS"
           validation="required|email"
         />
           <FormulateInput
             name="message"
             type="textarea"
-            label="Message"
-            placeholder="Your message"
+            label="MESSAGE"
+            placeholder="YOUR MESSAGE"
             validation="required"
           />
 
           <div class="actions">
             <FormulateInput
               type="submit"
-              name="Send"
+              name="SEND"
               input-class='main-btn small'
               />
 
@@ -283,6 +283,14 @@ input, textarea {
   text-align: center !important;
   border: none !important;
   background-color: #f5f5f5 !important;
+  letter-spacing: 2px !important;
+  font-size: 12px !important;
+  padding: 20px !important;
+}
+
+label {
+  letter-spacing: 2px !important;
+  font-size: 14px !important;
 }
 
 .thanks {

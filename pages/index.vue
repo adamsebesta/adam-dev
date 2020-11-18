@@ -138,7 +138,7 @@ export default {
   .background-lower {
     
     height: 100vh;
-    bottom: -32px;
+    bottom: -94px;
   }
 
   html, body {

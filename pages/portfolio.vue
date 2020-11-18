@@ -4,29 +4,66 @@
      <div class='title-wrapper'>
        <!-- <img src="~/static/headshot.png" alt=""> -->
       <h2> PORTFOLIO </h2>
+      <img src="~static/portfolio.png" alt="">
      </div>
-    <div class='project-wrapper'>
-      <swiper class="swiper vertical" :options="swiperOptionv">
-        <swiper-slide>
-          <div class='slide-wrapper'>
-            <span class='project-title'> Berlin Bytes BI Tool </span>
-            <VueSlickCarousel v-bind="settings">
-              <div><div class='project-image'> <img src="~/static/BI tool.png" alt=""></div></div>
-              <div><h3>2</h3></div>
-            </VueSlickCarousel>
-          </div>
-        </swiper-slide>
-        <swiper-slide>Berlin Bytes Homepage</swiper-slide>
-        <swiper-slide>Streamhub</swiper-slide>
-        <div class="swiper-pagination swiper-pagination-v" slot="pagination"></div>
-      </swiper>
-      <!-- <div class='project-desc'>
+    
+      <div class='project-wrapper'>
+        <swiper class="swiper vertical" :options="swiperOptionv">
+          <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+          <swiper-slide>
+            <div class='slide-wrapper'>
+              <span class='project-title'> BERLIN BYTES | HOMEPAGE </span>
+              <VueSlickCarousel ref="carousel" v-bind="settings">
+                <div class='project-image'> <img src="~/static/BB home 1.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/BB home.png" alt=""></div>
+              </VueSlickCarousel>
+              <div class='caro-nav'>
+                <div class='arrow left' v-if="caroCounter.carousel > 0" @click="setCaroNav('carousel', 'b')"></div>
+                <div class='arrow right' v-if="caroCounter.carousel < 1" @click="setCaroNav('carousel', 'f')"></div>
+              </div>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class='slide-wrapper'>
+              <span class='project-title'> BERLIN BYTES | BI TOOL </span>
+              <VueSlickCarousel ref="carousel1" v-bind="settings">
+                <div class='project-image'> <img src="~/static/BI tool 2.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/BI tool 1.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/BI tool.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/BI tool 3.png" alt=""></div>
+              </VueSlickCarousel>
+              <div class='caro-nav'>
+                <div class='arrow left' v-if="caroCounter.carousel1 > 0" @click="setCaroNav('carousel1', 'b')"></div>
+                <div class='arrow right'  v-if="caroCounter.carousel1 < 4" @click="setCaroNav('carousel1', 'f')"></div>
+              </div>
+            </div>
+          </swiper-slide>
+        
+          <swiper-slide>
+            <div class='slide-wrapper'>
+              <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
+              <VueSlickCarousel ref="carousel2" v-bind="settings">
+                <div class='project-image'> <img src="~/static/Streamhub.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
+                <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
+                  <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
+                </video>
+              </VueSlickCarousel>
+              <div class='caro-nav'>
+                <div class='arrow left' v-if="caroCounter.carousel2 > 0" @click="setCaroNav('carousel2', 'b')"></div>
+                <div class='arrow right' v-if="caroCounter.carousel2 < 3" @click="setCaroNav('carousel2', 'f')"></div>
+              </div>
+            </div>
+          </swiper-slide>
+          
+        </swiper>
+        <!-- <div class='project-desc'>
 
+        </div>
+        <div class='project-photos'>
+        <p></p>
+        </div> -->
       </div>
-      <div class='project-photos'>
-       <p></p>
-      </div> -->
-    </div>
 
    </div>
     <!-- <span class="title-pop">
@@ -53,34 +90,39 @@ export default {
   data() {
     return {
       settings: {
-        dots: true,
-        dotsClass: "slick-dots custom-dot-class",
+        dots: false,
+        arrows: false,
+        swipe: false,
         edgeFriction: 0.35,
         infinite: false,
-        speed: 500,
+        speed: 300,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+
       },
       swiperOptionv: {
           direction: 'vertical',
           slidesPerView: 1,
           spaceBetween: 30,
+          clickable: false,
           effect: 'fade',
           mousewheel: true,
           pagination: {
-            el: '.swiper-pagination-v',
-            clickable: false
-          }
+            el: '.swiper-pagination',
+            type: 'progressbar'
+          },
         },
       formValues: {},
       logo: false,
-      sent: false
+      sent: false,
+      caroCounter: {
+        carousel: 0,
+        carousel1: 0,
+        carousel2:0
+      }
     }
   },
   computed: {
-    logicAppUrl() {
-      return this.$config.logicAppUrl.replace(/\\\//g, "/");
-    }
   },
   methods: {
      moveLogo() {
@@ -88,7 +130,17 @@ export default {
         this.logo = true;
       }, 750);
     },
-
+    setCaroNav(ref, dir) {
+      console.log()
+      if (dir == 'f') {
+        this.caroCounter[ref] += 1;
+        this.$refs[ref].next();
+      }
+       if (dir == 'b') {
+        this.caroCounter[ref] -= 1;
+        this.$refs[ref].prev();
+      }
+    }
     
   },
   created() {
@@ -108,6 +160,15 @@ export default {
   overflow: hidden;
 }
 
+img {
+  -moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
+    -webkit-user-select: none;
+    -ms-user-select: none; /* From IE10 only */
+    user-select: none; /* Not valid CSS yet, as of July 2012 */
+
+    -webkit-user-drag: none; /* Prevents dragging of images/divs etc */
+    user-drag: none;
+}
 
 .logo-small {
   height: 100px;
@@ -129,7 +190,6 @@ export default {
 .portfolio-background {
   width: 80%;
   height: 80vh;
-  background-color: #001a09;
   display: flex;
 }
 
@@ -137,7 +197,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: #004b19;
   height: 100%;
   width: 30%;
   font-family:
@@ -150,9 +210,13 @@ export default {
     Arial,
     sans-serif;
   h2{
-    font-size: 30px;
-    font-weight: 600;
-    letter-spacing: 5px;
+    font-size: 24px;
+    font-weight: 00;
+    letter-spacing: 3px;
+    // margin-left: 40px;
+    img {
+      height: 20px;
+    }
   }
   p{
     margin-top: 5px;
@@ -162,11 +226,29 @@ export default {
   }
 }
 
-.project-wrapper {
-  width: 70%;
-  height: 100%;
-  background-color: white;
+
+.left {
+  transform: rotate(90deg) !important;
 }
+
+.right {
+  transform: rotate(270deg) !important;
+}
+.project-wrapper {
+  width: 90%;
+  height: 100%;
+  margin-left: 40px;
+  background-color: white;
+  
+}
+
+// .project-background {
+//   background-color: white;
+//   height: 100%;
+//   width: 100%;
+//   position: absolute;
+//   margin-left: auto;
+// }
 
 .project-desc {
   width: 100%;
@@ -215,6 +297,53 @@ export default {
 //   }
 
 
+.arrow  {
+    // left: 50%;
+    // position: fixed;
+    // top: 50%;
+    margin: 5px;
+    transform: translate3d(-50%,-50%,0px);
+}
+
+// The actual arrow styles, make it an area for 50x50 for ease of use on touch devices
+.arrow {
+    border: 1px solid #001a09;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    
+    &:before {
+        border-top: 2px solid #004b19;
+        border-right: 2px solid #004b19;
+        box-sizing: border-box;
+        content: '';
+        height: 12px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate3d(-50%, -75%, 0px) rotate(135deg);
+        // Uncomment if you want it to move (probably better not to, looks weird)
+        // transition: transform 0.3s;
+        // will-change: transform;
+        width: 12px;
+    }
+    
+    // The 'flip' state, just on hover for ease atm
+    &:hover:before {
+        
+       border-top: 2px solid white;
+        border-right: 2px solid white;
+    }
+
+    &:hover {
+      background-color: #004b19;
+    }
+}
+.caro-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .slide-wrapper {
   width: 100%;
   height: 100%;
@@ -223,9 +352,10 @@ export default {
   justify-content: center;
   padding: 1rem;
     .project-title {
-      font-size: 46px;
-      letter-spacing: 5px;
-      color: #013011;
+      font-size: 22px;
+      letter-spacing: 2px;
+      font-weight: 400;
+      color: #004b19;
       font-family:  'arial',
       -apple-system,
       BlinkMacSystemFont,
@@ -239,8 +369,23 @@ export default {
 
 .project-image {
   img {
-    
+    width: 850px;
+    height: 500px;
+    margin: 0 auto;
+    object-fit: cover;
+    margin-top: 30px;
+    padding-bottom: 10px;
   }
+}
+
+#giftwitch {
+  width: 850px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding-bottom: 10px;
+  // padding: 10px;
+  object-fit:contain;
 }
 
   .swiper {
@@ -269,6 +414,106 @@ export default {
       }
     }
 //   }
+@media only screen and (max-width: 800px) {
+  .title-wrapper{
+    display: none;
+  }
 
+  .portfolio-background {
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .project-image {
+  img {
+    width: 650px;
+    height: 400px;
+    margin: 0 auto;
+    object-fit: cover;
+    margin-top: 50px;
+    padding-bottom: 10px;
+  }
+}
+
+#giftwitch {
+  width: 650px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding-bottom: 10px;
+  // padding: 10px;
+  object-fit:cover;
+}
+
+  .project-title {
+    font-size: 16px !important;
+  }
+ 
+  .logo-small {
+    height: 70px;
+  }
+
+  .portfolio-background {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .arrow {
+    height: 20px;
+    width: 20px;
+
+    &:before {
+        border-top: 1px solid #001a09;
+        border-right: 1px solid #001a09;
+        box-sizing: border-box;
+        content: '';
+        height: 8px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate3d(-50%, -75%, 0px) rotate(135deg);
+        // Uncomment if you want it to move (probably better not to, looks weird)
+        // transition: transform 0.3s;
+        // will-change: transform;
+        width: 8px;
+    }
+  }
+
+  .project-title {
+    font-size: 12px !important;
+  }
+  .project-wrapper {
+    margin: 0 auto;
+  }
+
+  .portfolio-background {
+    width: 100%;
+  }
+
+
+  .project-image {
+  img {
+    width: 375px;
+    height: 250px;
+    margin: 0 auto;
+    object-fit: contain;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+#giftwitch {
+  width: 375px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  // padding: 10px;
+  object-fit:contain;
+}
+
+
+}
 
 </style>
