@@ -77,8 +77,26 @@ import Nav from '../components/Nav'
 
 export default {
   components: {Nav},
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        { hid: 'og:title',  property: 'og:title', content: this.title },
+        { hid: 'og:image', property: 'og:image', content: this.image },
+      ],
+    }
+  },
   data() {
     return {
+      background: null,
+      title: 'Adam Sebesta Development | Contact',
+      description: 'Get in Touch',
+      image: '~/static/meta.png',
       formValues: {},
       logo: false,
       sent: false

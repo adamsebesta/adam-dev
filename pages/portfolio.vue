@@ -87,8 +87,26 @@ export default {
   directives: {
     swiper: directive
   },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        { hid: 'og:title',  property: 'og:title', content: this.title },
+        { hid: 'og:image', property: 'og:image', content: this.image },
+      ],
+    }
+  },
   data() {
     return {
+      background: null,
+      title: 'Adam Sebesta Development | Portfolio',
+      description: 'My Recent Work',
+      image: '~/static/meta.png',
       settings: {
         dots: false,
         arrows: false,

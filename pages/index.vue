@@ -26,19 +26,26 @@
 
 <script>
 export default {
-  head: {
-    title: 'Home',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Web and Mobile App Development'
-      }
-    ],
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        { hid: 'og:title',  property: 'og:title', content: this.title },
+        { hid: 'og:image', property: 'og:image', content: this.image },
+      ],
+    }
   },
   data() {
     return {
-      background: null
+      background: null,
+      title: 'Adam Sebesta Development | Home',
+      description: 'Web and Mobile App Development',
+      image: '~/static/meta.png'
     }
   },
   methods: {
