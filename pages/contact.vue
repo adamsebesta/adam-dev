@@ -57,7 +57,7 @@
 
             <FormulateInput
               type="button"
-              label="Reset"
+              label="RESET"
               data-ghost
               @click="reset"
               input-class='main-btn small'
@@ -157,6 +157,7 @@ export default {
 
 .small {
   padding: 10px 30px !important;
+  font-size: 12px !important;
 }
 
 .logo-top {

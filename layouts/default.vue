@@ -43,7 +43,7 @@ html {
   color:#35495e;
   height: 10%;
   text-align: left;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 1px;
   }
 }
@@ -73,7 +73,7 @@ html {
   font-family: 'arial' !important;
   text-decoration: none !important;
   padding: 10px 30px;
-  margin-left: 15px !important;
+  margin: 5px !important;
   font-weight: 400 !important;
   font-size: 14px;
   background-color: transparent !important;
@@ -114,4 +114,5 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
 </style>
