@@ -458,7 +458,7 @@ img {
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 420px) {
   .arrow {
     height: 20px;
     width: 20px;
@@ -484,11 +484,13 @@ img {
     font-size: 12px !important;
   }
   .project-wrapper {
-    margin: 0 auto;
+    margin: 0 auto !important;
+    margin-left: 0;
   }
 
   .portfolio-background {
     width: 100%;
+    display: i
   }
 
 

@@ -3,6 +3,7 @@
     <nuxt-link to="/">HOME</nuxt-link>
     <nuxt-link to="/portfolio">PORTFOLIO</nuxt-link>
     <nuxt-link to="/contact"> CONTACT</nuxt-link>
+    <nuxt-link to="/about"> ABOUT</nuxt-link>
     </div>
 </template>
 

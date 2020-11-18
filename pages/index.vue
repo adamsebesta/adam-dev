@@ -60,7 +60,7 @@ export default {
   background-image: url('~static/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  width: 80%;
+  width: 90%;
   height: 100vh;
   position: absolute;
   top: 0;
@@ -125,7 +125,7 @@ export default {
   /* margin-bottom: 10px; */
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   .logo {
     height: 86px;
   }
@@ -149,7 +149,37 @@ export default {
   }
 
   .background {
-    transform: translateX(300);
+    transform: translateX(200);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .logo {
+    height: 86px;
+  }
+
+  .main-btn {
+    font-size: 10px;
+    padding: 10px 15px;
+  }
+
+  .background-lower {
+    
+    height: 80vh;
+    bottom: -94px;
+  }
+
+  html, body {
+  overflow-x: hidden;
+  }
+  body {
+    position: relative;
+  }
+
+  .background {
+    transform: translateX(0);
+    background-image: url('~static/background copy.png');
+    width: 51%;
+    height: 22vh;
   }
 }
 </style>
