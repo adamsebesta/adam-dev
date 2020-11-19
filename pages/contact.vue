@@ -424,14 +424,5 @@ label {
       font-size: 10px; 
     }
   }
-
-  .button:active {
-    background-color: #004b19 !important;
-    border-color: #004b19 !important;
-  }
-  a:active {
-    background-color: #004b19 !important;
-    border-color: #004b19 !important;
-  }
 }
 </style>

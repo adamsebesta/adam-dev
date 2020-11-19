@@ -51,6 +51,7 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 // .button--green {
@@ -116,7 +117,7 @@ html {
 @media only screen and (max-width: 420px) {
   .nav-links {
     a {
-      font-size: 10px !important;
+      font-size: 11px !important;
     }
   }
   .main-btn {
@@ -124,10 +125,10 @@ html {
       color: #004b19  !important;
       background-color: #FFF !important;
     }
-    //  &:active {
-    //   color: #FFF  !important;
-    //   background-color: #004b19 !important;
-    // }
+     &:active {
+      color: #FFF  !important;
+      background-color: #004b19 !important;
+    }
   }
 }
 
