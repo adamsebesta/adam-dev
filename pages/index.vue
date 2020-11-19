@@ -5,7 +5,7 @@
      <div class='background-lower' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(-500px)'}">
     </div>
     <div class="container-main">
-      <div>
+      <div class='logo-wrapper'>
         <img class="logo" draggable="false" src='~static/logo text trans.png' />
         <div class="links">
           <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
@@ -197,6 +197,11 @@ export default {
     background-image: url('~static/background copy.png');
     width: 51%;
     height: 22vh;
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    top: 33%;
   }
 }
 </style>
