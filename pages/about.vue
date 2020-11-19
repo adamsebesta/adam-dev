@@ -21,7 +21,7 @@
       <p class='about-title'> ABOUT </p>
       <p class='about-desc'>
         MY NAME IS ADAM, AND I AM A CANADIAN / ESTONIAN DEVELOPER LIVING IN BERLIN. <br> <br>
-        FOR THE LAST TWO YEARS I HAVE BEEN SPECIALIZING IN NODE.JS, VUE.JS, AND MICROSOFT AZURE THROUGH FREELANCE, AND PROFESSIONAL PROJECTS. I AM A CONFIDENT AUTODIDACT, AND AM ABLE TO QUICKLY UNDERSTAND AND RETAIN NEW INFORMATION. 
+        FOR THE LAST YEAR I HAVE BEEN SPECIALIZING IN NODE.JS, VUE.JS, AND MICROSOFT AZURE THROUGH FREELANCE, AND PROFESSIONAL PROJECTS. I AM A CONFIDENT AUTODIDACT, AND AM ABLE TO QUICKLY UNDERSTAND AND RETAIN NEW INFORMATION. 
         <br><br>
         <!-- I WORK AS A TEACHING ASSISTANT AT LE WAGON'S WEB DEVELOPMENT BOOTCAMP, AND RECENTLY HAVE COMPLETED A WEB DEVELOPMENT INTERNSHIP WITH A BERLIN WEB AGENCY -->
         AS FLUID COMMUNICATION IS IMPORTANT TO ME, I WOULD LOVE TO SCHEDULE A CALL TO FURTHER FAMILIARIZE OURSELVES WITH EACH OTHER’S SERVICES, AND DISCUSS YOUR PROJECT AND PREFERENCES IN MORE DETAIL. 
@@ -110,7 +110,7 @@ export default {
 
 .photo-wrapper {
   position: absolute;
-  top: 30px;
+  top: 25px;
   height: 40%;
   width: 20%;
   margin-left: auto;
@@ -128,7 +128,8 @@ export default {
   .bg2{
     background-color: #013d16;
     // transform: translate(20px, 20px);
-    transform: translate(67px, 60px);
+    transform: translate(68px, 65px);
+    height: 82%;
     z-index: 1;
   }
   .bg3 {
@@ -138,10 +139,10 @@ export default {
     z-index: 2;
   }
   .headshot {
-    width: 81%;
-    height: 90%;
+    width: 82%;
+    height: 92%;
     z-index: 3;
-    transform: translate(65px, 60px);
+    transform: translate(67px, 53px);
     object-fit: cover;
   }
 }
@@ -198,15 +199,24 @@ export default {
 .photo-wrapper {
   height: 40%;
   width: 50%;
+  margin: 0 auto;
+  padding: 25px;
 }
 
 .photo-background {
-    width: 90%;
-    height: 95%;
+    width: 50% !important;
+    height: 85% !important;
     position: absolute;
     transition: all 1s ease;
   }
 
+  .headshot {
+    object-fit: cover !important;
+  }
+  .bg2 {
+    width: 49% !important;
+    height: 82% !important;
+  }
 
   }
 @media only screen and (max-width: 420px) {
@@ -231,23 +241,32 @@ export default {
   }
 }
 .photo-wrapper {
-  height: 30%;
-  width: 55%;
-  top: 100px;
+  height: 35%;
+  width: 54%;
+  top: 85px;
   .headshot {
+    object-fit: cover !important;
+    transform: translate(62px, 55px) !important;
   }
 }
 
 .photo-background {
     position: absolute;
     transition: all 1s ease;
-    width: 72% !important;
-    height: 77% !important;
+    width: 50% !important;
+    height: 70% !important;
   }
 
-
+  .bg2 {
+    width: 47% !important;
+    height: 66% !important;
+    // transform: translate(55px, 52px);
   }
-
+  .bg1 {
+    width: 47% !important;
+    height: 69% !important;
+    // transform: translate(55px, 52px);
+  }
+}
   
-
 </style>

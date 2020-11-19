@@ -282,7 +282,7 @@ export default {
 }
 
 .formulate-input .formulate-input-label {
-  color: #013011;
+  color: #004b19;
   font-family: 'arial';
   
 }
@@ -305,15 +305,17 @@ input, textarea {
   letter-spacing: 2px !important;
   font-size: 12px !important;
   padding: 20px !important;
+  color: #004b19 !important;
 }
 
 label {
   letter-spacing: 2px !important;
   font-size: 14px !important;
+  color: #004b19 !important;
 }
 
 .thanks {
-  color: #013011;
+  color: #004b19 ;
   position: absolute;
   p {
   font-weight: 600;
@@ -327,7 +329,7 @@ label {
     Arial,
     sans-serif;
   font-size: 16px;
-  color: #013011;
+  color: #004b19;
   letter-spacing: 1px;
   }
   h2 {
@@ -400,11 +402,13 @@ label {
     margin-top :0;
   }
   .form {
+    position: absolute;
     width: 90%;
+    margin-top: 15px;
     font-size: 14px !important;
   }
   .logo-small {
-    height: 60px;
+    height: 55px;
   }
 
   li {
@@ -419,6 +423,15 @@ label {
     p {
       font-size: 10px; 
     }
+  }
+
+  .button:active {
+    background-color: #004b19 !important;
+    border-color: #004b19 !important;
+  }
+  a:active {
+    background-color: #004b19 !important;
+    border-color: #004b19 !important;
   }
 }
 </style>

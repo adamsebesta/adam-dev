@@ -30,7 +30,6 @@ html {
     font-weight: bold;
 }
 
-
 .nav-links {
   position: absolute;
   display: flex;
@@ -40,7 +39,7 @@ html {
   left: 10px;
   a {
     z-index: 10;
-  color:#35495e;
+  color:#004b19;
   height: 10%;
   text-align: left;
   font-size: 12px;
@@ -54,14 +53,14 @@ html {
   margin: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #013011;
-  color: #013011;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+// .button--green {
+//   display: inline-block;
+//   border-radius: 4px;
+//   border: 1px solid #013011;
+//   color: #013011;
+//   text-decoration: none;
+//   padding: 10px 30px;
+// }
 
 .main-btn {
   display: inline-block !important;
@@ -96,8 +95,7 @@ html {
 }
 
 .button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+  
 }
 
 .button--grey {
@@ -114,5 +112,24 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+@media only screen and (max-width: 420px) {
+  .nav-links {
+    a {
+      font-size: 10px !important;
+    }
+  }
+  .main-btn {
+    &:hover {
+      color: #004b19  !important;
+      background-color: #FFF !important;
+    }
+    //  &:active {
+    //   color: #FFF  !important;
+    //   background-color: #004b19 !important;
+    // }
+  }
+}
+
 
 </style>

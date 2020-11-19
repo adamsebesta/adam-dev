@@ -12,6 +12,23 @@
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
           <swiper-slide>
             <div class='slide-wrapper'>
+              <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
+              <VueSlickCarousel ref="carousel2" v-bind="settings">
+                <div class='project-image'> <img src="~/static/Streamhub.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
+                <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
+                  <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
+                </video>
+              </VueSlickCarousel>
+              <div class='caro-nav'>
+                <div class='arrow left' v-if="caroCounter.carousel2 > 0" @click="setCaroNav('carousel2', 'b')"></div>
+                <div class='arrow right' v-if="caroCounter.carousel2 < 3" @click="setCaroNav('carousel2', 'f')"></div>
+              </div>
+            </div>
+          </swiper-slide>
+
+          <swiper-slide>
+            <div class='slide-wrapper'>
               <span class='project-title'> BERLIN BYTES | HOMEPAGE </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
                 <div class='project-image'> <img src="~/static/BB home 1.png" alt=""></div>
@@ -39,22 +56,7 @@
             </div>
           </swiper-slide>
         
-          <swiper-slide>
-            <div class='slide-wrapper'>
-              <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
-              <VueSlickCarousel ref="carousel2" v-bind="settings">
-                <div class='project-image'> <img src="~/static/Streamhub.png" alt=""></div>
-                <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
-                <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
-                  <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
-                </video>
-              </VueSlickCarousel>
-              <div class='caro-nav'>
-                <div class='arrow left' v-if="caroCounter.carousel2 > 0" @click="setCaroNav('carousel2', 'b')"></div>
-                <div class='arrow right' v-if="caroCounter.carousel2 < 3" @click="setCaroNav('carousel2', 'f')"></div>
-              </div>
-            </div>
-          </swiper-slide>
+          
           
         </swiper>
         <!-- <div class='project-desc'>
