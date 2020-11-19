@@ -499,7 +499,10 @@ img {
         width: 8px;
     }
   }
-
+  .slide-wrapper {
+    padding: 0;
+  }
+  
   .project-title {
     font-size: 12px !important;
   }
