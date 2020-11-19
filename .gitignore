@@ -91,4 +91,4 @@ sw.*
 
 .nuxt
 
-/middleware/api/vi/index.js
+middleware/api/v1/index.js
