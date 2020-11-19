@@ -45,7 +45,7 @@ export default {
       background: null,
       title: 'Adam Sebesta Development | Home',
       description: 'Web and Mobile App Development',
-      image: '~/static/meta.png'
+      image: '/meta.png'
     }
   },
   methods: {
