@@ -116,7 +116,7 @@ export default {
     async send() {
       this.sent = true;
       // https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM
-      let res = await fetch('https://asdevelopment.ca:3000/api/v1', {
+      let res = await fetch(logicAppUrl, {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
@@ -141,7 +141,7 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-* {
+html {
   overflow: hidden;
 }
 

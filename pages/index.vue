@@ -68,7 +68,7 @@ export default {
 }
 */
 
-* {
+html {
   overflow: hidden;
 }
 .background {

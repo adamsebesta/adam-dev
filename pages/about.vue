@@ -14,21 +14,28 @@
       <!-- <div class="photo-background bg3" :style="bg3? {'transform': 'translate(20px 20px'} : ''"></div> -->
       
       <div></div>
-      <img class="photo-background headshot" src="~static/headshot.png" alt=""/>
+      <img class="photo-background headshot" src="~static/headshot.png" alt="" rel="preload"/>
       
     </div>
     <div class='about'>
       <p class='about-title'> ABOUT </p>
       <p class='about-desc'>
-        MY NAME IS ADAM, AND I AM A CANADIAN / ESTONIAN DEVELOPER LIVING IN BERLIN. <br> <br>
-        FOR THE LAST YEAR I HAVE BEEN SPECIALIZING IN NODE.JS, VUE.JS, AND MICROSOFT AZURE THROUGH FREELANCE, AND PROFESSIONAL PROJECTS. I AM A CONFIDENT AUTODIDACT, AND AM ABLE TO QUICKLY UNDERSTAND AND RETAIN NEW INFORMATION. 
-        <br><br>
-        <!-- I WORK AS A TEACHING ASSISTANT AT LE WAGON'S WEB DEVELOPMENT BOOTCAMP, AND RECENTLY HAVE COMPLETED A WEB DEVELOPMENT INTERNSHIP WITH A BERLIN WEB AGENCY -->
-        AS FLUID COMMUNICATION IS IMPORTANT TO ME, I WOULD LOVE TO SCHEDULE A CALL TO FURTHER FAMILIARIZE OURSELVES WITH EACH OTHER’S SERVICES, AND DISCUSS YOUR PROJECT AND PREFERENCES IN MORE DETAIL. 
-        <br><br>
-        THANK YOU FOR YOUR CONSIDERATION, 
-        <!-- <br>
-        AND I LOOK FORWARD TO SPEAKING. -->
+        <span>Hi! Thank you for your interest.</span>
+        <br>
+        <br>
+        <span>I’m Adam, a Canadian / Estonian developer living in Berlin. I am a certified Microsoft Azure Developer, who is deeply interested in the cloud, and building applications with modern technologies. </span>
+        <br>
+        <br>
+        <span>  This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
+        <br>
+        <br>
+        <span>As fluid communication is a pillar of the business, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
+        <br>
+        <br>
+        <span>Whether you are looking to develop a MVP to secure funding, or a personal use application, I would be happy to begin exploring how I can help. </span>
+        <br>
+        <br>
+        <span>Thank you again, and I look forward to speaking with you. </span>
       </p>      
     </div>
 
@@ -104,8 +111,8 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-* {
-  overflow: hidden;
+html {
+  overflow-y: scroll;
 }
 
 .photo-wrapper {
@@ -160,7 +167,7 @@ export default {
   // margin-left: 40px;
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 49%;
   color: #013d16;
   z-index: 2;
   .about-title {
@@ -169,13 +176,21 @@ export default {
     margin-bottom: 20px;
   }
   .about-desc {
+    padding: 0 10%;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    span {
+      // background-color: #82ab71;
+      padding: 5px
+    }
     font-size: 14px;
     letter-spacing: 1px;
-    text-align: left;
+    text-align: center;
   }
 }
 
 @media only screen and (max-width: 1024px) {
+
   .about {
   font-weight: 300;
   width: 80%;
@@ -193,7 +208,7 @@ export default {
   .about-desc {
     font-size: 16px;
     letter-spacing: 1px;
-    text-align: left;
+    text-align: center;
   }
 }
 .photo-wrapper {
@@ -223,10 +238,10 @@ export default {
   .about {
   font-weight: 300;
   width: 80%;
-  // margin-left: 40px;
+  // margin-center: 40px;
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 47%;
   color: #013d16;
   z-index: 2;
   .about-title {
@@ -237,7 +252,7 @@ export default {
   .about-desc {
     font-size: 10px;
     letter-spacing: 1px;
-    text-align: left;
+    text-align: center;
   }
 }
 .photo-wrapper {

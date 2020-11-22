@@ -4,7 +4,7 @@
      <div class='title-wrapper'>
        <!-- <img src="~/static/headshot.png" alt=""> -->
       <h2> PORTFOLIO </h2>
-      <img src="~static/portfolio.png" alt="">
+      <!-- <img src="~static/portfolio.png" alt=""> -->
      </div>
     
       <div class='project-wrapper'>
@@ -14,7 +14,7 @@
             <div class='slide-wrapper'>
               <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
               <VueSlickCarousel ref="carousel2" v-bind="settings">
-                <div class='project-image'> <img src="~/static/Streamhub.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
                 <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
                   <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
@@ -176,7 +176,7 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-* {
+html {
   overflow: hidden;
 }
 
@@ -235,7 +235,7 @@ img {
     letter-spacing: 3px;
     // margin-left: 40px;
     img {
-      height: 20px;
+      height: 15px;
     }
   }
   p{
