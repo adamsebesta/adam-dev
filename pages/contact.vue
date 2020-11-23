@@ -12,7 +12,7 @@
       <h2> THANK YOU, </h2>
       <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
-    <div v-if="sent" class='background-img'> </div>
+    <div v-if="!sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>
       <div class='background-img'>
       </div>
@@ -115,8 +115,7 @@ export default {
     },
     async send() {
       this.sent = true;
-      // https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM
-      let res = await fetch(this.logicAppUrl, {
+      let res = await fetch("https://prod-57.eastus.logic.azure.com:443/workflows/f50c9b5ca3a14edc88a4910085747591/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=V0WsnUByfGtKvlhwwn-RcwueeFwnxn2FWV_r8FnNqPM", {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {

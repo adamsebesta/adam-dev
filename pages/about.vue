@@ -253,6 +253,7 @@ html {
     font-size: 10px;
     letter-spacing: 1px;
     text-align: center;
+    padding: 0;
   }
 }
 .photo-wrapper {
