@@ -13,7 +13,7 @@
           <swiper-slide>
             <div class='slide-wrapper'>
               <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
-              <VueSlickCarousel ref="carousel2" v-bind="settings">
+              <VueSlickCarousel ref="carousel" v-bind="settings">
                 <div class='project-image'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
                 <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
@@ -21,8 +21,8 @@
                 </video>
               </VueSlickCarousel>
               <div class='caro-nav'>
-                <div class='arrow left' v-if="caroCounter.carousel2 > 0" @click="setCaroNav('carousel2', 'b')"></div>
-                <div class='arrow right' v-if="caroCounter.carousel2 < 3" @click="setCaroNav('carousel2', 'f')"></div>
+                <div class='arrow left' v-if="caroCounter.carousel > 0" @click="setCaroNav('carousel', 'b')"></div>
+                <div class='arrow right' v-if="caroCounter.carousel < 2" @click="setCaroNav('carousel', 'f')"></div>
               </div>
             </div>
           </swiper-slide>
@@ -30,28 +30,28 @@
           <swiper-slide>
             <div class='slide-wrapper'>
               <span class='project-title'> BERLIN BYTES | HOMEPAGE </span>
-              <VueSlickCarousel ref="carousel" v-bind="settings">
+              <VueSlickCarousel ref="carousel1" v-bind="settings">
                 <div class='project-image'> <img src="~/static/BB home 1.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BB home.png" alt=""></div>
               </VueSlickCarousel>
               <div class='caro-nav'>
-                <div class='arrow left' v-if="caroCounter.carousel > 0" @click="setCaroNav('carousel', 'b')"></div>
-                <div class='arrow right' v-if="caroCounter.carousel < 1" @click="setCaroNav('carousel', 'f')"></div>
+                <div class='arrow left' v-if="caroCounter.carousel1 > 0 " @click="setCaroNav('carousel1', 'b')"></div>
+                <div class='arrow right' v-if="caroCounter.carousel1 < 1" @click="setCaroNav('carousel1', 'f')"></div>
               </div>
             </div>
           </swiper-slide>
           <swiper-slide>
             <div class='slide-wrapper'>
               <span class='project-title'> BERLIN BYTES | BI TOOL </span>
-              <VueSlickCarousel ref="carousel1" v-bind="settings">
+              <VueSlickCarousel ref="carousel2" v-bind="settings">
                 <div class='project-image'> <img src="~/static/BI tool 2.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool 1.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool 3.png" alt=""></div>
               </VueSlickCarousel>
               <div class='caro-nav'>
-                <div class='arrow left' v-if="caroCounter.carousel1 > 0" @click="setCaroNav('carousel1', 'b')"></div>
-                <div class='arrow right'  v-if="caroCounter.carousel1 < 4" @click="setCaroNav('carousel1', 'f')"></div>
+                <div class='arrow left' v-if="caroCounter.carousel2 > 0" @click="setCaroNav('carousel2', 'b')"></div>
+                <div class='arrow right'  v-if="caroCounter.carousel2 < 3" @click="setCaroNav('carousel2', 'f')"></div>
               </div>
             </div>
           </swiper-slide>
