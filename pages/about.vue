@@ -241,7 +241,7 @@ html {
   // margin-center: 40px;
   text-align: center;
   position: absolute;
-  top: 47%;
+  top: 49%;
   color: #013d16;
   z-index: 2;
   .about-title {

@@ -119,8 +119,8 @@ export default {
          method: 'POST',
           body: JSON.stringify(this.formValues),
           headers: {
-          'Content-Type': 'application/json',
-          'Connection': 'keep-alive',
+            'Content-Type': 'application/json',
+            'Connection': 'keep-alive',
           }
       });
       },

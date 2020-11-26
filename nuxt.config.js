@@ -39,8 +39,9 @@ module.exports = {
     { src: './plugins/vue-slick-carousel.js' },
   ],
 
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     logicAppUrl: process.env.LOGIC_APP_URL,
+    authHeader: 'adamsebestadevelopment'
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
