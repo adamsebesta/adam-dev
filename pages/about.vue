@@ -112,7 +112,7 @@ export default {
 }
 */
 html {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .photo-wrapper {
@@ -163,7 +163,7 @@ html {
 } */
 .about {
   font-weight: 300;
-  width: 80%;
+  width: 70%;
   // margin-left: 40px;
   text-align: center;
   position: absolute;
