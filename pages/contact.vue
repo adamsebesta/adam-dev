@@ -403,7 +403,7 @@ label {
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 15px;
+    margin-top: 45px;
     font-size: 14px !important;
   }
   .logo-small {
