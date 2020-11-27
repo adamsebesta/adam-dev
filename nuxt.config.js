@@ -35,7 +35,7 @@ module.exports = {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/vue-formulate',
-    { src: '~/plugins/vue-awesome-swiper', mode: 'client' },
+    { src: '~/plugins/vue-awesome-swiper'},
     { src: './plugins/vue-slick-carousel.js' },
   ],
   // ||
