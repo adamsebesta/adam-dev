@@ -38,10 +38,9 @@ module.exports = {
     { src: '~/plugins/vue-awesome-swiper', mode: 'client' },
     { src: './plugins/vue-slick-carousel.js' },
   ],
-
+  // ||
   publicRuntimeConfig: {
-    logicAppUrl: process.env.LOGIC_APP_URL,
-    authHeader: 'adamsebestadevelopment'
+    logicAppUrl: process.env.LOGIC_APP_URL 
   },
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
