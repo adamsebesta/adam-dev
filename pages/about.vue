@@ -147,7 +147,7 @@ html {
   }
   .headshot {
     width: 82%;
-    height: 92%;
+    height: 87%;
     z-index: 3;
     transform: translate(67px, 53px);
     object-fit: cover;

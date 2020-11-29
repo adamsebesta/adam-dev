@@ -14,11 +14,11 @@
             <div class='slide-wrapper'>
               <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
-                <div class='project-image'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
-                <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
+                <div class='project-image mac'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
                   <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
                 </video>
+                <div class='project-image'> <img src="~/static/Streamhub 1.png" alt=""></div>
               </VueSlickCarousel>
               <div class='caro-nav'>
                 <div class='arrow left' v-if="caroCounter.carousel > 0" @click="setCaroNav('carousel', 'b')"></div>
@@ -31,7 +31,7 @@
             <div class='slide-wrapper'>
               <span class='project-title'> BERLIN BYTES | HOMEPAGE </span>
               <VueSlickCarousel ref="carousel1" v-bind="settings">
-                <div class='project-image'> <img src="~/static/BB home 1.png" alt=""></div>
+                <div class='project-image mac'> <img src="~/static/BerlinBytes.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BB home.png" alt=""></div>
               </VueSlickCarousel>
               <div class='caro-nav'>
@@ -44,9 +44,9 @@
             <div class='slide-wrapper'>
               <span class='project-title'> BERLIN BYTES | BI TOOL </span>
               <VueSlickCarousel ref="carousel2" v-bind="settings">
-                <div class='project-image'> <img src="~/static/BI tool 2.png" alt=""></div>
-                <div class='project-image'> <img src="~/static/BI tool 1.png" alt=""></div>
+                <div class='project-image mac'> <img src="~/static/CinderellaDB.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool.png" alt=""></div>
+                <div class='project-image'> <img src="~/static/BI tool 1.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool 3.png" alt=""></div>
               </VueSlickCarousel>
               <div class='caro-nav'>
@@ -316,6 +316,9 @@ img {
 //     padding-bottom: 50px;
 //   }
 
+.mac {
+  object-fit: contain;
+}
 
 .arrow  {
     // left: 50%;
@@ -327,14 +330,16 @@ img {
 
 // The actual arrow styles, make it an area for 50x50 for ease of use on touch devices
 .arrow {
-    border: 1px solid #001a09;
+    border: 2px solid #001a09;
     cursor: pointer;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
+    border-radius: 5px;
     
     &:before {
-        border-top: 2px solid #004b19;
-        border-right: 2px solid #004b19;
+        
+        border-top: 4px solid #004b19;
+        border-right: 4px solid #004b19;
         box-sizing: border-box;
         content: '';
         height: 12px;
@@ -351,8 +356,8 @@ img {
     // The 'flip' state, just on hover for ease atm
     &:hover:before {
         
-       border-top: 2px solid white;
-        border-right: 2px solid white;
+       border-top: 4px solid white;
+        border-right: 4px solid white;
     }
 
     &:hover {
@@ -392,10 +397,18 @@ img {
     width: 850px;
     height: 500px;
     margin: 0 auto;
-    object-fit: cover;
+    object-fit: contain;
     margin-top: 30px;
     padding-bottom: 10px;
+    outline: none;
   }
+  &:focus {
+    outline: none;
+  }
+}
+
+.slick-track:focus {
+  outline: none  !important;
 }
 
 #giftwitch {
