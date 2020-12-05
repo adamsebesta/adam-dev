@@ -24,6 +24,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  background-image: url('~static/test-background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  // background: #141E30;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .nuxt-link-exact-active {
@@ -69,19 +76,19 @@ html {
   cursor: pointer !important;
   border-radius: 4px !important;
   letter-spacing: 0.15em !important;
-  border: 1px solid #004b19 !important;
-  color: #004b19 !important;
+  border: 2px solid $purple !important;
+  color: $purple !important;
   font-family: 'arial' !important;
   text-decoration: none !important;
-  padding: 10px 30px;
+  padding: 10px 20px;
   margin: 5px !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   font-size: 14px;
   background-color: transparent !important;
   /* box-shadow: -1px 1px 2px 1px #01301177; */
   &:hover {
-    color: #fff !important;
-    background-color: #004b19 !important;
+    color: $purple !important;
+    background-color: $lightBlue !important;
   }
 }
 

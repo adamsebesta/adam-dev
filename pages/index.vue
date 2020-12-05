@@ -1,13 +1,14 @@
 <template>
   <div class='page'>
-    <div class='background' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(800px)'}">
+    <!-- <div class='background' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(800px)'}">
     </div>
      <div class='background-lower' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(-500px)'}">
-    </div>
+    </div> -->
     <div class="container-main">
       <div class='logo-wrapper'>
+        <img id="iphone-home" class="" draggable="false" src='~static/iphone.png' />
         <img class="logo" draggable="false" src='~static/logo text trans.png' />
-        <div class="links">
+        <!-- <div class="links">
           <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
           <nuxt-link class='main-btn' to="/portfolio">PORTFOLIO</nuxt-link>
           <a
@@ -18,7 +19,7 @@
           >
             LINKEDIN
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -140,6 +141,11 @@ html {
   margin-left: 2%;
   margin-right: auto;
   /* margin-bottom: 10px; */
+}
+
+#iphone-home {
+  margin: 0 auto;
+  height: 500px;
 }
 
 @media only screen and (max-width: 1000px) {

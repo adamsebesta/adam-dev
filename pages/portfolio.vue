@@ -14,7 +14,7 @@
             <div class='slide-wrapper'>
               <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
-                <div class='project-image mac'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
+                <div class='project-image mac'> <img :src="img" alt="" rel="preload"></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
                   <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
                 </video>
@@ -106,6 +106,7 @@ export default {
   data() {
     return {
       background: null,
+      // img: '~/static/Streamhub.png',
       title: 'Adam Sebesta Development | Portfolio',
       description: 'My Recent Work',
       image: '~/static/meta.png',
@@ -164,7 +165,9 @@ export default {
     
   },
   created() {
-    this.moveLogo();
+    // this.moveLogo();
+    // let image = new Image(); 
+    // this.image.src = '~/static/Streamhub.png'; 
   }
 }
 </script>
@@ -330,7 +333,7 @@ img {
 
 // The actual arrow styles, make it an area for 50x50 for ease of use on touch devices
 .arrow {
-    border: 2px solid #001a09;
+    border: 2px solid #004b19;
     cursor: pointer;
     height: 35px;
     width: 35px;

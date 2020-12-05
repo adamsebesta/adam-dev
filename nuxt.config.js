@@ -63,8 +63,15 @@ module.exports = {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
+  
   modules: [
+    '@nuxtjs/style-resources'
   ],
+
+    //You will have to add this new object if it doesn't exist already
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
