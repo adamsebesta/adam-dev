@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     blockColor() {
-      return this.menuShown? "#364cf4" : '#556080'
+      return this.menuShown? "#3fc1d9" : '#556080'
     }
   },
   methods: {

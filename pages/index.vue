@@ -5,8 +5,8 @@
         <div class="main-img-container">
           <div class='device-images'>
             <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
-            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' /> -->
-
+            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' />  -->
+            <img class='logo-img' src='~static/logo.png' alt="">
           </div>
           
          <div class='logo'>
@@ -262,6 +262,9 @@ html {
   opacity: 0.3;
 }
 
+.logo-img {
+  width: 40%;
+}
 
 .logo {
   width: 100%;
@@ -269,6 +272,7 @@ html {
   // position: absolute;  
   text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
   z-index: 1;
+  text-align: left;
   
   .logo-upper {
     color: $lightBlue;
@@ -286,6 +290,7 @@ html {
     letter-spacing: 3px;
     text-indent: -0.025em;
     font-weight: 700;
+    margin-left: 12%;
   }
 }
 
@@ -301,13 +306,13 @@ html {
 }
 
 .main-img-container {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   z-index: 1;
   justify-content: center;
   padding: 0  50px; 
   align-items: center;
-  flex-direction: column;
+  // flex-direction: column;
   display: flex;
 }
 #iphone-home {
@@ -325,7 +330,8 @@ html {
 
 .device-images {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 4%;
 }
 
 
@@ -340,11 +346,7 @@ html {
     padding: 10px 15px;
   }
 
-  .background-lower {
-    
-    height: 100vh;
-    bottom: -94px;
-  }
+
 
   html, body {
   overflow-x: hidden;
@@ -364,11 +366,6 @@ html {
     padding: 10px 15px;
   }
 
-  .background-lower {
-    
-    height: 80vh;
-    bottom: -94px;
-  }
 
   html, body {
   overflow-x: hidden;
