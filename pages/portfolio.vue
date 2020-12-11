@@ -1,11 +1,6 @@
 <template>
   <div class="container-main">
     <div class='portfolio-background'>
-     <div class='title-wrapper'>
-       <!-- <img src="~/static/headshot.png" alt=""> -->
-      <h2> PORTFOLIO </h2>
-      <!-- <img src="~static/portfolio.png" alt=""> -->
-     </div>
     
       <div class='project-wrapper'>
         <swiper class="swiper vertical" :options="swiperOptionv">
@@ -55,26 +50,11 @@
               </div>
             </div>
           </swiper-slide>
-        
-          
-          
         </swiper>
-        <!-- <div class='project-desc'>
-
-        </div>
-        <div class='project-photos'>
-        <p></p>
-        </div> -->
       </div>
 
    </div>
-    <!-- <span class="title-pop">
-          GET IN TOUCH!
-    </span> -->
-    <nuxt-link to="/">
-      <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
-      <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
-    </nuxt-link>
+
     <Nav/>
    
   </div>
@@ -193,22 +173,7 @@ img {
     user-drag: none;
 }
 
-.logo-small {
-  height: 100px;
-  margin: 0 auto;
-  margin-bottom: 25px;
-  z-index: 10;
-}
 
-.green-sqr {
-  transition: all 1.5s ease;
-  height: 38px;
-  width: 38px;
-  position: absolute;
-  top: 11px;
-  left: 10px;
-  background-color: #82ab71;
-}
 
 .portfolio-background {
   width: 80%;
@@ -220,7 +185,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #004b19;
+  color: $lightBlue;
   height: 100%;
   width: 30%;
   h2{
@@ -324,7 +289,7 @@ img {
 
 // The actual arrow styles, make it an area for 50x50 for ease of use on touch devices
 .arrow {
-    border: 2px solid #004b19;
+    border: 2px solid $lightBlue;
     cursor: pointer;
     height: 35px;
     width: 35px;
@@ -332,8 +297,8 @@ img {
     
     &:before {
         
-        border-top: 4px solid #004b19;
-        border-right: 4px solid #004b19;
+        border-top: 4px solid $lightBlue;
+        border-right: 4px solid $lightBlue;
         box-sizing: border-box;
         content: '';
         height: 12px;
@@ -350,12 +315,12 @@ img {
     // The 'flip' state, just on hover for ease atm
     &:hover:before {
         
-       border-top: 4px solid white;
-        border-right: 4px solid white;
+       border-top: 4px solid $lightBlue;
+        border-right: 4px solid $lightBlue;
     }
 
     &:hover {
-      background-color: #004b19;
+      background-color: $purple;
     }
 }
 .caro-nav {
@@ -363,6 +328,11 @@ img {
   justify-content: center;
   align-items: center;
 }
+
+.swiper-container {
+  background-color: $background !important;
+}
+
 .slide-wrapper {
   width: 100%;
   height: 100%;
@@ -370,11 +340,13 @@ img {
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
+  background-color: $background;
+  margin-bottom: 0;
     .project-title {
       font-size: 22px;
       letter-spacing: 2px;
       font-weight: 400;
-      color: #004b19;
+      color: $lightBlue;
   }
 }
 

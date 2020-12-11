@@ -45,10 +45,13 @@
             <g>
             </g>
             </svg>
-    <nav class="menu">
-      <a @click="navAbout" class='menu__item' to="/about">About</a>
-      <nuxt-link class='menu__item' to="/contact">Contact</nuxt-link>
-      <nuxt-link class='menu__item' to="/portfolio">Portfolio</nuxt-link>
+    <nav 
+      class="menu"
+      :style="{'display': menuShown? '' : 'none'}"
+    >
+      <a @click="navChange('/about')" class='menu__item'>About</a>
+      <a @click="navChange('/contact')" class='menu__item'>Contact</a>
+      <a @click="navChange('/portfolio')" class='menu__item'>Portfolio</a>
       <a
         href="https://www.linkedin.com/company/adam-sebesta-development"
         target="_blank"
@@ -93,13 +96,13 @@ export default {
         rotate: [
           {
             duration: 400,
-            value: this.menuShown? 45 : -45
+            value: this.menuShown? 0 : 45
           },
         ],
       });
       this.menuShown = !this.menuShown
     },
-      async navAbout() {
+      async navChange(path) {
         if (window.location.pathname == '/') {
           let target = document.querySelectorAll('.star')[79];
           let pos = target.getBoundingClientRect();
@@ -107,22 +110,24 @@ export default {
           anime.timeline({loop: false})
             .add({
               targets: target,
-              // x:  (this.windowWidth / 2) - 500,
-              // y:  (this.windowHeight / 2) - 400,
-              x: -500,
-              y: -500,
+              x:  (this.windowWidth / 2) - (this.windowWidth / 2.5),
+              y:  (this.windowHeight / 2) - (this.windowHeight / 2.5), 
               width: this.windowWidth,
               height: this.windowHeight,
-              opacity: '0.2',
               easing: "easeOutExpo",
               duration: 1000,
-              complete: function(anim) {
-                that.$router.push({
-                  path: '/about'
-                })
-              }
             })
+            setTimeout(()=> {
+              that.$router.push({
+                path: path
+              })
+            }, 300)
           }
+          else {
+             this.$router.push({
+            path: path
+          })
+        }
       }
   },
   created() {
@@ -132,20 +137,59 @@ export default {
     setTimeout(() => {
        this.showMenu()
       }, 750);
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
   },
 }
 </script>
 
 
-<style>
-.bars {
-  font-size: 12px;
-  color: #004b19;
-  margin: 10px;
-  position:  absolute;
-  top: 50px;
+<style lang='scss' scoped>
+.menu {
+	position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  top: 90px;
   left: 5px;
+	display: flex;
+	flex-direction: column;
+	margin: 0 0 0 1vw;
+	align-items: flex-start;
+}
+
+.menu__item {
+  color: $lightBlue;
+  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+	line-height: 1.25;
+	letter-spacing: -0.025em;
+	text-indent: -0.025em;
+  // background: linear-gradient(45deg, #0947db, #898ce9);
+  font-weight: 900;
+  font-size: 1.25vw;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+  position: relative;
   cursor: pointer;
+}
+
+.menu__item:hover,
+.menu__item:focus {
+	color: $purple
+}
+
+.menu__item::before {
+	content: '';
+	width: 60%;
+	height: 10%;
+	background: linear-gradient(45deg, #f19872, #e86c9a);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transform-origin: 0 0;
+	transform: scale3d(0,1,1);
 }
 
 @keyframes appear {

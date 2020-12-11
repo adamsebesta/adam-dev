@@ -8,7 +8,7 @@
   
 
 html {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -22,7 +22,7 @@ html {
   // background: #141E30;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to left, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to left, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: #020517;  /* fallback for old browsers */
+  background: $background;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
@@ -69,6 +69,14 @@ html {
 //   text-decoration: none;
 //   padding: 10px 30px;
 // }
+
+#corner-logo {
+  position: absolute;
+  top: 4%;
+  left: 1.3%;
+  opacity: .8;
+  cursor: pointer;
+}
 
 .main-btn {
   display: inline-block !important;

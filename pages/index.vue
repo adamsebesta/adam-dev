@@ -3,16 +3,18 @@
     <div class="container-main">
         <Nav/>
         <div class="main-img-container">
-          <!-- <div class='device-images'>
-            <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone.png' />
-            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' />
-          </div> -->
+          <div class='device-images'>
+            <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
+            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' /> -->
+
+          </div>
           
          <div class='logo'>
            <p class="logo-upper rise1">Adam Sebesta</p>
            <p class="logo-lower">Development</p>
          </div>
 
+        <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
 			
         </div>
         <svg id="sky">
@@ -84,6 +86,7 @@ export default {
       ],
     }
   },
+  transition: "page",
   data() {
     return {
       adam: false,
@@ -131,7 +134,7 @@ export default {
       .add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(150),
+        delay: anime.stagger(300),
         y: [
           {
             duration: 2000,
@@ -195,29 +198,7 @@ export default {
           delay: (el, i) => 700 + 30 * i
         })
     },
-    async navAbout() {
-      let target = document.querySelectorAll('.star')[79];
-      let pos = target.getBoundingClientRect();
-      let that = this;
-      anime.timeline({loop: false})
-        .add({
-          targets: target,
-          // x:  (this.windowWidth / 2) - 500,
-          // y:  (this.windowHeight / 2) - 400,
-          x: -500,
-          y: -500,
-          width: this.windowWidth * 2,
-          height: this.windowHeight * 2,
-          opacity: '0.2',
-          easing: "easeOutExpo",
-          duration: 1000,
-          complete: function(anim) {
-            that.$router.push({
-              path: '/about'
-            })
-          }
-        })
-    }
+    
   },
   created() {
     this.showBackground();
@@ -277,14 +258,6 @@ html {
   z-index: -1;
 }
 
-#corner-logo {
-  position: absolute;
-  top: 4%;
-  left: 1.3%;
-  opacity: .8;
-  cursor: pointer;
-}
-
 .star {
   opacity: 0.3;
 }
@@ -299,7 +272,7 @@ html {
   
   .logo-upper {
     color: $lightBlue;
-    font-size: 4vw;
+    font-size: 4.5vw;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -309,13 +282,18 @@ html {
   .logo-lower {
     color: $purple;
     font-size: 2.75vw;
-    line-height: 1.25;
+    line-height: 1.5;
     letter-spacing: 3px;
     text-indent: -0.025em;
     font-weight: 700;
   }
 }
 
+.title-subheading {
+  color: $lightBlue;
+  font-size: 26px;
+  padding-top: 10rem;
+}
 
 .rise1 .letter {
   display: inline-block;
@@ -329,7 +307,7 @@ html {
   justify-content: center;
   padding: 0  50px; 
   align-items: center;
-  // flex-direction: column;
+  flex-direction: column;
   display: flex;
 }
 #iphone-home {
@@ -350,51 +328,7 @@ html {
   justify-content: center;
 }
 
-.menu {
-	position: absolute;
-  z-index: 1000;
-  opacity: 0;
-  top: 90px;
-  left: 5px;
-	display: flex;
-	flex-direction: column;
-	margin: 0 0 0 1vw;
-	align-items: flex-start;
-}
 
-.menu__item {
-  color: $lightBlue;
-  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
-	line-height: 1.25;
-	letter-spacing: -0.025em;
-	text-indent: -0.025em;
-  // background: linear-gradient(45deg, #0947db, #898ce9);
-  font-weight: 900;
-  font-size: 1.25vw;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	position: relative;
-}
-
-.menu__item:hover,
-.menu__item:focus {
-	color: $purple
-}
-
-.menu__item::before {
-	content: '';
-	width: 60%;
-	height: 10%;
-	background: linear-gradient(45deg, #f19872, #e86c9a);
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	transform-origin: 0 0;
-	transform: scale3d(0,1,1);
-}
 
 @media only screen and (max-width: 1000px) {
   .logo {
