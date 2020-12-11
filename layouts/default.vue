@@ -5,10 +5,10 @@
 </template>
 
 <style lang='scss'>
-  /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap'); */
+  
 
 html {
-  font-family: $bodyText;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -19,9 +19,12 @@ html {
   // background-image: url('~static/test-background.png');
   // background-repeat: no-repeat;
   // background-size: cover;
-  background: #141E30;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  // background: #141E30;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to left, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to left, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #020517;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
   // background: #141E30;  /* fallback for old browsers */
@@ -74,7 +77,6 @@ html {
   letter-spacing: 0.15em !important;
   border: 2px solid $purple !important;
   color: $purple !important;
-  font-family: 'arial' !important;
   text-decoration: none !important;
   padding: 10px 20px;
   margin: 5px !important;

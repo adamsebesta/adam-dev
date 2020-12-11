@@ -14,7 +14,7 @@
             <div class='slide-wrapper'>
               <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
-                <div class='project-image mac'> <img :src="img" alt="" rel="preload"></div>
+                <div class='project-image mac'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
                   <source src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm" type='video/webm; codecs="vp8, vorbis"' />
                 </video>
@@ -223,15 +223,6 @@ img {
   color: #004b19;
   height: 100%;
   width: 30%;
-  font-family:
-    'arial',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
   h2{
     font-size: 24px;
     font-weight: 00;
@@ -384,16 +375,8 @@ img {
       letter-spacing: 2px;
       font-weight: 400;
       color: #004b19;
-      font-family:  'arial',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      Roboto,
-      'Helvetica Neue',
-      Arial,
-      sans-serif;
-    }
   }
+}
 
 .project-image {
   img {

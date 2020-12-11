@@ -1,19 +1,7 @@
 <template>
   <div class='page loaderAnim' ref='page' >
     <div class="container-main">
-         <nav class="menu">
-           <a @click="navAbout" class='menu__item' to="/about">About</a>
-          <nuxt-link class='menu__item' to="/contact">Contact</nuxt-link>
-          <nuxt-link class='menu__item' to="/portfolio">Portfolio</nuxt-link>
-          <a
-            href="https://www.linkedin.com/company/adam-sebesta-development"
-            target="_blank"
-            rel="noopener noreferrer"
-            class='menu__item'
-          >
-            LinkedIn
-          </a>
-        </nav>
+        <Nav/>
         <div class="main-img-container">
           <!-- <div class='device-images'>
             <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone.png' />
@@ -72,41 +60,14 @@
           </g>
           </svg>
         </svg> 
-
-        <div id="shootingstars">
-          
-            <div
-              v-for="s in shootStars"
-              class="wish"
-              :style="{
-                left: `${getRandomY()}px`,
-                top: `${getRandomX()}px`
-              }"
-              :key="s"
-            />
-        </div>
-
-
-
-        <!-- <div class="links">
-          <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
-          <nuxt-link class='main-btn' to="/portfolio">PORTFOLIO</nuxt-link>
-          <a
-            href="https://www.linkedin.com/company/adam-sebesta-development"
-            target="_blank"
-            rel="noopener noreferrer"
-            class='main-btn'
-          >
-            LINKEDIN
-          </a>
-        </div> -->
       </div>
     </div>
-  </div>
 </template>
 
 <script>
 import anime from 'animejs';
+import about from './about'
+import Nav from '../components/Nav'
 
 export default {
   head() {
@@ -153,38 +114,44 @@ export default {
     getRandomY() {
       return Math.floor(Math.random() * Math.floor(this.windowHeight)).toString();
     },
+    // moveStarsToCenter() {
+    //   anime({
+    //     targets: ["#sky .star"],
+    //     easing: "easeInOutSine",
+    //     x: [
+    //       {
+    //         duration: 500,
+    //         value: 20
+    //       },
+    //     ],
+    //   });
+    // },
     rippleStars() {
-      anime({
+      anime.timeline({loop: false})
+      .add({
         targets: ["#sky .star"],
-        easing: "linear",
-        delay: anime.stagger(500),
+        easing: "easeInOutSine",
+        delay: anime.stagger(150),
+        y: [
+          {
+            duration: 2000,
+            value: "5"
+          },
+        ],
         opacity: [
           {
-            duration: 700,
-            value: "0.5"
+            duration: 2500,
+            value: '0.0'
           },
         ],
+        
+      }).add({
+        x: 10
+      })
+      
         // translateX: 3
-      });
   },
-    starryNight() {
-      anime({
-        targets: ["#sky .star"],
-         width: [
-          {
-            duration: 100,
-            value: "130px"
-          },
-          {
-            duration: 100,
-            value: "150px"
-          }
-        ],
-        easing: "linear",
-        loop: true,
-        delay: (el, i) => 2000 * i
-      });
-    },
+    
     async growIphone() {
 
       const animation = anime.timeline();
@@ -228,39 +195,40 @@ export default {
           delay: (el, i) => 700 + 30 * i
         })
     },
-    navAbout() {
-      let target = document.querySelectorAll('.star')[3];
+    async navAbout() {
+      let target = document.querySelectorAll('.star')[79];
       let pos = target.getBoundingClientRect();
-      console.log(pos)
+      let that = this;
       anime.timeline({loop: false})
         .add({
           targets: target,
-          width: 500,
-          height: 500,
-          x:  pos.x <  (this.windowWidth / 2)? pos.x + (this.windowWidth / 2): (this.windowWidth / 2) - pos.x , 
-          y:  pos.y <  (this.windowWidth / 2)? pos.y + (this.windowWidth / 2): (this.windowWidth / 2) - pos.y , 
+          // x:  (this.windowWidth / 2) - 500,
+          // y:  (this.windowHeight / 2) - 400,
+          x: -500,
+          y: -500,
+          width: this.windowWidth * 2,
+          height: this.windowHeight * 2,
+          opacity: '0.2',
           easing: "easeOutExpo",
-          duration: 2400,
-          // delay: (el, i) => 700 + 30 * i
+          duration: 1000,
+          complete: function(anim) {
+            that.$router.push({
+              path: '/about'
+            })
+          }
         })
     }
-
-   
   },
   created() {
     this.showBackground();
   },
   mounted() {
     this.initLogo();
-    this.starryNight();
+    // this.starryNight();
     this.rippleStars();
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
     // this.growIphone();
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-      this.windowHeight = window.innerHeight;
-    }
   }
 }
 </script>
@@ -306,59 +274,45 @@ html {
   overflow: hidden;
   margin: 0;
   padding: 0;
-}
-
-#shootingstars {
-  margin: 0;
   z-index: -1;
-  padding: 0;
-  width: 150vh;
-  height: 100vw;
-  position: fixed;
-  overflow: hidden;
-  transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%))
-    rotate(120deg);
 }
 
-.wish {
-  height: 10px;
-  top: 300px;
-  width: 30px;
-  margin: 0;
-  opacity: 0;
-  padding: 0;
-  background-color: $purple;
+#corner-logo {
   position: absolute;
-  background: linear-gradient(-45deg, $purple, rgba(0, 0, 255, 0));
-  filter: drop-shadow(0 0 6px $purple);
-  overflow: hidden;
+  top: 4%;
+  left: 1.3%;
+  opacity: .8;
+  cursor: pointer;
 }
+
+.star {
+  opacity: 0.3;
+}
+
 
 .logo {
   width: 100%;
   margin: 0 auto;
   // position: absolute;  
-  text-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
   z-index: 1;
-  font-family: $bodyText;
   
   .logo-upper {
     color: $lightBlue;
-    font-size: 66px;
+    font-size: 4vw;
     line-height: 1.25;
-    // letter-spacing: -0.025em;
+    letter-spacing: 3px;
     text-indent: -0.025em;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 900;
+    font-weight: 700;
+    
   }
   .logo-lower {
     color: $purple;
-    font-size: 46px;
+    font-size: 2.75vw;
     line-height: 1.25;
-    // letter-spacing: -0.025em;
+    letter-spacing: 3px;
     text-indent: -0.025em;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
@@ -399,12 +353,12 @@ html {
 .menu {
 	position: absolute;
   z-index: 1000;
-  top: 0;
-  left: 0;
+  opacity: 0;
+  top: 90px;
+  left: 5px;
 	display: flex;
 	flex-direction: column;
 	margin: 0 0 0 1vw;
-	font-size: 4vw;
 	align-items: flex-start;
 }
 
@@ -414,9 +368,9 @@ html {
 	line-height: 1.25;
 	letter-spacing: -0.025em;
 	text-indent: -0.025em;
-	font-family: 'Montserrat', sans-serif;
+  // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 900;
-  font-size: 30px;
+  font-size: 1.25vw;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
