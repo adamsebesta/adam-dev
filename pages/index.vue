@@ -1,31 +1,76 @@
 <template>
-  <div class='page'>
-    <!-- <div class='background' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(800px)'}">
-    </div>
-     <div class='background-lower' :style="background? {'transform': 'translateX(0)' }: {'transform': 'translateX(-500px)'}">
-    </div> -->
+  <div class='page loaderAnim' ref='page' >
     <div class="container-main">
-      <div class='logo-wrapper'>
-        <img id="iphone-home" class="" draggable="false" src='~static/iphone.png' />
-        <img class="logo" draggable="false" src='~static/logo text trans.png' />
-        <!-- <div class="links">
-          <nuxt-link class='main-btn' to="/contact">CONTACT</nuxt-link>
-          <nuxt-link class='main-btn' to="/portfolio">PORTFOLIO</nuxt-link>
-          <a
-            href="https://www.linkedin.com/company/adam-sebesta-development"
-            target="_blank"
-            rel="noopener noreferrer"
-            class='main-btn'
-          >
-            LINKEDIN
-          </a>
-        </div> -->
+        <Nav/>
+        <div class="main-img-container">
+          <div class='device-images'>
+            <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
+            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' />  -->
+            <img class='logo-img' src='~static/logo.png' alt="">
+          </div>
+          
+         <div class='logo'>
+           <p class="logo-upper rise1">Adam Sebesta</p>
+           <p class="logo-lower">Development</p>
+         </div>
+
+        <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
+			
+        </div>
+        <svg id="sky">
+          <svg v-for="i in stars" :key='i'  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                :x='getRandomX()'
+                :y='getRandomY()'
+                width='25px'
+                height='25px'
+                class='star'
+          viewBox="0 0 58 58" xml:space="preserve">
+          <g>
+            <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	"/>
+            <polygon style="fill:#556080;" points="29,58 55,45 55,13 29,26 	"/>
+            <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	"/>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          </svg>
+        </svg> 
       </div>
     </div>
-  </div>
 </template>
 
 <script>
+import anime from 'animejs';
+import about from './about'
+import Nav from '../components/Nav'
+
 export default {
   head() {
     return {
@@ -41,12 +86,20 @@ export default {
       ],
     }
   },
+  transition: "page",
   data() {
     return {
+      adam: false,
+      showFirst: true,
       background: null,
       title: 'Adam Sebesta Development | Home',
       description: 'Web and Mobile App Development',
-      image: '/meta.png'
+      image: '/meta.png',
+      num: 60,
+      windowWidth: 1200,
+      windowHeight: 1200,
+      stars: [...Array(80)],
+      shootStars: [...Array(60)]
     }
   },
   methods: {
@@ -54,48 +107,125 @@ export default {
       setTimeout(() => {
         this.background = true;
       }, 750);
-    }
+    },
+    randomRadius() {
+      return Math.random() * 0.7 + 5.6;
+      },
+    getRandomX() {
+      return Math.floor(Math.random() * Math.floor(this.windowWidth)).toString();
+    },
+    getRandomY() {
+      return Math.floor(Math.random() * Math.floor(this.windowHeight)).toString();
+    },
+    riseLogo() {
+      anime({
+        targets: [".logo-img"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 2400,
+            value: '1'
+          }
+        ],
+      });
+    },
+    rippleStars() {
+      anime.timeline({loop: false})
+      .add({
+        targets: ["#sky .star"],
+        easing: "easeInOutSine",
+        delay: anime.stagger(300),
+        y: [
+          {
+            duration: 2000,
+            value: "5"
+          },
+        ],
+        opacity: [
+          {
+            duration: 2500,
+            value: '0.0'
+          },
+        ],
+        
+      }).add({
+        x: 10
+      })
+      
+        // translateX: 3
+  },
+    
+    async growIphone() {
+
+      const animation = anime.timeline();
+      
+      animation.add({
+        targets: ["#iphone-home", "#macbook-home"],
+        easing: "easeInOutSine",
+        loop: false,
+        translateX: [{
+          duration: 2000, 
+          value:"-25vw"
+        }],
+        translateY: [{
+          duration: 2000, 
+          value:"-30vh"
+        }]
+      });
+      //  animation.add({
+      //   targets: ["#iphone-home", "#macbook-home"],
+      //   easing: "easeInOutSine",
+      //   loop: false,
+      //   height: [{
+      //     duration: 1000, 
+      //     value:"10%"
+      //   }],
+      // });
+      
+  },
+    initLogo() {
+      var textWrapper1 = document.querySelector('.rise1');
+      textWrapper1.innerHTML = textWrapper1.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+      anime.timeline({loop: false})
+        .add({
+          targets: '.rise1 .letter',
+          translateY: [100,0],
+          translateZ: 0,
+          opacity: [0,1],
+          easing: "easeOutExpo",
+          duration: 1400,
+          delay: (el, i) => 700 + 30 * i
+        })
+    },
+    
   },
   created() {
     this.showBackground();
+  },
+  mounted() {
+    this.initLogo();
+    this.riseLogo();
+    this.rippleStars();
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+    // this.growIphone();
   }
 }
 </script>
 
-<style>
+<style lang='scss'>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
 
+
+
 html {
   overflow: hidden;
 }
-.background {
-  transition: all 1.5s ease;
-  z-index: -1;
-  background-image: url('~static/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 90%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.background-lower {
-  transition: all 1.5s ease;
-  z-index: -1;
-  background-image: url('~static/background lower.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 70%;
-  height: 100vh;
-  position: absolute;
-}
-
 .container-main {
   margin: 0 auto;
   min-height: 100vh;
@@ -107,50 +237,111 @@ html {
   text-align: center;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #013011;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-.logo {
-  height: 150px;
-  margin-left: 2%;
-  margin-right: auto;
-  /* margin-bottom: 10px; */
-}
-
-#iphone-home {
+.animation-wrapper {
+  width: 100%;
+  height: 30%;
   margin: 0 auto;
-  height: 500px;
+    span {
+    display: block;
+    font-size: 50px;
+    margin-bottom: 1em;
+  }
 }
+
+#sky {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+}
+
+.star {
+  opacity: 0.3;
+}
+
+.logo-img {
+  width: 35%;
+  opacity: 0;
+}
+
+.logo {
+  width: 100%;
+  margin: 0 auto;
+  // position: absolute;  
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  text-align: left;
+  
+  .logo-upper {
+    color: $lightBlue;
+    font-size: 4.5vw;
+    line-height: 1.25;
+    letter-spacing: 3px;
+    text-indent: -0.025em;
+    font-weight: 700;
+    
+  }
+  .logo-lower {
+    color: $purple;
+    font-size: 2.3vw;
+    line-height: 1.5;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-indent: -0.025em;
+    font-weight: 700;
+    margin-left: 12%;
+    margin-top: -8px;
+  }
+}
+
+.title-subheading {
+  color: $lightBlue;
+  font-size: 26px;
+  padding-top: 10rem;
+}
+
+.rise1 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.main-img-container {
+  width: 80%;
+  margin: 0 auto;
+  z-index: 1;
+  justify-content: center;
+  padding: 0  50px; 
+  align-items: center;
+  // flex-direction: column;
+  display: flex;
+}
+#iphone-home {
+  z-index: 1;
+  width: 5%;
+  
+  // filter: drop-shadow(2px 10px 4px black);
+}
+
+#macbook-home {
+  z-index: 1;
+  width: 14%;
+  // filter: drop-shadow(2px 10px 4px black);
+}
+
+.device-images {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 4%;
+}
+
+
 
 @media only screen and (max-width: 1000px) {
   .logo {
-    height: 86px;
+    width:200px;
   }
 
   .main-btn {
@@ -158,11 +349,7 @@ html {
     padding: 10px 15px;
   }
 
-  .background-lower {
-    
-    height: 100vh;
-    bottom: -94px;
-  }
+
 
   html, body {
   overflow-x: hidden;
@@ -171,9 +358,6 @@ html {
     position: relative;
   }
 
-  .background {
-    transform: translateX(200);
-  }
 }
 @media only screen and (max-width: 600px) {
   .logo {
@@ -185,11 +369,6 @@ html {
     padding: 10px 15px;
   }
 
-  .background-lower {
-    
-    height: 80vh;
-    bottom: -94px;
-  }
 
   html, body {
   overflow-x: hidden;
@@ -198,12 +377,6 @@ html {
     position: relative;
   }
 
-  .background {
-    transform: translateX(0);
-    background-image: url('~static/background copy.png');
-    width: 51%;
-    height: 22vh;
-  }
 
   .logo-wrapper {
     position: absolute;

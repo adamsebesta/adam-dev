@@ -1,12 +1,6 @@
 <template>
   <div class="container-main">
-    <!-- <span class="title-pop">
-          GET IN TOUCH!
-    </span> -->
-    <nuxt-link to="/">
-      <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
-      <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
-    </nuxt-link>
+  
     <Nav/>
     <div class='photo-wrapper'>
       <div class="photo-background bg1" :style="bg1? {'transform': 'translate(100px 100px'} : '' "></div>
@@ -47,6 +41,7 @@ import Nav from '../components/Nav'
 
 export default {
   components: {Nav},
+  transition: "page",
   head() {
     return {
       title: this.title,
@@ -129,18 +124,18 @@ html {
     transition: all 1s ease;
   }
   .bg1 {
-    background-color: #013011;
+    background-color: $purple;
     z-index: 0;
   }
   .bg2{
-    background-color: #013d16;
+    background-color: $lightBlue;
     // transform: translate(20px, 20px);
     transform: translate(68px, 65px);
     height: 82%;
     z-index: 1;
   }
   .bg3 {
-    background-color: #004919;
+    background-color: blue;
     // transform: translate(40px, 40px);
     transform: translate(65px, 60px);
     z-index: 2;
@@ -168,7 +163,7 @@ html {
   text-align: center;
   position: absolute;
   top: 49%;
-  color: #013d16;
+  color:$lightBlue;
   z-index: 2;
   .about-title {
     font-size: 24px;

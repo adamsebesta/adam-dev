@@ -228,17 +228,6 @@ html {
   left: 10;
   /* z-index: -1; */
   text-shadow: 1px 1px grey;
-  font-family:
-    'Arial',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-weight: 600;
   font-size: 150px;
   color: #013011;
   letter-spacing: 1px;
@@ -282,14 +271,8 @@ html {
 
 .formulate-input .formulate-input-label {
   color: #004b19;
-  font-family: 'arial';
   
 }
-
-* {
-  font-family: 'arial';
-}
-
 li {
   color: #004b19 !important;
   font-size: 12px !important;
@@ -317,31 +300,9 @@ label {
   color: #004b19 ;
   position: absolute;
   p {
-  font-weight: 600;
-    font-family:
-    'Cormorant Garamond',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
   font-size: 16px;
   color: #004b19;
   letter-spacing: 1px;
-  }
-  h2 {
-    font-family:
-    'Cormorant Garamond',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-    font-size: 50px;
   }
 }
 

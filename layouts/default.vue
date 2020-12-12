@@ -5,18 +5,10 @@
 </template>
 
 <style lang='scss'>
-  /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Cormorant+SC:wght@400;600;700&display=swap'); */
+  
 
 html {
-  font-family:
-    'Cormorant Garamond',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -24,9 +16,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  background-image: url('~static/test-background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  // background-image: url('~static/test-background.png');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background: #141E30;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to left, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to left, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: $background;  /* fallback for old browsers */
+  // background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+  // background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
   // background: #141E30;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
@@ -71,6 +70,14 @@ html {
 //   padding: 10px 30px;
 // }
 
+#corner-logo {
+  position: absolute;
+  top: 4%;
+  left: 1.3%;
+  opacity: .8;
+  cursor: pointer;
+}
+
 .main-btn {
   display: inline-block !important;
   cursor: pointer !important;
@@ -78,7 +85,6 @@ html {
   letter-spacing: 0.15em !important;
   border: 2px solid $purple !important;
   color: $purple !important;
-  font-family: 'arial' !important;
   text-decoration: none !important;
   padding: 10px 20px;
   margin: 5px !important;
