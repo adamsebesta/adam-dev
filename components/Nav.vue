@@ -110,6 +110,7 @@ export default {
           anime.timeline({loop: false})
             .add({
               targets: target,
+              opacity: 0.3,
               x:  (this.windowWidth / 2) - (this.windowWidth / 2.5),
               y:  (this.windowHeight / 2) - (this.windowHeight / 2.5), 
               width: this.windowWidth,

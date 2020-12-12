@@ -117,18 +117,18 @@ export default {
     getRandomY() {
       return Math.floor(Math.random() * Math.floor(this.windowHeight)).toString();
     },
-    // moveStarsToCenter() {
-    //   anime({
-    //     targets: ["#sky .star"],
-    //     easing: "easeInOutSine",
-    //     x: [
-    //       {
-    //         duration: 500,
-    //         value: 20
-    //       },
-    //     ],
-    //   });
-    // },
+    riseLogo() {
+      anime({
+        targets: [".logo-img"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 2400,
+            value: '1'
+          }
+        ],
+      });
+    },
     rippleStars() {
       anime.timeline({loop: false})
       .add({
@@ -205,7 +205,7 @@ export default {
   },
   mounted() {
     this.initLogo();
-    // this.starryNight();
+    this.riseLogo();
     this.rippleStars();
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
@@ -263,7 +263,8 @@ html {
 }
 
 .logo-img {
-  width: 40%;
+  width: 35%;
+  opacity: 0;
 }
 
 .logo {
@@ -285,12 +286,14 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 2.75vw;
+    font-size: 2.3vw;
     line-height: 1.5;
     letter-spacing: 3px;
+    text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
     margin-left: 12%;
+    margin-top: -8px;
   }
 }
 
