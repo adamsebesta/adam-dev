@@ -98,7 +98,7 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars:  this.windowWidth > 420? [...Array(80)] : [...Array(40)] ,
+      stars:  this.windowWidth > 420? [...Array(20)] : [...Array(60)] ,
     }
   },
   methods: {
@@ -187,6 +187,7 @@ export default {
   mounted() {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
+    console.log(this.windowWidth )
     this.initLogo();
     this.riseLogo();
     this.rippleStars();
@@ -207,6 +208,8 @@ export default {
 html {
   overflow: hidden;
 }
+
+
 .container-main {
   margin: 0 auto;
   min-height: 100vh;
@@ -216,6 +219,7 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: fixed;
 }
 
 
@@ -253,13 +257,11 @@ html {
 }
 
 .logo-img {
-  width: 35%;
+  width: 100px;
   opacity: 0;
 }
 
 .logo {
-  width: 100%;
-  margin: 0 auto;
   // position: absolute;  
   text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
   z-index: 1;
@@ -267,7 +269,7 @@ html {
   
   .logo-upper {
     color: $lightBlue;
-    font-size: 4.5vw;
+    font-size: 4.7vw;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -276,13 +278,13 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 2.3vw;
+    font-size: 2.4vw;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 12%;
+    margin-left: 15%;
     margin-top: -8px;
   }
 }
@@ -353,7 +355,8 @@ html {
 
   .main-img-container {
     padding: 0;
-    width: 90%;
+    width: 100%;
+    margin: 0 auto;
   }
   .device-images {
     justify-content: flex-end;

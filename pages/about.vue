@@ -164,7 +164,7 @@ export default {
         width: [
           {
             duration: 600,
-            value: that.windowWidth < 420? '90%' : '55%'
+            value: that.windowWidth < 420? '90%' : '50%'
           },
         ],
       }).add({
@@ -216,7 +216,7 @@ html {
   } 
 
 .about {
-  font-weight: 300;
+  font-weight: 600;
   opacity: 0;
   width: 0%;
   // margin-left: 40px;

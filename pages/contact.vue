@@ -4,10 +4,10 @@
           GET IN TOUCH!
     </span> -->
     <Nav/>
-    <!-- <div v-if="sent" class='thanks'>
-      <h2> THANK YOU, </h2>
+    <div class='thanks'>
+      <h3> THANK YOU, </h3>
       <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
-    </div> -->
+    </div>
     <div v-if="!sent" class='form-background'>
       
        <FormulateForm
@@ -32,7 +32,7 @@
           type="email"
           label="EMAIL"
           placeholder="YOUR EMAIL ADDRESS"
-          validation="required|email"
+          validation="bail|required|email"
         />
           <FormulateInput
             name="message"
@@ -120,12 +120,19 @@ export default {
         this.logo = true;
       }, 750);
     },
-    submitForm() {
-      this.morphSumbitBtn()
-      // this.$refs.form.$el.submit()
+    async submitForm() {
+      await this.$formulate.submit('contact')
+      if (!document.querySelector('li')) {
+        this.morphSumbitBtn();
+      }
     },
     displayThanks() {
-
+      anime({
+        targets: ".thanks",
+        duration: 1000,
+        opacity: 1,
+        easing: "easeInOutSine",
+      })
     },
     hidefields() {
       anime({
@@ -167,7 +174,7 @@ export default {
         })
         .add({
           targets: ".progress-bar",
-          duration: 2000,
+          duration: 1500,
           width: 300,
           easing: "linear"
         })
@@ -202,7 +209,6 @@ export default {
         basicTimeline.play();
     },
     async send() {
-      this.sent = true;
       let res = await fetch(this.$config.logicAppUrl, {
          method: 'POST',
           body: JSON.stringify(this.formValues),
@@ -211,7 +217,7 @@ export default {
             'Connection': 'keep-alive',
           }
       });
-      },
+    },
     reset () {
       this.$formulate.reset('contact')
     }
@@ -369,9 +375,13 @@ label {
 .thanks {
   color: $lightBlue;
   position: absolute;
+  opacity: 0;
+  top: 60%;
+  z-index: 1;
+  padding: 0 20%;
   p {
   font-size: 16px;
-  color: $purple;
+  color: $lightBlue;
   letter-spacing: 1px;
   }
 }
@@ -420,6 +430,7 @@ label {
   }
   .logo-small {
     height: 70px;
+    margin: 0 auto;
   }
 }
 
@@ -439,6 +450,7 @@ label {
   }
   .logo-small {
     height: 55px;
+    margin: 0 auto;
   }
 
   li {
