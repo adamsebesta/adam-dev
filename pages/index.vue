@@ -130,6 +130,7 @@ export default {
       });
     },
     rippleStars() {
+      let that = this;
       anime.timeline({loop: false})
       .add({
         targets: ["#sky .star"],
@@ -147,42 +148,25 @@ export default {
             value: '0.0'
           },
         ],
-        
-      }).add({
-        x: 10
+        complete: function(anim) {
+          that.spinLogo()
+        }
       })
-      
-        // translateX: 3
-  },
-    
-    async growIphone() {
-
-      const animation = anime.timeline();
-      
-      animation.add({
-        targets: ["#iphone-home", "#macbook-home"],
-        easing: "easeInOutSine",
-        loop: false,
-        translateX: [{
-          duration: 2000, 
-          value:"-25vw"
-        }],
-        translateY: [{
-          duration: 2000, 
-          value:"-30vh"
-        }]
-      });
-      //  animation.add({
-      //   targets: ["#iphone-home", "#macbook-home"],
-      //   easing: "easeInOutSine",
-      //   loop: false,
-      //   height: [{
-      //     duration: 1000, 
-      //     value:"10%"
-      //   }],
-      // });
-      
-  },
+    },
+    spinLogo() {
+       anime({
+          targets: '.logo-img ',
+          rotate: [
+            {
+              durattion: 1500, 
+              value: 360
+            }
+          ],
+          opacity: [0,1],
+          translateY: [10, 0],
+          easing: "easeOutExpo",
+        })
+    },
     initLogo() {
       var textWrapper1 = document.querySelector('.rise1');
       textWrapper1.innerHTML = textWrapper1.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -197,8 +181,7 @@ export default {
           duration: 1400,
           delay: (el, i) => 700 + 30 * i
         })
-    },
-    
+    }
   },
   created() {
     this.showBackground();

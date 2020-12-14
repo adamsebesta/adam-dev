@@ -2,35 +2,77 @@
   <div class="container-main">
   
     <Nav/>
-    <div class='photo-wrapper'>
-      <div class="photo-background bg1" :style="bg1? {'transform': 'translate(100px 100px'} : '' "></div>
-      <div class="photo-background bg2" :style="bg2? {'transform': 'translate(30px, 30px)'} : '' "></div>
+    <svg version="1.1"
+      id="about-background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+      width='175vh'
+      height='175vh'
+      x='-400'
+      y='20'
+      viewBox="0 0 58 58" xml:space="preserve">
+      <g>
+        <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	"/>
+        <polygon :style="{'fill' : '#556080'}" points="29,58 55,45 55,13 29,26 	"/>
+        <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	"/>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+      <g>
+      </g>
+    </svg>
+    <div class='main-wrapper'>
+      <!-- <div class="photo-background bg1" :style="bg1? {'transform': 'translate(100px 100px'} : '' "></div>
+      <div class="photo-background bg2" :style="bg2? {'transform': 'translate(30px, 30px)'} : '' "></div> -->
       <!-- <div class="photo-background bg3" :style="bg3? {'transform': 'translate(20px 20px'} : ''"></div> -->
       
-      <div></div>
-      <img class="photo-background headshot" src="~static/headshot.png" alt="" rel="preload"/>
+      <img class="headshot" src="~static/headshot.png" alt="" rel="preload"/>
       
-    </div>
-    <div class='about'>
-      <p class='about-title'> ABOUT </p>
-      <p class='about-desc'>
-        <span>Hi! Thank you for your interest.</span>
-        <br>
-        <br>
-        <span>I’m Adam, a Canadian / Estonian developer living in Berlin. I am a certified Microsoft Azure Developer, who is deeply interested in the cloud, and building applications with modern technologies. </span>
-        <br>
-        <br>
-        <span>  This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
-        <br>
-        <br>
-        <span>As fluid communication is a pillar of the business, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
-        <br>
-        <br>
-        <span>Whether you are looking to develop a MVP to secure funding, or a personal use application, I would be happy to begin exploring how I can help. </span>
-        <br>
-        <br>
-        <span>Thank you again, and I look forward to speaking with you. </span>
-      </p>      
+      <div class='about'>
+        <p class='about-title'> About </p>
+        <p class='about-desc'>
+          <span>Hi! Thank you for your interest.</span>
+          <br>
+          <br>
+          <span>I’m Adam, a Canadian / Estonian developer living in Berlin. I am a certified Microsoft Azure Developer, who is deeply interested in the cloud, and building applications with modern technologies. </span>
+          <br>
+          <br>
+          <span>  This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
+          <br>
+          <br>
+          <span>As fluid communication is a pillar of the business, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
+          <br>
+          <br>
+          <span>Whether you are looking to develop a MVP to secure funding, or a personal use application, I would be happy to begin exploring how I can help. </span>
+          <br>
+          <br>
+          <span>Thank you again, and I look forward to speaking with you. </span>
+        </p>      
+      </div>
     </div>
 
   </div>
@@ -38,6 +80,7 @@
 
 <script>
 import Nav from '../components/Nav'
+import anime from 'animejs';
 
 export default {
   components: {Nav},
@@ -81,203 +124,138 @@ export default {
         this.logo = true;
       }, 750);
     },
-    triggerBackground() {
-      // setTimeout(() => {
-      //   this.bg3 = true;
-      // }, 750);
-      setTimeout(() => {
-        this.bg2 = true;
-      }, 1250);
-      // setTimeout(() => {
-      //   this.bg1 = true;
-      // }, 1500);
+
+    moveBackground() {
+      anime.timeline({loop: true})
+      .add({
+        targets: ["#about-background"],
+        easing: "linear",
+        rotate: [
+          {
+            duration: 150000,
+            value: 360
+          },
+        ],
+      })
     },
+    aboutAppear() {
+      anime.timeline({loop: false})
+      .add({
+        targets: [".headshot"],
+        easing: "easeInOutSine",
+        width: [
+          {
+            duration: 500,
+            value: '20%'
+          },
+        ],
+        opacity: [
+          {
+            duration: 1200,
+            value: 1
+          }
+        ]
+      })
+      .add({
+        targets: [".about"],
+        easing: "easeInOutSine",
+        width: [
+          {
+            duration: 750,
+            value: '55%'
+          },
+        ],
+      }).add({
+        targets: ['.about'],
+        easing: 'easeInOutSine',
+        opacity: 1
+      })
+    }
   },
-  created() {
-    this.moveLogo();
-    this.triggerBackground();
+  mounted() {
+    this.moveBackground();
+    this.aboutAppear() 
   }
 }
 </script>
 
 <style lang='scss'>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
+
+.container-main {
 }
-*/
+.main-wrapper {
+  position: absolute;
+  top: 10%;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
 html {
-  overflow-y: auto;
+  overflow: hidden;
 }
 
-.photo-wrapper {
+#about-background {
+  opacity: .1;
   position: absolute;
-  top: 25px;
-  height: 40%;
-  width: 20%;
-  margin-left: auto;
-  margin-right: auto;
-  .photo-background {
-    width: 80%;
-    height: 85%;
-    position: absolute;
-    transition: all 1s ease;
-  }
-  .bg1 {
-    background-color: $purple;
-    z-index: 0;
-  }
-  .bg2{
-    background-color: $lightBlue;
-    // transform: translate(20px, 20px);
-    transform: translate(68px, 65px);
-    height: 82%;
-    z-index: 1;
-  }
-  .bg3 {
-    background-color: blue;
-    // transform: translate(40px, 40px);
-    transform: translate(65px, 60px);
-    z-index: 2;
-  }
-  .headshot {
-    width: 82%;
-    height: 87%;
-    z-index: 3;
-    transform: translate(67px, 53px);
-    object-fit: cover;
-  }
 }
-/* .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
+
+
+  .headshot {
+    width: 0%;
+    margin-right: 20px;
+    height: 50vh;
+    top: 50%;
+    z-index: 3;
+    opacity: 0;
+    object-fit: cover;
+  } 
+
 .about {
   font-weight: 300;
-  width: 70%;
+  opacity: 0;
+  width: 0%;
   // margin-left: 40px;
-  text-align: center;
-  position: absolute;
-  top: 49%;
+  text-align: left;
   color:$lightBlue;
   z-index: 2;
   .about-title {
-    font-size: 24px;
     letter-spacing: 3px;
     margin-bottom: 20px;
+    font-weight: 800;
+    color: $purple;
   }
   .about-desc {
-    padding: 0 10%;
     margin-bottom: 60px;
-    text-transform: uppercase;
+    // text-transform: uppercase;
+    font-weight: 600;
     span {
       // background-color: #82ab71;
       padding: 5px
     }
-    font-size: 14px;
+    font-size: 2vw;
     letter-spacing: 1px;
-    text-align: center;
+    text-align: left;
   }
 }
 
 @media only screen and (max-width: 1024px) {
 
-  .about {
-  font-weight: 300;
-  width: 80%;
-  // margin-left: 40px;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  color: #013d16;
-  z-index: 2;
-  .about-title {
-    font-size: 24px;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-  }
-  .about-desc {
-    font-size: 16px;
-    letter-spacing: 1px;
-    text-align: center;
-  }
-}
-.photo-wrapper {
-  height: 40%;
-  width: 50%;
-  margin: 0 auto;
-  padding: 25px;
-}
-
-.photo-background {
-    width: 50% !important;
-    height: 85% !important;
-    position: absolute;
-    transition: all 1s ease;
-  }
-
-  .headshot {
-    object-fit: cover !important;
-  }
-  .bg2 {
-    width: 49% !important;
-    height: 82% !important;
-  }
 
   }
 @media only screen and (max-width: 420px) {
-  .about {
-  font-weight: 300;
-  width: 80%;
-  // margin-center: 40px;
-  text-align: center;
-  position: absolute;
-  top: 49%;
-  color: #013d16;
-  z-index: 2;
-  .about-title {
-    font-size: 18px;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
+  .main-wrapper {
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+    top: 0;
+    align-items: center;
+    padding-top : 150px;
   }
-  .about-desc {
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-align: center;
-    padding: 0;
-  }
-}
-.photo-wrapper {
-  height: 35%;
-  width: 54%;
-  top: 85px;
   .headshot {
-    object-fit: cover !important;
-    transform: translate(62px, 55px) !important;
-  }
-}
-
-.photo-background {
-    position: absolute;
-    transition: all 1s ease;
-    width: 50% !important;
-    height: 70% !important;
+    height: 20%;
   }
 
-  .bg2 {
-    width: 47% !important;
-    height: 66% !important;
-    // transform: translate(55px, 52px);
-  }
-  .bg1 {
-    width: 47% !important;
-    height: 69% !important;
-    // transform: translate(55px, 52px);
-  }
 }
   
 </style>

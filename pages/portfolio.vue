@@ -7,7 +7,7 @@
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
           <swiper-slide>
             <div class='slide-wrapper'>
-              <span class='project-title'> STREAMHUB | VIDEO DASHBOARD </span>
+              <span class='project-title'> StreamHub| Video Dashboard </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
                 <div class='project-image mac'> <img src="~/static/Streamhub.png" alt="" rel="preload"></div>
                 <video id="giftwitch" playsinline autoplay muted loop tabindex="0" width = "550px" height = "550px">
@@ -24,7 +24,7 @@
 
           <swiper-slide>
             <div class='slide-wrapper'>
-              <span class='project-title'> BERLIN BYTES | HOMEPAGE </span>
+              <span class='project-title'> Berlin Bytes| Homepage </span>
               <VueSlickCarousel ref="carousel1" v-bind="settings">
                 <div class='project-image mac'> <img src="~/static/BerlinBytes.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BB home.png" alt=""></div>
@@ -37,7 +37,7 @@
           </swiper-slide>
           <swiper-slide>
             <div class='slide-wrapper'>
-              <span class='project-title'> BERLIN BYTES | BI TOOL </span>
+              <span class='project-title'> Berlin Bytes| BI Tool </span>
               <VueSlickCarousel ref="carousel2" v-bind="settings">
                 <div class='project-image mac'> <img src="~/static/CinderellaDB.png" alt=""></div>
                 <div class='project-image'> <img src="~/static/BI tool.png" alt=""></div>
@@ -345,7 +345,7 @@ img {
     .project-title {
       font-size: 22px;
       letter-spacing: 2px;
-      font-weight: 400;
+      font-weight: 700;
       color: $lightBlue;
   }
 }
