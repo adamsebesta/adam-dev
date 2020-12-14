@@ -256,17 +256,7 @@ img {
   z-index: 2;
 }
 
-.background-img {
-  transition: all 1.5s ease;
-  background-image: url('~static/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+
 
 // .example-3d {
 //     width: 100%;
@@ -455,8 +445,8 @@ img {
     width: 20px;
 
     &:before {
-        border-top: 1px solid #001a09;
-        border-right: 1px solid #001a09;
+        border-top: 2px solid $lightBlue;
+        border-right: 2px solid $lightBlue;
         box-sizing: border-box;
         content: '';
         height: 8px;
@@ -469,14 +459,19 @@ img {
         // will-change: transform;
         width: 8px;
     }
+      &:hover:before {
+        border-top: 2px solid $lightBlue;
+        border-right: 2px solid $lightBlue;
+    }
   }
   .slide-wrapper {
     padding: 0;
+    .project-title {
+      font-size: 12px !important;
+      letter-spacing: 1px;
+    }
   }
   
-  .project-title {
-    font-size: 12px !important;
-  }
   .project-wrapper {
     margin: 0 auto !important;
     margin-left: 0;

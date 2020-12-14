@@ -4,8 +4,8 @@
     <Nav/>
     <svg version="1.1"
       id="about-background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-      width='175vh'
-      height='175vh'
+      width='160vh'
+      height='160vh'
       x='-400'
       y='20'
       viewBox="0 0 58 58" xml:space="preserve">
@@ -61,7 +61,7 @@
           <span>I’m Adam, a Canadian / Estonian developer living in Berlin. I am a certified Microsoft Azure Developer, who is deeply interested in the cloud, and building applications with modern technologies. </span>
           <br>
           <br>
-          <span>  This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
+          <span>This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
           <br>
           <br>
           <span>As fluid communication is a pillar of the business, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
@@ -139,6 +139,8 @@ export default {
       })
     },
     aboutAppear() {
+      let that = this;
+      console.log(that.windowWidth )
       anime.timeline({loop: false})
       .add({
         targets: [".headshot"],
@@ -146,7 +148,7 @@ export default {
         width: [
           {
             duration: 500,
-            value: '20%'
+            value:  that.windowWidth < 420? '37%' : '20%'
           },
         ],
         opacity: [
@@ -161,8 +163,8 @@ export default {
         easing: "easeInOutSine",
         width: [
           {
-            duration: 750,
-            value: '55%'
+            duration: 600,
+            value: that.windowWidth < 420? '90%' : '55%'
           },
         ],
       }).add({
@@ -173,8 +175,10 @@ export default {
     }
   },
   mounted() {
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
     this.moveBackground();
-    this.aboutAppear() 
+    this.aboutAppear();
   }
 }
 </script>
@@ -204,7 +208,7 @@ html {
   .headshot {
     width: 0%;
     margin-right: 20px;
-    height: 50vh;
+    height: 50%;
     top: 50%;
     z-index: 3;
     opacity: 0;
@@ -222,6 +226,7 @@ html {
   .about-title {
     letter-spacing: 3px;
     margin-bottom: 20px;
+    font-size: 2vw;
     font-weight: 800;
     color: $purple;
   }
@@ -233,7 +238,7 @@ html {
       // background-color: #82ab71;
       padding: 5px
     }
-    font-size: 2vw;
+    font-size: 1vw;
     letter-spacing: 1px;
     text-align: left;
   }
@@ -244,16 +249,36 @@ html {
 
   }
 @media only screen and (max-width: 420px) {
+  .container-main {
+  overflow: hidden;
+  position: fixed;
+}
   .main-wrapper {
     justify-content: flex-start;
     flex-direction: column;
     margin: 0 auto;
     top: 0;
     align-items: center;
-    padding-top : 150px;
+    padding-top : 20%;
   }
   .headshot {
-    height: 20%;
+    height: 30%;
+    width: 30%;
+  }
+
+  .about {
+    width: 93%;
+    .about-title {
+      margin-top: 20px;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+    .about-desc {
+      font-size: 10px;
+    }
+    span {
+     padding: 0 !important;
+    }  
   }
 
 }

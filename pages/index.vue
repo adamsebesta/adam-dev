@@ -15,7 +15,7 @@
          </div>
 
         <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
-			
+        <div class='background-blue'></div>
         </div>
         <svg id="sky">
           <svg v-for="i in stars" :key='i'  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -98,8 +98,7 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars: [...Array(80)],
-      shootStars: [...Array(60)]
+      stars:  this.windowWidth > 420? [...Array(80)] : [...Array(40)] ,
     }
   },
   methods: {
@@ -158,11 +157,10 @@ export default {
           targets: '.logo-img ',
           rotate: [
             {
-              durattion: 1500, 
+              durattion: 2000, 
               value: 360
             }
           ],
-          opacity: [0,1],
           translateY: [10, 0],
           easing: "easeOutExpo",
         })
@@ -187,11 +185,11 @@ export default {
     this.showBackground();
   },
   mounted() {
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
     this.initLogo();
     this.riseLogo();
     this.rippleStars();
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
     // this.growIphone();
   }
 }
@@ -220,6 +218,15 @@ html {
   text-align: center;
 }
 
+
+.background-blue {
+  background: url('~static/background blue.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 100%;
+  right: 100%;
+}
 .animation-wrapper {
   width: 100%;
   height: 30%;
@@ -342,28 +349,34 @@ html {
   }
 
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 420px) {
+
+  .main-img-container {
+    padding: 0;
+    width: 90%;
+  }
+  .device-images {
+    justify-content: flex-end;
+    width: 20%;
+    height: 100%;
+  }
+
   .logo {
-    height: 86px;
+    margin: 0;
+    width: 60%;
+    .logo-upper {
+      font-size: 32px;
+      letter-spacing: 1px;
+    }
+    .logo-lower {
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-left: 15%;
+      margin-top: -8px;
+    }
   }
-
-  .main-btn {
-    font-size: 10px;
-    padding: 10px 15px;
-  }
-
-
-  html, body {
-  overflow-x: hidden;
-  }
-  body {
-    position: relative;
-  }
-
-
-  .logo-wrapper {
-    position: absolute;
-    top: 33%;
+  .logo-img {
+    width: 100%;
   }
 }
 </style>
