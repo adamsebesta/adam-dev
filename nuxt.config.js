@@ -17,7 +17,8 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap'},
-      { rel: "stylesheet", href:"https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity:"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p", crossorigin:"anonymous" }
+      // { rel: "stylesheet", href:"https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity:"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p", crossorigin:"anonymous" },
+      { rel: "stylesheet", href:"https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" }
     ]
   },
 
@@ -55,12 +56,14 @@ module.exports = {
     host: '0.0.0.0'
   },
 
-  serverMiddleware: [
-    {
-      path: 'api/v1',
-      handler: '~middleware/api/v1/index.js'
+
+  render: {
+    bundleRenderer: {
+      shouldPreload: (_, type) => {
+        return type === 'image'
+      }
     }
-  ],
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   

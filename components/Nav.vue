@@ -3,8 +3,8 @@
     <svg version="1.1"
           @click='showMenu'
           id="corner-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-          width='8vw'
-          height='8vh'
+          width='6vw'
+          height='6vh'
           x='1'
           y='1'
                   
@@ -49,18 +49,18 @@
       class="menu"
       :style="{'display': menuShown? '' : 'none'}"
     >
-      <a @click="navChange('/')" class='menu__item'>Home</a>
-      <a @click="navChange('/about')" class='menu__item'>About</a>
-      <a @click="navChange('/contact')" class='menu__item'>Contact</a>
-      <a @click="navChange('/portfolio')" class='menu__item'>Portfolio</a>
-      <a
+      <a @click="navChange('/')" :class="'menu__item' + (page && page.location.pathname == '/'? ' active' : '')" >Home</a>
+      <a @click="navChange('/about')" :class="'menu__item' + (page && page.location.pathname == '/about'? ' active' : '')">About</a>
+      <a @click="navChange('/contact')" :class="'menu__item' + (page && page.location.pathname == '/contact'? ' active' : '')">Contact</a>
+      <a @click="navChange('/portfolio')" :class="'menu__item' + (page && page.location.pathname == '/portfolio'? ' active' : '')">Portfolio</a>
+      <!-- <a
         href="https://www.linkedin.com/company/adam-sebesta-development"
         target="_blank"
         rel="noopener noreferrer"
         class='menu__item'
       >
         LinkedIn
-      </a>
+      </a> -->
     </nav>
   </div>
 </template>
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       menuShown: false,
+      page: null
     }
   },
   computed: {
@@ -86,7 +87,7 @@ export default {
         easing: "easeInOutSine",
         opacity: [
           {
-            duration: 400,
+            duration: 500,
             value: this.menuShown? 0 : 1
           },
         ],
@@ -96,7 +97,7 @@ export default {
         easing: "easeInOutSine",
         rotate: [
           {
-            duration: 400,
+            duration: 300,
             value: this.menuShown? 0 : 45
           },
         ],
@@ -139,6 +140,7 @@ export default {
     setTimeout(() => {
        this.showMenu()
       }, 750);
+    this.page = window
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
   },
@@ -151,7 +153,7 @@ export default {
 	position: absolute;
   z-index: 1000;
   opacity: 0;
-  top: 11%;
+  top: 10%;
   left: 2%;
 	display: flex;
 	flex-direction: column;
@@ -175,6 +177,9 @@ export default {
 	flex-wrap: wrap;
   position: relative;
   cursor: pointer;
+  &.active {
+    color: $purple;
+  }
 }
 
 .menu__item:hover,
@@ -205,7 +210,7 @@ export default {
 
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 9%;
+    top: 8%;
   }
   .menu__item {
     font-size: 14px;

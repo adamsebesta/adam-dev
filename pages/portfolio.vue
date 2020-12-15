@@ -1,5 +1,7 @@
 <template>
   <div class="container-main">
+    <Nav/>
+    <Socials/>
     <div class='portfolio-background'>
     
       <div class='project-wrapper'>
@@ -55,7 +57,6 @@
 
    </div>
 
-    <Nav/>
    
   </div>
 </template>
@@ -132,7 +133,6 @@ export default {
       }, 750);
     },
     setCaroNav(ref, dir) {
-      console.log()
       if (dir == 'f') {
         this.caroCounter[ref] += 1;
         this.$refs[ref].next();

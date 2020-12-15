@@ -4,9 +4,10 @@
           GET IN TOUCH!
     </span> -->
     <Nav/>
+    <Socials/>
     <div class='thanks'>
       <h3> Thank you, </h3>
-      <p> You will receive a response to your request within 24 hours</p> 
+      <p> You will receive a response within 24 hours</p> 
     </div>
     <div v-if="!sent" class='form-background'>
       
@@ -165,7 +166,7 @@ export default {
         })
         .add({
           targets: ".button",
-          duration: 1300,
+          duration: 1000,
           height: 10,
           width: 300,
           backgroundColor: "$purple",
@@ -174,7 +175,7 @@ export default {
         })
         .add({
           targets: ".progress-bar",
-          duration: 1500,
+          duration: 1000,
           width: 300,
           easing: "linear"
         })
@@ -279,7 +280,7 @@ html {
   left: 0;
   right: 0;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 30px;
   cursor: pointer;
   border-radius: 4px;
 }
@@ -363,15 +364,15 @@ input, textarea {
   border: 1px solid rgb(28, 33, 50) !important;
   background-color: transparent !important;
   letter-spacing: 2px !important;
-  font-size: 12px !important;
-  padding: 20px !important;
+  font-size: 16px !important;
+  padding: 30px !important;
   color: $purple!important;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px $background inset !important;
+    -webkit-box-shadow: 0 0 0 100px $background inset !important;
 }
 
 input:-webkit-autofill {
@@ -388,11 +389,15 @@ label {
   color: $lightBlue;
   position: absolute;
   opacity: 0;
-  top: 60%;
-  z-index: 1;
+  top: 35%;
+  z-index: -1;
   padding: 0 20%;
+  h3 {
+    font-size: 22px;
+  }
   p {
-  font-size: 16px;
+  font-size: 18
+  px;
   color: $lightBlue;
   letter-spacing: 1px;
   }

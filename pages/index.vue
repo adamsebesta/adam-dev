@@ -2,6 +2,7 @@
   <div class='page loaderAnim' ref='page' >
     <div class="container-main">
         <Nav/>
+        <Socials/>
         <div class="main-img-container">
           <div class='device-images'>
             <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
@@ -188,7 +189,6 @@ export default {
   mounted() {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
-    console.log(this.windowWidth )
     this.initLogo();
     this.riseLogo();
     this.rippleStars();
@@ -285,7 +285,7 @@ html {
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 15%;
+    margin-left: 18%;
     margin-top: -8px;
   }
 }
@@ -358,7 +358,7 @@ html {
     padding: 0;
     width: 100%;
     margin: 0 auto;
-    margin-top: -30px;
+    margin-top: -50px;
   }
   .device-images {
     justify-content: flex-end;

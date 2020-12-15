@@ -2,6 +2,7 @@
   <div class="container-main">
   
     <Nav/>
+    <Socials/>
     <svg version="1.1"
       id="about-background" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
       width='160vh'
@@ -61,10 +62,10 @@
           <span>I’m Adam, a Canadian / Estonian developer living in Berlin. I am a certified Microsoft Azure Developer, who is deeply interested in the cloud, and building applications with modern technologies. </span>
           <br>
           <br>
-          <span>This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
+          <!-- <span>This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
           <br>
-          <br>
-          <span>As fluid communication is a pillar of the business, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
+          <br> -->
+          <span>As fluid communication is a pillar of my working relationships, understanding client expectations, and transparently portraying my capabilities, are of critical importance to me. </span>
           <br>
           <br>
           <span>Whether you are looking to develop a MVP to secure funding, or a personal use application, I would be happy to begin exploring how I can help. </span>
@@ -140,7 +141,6 @@ export default {
     },
     aboutAppear() {
       let that = this;
-      console.log(that.windowWidth )
       anime.timeline({loop: false})
       .add({
         targets: [".headshot"],
@@ -236,7 +236,7 @@ html {
     font-weight: 600;
     span {
       // background-color: #82ab71;
-      padding: 5px
+      padding: 0px
     }
     font-size: 1vw;
     letter-spacing: 1px;
@@ -250,8 +250,8 @@ html {
   }
 @media only screen and (max-width: 420px) {
   .container-main {
-  overflow: hidden;
-  position: fixed;
+  // overflow: hidden;
+  // position: fixed;
 }
   .main-wrapper {
     justify-content: flex-start;
@@ -274,7 +274,7 @@ html {
       letter-spacing: 1px;
     }
     .about-desc {
-      font-size: 10px;
+      font-size: 13.5px;
     }
     span {
      padding: 0 !important;
