@@ -132,6 +132,7 @@ export default {
         targets: ".thanks",
         duration: 1000,
         opacity: 1,
+        zIndex: 2,
         easing: "easeInOutSine",
       })
     },
