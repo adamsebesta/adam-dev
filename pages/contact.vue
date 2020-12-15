@@ -3,25 +3,19 @@
     <!-- <span class="title-pop">
           GET IN TOUCH!
     </span> -->
-    <nuxt-link to="/">
-      <img class='logo-top' draggable="false" src='~static/logo clean.png'/>
-      <div class='green-sqr' :style="logo? {'opacity': '100' }: {'opacity': '0'}"> </div>
-    </nuxt-link>
     <Nav/>
-    <div v-if="sent" class='thanks'>
-      <h2> THANK YOU, </h2>
+    <div class='thanks'>
+      <h3> THANK YOU, </h3>
       <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
     </div>
-    <div v-if="!sent" class='background-img'> </div>
     <div v-if="!sent" class='form-background'>
-      <div class='background-img'>
-      </div>
       
        <FormulateForm
         class="form"
         v-model="formValues"
         @submit='send'
         name='contact'
+        ref='form'
       >
       <img class='logo-small' draggable="false" src='~static/logo text trans.png'/>
 
@@ -38,7 +32,7 @@
           type="email"
           label="EMAIL"
           placeholder="YOUR EMAIL ADDRESS"
-          validation="required|email"
+          validation="bail|required|email"
         />
           <FormulateInput
             name="message"
@@ -49,19 +43,30 @@
           />
 
           <div class="actions">
-            <FormulateInput
+            <!-- <FormulateInput
               type="submit"
               name="SEND"
               input-class='main-btn small'
-              />
+              /> -->
+          
 
-            <FormulateInput
+            <div class="button" @click='submitForm'>
+              <div class="text">Submit</div>
+            </div>
+            <div class="progress-bar"></div>
+            <svg class=contact-button-svg x="0px" y="0px"
+            viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
+              <path class="check" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2"/>
+            </svg>
+          
+
+            <!-- <FormulateInput
               type="button"
               label="RESET"
               data-ghost
               @click="reset"
               input-class='main-btn small'
-            />
+            /> -->
         </div>
         <!-- <pre
           class="code"
@@ -73,7 +78,8 @@
 </template>
 
 <script>
-import Nav from '../components/Nav'
+import Nav from '../components/Nav';
+import anime from 'animejs';
 
 export default {
   components: {Nav},
@@ -99,7 +105,8 @@ export default {
       image: '~/static/meta.png',
       formValues: {},
       logo: false,
-      sent: false
+      basicTimeline: null,
+      sent:false
     }
   },
   computed: {
@@ -113,8 +120,95 @@ export default {
         this.logo = true;
       }, 750);
     },
+    async submitForm() {
+      await this.$formulate.submit('contact')
+      if (!document.querySelector('li')) {
+        this.morphSumbitBtn();
+      }
+    },
+    displayThanks() {
+      anime({
+        targets: ".thanks",
+        duration: 1000,
+        opacity: 1,
+        easing: "easeInOutSine",
+      })
+    },
+    hidefields() {
+      anime({
+        targets: ['.formulate-input'],
+        duration: 300,
+        opacity: "0",
+        easing: "easeInOutSine",
+        delay: anime.stagger(300)
+      })
+    },
+    morphSumbitBtn() {
+      let that = this;
+      this.hidefields();
+      let basicTimeline = anime.timeline({
+        autoplay: false
+       });
+
+      var pathEls = document.querySelectorAll(".check");
+      for (var i = 0; i < pathEls.length; i++) {
+        var pathEl = pathEls[i];
+        var offset = anime.setDashoffset(pathEl);
+        pathEl.setAttribute("stroke-dashoffset", offset);
+      }
+
+      basicTimeline
+        .add({
+          targets: ".text",
+          duration: 1,
+          opacity: "0"
+        })
+        .add({
+          targets: ".button",
+          duration: 1300,
+          height: 10,
+          width: 300,
+          backgroundColor: "$purple",
+          border: "0",
+          borderRadius: 100
+        })
+        .add({
+          targets: ".progress-bar",
+          duration: 1500,
+          width: 300,
+          easing: "linear"
+        })
+        .add({
+          targets: ".button",
+          width: 0,
+          duration: 1
+        })
+        .add({
+          targets: '.check', 
+          opacity: 1
+          })
+        .add({
+          targets: ".progress-bar",
+          width: 80,
+          height: 80,
+          delay: 500,
+          duration: 750,
+          borderRadius: 80,
+          backgroundColor: "#364cf4"
+        })
+        .add({
+          targets: pathEl,
+          strokeDashoffset: [offset, 0],
+          duration: 200,
+          easing: "easeInOutSine",
+          complete: function(anim) {
+          that.displayThanks()
+        }
+        })
+
+        basicTimeline.play();
+    },
     async send() {
-      this.sent = true;
       let res = await fetch(this.$config.logicAppUrl, {
          method: 'POST',
           body: JSON.stringify(this.formValues),
@@ -123,13 +217,12 @@ export default {
             'Connection': 'keep-alive',
           }
       });
-      },
+    },
     reset () {
       this.$formulate.reset('contact')
     }
   },
-  created() {
-    this.moveLogo();
+  mounted() {
   }
 }
 </script>
@@ -154,53 +247,6 @@ html {
 } */
 
 
-
-.logo-small {
-  height: 100px;
-  margin: 0 auto;
-  margin-bottom: 25px;
-  z-index: 10;
-}
-
-.green-sqr {
-  transition: all 1.5s ease;
-  height: 38px;
-  width: 38px;
-  position: absolute;
-  top: 11px;
-  left: 10px;
-  background-color: #82ab71;
-}
-
-.small {
-  padding: 10px 30px !important;
-  font-size: 12px !important;
-}
-
-.logo-top {
-  position: absolute;
-  margin-top: 20px;
-  margin-left: 10px;
-  top: 10px;
-  left: 10px;
-  height: 40px;
-  margin: 0 auto;
-  margin-bottom: 25px;
-  z-index: 2;
-}
-
-.background-img {
-  transition: all 1.5s ease;
-  background-image: url('~static/background.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 50%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .form-background {
   /* margin:  4% 0%; */
   display: flex;
@@ -209,44 +255,74 @@ html {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  background-color: $background;
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
 }
 
 .form {
   position: absolute;
   width: 50%;
-  background-color: white;
+  background-color: $background;
   font-size: 20px !important;
   /* border: 1px solid #004b19 !important; */
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
 }
 
-.title-pop {
-  position: absolute;
-  top: 0;
-  left: 10;
-  /* z-index: -1; */
-  text-shadow: 1px 1px grey;
-  font-size: 150px;
-  color: #013011;
-  letter-spacing: 1px;
-  opacity: 0.08;
-  color: white;
-  text-shadow:
-  -1px -1px 0 #000000,
-  1px -1px 0 #000000,
-  -1px 1px 0 #000000,
-  1px 1px 0 #000000;
+.button {
+  background: $background;
+  height: 60px;
+  width: 150px;
+  text-align: center;
+  border: 3px solid $purple;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.text {
+  color: $purple;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-52%);
+  left: 0;
+  right: 0;
 }
+
+.progress-bar {
+  position: absolute;
+  height: 10px;
+  width: 0;
+  right: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 200px;
+  transform: translateY(-50%) translateX(-50%);
+  background: $purple;
+}
+
+.contact-button-svg{
+  width: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  left: 50%;
+  right: 0;
+}
+
+.check {
+  fill: none;
+  stroke: $lightBlue;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+
 
 .links {
   padding-top: 15px;
@@ -270,11 +346,11 @@ html {
 }
 
 .formulate-input .formulate-input-label {
-  color: #004b19;
+  color: $purple;
   
 }
 li {
-  color: #004b19 !important;
+  color: $lightBlue !important;
   font-size: 12px !important;
   position: relative;
   
@@ -283,25 +359,29 @@ li {
 input, textarea {
   text-align: center !important;
   border: none !important;
-  background-color: #f5f5f5 !important;
+  background-color: $lightBlue !important;
   letter-spacing: 2px !important;
   font-size: 12px !important;
   padding: 20px !important;
-  color: #004b19 !important;
+  color: $purple!important;
 }
 
 label {
   letter-spacing: 2px !important;
   font-size: 14px !important;
-  color: #004b19 !important;
+  color: $purple !important;
 }
 
 .thanks {
-  color: #004b19 ;
+  color: $lightBlue;
   position: absolute;
+  opacity: 0;
+  top: 60%;
+  z-index: 1;
+  padding: 0 20%;
   p {
   font-size: 16px;
-  color: #004b19;
+  color: $lightBlue;
   letter-spacing: 1px;
   }
 }
@@ -350,6 +430,7 @@ label {
   }
   .logo-small {
     height: 70px;
+    margin: 0 auto;
   }
 }
 
@@ -369,6 +450,7 @@ label {
   }
   .logo-small {
     height: 55px;
+    margin: 0 auto;
   }
 
   li {

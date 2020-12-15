@@ -36,23 +36,7 @@ html {
     font-weight: bold;
 }
 
-.nav-links {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  top: 60px;
-  left: 10px;
-  a {
-    z-index: 10;
-  color:#004b19;
-  height: 10%;
-  text-align: left;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-top: 5px;
-  }
-}
+
 *,
 *::before,
 *::after {
@@ -69,14 +53,6 @@ html {
 //   text-decoration: none;
 //   padding: 10px 30px;
 // }
-
-#corner-logo {
-  position: absolute;
-  top: 4%;
-  left: 1.3%;
-  opacity: .8;
-  cursor: pointer;
-}
 
 .main-btn {
   display: inline-block !important;
@@ -136,12 +112,12 @@ html {
   }
   .main-btn {
     &:hover {
-      color: #004b19  !important;
-      background-color: #FFF !important;
+      color: $purple  !important;
+      background-color: $lightBlue !important;
     }
      &:active {
-      color: #FFF  !important;
-      background-color: #004b19 !important;
+      color: $purple  !important;
+      background-color: $lightBlue !important;
     }
   }
 }

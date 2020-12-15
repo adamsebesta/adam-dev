@@ -3,10 +3,10 @@
     <svg version="1.1"
           @click='showMenu'
           id="corner-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-          width='50px'
-          height='50px'
-          x='20'
-          y='20'
+          width='8vw'
+          height='8vh'
+          x='1'
+          y='1'
                   
             viewBox="0 0 58 58" xml:space="preserve">
             <g>
@@ -49,6 +49,7 @@
       class="menu"
       :style="{'display': menuShown? '' : 'none'}"
     >
+      <a v-if="!this.$route.name == '/'" @click="navChange('/')" class='menu__item'>Home</a>
       <a @click="navChange('/about')" class='menu__item'>About</a>
       <a @click="navChange('/contact')" class='menu__item'>Contact</a>
       <a @click="navChange('/portfolio')" class='menu__item'>Portfolio</a>
@@ -104,7 +105,7 @@ export default {
     },
       async navChange(path) {
         if (window.location.pathname == '/') {
-          let target = document.querySelectorAll('.star')[79];
+          let target = document.querySelectorAll('.star')[39];
           let pos = target.getBoundingClientRect();
           let that = this;
           anime.timeline({loop: false})
@@ -150,8 +151,8 @@ export default {
 	position: absolute;
   z-index: 1000;
   opacity: 0;
-  top: 90px;
-  left: 5px;
+  top: 11%;
+  left: 2%;
 	display: flex;
 	flex-direction: column;
 	margin: 0 0 0 1vw;
@@ -192,6 +193,30 @@ export default {
 	transform-origin: 0 0;
 	transform: scale3d(0,1,1);
 }
+
+#corner-logo {
+  position: absolute;
+  top: 2%;
+  left: 1%;
+  opacity: .8;
+  cursor: pointer;
+  z-index: 10;
+}
+
+@media only screen and (max-width: 420px) {
+  .menu {
+    top: 9%;
+  }
+  .menu__item {
+    font-size: 14px;
+  }
+
+  #corner-logo {
+    left: 2%;
+  }
+  }
+
+
 
 @keyframes appear {
   0% {

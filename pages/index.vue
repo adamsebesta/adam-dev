@@ -15,7 +15,7 @@
          </div>
 
         <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
-			
+        <div class='background-blue'></div>
         </div>
         <svg id="sky">
           <svg v-for="i in stars" :key='i'  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -98,8 +98,8 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars: [...Array(80)],
-      shootStars: [...Array(60)]
+      stars:   [...Array(60)] ,
+      // this.windowWidth > 420? [...Array(20)] :
     }
   },
   methods: {
@@ -130,6 +130,7 @@ export default {
       });
     },
     rippleStars() {
+      let that = this;
       anime.timeline({loop: false})
       .add({
         targets: ["#sky .star"],
@@ -147,42 +148,24 @@ export default {
             value: '0.0'
           },
         ],
-        
-      }).add({
-        x: 10
+        complete: function(anim) {
+          that.spinLogo()
+        }
       })
-      
-        // translateX: 3
-  },
-    
-    async growIphone() {
-
-      const animation = anime.timeline();
-      
-      animation.add({
-        targets: ["#iphone-home", "#macbook-home"],
-        easing: "easeInOutSine",
-        loop: false,
-        translateX: [{
-          duration: 2000, 
-          value:"-25vw"
-        }],
-        translateY: [{
-          duration: 2000, 
-          value:"-30vh"
-        }]
-      });
-      //  animation.add({
-      //   targets: ["#iphone-home", "#macbook-home"],
-      //   easing: "easeInOutSine",
-      //   loop: false,
-      //   height: [{
-      //     duration: 1000, 
-      //     value:"10%"
-      //   }],
-      // });
-      
-  },
+    },
+    spinLogo() {
+       anime({
+          targets: '.logo-img ',
+          rotate: [
+            {
+              durattion: 2000, 
+              value: 360
+            }
+          ],
+          translateY: [10, 0],
+          easing: "easeOutExpo",
+        })
+    },
     initLogo() {
       var textWrapper1 = document.querySelector('.rise1');
       textWrapper1.innerHTML = textWrapper1.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
@@ -197,18 +180,18 @@ export default {
           duration: 1400,
           delay: (el, i) => 700 + 30 * i
         })
-    },
-    
+    }
   },
   created() {
     this.showBackground();
   },
   mounted() {
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+    console.log(this.windowWidth )
     this.initLogo();
     this.riseLogo();
     this.rippleStars();
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
     // this.growIphone();
   }
 }
@@ -226,6 +209,8 @@ export default {
 html {
   overflow: hidden;
 }
+
+
 .container-main {
   margin: 0 auto;
   min-height: 100vh;
@@ -235,8 +220,18 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: fixed;
 }
 
+
+.background-blue {
+  background: url('~static/background blue.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  bottom: 100%;
+  right: 100%;
+}
 .animation-wrapper {
   width: 100%;
   height: 30%;
@@ -263,13 +258,11 @@ html {
 }
 
 .logo-img {
-  width: 35%;
+  width: 100px;
   opacity: 0;
 }
 
 .logo {
-  width: 100%;
-  margin: 0 auto;
   // position: absolute;  
   text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
   z-index: 1;
@@ -277,7 +270,7 @@ html {
   
   .logo-upper {
     color: $lightBlue;
-    font-size: 4.5vw;
+    font-size: 4.7vw;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -286,13 +279,13 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 2.3vw;
+    font-size: 2.4vw;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 12%;
+    margin-left: 15%;
     margin-top: -8px;
   }
 }
@@ -359,28 +352,35 @@ html {
   }
 
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 420px) {
+
+  .main-img-container {
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .device-images {
+    justify-content: flex-end;
+    width: 20%;
+    height: 100%;
+  }
+
   .logo {
-    height: 86px;
+    margin: 0;
+    width: 60%;
+    .logo-upper {
+      font-size: 32px;
+      letter-spacing: 1px;
+    }
+    .logo-lower {
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-left: 15%;
+      margin-top: -8px;
+    }
   }
-
-  .main-btn {
-    font-size: 10px;
-    padding: 10px 15px;
-  }
-
-
-  html, body {
-  overflow-x: hidden;
-  }
-  body {
-    position: relative;
-  }
-
-
-  .logo-wrapper {
-    position: absolute;
-    top: 33%;
+  .logo-img {
+    width: 100%;
   }
 }
 </style>
