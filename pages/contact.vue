@@ -5,8 +5,8 @@
     </span> -->
     <Nav/>
     <div class='thanks'>
-      <h3> THANK YOU, </h3>
-      <p> YOU WILL RECEIVE A RESPONSE TO YOUR REQUEST WITHIN 24 HRS </p> 
+      <h3> Thank you, </h3>
+      <p> You will receive a response to your request within 24 hours</p> 
     </div>
     <div v-if="!sent" class='form-background'>
       
@@ -23,22 +23,22 @@
         <FormulateInput
           name="name"
           type="text"
-          label=" NAME"
-          placeholder="YOUR NAME"
+          
+          placeholder="Your Name"
           validation="required"
         />
         <FormulateInput
           name="email"
           type="email"
-          label="EMAIL"
-          placeholder="YOUR EMAIL ADDRESS"
+          
+          placeholder="Your Email Address"
           validation="bail|required|email"
         />
           <FormulateInput
             name="message"
             type="textarea"
-            label="MESSAGE"
-            placeholder="YOUR MESSAGE"
+            
+            placeholder="Your Message"
             validation="required"
           />
 
@@ -136,7 +136,7 @@ export default {
     },
     hidefields() {
       anime({
-        targets: ['.formulate-input'],
+        targets: ['.logo-small', '.formulate-input',  ],
         duration: 300,
         opacity: "0",
         easing: "easeInOutSine",
@@ -287,6 +287,8 @@ html {
 .text {
   color: $purple;
   position: absolute;
+  font-weight: 700;
+  font-size: 16px;
   top: 50%;
   transform: translateY(-52%);
   left: 0;
@@ -358,12 +360,22 @@ li {
 
 input, textarea {
   text-align: center !important;
-  border: none !important;
-  background-color: $lightBlue !important;
+  border: 1px solid rgb(28, 33, 50) !important;
+  background-color: transparent !important;
   letter-spacing: 2px !important;
   font-size: 12px !important;
   padding: 20px !important;
   color: $purple!important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px $background inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: $purple !important;
 }
 
 label {

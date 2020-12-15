@@ -158,7 +158,7 @@ export default {
           targets: '.logo-img ',
           rotate: [
             {
-              durattion: 2000, 
+              duration: 2000, 
               value: 360
             }
           ],
@@ -358,6 +358,7 @@ html {
     padding: 0;
     width: 100%;
     margin: 0 auto;
+    margin-top: -30px;
   }
   .device-images {
     justify-content: flex-end;
@@ -376,7 +377,7 @@ html {
       font-size: 18px;
       letter-spacing: 1px;
       margin-left: 15%;
-      margin-top: -8px;
+      margin-top: -5px;
     }
   }
   .logo-img {

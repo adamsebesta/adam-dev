@@ -49,7 +49,7 @@
       class="menu"
       :style="{'display': menuShown? '' : 'none'}"
     >
-      <a v-if="!this.$route.name == '/'" @click="navChange('/')" class='menu__item'>Home</a>
+      <a @click="navChange('/')" class='menu__item'>Home</a>
       <a @click="navChange('/about')" class='menu__item'>About</a>
       <a @click="navChange('/contact')" class='menu__item'>Contact</a>
       <a @click="navChange('/portfolio')" class='menu__item'>Portfolio</a>
