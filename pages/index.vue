@@ -98,7 +98,8 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars:  this.windowWidth > 420? [...Array(20)] : [...Array(60)] ,
+      stars:   [...Array(60)] ,
+      // this.windowWidth > 420? [...Array(20)] :
     }
   },
   methods: {
