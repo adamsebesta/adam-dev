@@ -132,7 +132,6 @@ export default {
         targets: ".thanks",
         duration: 1000,
         opacity: 1,
-        zIndex: 2,
         easing: "easeInOutSine",
       })
     },
@@ -197,6 +196,10 @@ export default {
           duration: 750,
           borderRadius: 80,
           backgroundColor: "#364cf4"
+        })
+        .add({
+          targets: '.thanks',
+          zIndex: 2
         })
         .add({
           targets: pathEl,
