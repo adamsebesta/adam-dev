@@ -4,11 +4,9 @@
   </div>
 </template>
 
-<style lang='scss'>
-  
-
+<style lang="scss">
 html {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -16,16 +14,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  // background-image: url('~static/test-background.png');
   // background-repeat: no-repeat;
   // background-size: cover;
   // background: #141E30;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to left, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to left, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: $background;  /* fallback for old browsers */
+  background: $background; /* fallback for old browsers */
   // background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
   // background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 
   // background: #141E30;  /* fallback for old browsers */
   // background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
@@ -33,9 +29,8 @@ html {
 }
 
 .nuxt-link-exact-active {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 
 *,
 *::before,
@@ -79,14 +74,10 @@ html {
   min-height: 100vh;
   width: 100%;
   display: flex;
-  z-index:1;
+  z-index: 1;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.button--green:hover {
-  
 }
 
 .button--grey {
@@ -112,15 +103,13 @@ html {
   }
   .main-btn {
     &:hover {
-      color: $purple  !important;
+      color: $purple !important;
       background-color: $lightBlue !important;
     }
-     &:active {
-      color: $purple  !important;
+    &:active {
+      color: $purple !important;
       background-color: $lightBlue !important;
     }
   }
 }
-
-
 </style>

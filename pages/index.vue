@@ -1,5 +1,6 @@
 <template>
   <div class="page loaderAnim" ref="page">
+    <!-- @mousewheel="handleScroll" -->
     <div class="container-main">
       <Nav />
       <Socials />
@@ -133,7 +134,7 @@ export default {
       anime.timeline({ loop: false }).add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(300),
+        delay: anime.stagger(400),
         y: [
           {
             duration: 2000,
@@ -146,10 +147,6 @@ export default {
             value: "0.0"
           }
         ],
-        begin: function(anim) {
-          // beginLogEl.value = "began : " + anim.began;
-          console.log(anim);
-        },
         complete: function(anim) {
           that.spinLogo();
         }
@@ -184,6 +181,16 @@ export default {
         delay: (el, i) => 700 + 30 * i
       });
     }
+    // handleScroll() {
+    //   console.log("hi");
+    //   anime({
+    //     targets: [".star g polygon"],
+    //     fill: ["#ff3d00", "#ff3d00"],
+    //     delay: anime.stagger(400),
+    //     easing: "easeOutExpo",
+    //     duration: 1400
+    //   });
+    // }
   },
   created() {
     this.showBackground();
@@ -191,6 +198,7 @@ export default {
   mounted() {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
+    window.addEventListener("scroll", this.handleScroll);
     this.initLogo();
     this.riseLogo();
     this.rippleStars();
@@ -205,14 +213,14 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-html {
-  width: 100%;
-  height: 100%;
-}
-body {
-  width: 100%;
-  height: 100%;
-}
+// html {
+//   width: 100%;
+//   height: 100%;
+// }
+// body {
+//   width: 100%;
+//   height: 100%;
+// }
 
 html {
   overflow: hidden;
@@ -220,7 +228,7 @@ html {
 
 .container-main {
   margin: 0 auto;
-  height: 100%;
+  height: 100vh;
   min-height: 100vh;
   width: 100%;
   display: flex;

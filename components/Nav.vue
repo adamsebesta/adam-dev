@@ -129,12 +129,12 @@ export default {
         anime.timeline({ loop: false }).add({
           targets: target,
           opacity: 0.3,
-          x: this.windowWidth / 2 - this.windowWidth / 2.5,
+          x: this.windowWidth / 2 - this.windowWidth / 3.2,
           y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.windowWidth,
-          height: this.windowHeight,
+          width: this.windowWidth / 10,
+          height: this.windowHeight / 10,
           easing: "easeOutExpo",
-          duration: 1000
+          duration: 2000
         });
         setTimeout(() => {
           that.$router.push({
