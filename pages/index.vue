@@ -286,11 +286,12 @@ html {
 
   .logo-upper {
     color: $lightBlue;
-    font-size: 4.7vw;
+    font-size: 4.5vw;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
     font-weight: 700;
+    // opacity: 0;
   }
   .logo-lower {
     color: $purple;
@@ -381,11 +382,11 @@ html {
     margin: 0;
     width: 60%;
     .logo-upper {
-      font-size: 32px;
+      font-size: 7.5vw;
       letter-spacing: 1px;
     }
     .logo-lower {
-      font-size: 18px;
+      font-size: 4.5vw;
       letter-spacing: 1px;
       margin-left: 15%;
       margin-top: -5px;
