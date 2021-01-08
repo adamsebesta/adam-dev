@@ -181,7 +181,7 @@ export default {
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 900;
-  font-size: 1.25vw;
+  font-size: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;

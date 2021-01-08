@@ -2,13 +2,36 @@
   <div class="container-main">
     <Nav />
     <Socials />
+    <div class="scroll-more bounce">
+      <i class="fa fa-arrow-down fa-2x" href="#"></i>
+    </div>
+
     <div class="portfolio-background">
       <div class="project-wrapper">
         <swiper class="swiper vertical" :options="swiperOptionv">
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
           <swiper-slide>
             <div class="slide-wrapper">
-              <span class="project-title"> StreamHub| Video Dashboard </span>
+              <span class="project-title">
+                <span class="left">Travel App </span>
+                <i class="fa fa-square middle" aria-hidden="true"></i>
+                <span class="right"> Currently In Progress </span>
+              </span>
+
+              <VueSlickCarousel ref="carousel" v-bind="settings">
+                <div class="project-image">
+                  <img src="~/static/construction.png" alt="" rel="preload" />
+                </div>
+              </VueSlickCarousel>
+            </div>
+          </swiper-slide>
+          <swiper-slide>
+            <div class="slide-wrapper">
+              <span class="project-title">
+                <span class="left">StreamHub </span>
+                <i class="fa fa-square middle" aria-hidden="true"></i>
+                <span class="right"> Video Dashboard </span>
+              </span>
               <VueSlickCarousel ref="carousel" v-bind="settings">
                 <div class="project-image mac">
                   <img src="~/static/Streamhub.png" alt="" rel="preload" />
@@ -49,7 +72,11 @@
 
           <swiper-slide>
             <div class="slide-wrapper">
-              <span class="project-title"> Berlin Bytes| Homepage </span>
+              <span class="project-title">
+                <span class="left">Berlin Bytes </span>
+                <i class="fa fa-square middle" aria-hidden="true"></i>
+                <span class="right"> Homepage </span>
+              </span>
               <VueSlickCarousel ref="carousel1" v-bind="settings">
                 <div class="project-image mac">
                   <img src="~/static/BerlinBytes.png" alt="" />
@@ -74,7 +101,11 @@
           </swiper-slide>
           <swiper-slide>
             <div class="slide-wrapper">
-              <span class="project-title"> Berlin Bytes| BI Tool </span>
+              <span class="project-title">
+                <span class="left">Berlin Bytes </span>
+                <i class="fa fa-square middle" aria-hidden="true"></i>
+                <span class="right"> BI Tool </span>
+              </span>
               <VueSlickCarousel ref="carousel2" v-bind="settings">
                 <div class="project-image mac">
                   <img src="~/static/CinderellaDB.png" alt="" />
@@ -217,6 +248,35 @@ img {
   user-drag: none;
 }
 
+.scroll-more {
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 80%;
+}
+
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
 .portfolio-background {
   width: 80%;
   height: 80vh;
@@ -345,7 +405,8 @@ img {
   }
 
   &:hover {
-    background-color: $purple;
+    // background-color: $purple;
+    opacity: 0.7;
   }
 }
 .caro-nav {
@@ -372,7 +433,28 @@ img {
     letter-spacing: 2px;
     font-weight: 700;
     color: $lightBlue;
+    width: 50%;
+    margin: 0 auto;
+    .middle {
+      color: #3fc1d9;
+      font-size: 11px;
+      vertical-align: middle;
+      margin-top: -2px;
+    }
+    // background: linear-gradient(45deg, #f19872, #e86c9a);
   }
+}
+
+.project-title::before {
+  content: "";
+  width: 60%;
+  height: 10%;
+  background: linear-gradient(45deg, #f19872, #e86c9a);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform-origin: 0 0;
+  transform: scale3d(0, 1, 1);
 }
 
 .project-image {

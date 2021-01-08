@@ -363,7 +363,7 @@ li {
 input,
 textarea {
   text-align: center !important;
-  border: 1px solid rgb(28, 33, 50) !important;
+  border: 1px solid rgb(56, 65, 92) !important;
   background-color: transparent !important;
   letter-spacing: 2px !important;
   font-size: 16px !important;

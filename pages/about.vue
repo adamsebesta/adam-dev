@@ -228,7 +228,7 @@ html {
   .about-title {
     letter-spacing: 3px;
     margin-bottom: 20px;
-    font-size: 2vw;
+    font-size: 26px;
     font-weight: 800;
     color: $purple;
   }
@@ -240,7 +240,7 @@ html {
       // background-color: #82ab71;
       padding: 0px;
     }
-    font-size: 1vw;
+    font-size: 16px;
     letter-spacing: 1px;
     text-align: left;
   }
