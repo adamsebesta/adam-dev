@@ -223,7 +223,7 @@ export default {
 
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 8%;
+    top: 65px;
     left: 2.5%;
   }
   .menu__item {

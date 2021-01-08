@@ -124,7 +124,7 @@ export default {
         opacity: [
           {
             duration: 2400,
-            value: "1"
+            value: ["0", "1"]
           }
         ]
       });
@@ -165,6 +165,17 @@ export default {
       });
     },
     initLogo() {
+      anime({
+        targets: [".rise1"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 1000,
+            value: [0, 1]
+          }
+        ]
+      });
+
       var textWrapper1 = document.querySelector(".rise1");
       textWrapper1.innerHTML = textWrapper1.textContent.replace(
         /\S/g,
@@ -178,9 +189,9 @@ export default {
         opacity: [0, 1],
         easing: "easeOutExpo",
         duration: 1400,
-        delay: (el, i) => 700 + 30 * i
+        delay: (el, i) => 1000 + 30 * i
       });
-    }
+    },
     // handleScroll() {
     //   console.log("hi");
     //   anime({
@@ -191,17 +202,46 @@ export default {
     //     duration: 1400
     //   });
     // }
+    showStars() {
+      anime({
+        targets: [".star"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 1000,
+            value: [0, 0.3]
+          }
+        ]
+      });
+    },
+    showUpper() {
+      anime({
+        targets: [".star"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 1000,
+            value: [0, 0.3]
+          }
+        ]
+      });
+    }
   },
   created() {
     this.showBackground();
   },
   mounted() {
+    setTimeout(() => {
+      this.showStars();
+      this.riseLogo();
+    }, 750);
+    setTimeout(() => {
+      this.rippleStars();
+    }, 1200);
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
-    window.addEventListener("scroll", this.handleScroll);
+    // window.addEventListener("scroll", this.handleScroll);
     this.initLogo();
-    this.riseLogo();
-    this.rippleStars();
     // this.growIphone();
   }
 };
@@ -269,7 +309,7 @@ html {
 }
 
 .star {
-  opacity: 0.3;
+  opacity: 0;
 }
 
 .logo-img {
@@ -291,7 +331,7 @@ html {
     letter-spacing: 3px;
     text-indent: -0.025em;
     font-weight: 700;
-    // opacity: 0;
+    opacity: 0;
   }
   .logo-lower {
     color: $purple;
