@@ -38,46 +38,40 @@
       <g></g>
     </svg>
     <nav class="menu" :style="{ display: menuShown ? '' : 'none' }">
-      <a
-        @click="navChange('/')"
+      <div
         :class="
-          'menu__item ' +
+          'menu-wrapper ' +
             (page && page.location.pathname == '/' ? ' active' : '')
         "
-        >Home</a
       >
-      <a
-        @click="navChange('/about')"
+        <a @click="navChange('/')" class="menu__item">Home</a>
+      </div>
+      <div
         :class="
-          'menu__item' +
+          'menu-wrapper ' +
             (page && page.location.pathname == '/about' ? ' active' : '')
         "
-        >About</a
       >
-      <a
-        @click="navChange('/contact')"
+        <a @click="navChange('/about')" class="menu__item">About</a>
+      </div>
+
+      <div
         :class="
-          'menu__item' +
+          'menu-wrapper ' +
             (page && page.location.pathname == '/contact' ? ' active' : '')
         "
-        >Contact</a
       >
-      <a
-        @click="navChange('/portfolio')"
+        <a @click="navChange('/contact')" class="menu__item">Contact</a>
+      </div>
+
+      <div
         :class="
-          'menu__item' +
+          'menu-wrapper ' +
             (page && page.location.pathname == '/portfolio' ? ' active' : '')
         "
-        >Portfolio</a
       >
-      <!-- <a
-        href="https://www.linkedin.com/company/adam-sebesta-development"
-        target="_blank"
-        rel="noopener noreferrer"
-        class='menu__item'
-      >
-        LinkedIn
-      </a> -->
+        <a @click="navChange('/portfolio')" class="menu__item">Portfolio</a>
+      </div>
     </nav>
   </div>
 </template>
@@ -164,57 +158,57 @@ export default {
 .menu {
   position: absolute;
   z-index: 1000;
+  right: 37%;
+  top: 5%;
   opacity: 0;
-  top: 8.5%;
-  left: 0.5%;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
   margin: 0 0 0 1vw;
   align-items: flex-start;
 }
 
 .menu__item {
   color: $lightBlue;
-  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   letter-spacing: -0.025em;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 900;
-  font-size: 18px;
+  font-size: 17px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   position: relative;
   cursor: pointer;
+  text-align: left;
+}
+
+.menu-wrapper {
+  padding-bottom: 6px;
+  margin: 0 1vw;
   &.active {
-    color: $purple;
+    // width: 100%;
+    // height: 100%;
+    border-bottom: 1px solid $purple;
     pointer-events: none;
+    // padding: 1px 3px 1px 3px;
   }
+}
+
+.menu-wrapper {
+  height: 100%;
 }
 
 .menu__item:hover,
 .menu__item:focus {
-  color: $purple;
-}
-
-.menu__item::before {
-  content: "";
-  width: 60%;
-  height: 10%;
-  background: linear-gradient(45deg, #f19872, #e86c9a);
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform-origin: 0 0;
-  transform: scale3d(0, 1, 1);
+  opacity: 0.7;
 }
 
 #corner-logo {
   position: absolute;
-  top: 2%;
+  top: 4%;
   left: 1%;
   opacity: 0.8;
   cursor: pointer;
@@ -223,11 +217,24 @@ export default {
 
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 65px;
+    top: 80px;
     left: 2.5%;
+    flex-direction: column;
   }
+
   .menu__item {
     font-size: 14px;
+    margin: 0;
+  }
+  .menu-wrapper {
+    padding-left: 1px;
+    padding-bottom: 0;
+    margin: 1px;
+    &.active {
+      background: linear-gradient(45deg, #0947db, #898ce9);
+      padding: 1px 2px 1px 2px;
+      border-radius: 5px;
+    }
   }
 
   #corner-logo {

@@ -2,13 +2,15 @@
   <div class="container-main">
     <Nav />
     <Socials />
-    <div class="scroll-more bounce">
-      <i class="fa fa-arrow-down fa-2x" href="#"></i>
-    </div>
-
+    <div v-if="showBounce" class="arrow"></div>
     <div class="portfolio-background">
       <div class="project-wrapper">
-        <swiper class="swiper vertical" :options="swiperOptionv">
+        <swiper
+          class="swiper vertical"
+          ref="mySwiper"
+          @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
+          :options="swiperOptionv"
+        >
           <!-- <div class="swiper-pagination" slot="pagination"></div> -->
           <swiper-slide>
             <div class="slide-wrapper">
@@ -17,12 +19,23 @@
                 <i class="fa fa-square middle" aria-hidden="true"></i>
                 <span class="right"> Currently In Progress </span>
               </span>
-
-              <VueSlickCarousel ref="carousel" v-bind="settings">
-                <div class="project-image">
-                  <img src="~/static/construction.png" alt="" rel="preload" />
-                </div>
-              </VueSlickCarousel>
+              <div class="nav-wrapper">
+                <!-- <div
+                  class="arrow arrow-left"
+                  v-if="caroCounter.carousel > 0"
+                  @click="setCaroNav('carousel', 'b')"
+                ></div> -->
+                <VueSlickCarousel ref="carousel" v-bind="settings">
+                  <div class="project-image">
+                    <img src="~/static/construction.png" alt="" rel="preload" />
+                  </div>
+                </VueSlickCarousel>
+                <!-- <div
+                  class="arrow arrow-right"
+                  v-if="caroCounter.carousel < 2"
+                  @click="setCaroNav('carousel', 'f')"
+                ></div> -->
+              </div>
             </div>
           </swiper-slide>
           <swiper-slide>
@@ -32,6 +45,7 @@
                 <i class="fa fa-square middle" aria-hidden="true"></i>
                 <span class="right"> Video Dashboard </span>
               </span>
+              <div></div>
               <VueSlickCarousel ref="carousel" v-bind="settings">
                 <div class="project-image mac">
                   <img src="~/static/Streamhub.png" alt="" rel="preload" />
@@ -55,18 +69,6 @@
                   <img src="~/static/Streamhub 1.png" alt="" />
                 </div>
               </VueSlickCarousel>
-              <div class="caro-nav">
-                <div
-                  class="arrow left"
-                  v-if="caroCounter.carousel > 0"
-                  @click="setCaroNav('carousel', 'b')"
-                ></div>
-                <div
-                  class="arrow right"
-                  v-if="caroCounter.carousel < 2"
-                  @click="setCaroNav('carousel', 'f')"
-                ></div>
-              </div>
             </div>
           </swiper-slide>
 
@@ -85,18 +87,6 @@
                   <img src="~/static/BB home.png" alt="" />
                 </div>
               </VueSlickCarousel>
-              <div class="caro-nav">
-                <div
-                  class="arrow left"
-                  v-if="caroCounter.carousel1 > 0"
-                  @click="setCaroNav('carousel1', 'b')"
-                ></div>
-                <div
-                  class="arrow right"
-                  v-if="caroCounter.carousel1 < 1"
-                  @click="setCaroNav('carousel1', 'f')"
-                ></div>
-              </div>
             </div>
           </swiper-slide>
           <swiper-slide>
@@ -120,18 +110,6 @@
                   <img src="~/static/BI tool 3.png" alt="" />
                 </div>
               </VueSlickCarousel>
-              <div class="caro-nav">
-                <div
-                  class="arrow left"
-                  v-if="caroCounter.carousel2 > 0"
-                  @click="setCaroNav('carousel2', 'b')"
-                ></div>
-                <div
-                  class="arrow right"
-                  v-if="caroCounter.carousel2 < 3"
-                  @click="setCaroNav('carousel2', 'f')"
-                ></div>
-              </div>
             </div>
           </swiper-slide>
         </swiper>
@@ -172,7 +150,7 @@ export default {
       image: "~/static/meta.png",
       settings: {
         dots: false,
-        arrows: false,
+        arrows: true,
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
@@ -195,6 +173,7 @@ export default {
       formValues: {},
       logo: false,
       sent: false,
+      showBounce: true,
       caroCounter: {
         carousel: 0,
         carousel1: 0,
@@ -202,21 +181,34 @@ export default {
       }
     };
   },
-  computed: {},
+  computed: {
+    swiperIndex() {
+      if (this.$refs.mySwiper) {
+        return this.$refs.mySwiper.$swiper;
+      }
+    }
+  },
   methods: {
     moveLogo() {
       setTimeout(() => {
         this.logo = true;
       }, 750);
     },
-    setCaroNav(ref, dir) {
-      if (dir == "f") {
-        this.caroCounter[ref] += 1;
-        this.$refs[ref].next();
-      }
-      if (dir == "b") {
-        this.caroCounter[ref] -= 1;
-        this.$refs[ref].prev();
+    // setCaroNav(ref, dir) {
+    //   if (dir == "f") {
+    //     this.caroCounter[ref] += 1;
+    //     this.$refs[ref].next();
+    //   }
+    //   if (dir == "b") {
+    //     this.caroCounter[ref] -= 1;
+    //     this.$refs[ref].prev();
+    //   }
+    // },
+    onSwiperSlideChangeTransitionStart(index) {
+      if (index.activeIndex == index.slides.length - 1) {
+        this.showBounce = false;
+      } else {
+        this.showBounce = true;
       }
     }
   },
@@ -251,8 +243,11 @@ img {
 .scroll-more {
   font-size: 16px;
   position: absolute;
-  top: 50%;
-  left: 80%;
+  font-size: 14px;
+  bottom: 5%;
+  left: 48%;
+  color: $lightBlue;
+  z-index: 10;
 }
 
 .bounce {
@@ -366,53 +361,53 @@ img {
   object-fit: contain;
 }
 
-.arrow {
-  // left: 50%;
-  // position: fixed;
-  // top: 50%;
-  margin: 5px;
-  transform: translate3d(-50%, -50%, 0px);
+.slick-prev,
+.slick-next,
+.slick-prev:before,
+.slick-next:before {
+  font-size: 26px !important;
 }
 
-// The actual arrow styles, make it an area for 50x50 for ease of use on touch devices
+.arrow,
+.arrow:before {
+  position: absolute;
+  left: 50%;
+}
+
 .arrow {
-  border: 2px solid $lightBlue;
-  cursor: pointer;
-  height: 35px;
   width: 35px;
-  border-radius: 5px;
-
-  &:before {
-    border-top: 4px solid $lightBlue;
-    border-right: 4px solid $lightBlue;
-    box-sizing: border-box;
-    content: "";
-    height: 12px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate3d(-50%, -75%, 0px) rotate(135deg);
-    // Uncomment if you want it to move (probably better not to, looks weird)
-    // transition: transform 0.3s;
-    // will-change: transform;
-    width: 12px;
-  }
-
-  // The 'flip' state, just on hover for ease atm
-  &:hover:before {
-    border-top: 4px solid $lightBlue;
-    border-right: 4px solid $lightBlue;
-  }
-
-  &:hover {
-    // background-color: $purple;
-    opacity: 0.7;
-  }
+  height: 35px;
+  top: 90%;
+  margin: -20px 0 0 -20px;
+  -webkit-transform: translateX(-15px) rotate(45deg);
+  border-left: none;
+  border-top: none;
+  border-right: 2px #fff solid;
+  border-bottom: 2px #fff solid;
 }
-.caro-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.arrow:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 1px #fff solid;
+  border-bottom: 1px #fff solid;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: arrow;
+}
+@keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
 }
 
 .swiper-container {
@@ -443,18 +438,6 @@ img {
     }
     // background: linear-gradient(45deg, #f19872, #e86c9a);
   }
-}
-
-.project-title::before {
-  content: "";
-  width: 60%;
-  height: 10%;
-  background: linear-gradient(45deg, #f19872, #e86c9a);
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform-origin: 0 0;
-  transform: scale3d(0, 1, 1);
 }
 
 .project-image {
@@ -581,6 +564,11 @@ img {
       border-right: 2px solid $lightBlue;
     }
   }
+
+  .scroll-more {
+    font-size: 8px;
+  }
+
   .slide-wrapper {
     padding: 0;
     .project-title {

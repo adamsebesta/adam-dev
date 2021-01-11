@@ -17,7 +17,6 @@
         </div>
 
         <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
-        <div class="background-blue"></div>
       </div>
       <svg id="sky">
         <svg
@@ -29,8 +28,8 @@
           xmlns:xlink="http://www.w3.org/1999/xlink"
           :x="getRandomX()"
           :y="getRandomY()"
-          width="3%"
-          height="3%"
+          width="2%"
+          height="2%"
           class="star"
           fill="#fff"
           viewBox="0 0 58 58"
@@ -58,6 +57,7 @@
           <g></g>
         </svg>
       </svg>
+      <div class="background-home"></div>
     </div>
   </div>
 </template>
@@ -94,7 +94,7 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars: [...Array(60)]
+      stars: [...Array(40)]
       // this.windowWidth > 420? [...Array(20)] :
     };
   },
@@ -279,13 +279,15 @@ html {
   position: fixed;
 }
 
-.background-blue {
-  background: url("~static/background blue.png");
+.background-home {
+  background: url("~static/background home.png");
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
-  bottom: 100%;
-  right: 100%;
+  left: 75%;
+  width: 80%;
+  height: 100%;
+  z-index: 1001;
 }
 .animation-wrapper {
   width: 100%;
@@ -326,7 +328,7 @@ html {
 
   .logo-upper {
     color: $lightBlue;
-    font-size: 4.5vw;
+    font-size: 44px;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -335,13 +337,13 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 2.4vw;
+    font-size: 24px;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 18%;
+    margin-left: 17%;
     margin-top: -8px;
   }
 }
@@ -436,6 +438,9 @@ html {
     width: 100%;
     min-width: unset;
     height: unset;
+  }
+  .background-home {
+    left: 44%;
   }
 }
 </style>
