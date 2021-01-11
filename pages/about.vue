@@ -209,6 +209,7 @@ html {
 
 .headshot {
   width: 0%;
+  max-width: 280px;
   margin-right: 20px;
   height: 50%;
   top: 50%;
@@ -226,7 +227,7 @@ html {
   color: $lightBlue;
   z-index: 2;
   .about-title {
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     margin-bottom: 20px;
     font-size: 26px;
     font-weight: 800;

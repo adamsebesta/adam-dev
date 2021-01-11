@@ -80,19 +80,8 @@ html {
   text-align: center;
 }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.purple {
+  color: $purple;
 }
 
 @media only screen and (max-width: 420px) {

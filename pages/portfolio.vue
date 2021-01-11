@@ -375,8 +375,8 @@ img {
 }
 
 .arrow {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   top: 90%;
   margin: -20px 0 0 -20px;
   -webkit-transform: translateX(-15px) rotate(45deg);

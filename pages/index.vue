@@ -4,19 +4,29 @@
     <div class="container-main">
       <Nav />
       <Socials />
-      <div class="main-img-container">
-        <div class="device-images">
-          <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
+      <div class="center-content">
+        <div class="main-left">
+          <p class="heading">
+            Bring your <span class="purple">Great</span> ideas to life
+          </p>
+          <div class="subheading">
+            <a class="home-btn" @click="proceedAbout">About Me </a>
+          </div>
+        </div>
+        <div class="main-right">
+          <div class="device-images">
+            <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
             <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' />  -->
-          <img class="logo-img" src="~static/logo.png" alt="" />
-        </div>
+            <img class="logo-img" src="~static/logo.png" alt="" />
+          </div>
 
-        <div class="logo">
-          <p class="logo-upper rise1">Adam Sebesta</p>
-          <p class="logo-lower">Development</p>
-        </div>
+          <div class="logo">
+            <p class="logo-upper rise1">Adam Sebesta</p>
+            <p class="logo-lower">Development</p>
+          </div>
 
-        <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
+          <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
+        </div>
       </div>
       <svg id="sky">
         <svg
@@ -87,7 +97,6 @@ export default {
     return {
       adam: false,
       showFirst: true,
-      background: null,
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
@@ -99,10 +108,8 @@ export default {
     };
   },
   methods: {
-    showBackground() {
-      setTimeout(() => {
-        this.background = true;
-      }, 750);
+    proceedAbout() {
+      document.querySelector("#about").click();
     },
     randomRadius() {
       return Math.random() * 0.7 + 5.6;
@@ -227,9 +234,7 @@ export default {
       });
     }
   },
-  created() {
-    this.showBackground();
-  },
+  created() {},
   mounted() {
     setTimeout(() => {
       this.showStars();
@@ -284,10 +289,9 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
-  left: 75%;
+  left: 45%;
   width: 80%;
   height: 100%;
-  z-index: 1001;
 }
 .animation-wrapper {
   width: 100%;
@@ -328,7 +332,7 @@ html {
 
   .logo-upper {
     color: $lightBlue;
-    font-size: 44px;
+    font-size: 52px;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -337,7 +341,7 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -359,15 +363,64 @@ html {
   line-height: 1em;
 }
 
-.main-img-container {
-  width: 80%;
+.main-right {
+  width: 50%;
   margin: 0 auto;
   z-index: 1;
   justify-content: center;
-  padding: 0 50px;
+  margin-right: 5%;
   align-items: center;
   // flex-direction: column;
   display: flex;
+}
+
+.center-content {
+  display: flex;
+  width: 80%;
+}
+.main-left {
+  width: 50%;
+  margin: 0 auto;
+  margin-left: 5%;
+  z-index: 1;
+  justify-content: center;
+  padding: 0 50px;
+  flex-direction: column;
+  display: flex;
+  color: $lightBlue;
+  // padding: 0 10%;
+  text-align: left;
+
+  .heading {
+    font-size: 40px;
+    font-weight: 800;
+    width: 100%;
+    max-width: 400px;
+  }
+  .subheading {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 20px;
+  }
+  .home-btn {
+    background: $purple;
+    height: 60px;
+    color: $background;
+    width: 150px;
+    text-align: center;
+    border: 3px solid $purple;
+    margin: 0 auto;
+    margin-top: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-weight: 800;
+    font-size: 16px;
+    &:hover {
+      color: $lightBlue;
+    }
+  }
 }
 #iphone-home {
   z-index: 1;
@@ -407,28 +460,61 @@ html {
   }
 }
 @media only screen and (max-width: 420px) {
-  .main-img-container {
-    padding: 0;
-    width: 100%;
-    margin: 0 auto;
-    margin-top: -50px;
-    margin-left: 10px;
+  .center-content {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    width: 95%;
   }
+
+  .main-right {
+    padding: 0;
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  .main-left {
+    padding: 0;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+    .heading {
+      font-size: 18px;
+    }
+
+    .home-btn {
+      background: $purple;
+      height: 20px;
+      color: $background;
+      width: 50px;
+      margin: 0 auto;
+      margin-top: 5px;
+      padding: 3px 8px;
+      font-size: 12px;
+      &:hover {
+        color: $lightBlue;
+      }
+    }
+  }
+
   .device-images {
     justify-content: flex-end;
     width: 20%;
     height: 100%;
   }
-
+  .background-home {
+    height: 90%;
+    width: 87%;
+    top: 11%;
+  }
   .logo {
     margin: 0;
-    width: 60%;
     .logo-upper {
-      font-size: 7.5vw;
+      font-size: 24px;
       letter-spacing: 1px;
     }
     .logo-lower {
-      font-size: 4.5vw;
+      font-size: 14px;
       letter-spacing: 1px;
       margin-left: 15%;
       margin-top: -5px;

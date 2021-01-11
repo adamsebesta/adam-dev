@@ -47,12 +47,13 @@
         <a @click="navChange('/')" class="menu__item">Home</a>
       </div>
       <div
+        ref="about"
         :class="
           'menu-wrapper ' +
             (page && page.location.pathname == '/about' ? ' active' : '')
         "
       >
-        <a @click="navChange('/about')" class="menu__item">About</a>
+        <a id="about" @click="navChange('/about')" class="menu__item">About</a>
       </div>
 
       <div
@@ -123,7 +124,9 @@ export default {
         anime.timeline({ loop: false }).add({
           targets: target,
           opacity: 0.3,
-          x: this.windowWidth / 2 - this.windowWidth / 3.2,
+          x:
+            this.windowWidth / 2 -
+            this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
           y: this.windowHeight / 2 - this.windowHeight / 2.5,
           width: this.windowWidth / 10,
           height: this.windowHeight / 10,
@@ -157,14 +160,18 @@ export default {
 <style lang="scss" scoped>
 .menu {
   position: absolute;
-  z-index: 1000;
-  right: 37%;
   top: 5%;
+  left: 4%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%; /* Need a specific value to work */
   opacity: 0;
   display: flex;
   // flex-direction: column;
   margin: 0 0 0 1vw;
   align-items: flex-start;
+  z-index: 1;
 }
 
 .menu__item {
