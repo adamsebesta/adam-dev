@@ -543,6 +543,8 @@ img {
   .arrow {
     height: 20px;
     width: 20px;
+    z-index: 1;
+    margin-left: 2%;
 
     &:before {
       border-top: 2px solid $lightBlue;
@@ -565,15 +567,23 @@ img {
     }
   }
 
-  .scroll-more {
-    font-size: 8px;
+  .slick-prev {
+    transform: translate(20px, -19px);
+    z-index: 1;
   }
 
+  .slick-next {
+    transform: translate(-28px, -18px);
+    z-index: 1;
+  }
   .slide-wrapper {
     padding: 0;
     .project-title {
       font-size: 12px !important;
       letter-spacing: 1px;
+      .middle {
+        font-size: 6px;
+      }
     }
   }
 

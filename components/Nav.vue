@@ -62,7 +62,9 @@
             (page && page.location.pathname == '/contact' ? ' active' : '')
         "
       >
-        <a @click="navChange('/contact')" class="menu__item">Contact</a>
+        <a id="contact" @click="navChange('/contact')" class="menu__item"
+          >Contact</a
+        >
       </div>
 
       <div
@@ -234,12 +236,12 @@ export default {
     margin: 0;
   }
   .menu-wrapper {
-    padding-left: 1px;
+    padding-left: 3px;
     padding-bottom: 0;
     margin: 1px;
     &.active {
       background: linear-gradient(45deg, #0947db, #898ce9);
-      padding: 1px 2px 1px 2px;
+      padding: 1px 3px 1px 3px;
       border-radius: 5px;
     }
   }

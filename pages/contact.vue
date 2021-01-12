@@ -453,17 +453,13 @@ label {
 }
 
 @media only screen and (max-width: 600px) {
-  .title-pop {
-    font-size: 60px;
-    margin-top: 40px;
-  }
   .form-background {
     margin-top: 0;
   }
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 45px;
+    margin-top: 70px;
     font-size: 14px !important;
   }
   .logo-small {

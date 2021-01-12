@@ -6,11 +6,20 @@
       <Socials />
       <div class="center-content">
         <div class="main-left">
-          <p class="heading">
-            Bring your <span class="purple">Great</span> ideas to life
+          <p v-if="windowWidth > 450" class="heading">
+            Your <br />
+            <span class="purple"> Original Ideas</span> Brought To Life
+          </p>
+          <p v-if="windowWidth < 450" class="heading">
+            Your
+            <span class="purple"> Original Ideas</span> Brought To Life
           </p>
           <div class="subheading">
-            <a class="home-btn" @click="proceedAbout">About Me </a>
+            <p>
+              Collaborative mobile and web development for small to large scale
+              applications
+            </p>
+            <a class="home-btn" @click="proceedContact">Contact me</a>
           </div>
         </div>
         <div class="main-right">
@@ -108,8 +117,8 @@ export default {
     };
   },
   methods: {
-    proceedAbout() {
-      document.querySelector("#about").click();
+    proceedContact() {
+      document.querySelector("#contact").click();
     },
     randomRadius() {
       return Math.random() * 0.7 + 5.6;
@@ -285,12 +294,12 @@ html {
 }
 
 .background-home {
-  background: url("~static/background home.png");
+  background: url("~static/background home4.png");
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
   left: 45%;
-  width: 80%;
+  width: 51%;
   height: 100%;
 }
 .animation-wrapper {
@@ -332,7 +341,7 @@ html {
 
   .logo-upper {
     color: $lightBlue;
-    font-size: 52px;
+    font-size: 60px;
     line-height: 1.25;
     letter-spacing: 3px;
     text-indent: -0.025em;
@@ -341,13 +350,13 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 30px;
+    font-size: 36px;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 17%;
+    margin-left: 14%;
     margin-top: -8px;
   }
 }
@@ -392,21 +401,26 @@ html {
   text-align: left;
 
   .heading {
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 800;
     width: 100%;
     max-width: 400px;
+    line-height: 55px;
   }
   .subheading {
     width: 100%;
     font-size: 12px;
     font-weight: 800;
     margin-top: 20px;
+    p {
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
   }
   .home-btn {
     background: $purple;
     height: 60px;
-    color: $background;
+    color: $lightBlue;
     width: 150px;
     text-align: center;
     border: 3px solid $purple;
@@ -418,7 +432,7 @@ html {
     font-weight: 800;
     font-size: 16px;
     &:hover {
-      color: $lightBlue;
+      color: $background;
     }
   }
 }
@@ -470,13 +484,13 @@ html {
   .main-right {
     padding: 0;
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     margin-bottom: 20px;
   }
   .main-left {
     padding: 0;
     margin: 0 auto;
-    width: 50%;
+    width: 90%;
     text-align: center;
     .heading {
       font-size: 18px;
@@ -485,14 +499,14 @@ html {
     .home-btn {
       background: $purple;
       height: 20px;
-      color: $background;
+      color: $lightBlue;
       width: 50px;
       margin: 0 auto;
       margin-top: 5px;
       padding: 3px 8px;
       font-size: 12px;
       &:hover {
-        color: $lightBlue;
+        color: $background;
       }
     }
   }
