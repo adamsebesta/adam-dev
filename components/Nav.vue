@@ -125,13 +125,13 @@ export default {
         let that = this;
         anime.timeline({ loop: false }).add({
           targets: target,
-          opacity: 0.3,
+          opacity: 1,
           x:
             this.windowWidth / 2 -
             this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
           y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.windowWidth / 10,
-          height: this.windowHeight / 10,
+          width: this.windowWidth / 7,
+          height: this.windowHeight / 7,
           easing: "easeOutExpo",
           duration: 2000
         });
@@ -195,7 +195,7 @@ export default {
 }
 
 .menu-wrapper {
-  padding-bottom: 6px;
+  padding-bottom: 4px;
   margin: 0 1vw;
   &.active {
     // width: 100%;

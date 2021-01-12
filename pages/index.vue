@@ -6,20 +6,23 @@
       <Socials />
       <div class="center-content">
         <div class="main-left">
-          <p v-if="windowWidth > 450" class="heading">
+          <p v-if="windowWidth > 1025" class="heading">
             Your <br />
             <span class="purple"> Original Ideas</span> Brought To Life
           </p>
-          <p v-if="windowWidth < 450" class="heading">
-            Your
-            <span class="purple"> Original Ideas</span> Brought To Life
+          <p v-if="windowWidth < 1025" class="heading">
+            Your <br />
+            <span class="purple"> Original Ideas</span>
+            Brought To Life
           </p>
           <div class="subheading">
             <p>
               Collaborative mobile and web development for small to large scale
               applications
             </p>
-            <a class="home-btn" @click="proceedContact">Contact me</a>
+            <a class="home-btn" @click="proceedContact"
+              >Contact <i class="fa fa-comments comment" aria-hidden="true"></i
+            ></a>
           </div>
         </div>
         <div class="main-right">
@@ -350,13 +353,13 @@ html {
   }
   .logo-lower {
     color: $purple;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1.5;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
-    margin-left: 14%;
+    margin-left: 16%;
     margin-top: -8px;
   }
 }
@@ -473,12 +476,13 @@ html {
     position: relative;
   }
 }
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 1025px) {
   .center-content {
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
     width: 95%;
+    margin-top: -40px;
   }
 
   .main-right {
@@ -490,31 +494,55 @@ html {
   .main-left {
     padding: 0;
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     text-align: center;
     .heading {
-      font-size: 18px;
+      font-size: 26px;
+      line-height: 27px;
+      width: 60%;
+      margin: 0 auto;
+    }
+    .subheading {
+      p {
+        font-size: 11px;
+        // padding: 0 10px;
+        width: 65%;
+        margin: 0 auto;
+      }
     }
 
     .home-btn {
       background: $purple;
-      height: 20px;
+      height: 30px;
       color: $lightBlue;
-      width: 50px;
-      margin: 0 auto;
-      margin-top: 5px;
-      padding: 3px 8px;
-      font-size: 12px;
+      width: 80%;
+      position: absolute;
+      bottom: 5%;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+      // margin: 0 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      font-size: 14px;
       &:hover {
         color: $background;
+      }
+      i {
+        font-size: 20px;
+        padding-left: 7px;
+        color: $lightBlue;
       }
     }
   }
 
   .device-images {
     justify-content: flex-end;
-    width: 20%;
+    width: 100%;
     height: 100%;
+    margin: 0 auto;
   }
   .background-home {
     height: 90%;
@@ -523,21 +551,22 @@ html {
   }
   .logo {
     margin: 0;
+    width: 65%;
+    display: none;
     .logo-upper {
-      font-size: 24px;
+      font-size: 30px;
       letter-spacing: 1px;
     }
     .logo-lower {
-      font-size: 14px;
+      font-size: 17px;
       letter-spacing: 1px;
-      margin-left: 15%;
+      margin-left: 12%;
       margin-top: -5px;
     }
   }
   .logo-img {
-    width: 100%;
-    min-width: unset;
-    height: unset;
+    width: 20%;
+    margin: 0 auto;
   }
   .background-home {
     left: 44%;
