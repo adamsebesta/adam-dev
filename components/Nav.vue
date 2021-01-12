@@ -43,8 +43,9 @@
           'menu-wrapper ' +
             (page && page.location.pathname == '/' ? ' active' : '')
         "
+        @click="navChange('/')"
       >
-        <a @click="navChange('/')" class="menu__item">Home</a>
+        <a class="menu__item">Home</a>
       </div>
       <div
         ref="about"
@@ -52,19 +53,20 @@
           'menu-wrapper ' +
             (page && page.location.pathname == '/about' ? ' active' : '')
         "
+        @click="navChange('/about')"
       >
-        <a id="about" @click="navChange('/about')" class="menu__item">About</a>
+        <a id="about" class="menu__item">About</a>
       </div>
 
       <div
+        id="contact"
         :class="
           'menu-wrapper ' +
             (page && page.location.pathname == '/contact' ? ' active' : '')
         "
+        @click="navChange('/contact')"
       >
-        <a id="contact" @click="navChange('/contact')" class="menu__item"
-          >Contact</a
-        >
+        <a class="menu__item">Contact</a>
       </div>
 
       <div
@@ -72,8 +74,9 @@
           'menu-wrapper ' +
             (page && page.location.pathname == '/portfolio' ? ' active' : '')
         "
+        @click="navChange('/portfolio')"
       >
-        <a @click="navChange('/portfolio')" class="menu__item">Portfolio</a>
+        <a class="menu__item">Portfolio</a>
       </div>
     </nav>
   </div>
@@ -126,6 +129,7 @@ export default {
         anime.timeline({ loop: false }).add({
           targets: target,
           opacity: 1,
+          zIndex: [{ value: [1, 5], round: true }],
           x:
             this.windowWidth / 2 -
             this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
@@ -192,10 +196,11 @@ export default {
   position: relative;
   cursor: pointer;
   text-align: left;
+  transition: all ease-in-out 150ms;
 }
 
 .menu-wrapper {
-  padding-bottom: 4px;
+  padding: 1px 1px 4px 1px;
   margin: 0 1vw;
   &.active {
     // width: 100%;
@@ -208,11 +213,11 @@ export default {
 
 .menu-wrapper {
   height: 100%;
+  cursor: pointer;
 }
 
-.menu__item:hover,
-.menu__item:focus {
-  opacity: 0.7;
+.menu-wrapper:hover .menu__item {
+  transform: translateY(-7px);
 }
 
 #corner-logo {
@@ -234,6 +239,10 @@ export default {
   .menu__item {
     font-size: 14px;
     margin: 0;
+  }
+
+  .menu-wrapper:hover .menu__item {
+    transform: translateY(-1px);
   }
   .menu-wrapper {
     padding-left: 3px;

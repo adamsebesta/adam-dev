@@ -20,7 +20,7 @@
               Collaborative mobile and web development for small to large scale
               applications
             </p>
-            <a class="home-btn" @click="proceedContact"
+            <a class="home-btn home-btn-animated" @click="proceedContact"
               >Contact <i class="fa fa-comments comment" aria-hidden="true"></i
             ></a>
           </div>
@@ -334,6 +334,7 @@ html {
   min-width: 112px;
   height: 125px;
   opacity: 0;
+  margin-right: 20px;
 }
 
 .logo {
@@ -422,23 +423,24 @@ html {
   }
   .home-btn {
     background: $purple;
-    height: 60px;
     color: $lightBlue;
-    width: 150px;
     text-align: center;
     border: 3px solid $purple;
     margin: 0 auto;
     margin-top: 40px;
     cursor: pointer;
     border-radius: 4px;
-    padding: 5px 10px;
+    padding: 10px 20px;
     font-weight: 800;
     font-size: 16px;
+    transition: all ease-in-out 150ms;
+    z-index: 1;
     &:hover {
-      color: $background;
+      padding: 13px 23px;
     }
   }
 }
+
 #iphone-home {
   z-index: 1;
   width: 5%;
@@ -458,24 +460,24 @@ html {
   padding-right: 4%;
 }
 
-@media only screen and (max-width: 1000px) {
-  .logo {
-    width: 200px;
-  }
+// @media only screen and (max-width: 1000px) {
+//   .logo {
+//     width: 200px;
+//   }
 
-  .main-btn {
-    font-size: 10px;
-    padding: 10px 15px;
-  }
+//   .main-btn {
+//     font-size: 10px;
+//     padding: 10px 15px;
+//   }
 
-  html,
-  body {
-    overflow-x: hidden;
-  }
-  body {
-    position: relative;
-  }
-}
+//   html,
+//   body {
+//     overflow-x: hidden;
+//   }
+//   body {
+//     position: relative;
+//   }
+// }
 @media only screen and (max-width: 1025px) {
   .center-content {
     display: flex;
@@ -526,7 +528,8 @@ html {
       justify-content: center;
       align-items: center;
       padding: 30px;
-      font-size: 14px;
+      font-size: 16px;
+      border-radius: 5px;
       &:hover {
         color: $background;
       }
@@ -566,10 +569,14 @@ html {
   }
   .logo-img {
     width: 20%;
+    max-width: 125px;
     margin: 0 auto;
   }
   .background-home {
-    left: 44%;
+    left: -16%;
+    height: 100%;
+    width: 117%;
+    top: 0;
   }
 }
 </style>
