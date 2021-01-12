@@ -1,18 +1,28 @@
 <template>
-  <div class="page loaderAnim" ref="page">
+  <div class="page" ref="page">
     <!-- @mousewheel="handleScroll" -->
     <div class="container-main">
       <Nav />
       <Socials />
+      <div v-if="loading" class="loading-anim">
+        <div class="">
+          <img class="loading-logo-img" src="~static/logo.png" alt="" />
+        </div>
+
+        <!-- <div class="loading-logo">
+          <p class="loading-logo-upper">Adam Sebesta</p>
+          <p class="loading-logo-lower">Development</p>
+        </div> -->
+      </div>
       <div class="center-content">
         <div class="main-left">
           <p v-if="windowWidth > 1025" class="heading">
             Your <br />
-            <span class="purple"> Original Ideas</span> Brought To Life
+            <span class="purple"> Creative Ideas</span> Brought To Life
           </p>
           <p v-if="windowWidth < 1025" class="heading">
             Your <br />
-            <span class="purple"> Original Ideas</span>
+            <span class="purple"> Creative Ideas</span>
             Brought To Life
           </p>
           <div class="subheading">
@@ -21,7 +31,7 @@
               applications
             </p>
             <a class="home-btn home-btn-animated" @click="proceedContact"
-              >Contact <i class="fa fa-comments comment" aria-hidden="true"></i
+              >Contact <i class="fa fa-envelope" aria-hidden="true"></i
             ></a>
           </div>
         </div>
@@ -115,7 +125,8 @@ export default {
       num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
-      stars: [...Array(40)]
+      stars: [...Array(40)],
+      loading: true
       // this.windowWidth > 420? [...Array(20)] :
     };
   },
@@ -184,32 +195,34 @@ export default {
       });
     },
     initLogo() {
-      anime({
-        targets: [".rise1"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 1000,
-            value: [0, 1]
-          }
-        ]
-      });
+      if (this.windowWidth > 1025) {
+        anime({
+          targets: [".rise1"],
+          easing: "easeInOutSine",
+          opacity: [
+            {
+              duration: 1000,
+              value: [0, 1]
+            }
+          ]
+        });
 
-      var textWrapper1 = document.querySelector(".rise1");
-      textWrapper1.innerHTML = textWrapper1.textContent.replace(
-        /\S/g,
-        "<span class='letter'>$&</span>"
-      );
+        var textWrapper1 = document.querySelector(".rise1");
+        textWrapper1.innerHTML = textWrapper1.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
 
-      anime.timeline({ loop: false }).add({
-        targets: ".rise1 .letter",
-        translateY: [100, 0],
-        translateZ: 0,
-        opacity: [0, 1],
-        easing: "easeOutExpo",
-        duration: 1400,
-        delay: (el, i) => 1000 + 30 * i
-      });
+        anime.timeline({ loop: false }).add({
+          targets: ".rise1 .letter",
+          translateY: [100, 0],
+          translateZ: 0,
+          opacity: [0, 1],
+          easing: "easeOutExpo",
+          duration: 1400,
+          delay: (el, i) => 1000 + 30 * i
+        });
+      }
     },
     // handleScroll() {
     //   console.log("hi");
@@ -249,36 +262,24 @@ export default {
   created() {},
   mounted() {
     setTimeout(() => {
+      this.loading = false;
+    }, 400);
+    setTimeout(() => {
       this.showStars();
       this.riseLogo();
-    }, 750);
+    }, 850);
     setTimeout(() => {
       this.rippleStars();
     }, 1200);
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
-    // window.addEventListener("scroll", this.handleScroll);
+
     this.initLogo();
-    // this.growIphone();
   }
 };
 </script>
 
 <style lang="scss">
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-// html {
-//   width: 100%;
-//   height: 100%;
-// }
-// body {
-//   width: 100%;
-//   height: 100%;
-// }
-
 html {
   overflow: hidden;
 }
@@ -294,6 +295,21 @@ html {
   align-items: center;
   text-align: center;
   position: fixed;
+}
+
+.loading-anim {
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: $background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loading-logo-img {
+    width: 30%;
+    margin: 0 auto;
+  }
 }
 
 .background-home {
@@ -502,7 +518,7 @@ html {
       font-size: 26px;
       line-height: 27px;
       width: 60%;
-      margin: 0 auto;
+      margin: 15px auto;
     }
     .subheading {
       p {
@@ -534,7 +550,7 @@ html {
         color: $background;
       }
       i {
-        font-size: 20px;
+        font-size: 18px;
         padding-left: 7px;
         color: $lightBlue;
       }

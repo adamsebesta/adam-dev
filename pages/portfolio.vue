@@ -545,26 +545,6 @@ img {
     width: 20px;
     z-index: 1;
     margin-left: 2%;
-
-    &:before {
-      border-top: 2px solid $lightBlue;
-      border-right: 2px solid $lightBlue;
-      box-sizing: border-box;
-      content: "";
-      height: 8px;
-      left: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translate3d(-50%, -75%, 0px) rotate(135deg);
-      // Uncomment if you want it to move (probably better not to, looks weird)
-      // transition: transform 0.3s;
-      // will-change: transform;
-      width: 8px;
-    }
-    &:hover:before {
-      border-top: 2px solid $lightBlue;
-      border-right: 2px solid $lightBlue;
-    }
   }
 
   .slick-prev {
