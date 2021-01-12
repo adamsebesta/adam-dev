@@ -554,10 +554,10 @@ html {
     }
     .subheading {
       p {
-        font-size: 11px;
-        // padding: 0 10px;
-        width: 65%;
+        font-size: 16px;
+        width: 80%;
         margin: 0 auto;
+        font-weight: 600;
       }
     }
 

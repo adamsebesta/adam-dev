@@ -229,6 +229,11 @@ export default {
   z-index: 10;
 }
 
+@media only screen and (max-width: 1630px) {
+  .menu__item {
+    font-size: 14px;
+  }
+}
 @media only screen and (max-width: 420px) {
   .menu {
     top: 80px;

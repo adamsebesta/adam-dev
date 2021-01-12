@@ -64,4 +64,11 @@ export default {};
   text-shadow: 0px 16px 10px rgba(255, 255, 255, 0.3);
   transform: translate(0, -8);
 }
+
+@media only screen and (max-width: 1630px) {
+  .wrapper i {
+    padding: 0px 10px;
+    font-size: 16px;
+  }
+}
 </style>
