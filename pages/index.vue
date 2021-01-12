@@ -16,13 +16,13 @@
       </div>
       <div class="center-content">
         <div class="main-left">
-          <p v-if="windowWidth > 1025" class="heading">
+          <p v-if="windowWidth > 1630" class="heading">
             Your <br />
             <span class="purple"> Creative Ideas</span> Brought To Life
           </p>
-          <p v-if="windowWidth < 1025" class="heading">
+          <p v-if="windowWidth < 1630" class="heading">
             Your <br />
-            <span class="purple"> Creative Ideas</span>
+            <span class="purple"> Creative Ideas</span><br />
             Brought To Life
           </p>
           <div class="subheading">
@@ -452,7 +452,7 @@ html {
     transition: all ease-in-out 150ms;
     z-index: 1;
     &:hover {
-      padding: 13px 23px;
+      padding: 12px 22px;
     }
   }
 }
@@ -494,6 +494,38 @@ html {
 //     position: relative;
 //   }
 // }
+
+@media only screen and (max-width: 1630px) {
+  .main-left {
+    .heading {
+      font-size: 34px;
+      line-height: 37px;
+    }
+    .subheading {
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  .logo {
+    .logo-upper {
+      font-size: 40px;
+    }
+    .logo-lower {
+      font-size: 22px;
+    }
+  }
+
+  .device-images {
+    .logo-img {
+      min-width: 80px;
+      height: 89px;
+      opacity: 0;
+      margin-right: 5px;
+    }
+  }
+}
+
 @media only screen and (max-width: 1025px) {
   .center-content {
     display: flex;
@@ -562,6 +594,12 @@ html {
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    .logo-img {
+      width: 20%;
+      max-width: 125px;
+      margin: 0 auto;
+      padding-left: 2px;
+    }
   }
   .background-home {
     height: 90%;
@@ -583,11 +621,7 @@ html {
       margin-top: -5px;
     }
   }
-  .logo-img {
-    width: 20%;
-    max-width: 125px;
-    margin: 0 auto;
-  }
+
   .background-home {
     left: -16%;
     height: 100%;
