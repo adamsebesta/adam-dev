@@ -261,9 +261,13 @@ export default {
   },
   created() {},
   mounted() {
-    setTimeout(() => {
+    if (localStorage.getItem("wasVisited") === null) {
+      setTimeout(() => {
+        this.loading = false;
+      }, 400);
+    } else {
       this.loading = false;
-    }, 400);
+    }
     setTimeout(() => {
       this.showStars();
       this.riseLogo();
@@ -273,7 +277,7 @@ export default {
     }, 1200);
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
-
+    localStorage.setItem("wasVisited", "1");
     this.initLogo();
   }
 };

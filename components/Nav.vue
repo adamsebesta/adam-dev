@@ -128,7 +128,7 @@ export default {
         let that = this;
         anime.timeline({ loop: false }).add({
           targets: target,
-          opacity: 1,
+          opacity: 0.6,
           zIndex: [{ value: [1, 5], round: true }],
           x:
             this.windowWidth / 2 -
