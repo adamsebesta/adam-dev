@@ -4,7 +4,7 @@
     <div class="container-main">
       <Nav />
       <Socials />
-      <div v-if="!loading" class="loading-anim">
+      <div v-if="loading" class="loading-anim">
         <div class="">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
         </div>
