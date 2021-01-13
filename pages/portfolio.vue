@@ -561,6 +561,7 @@ img {
     .project-title {
       font-size: 12px !important;
       letter-spacing: 1px;
+      width: 90%;
       .middle {
         font-size: 6px;
       }

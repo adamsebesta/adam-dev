@@ -571,7 +571,7 @@ html {
       color: $lightBlue;
       width: 80%;
       position: absolute;
-      bottom: 5%;
+      bottom: 10%;
       position: absolute;
       left: 50%;
       transform: translate(-50%, 0);

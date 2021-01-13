@@ -6,8 +6,8 @@
       id="corner-logo"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="40px"
-      height="40px"
+      width="30px"
+      height="30px"
       x="1"
       y="1"
       viewBox="0 0 58 58"
@@ -222,7 +222,7 @@ export default {
 
 #corner-logo {
   position: absolute;
-  top: 4%;
+  top: 4.5%;
   left: 1%;
   opacity: 0.8;
   cursor: pointer;
@@ -236,7 +236,7 @@ export default {
 }
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 80px;
+    top: 67px;
     left: 2.5%;
     flex-direction: column;
   }
