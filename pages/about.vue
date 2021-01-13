@@ -1,95 +1,97 @@
 <template>
-  <div class="container-main">
+  <div class="page">
     <Nav />
-    <Socials />
-    <svg
-      version="1.1"
-      id="about-background"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="160vw"
-      height="160vh"
-      x="-400"
-      y="20"
-      viewBox="0 0 58 58"
-      xml:space="preserve"
-    >
-      <g>
-        <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	" />
-        <polygon
-          :style="{ fill: '#556080' }"
-          points="29,58 55,45 55,13 29,26 	"
-        />
-        <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	" />
-      </g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-    </svg>
-    <div class="main-wrapper">
-      <!-- <div class="photo-background bg1" :style="bg1? {'transform': 'translate(100px 100px'} : '' "></div>
+    <div class="container-main">
+      <svg
+        version="1.1"
+        id="about-background"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="160vw"
+        height="160vh"
+        x="-400"
+        y="20"
+        viewBox="0 0 58 58"
+        xml:space="preserve"
+      >
+        <g>
+          <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	" />
+          <polygon
+            :style="{ fill: '#556080' }"
+            points="29,58 55,45 55,13 29,26 	"
+          />
+          <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	" />
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+      <div class="main-wrapper">
+        <!-- <div class="photo-background bg1" :style="bg1? {'transform': 'translate(100px 100px'} : '' "></div>
       <div class="photo-background bg2" :style="bg2? {'transform': 'translate(30px, 30px)'} : '' "></div> -->
-      <!-- <div class="photo-background bg3" :style="bg3? {'transform': 'translate(20px 20px'} : ''"></div> -->
+        <!-- <div class="photo-background bg3" :style="bg3? {'transform': 'translate(20px 20px'} : ''"></div> -->
 
-      <img class="headshot" src="~static/headshot.png" alt="" rel="preload" />
+        <img class="headshot" src="~static/headshot.png" alt="" rel="preload" />
 
-      <div class="about">
-        <p class="about-title">About</p>
-        <p class="about-desc">
-          <span>Hi! Thank you for your interest.</span>
-          <br />
-          <br />
-          <span
-            >I’m Adam, a Canadian / Estonian developer living in Berlin. I am a
-            certified Microsoft Azure Developer, who is deeply interested in the
-            cloud, and building applications with modern technologies.
-          </span>
-          <br />
-          <br />
-          <!-- <span>This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
+        <div class="about">
+          <p class="about-title">About</p>
+          <p class="about-desc">
+            <span>Hi! Thank you for your interest.</span>
+            <br />
+            <br />
+            <span
+              >I’m Adam, a Canadian / Estonian developer living in Berlin. I am
+              a certified Microsoft Azure Developer, who is deeply interested in
+              the cloud, and building applications with modern technologies.
+            </span>
+            <br />
+            <br />
+            <!-- <span>This business began while working at a web agency here in Berlin,  and as a freelancer on Web and Mobile applications.  Now, ready to be formalized, Adam Sebesta Development is live! </span>
           <br>
           <br> -->
-          <span
-            >As fluid communication is a pillar of my working relationships,
-            understanding client expectations, and transparently portraying my
-            capabilities, are of critical importance to me.
-          </span>
-          <br />
-          <br />
-          <span
-            >Whether you are looking to develop a MVP to secure funding, or a
-            personal use application, I would be happy to begin exploring how I
-            can help.
-          </span>
-          <br />
-          <br />
-          <span
-            >Thank you again, and I look forward to speaking with you.
-          </span>
-        </p>
+            <span
+              >As fluid communication is a pillar of my working relationships,
+              understanding client expectations, and transparently portraying my
+              capabilities, are of critical importance to me.
+            </span>
+            <br />
+            <br />
+            <span
+              >Whether you are looking to develop a MVP to secure funding, or a
+              personal use application, I would be happy to begin exploring how
+              I can help.
+            </span>
+            <br />
+            <br />
+            <span
+              >Thank you again, and I look forward to speaking with you.
+            </span>
+          </p>
+        </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Nav from "../components/Nav";
 import anime from "animejs";
+import Footer from "../components/Footer.vue";
 
 export default {
-  components: { Nav },
   transition: "page",
   head() {
     return {
@@ -256,14 +258,14 @@ html {
     margin: 0 auto;
     top: 0;
     align-items: center;
-    padding-top: 20%;
+
     overflow: auto;
-    padding: 20px 20px;
+    padding: 50px 20px;
   }
   .headshot {
     height: 30%;
     width: 30%;
-    margin-top: 5%;
+    margin-top: 15%;
   }
 
   .about {

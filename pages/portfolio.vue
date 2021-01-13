@@ -1,120 +1,116 @@
 <template>
-  <div class="container-main">
+  <div class="page">
     <Nav />
-    <Socials />
-    <div v-if="showBounce" class="arrow"></div>
-    <div class="portfolio-background">
-      <div class="project-wrapper">
-        <swiper
-          class="swiper vertical"
-          ref="mySwiper"
-          @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
-          :options="swiperOptionv"
-        >
-          <!-- <div class="swiper-pagination" slot="pagination"></div> -->
-          <swiper-slide>
-            <div class="slide-wrapper">
-              <span class="project-title">
-                <span class="left">Travel App </span>
-                <i class="fa fa-square middle" aria-hidden="true"></i>
-                <span class="right"> Currently In Progress </span>
-              </span>
-              <div class="nav-wrapper">
-                <!-- <div
-                  class="arrow arrow-left"
-                  v-if="caroCounter.carousel > 0"
-                  @click="setCaroNav('carousel', 'b')"
-                ></div> -->
+    <div class="container-main">
+      <div @click="handleSwiper" v-if="showBounce" class="arrow"></div>
+      <div class="portfolio-background">
+        <div class="project-wrapper">
+          <swiper
+            class="swiper vertical"
+            ref="mySwiper"
+            @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
+            :options="swiperOptionv"
+          >
+            <!-- <div class="swiper-pagination" slot="pagination"></div> -->
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <span class="project-title">
+                  <span class="left">Travel App </span>
+                  <i class="fa fa-square middle" aria-hidden="true"></i>
+                  <span class="right"> Coming Soon</span>
+                </span>
+                <div class="nav-wrapper">
+                  <VueSlickCarousel ref="carousel" v-bind="settings">
+                    <div class="project-image">
+                      <img
+                        src="~/static/construction.png"
+                        alt=""
+                        rel="preload"
+                      />
+                    </div>
+                  </VueSlickCarousel>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <span class="project-title">
+                  <span class="left">StreamHub </span>
+                  <i class="fa fa-square middle" aria-hidden="true"></i>
+                  <span class="right"> Video Dashboard </span>
+                </span>
+                <div></div>
                 <VueSlickCarousel ref="carousel" v-bind="settings">
+                  <div class="project-image mac">
+                    <img src="~/static/Streamhub.png" alt="" rel="preload" />
+                  </div>
+                  <video
+                    id="giftwitch"
+                    playsinline
+                    autoplay
+                    muted
+                    loop
+                    tabindex="0"
+                    width="550px"
+                    height="550px"
+                  >
+                    <source
+                      src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm"
+                      type='video/webm; codecs="vp8, vorbis"'
+                    />
+                  </video>
                   <div class="project-image">
-                    <img src="~/static/construction.png" alt="" rel="preload" />
+                    <img src="~/static/Streamhub 1.png" alt="" />
                   </div>
                 </VueSlickCarousel>
-                <!-- <div
-                  class="arrow arrow-right"
-                  v-if="caroCounter.carousel < 2"
-                  @click="setCaroNav('carousel', 'f')"
-                ></div> -->
               </div>
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="slide-wrapper">
-              <span class="project-title">
-                <span class="left">StreamHub </span>
-                <i class="fa fa-square middle" aria-hidden="true"></i>
-                <span class="right"> Video Dashboard </span>
-              </span>
-              <div></div>
-              <VueSlickCarousel ref="carousel" v-bind="settings">
-                <div class="project-image mac">
-                  <img src="~/static/Streamhub.png" alt="" rel="preload" />
-                </div>
-                <video
-                  id="giftwitch"
-                  playsinline
-                  autoplay
-                  muted
-                  loop
-                  tabindex="0"
-                  width="550px"
-                  height="550px"
-                >
-                  <source
-                    src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm"
-                    type='video/webm; codecs="vp8, vorbis"'
-                  />
-                </video>
-                <div class="project-image">
-                  <img src="~/static/Streamhub 1.png" alt="" />
-                </div>
-              </VueSlickCarousel>
-            </div>
-          </swiper-slide>
+            </swiper-slide>
 
-          <swiper-slide>
-            <div class="slide-wrapper">
-              <span class="project-title">
-                <span class="left">Berlin Bytes </span>
-                <i class="fa fa-square middle" aria-hidden="true"></i>
-                <span class="right"> Homepage </span>
-              </span>
-              <VueSlickCarousel ref="carousel1" v-bind="settings">
-                <div class="project-image mac">
-                  <img src="~/static/BerlinBytes.png" alt="" />
-                </div>
-                <div class="project-image">
-                  <img src="~/static/BB home.png" alt="" />
-                </div>
-              </VueSlickCarousel>
-            </div>
-          </swiper-slide>
-          <swiper-slide>
-            <div class="slide-wrapper">
-              <span class="project-title">
-                <span class="left">Berlin Bytes </span>
-                <i class="fa fa-square middle" aria-hidden="true"></i>
-                <span class="right"> BI Tool </span>
-              </span>
-              <VueSlickCarousel ref="carousel2" v-bind="settings">
-                <div class="project-image mac">
-                  <img src="~/static/CinderellaDB.png" alt="" />
-                </div>
-                <div class="project-image">
-                  <img src="~/static/BI tool.png" alt="" />
-                </div>
-                <div class="project-image">
-                  <img src="~/static/BI tool 1.png" alt="" />
-                </div>
-                <div class="project-image">
-                  <img src="~/static/BI tool 3.png" alt="" />
-                </div>
-              </VueSlickCarousel>
-            </div>
-          </swiper-slide>
-        </swiper>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <span class="project-title">
+                  <span class="left">Berlin Bytes </span>
+                  <i class="fa fa-square middle" aria-hidden="true"></i>
+                  <span class="right"> Homepage </span>
+                </span>
+                <VueSlickCarousel ref="carousel1" v-bind="settings">
+                  <div class="project-image mac">
+                    <img src="~/static/BerlinBytes.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BB home.png" alt="" />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <span class="project-title">
+                  <span class="left">Berlin Bytes </span>
+                  <i class="fa fa-square middle" aria-hidden="true"></i>
+                  <span class="right"> Business Intelligence Tool </span>
+                </span>
+                <VueSlickCarousel ref="carousel2" v-bind="settings">
+                  <div class="project-image mac">
+                    <img src="~/static/CinderellaDB.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool 1.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool 3.png" alt="" />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+          </swiper>
+        </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -178,11 +174,12 @@ export default {
         carousel: 0,
         carousel1: 0,
         carousel2: 0
-      }
+      },
+      mainSwiperIndex: 0
     };
   },
   computed: {
-    swiperIndex() {
+    swiper() {
       if (this.$refs.mySwiper) {
         return this.$refs.mySwiper.$swiper;
       }
@@ -194,17 +191,14 @@ export default {
         this.logo = true;
       }, 750);
     },
-    // setCaroNav(ref, dir) {
-    //   if (dir == "f") {
-    //     this.caroCounter[ref] += 1;
-    //     this.$refs[ref].next();
-    //   }
-    //   if (dir == "b") {
-    //     this.caroCounter[ref] -= 1;
-    //     this.$refs[ref].prev();
-    //   }
-    // },
+    handleSwiper() {
+      this.swiper.slideTo(this.swiper.activeIndex + 1, 300, false);
+      if (this.swiper.activeIndex == this.swiper.slides.length - 1) {
+        this.showBounce = false;
+      }
+    },
     onSwiperSlideChangeTransitionStart(index) {
+      this.mainSwiperIndex = index.activeIndex;
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
       } else {
@@ -383,6 +377,8 @@ img {
   border-left: none;
   border-top: none;
   border-right: 2px #fff solid;
+  z-index: 1;
+  cursor: pointer;
   border-bottom: 2px #fff solid;
 }
 
@@ -430,6 +426,7 @@ img {
     color: $lightBlue;
     width: 50%;
     margin: 0 auto;
+    margin-bottom: 5px;
     .middle {
       color: #3fc1d9;
       font-size: 11px;
@@ -510,7 +507,6 @@ img {
       width: 650px;
       height: 400px;
       margin: 0 auto;
-      object-fit: cover;
       margin-top: 50px;
       padding-bottom: 10px;
     }
@@ -543,7 +539,6 @@ img {
   .arrow {
     height: 20px;
     width: 20px;
-    z-index: 1;
     margin-left: 2%;
   }
 
@@ -559,7 +554,7 @@ img {
   .slide-wrapper {
     padding: 0;
     .project-title {
-      font-size: 12px !important;
+      font-size: 13px !important;
       letter-spacing: 1px;
       width: 90%;
       .middle {

@@ -1,9 +1,9 @@
 <template>
   <div class="page" ref="page">
     <!-- @mousewheel="handleScroll" -->
+    <Banner v-if="!loading" />
+    <Nav v-if="!loading" />
     <div class="container-main">
-      <Nav />
-      <Socials />
       <div v-if="loading" class="loading-anim">
         <div class="">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
@@ -91,6 +91,7 @@
       </svg>
       <div class="background-home"></div>
     </div>
+    <Footer class="index-footer" />
   </div>
 </template>
 
@@ -117,17 +118,13 @@ export default {
   transition: "page",
   data() {
     return {
-      adam: false,
-      showFirst: true,
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      num: 60,
       windowWidth: 1200,
       windowHeight: 1200,
       stars: [...Array(40)],
       loading: true
-      // this.windowWidth > 420? [...Array(20)] :
     };
   },
   methods: {
@@ -224,16 +221,68 @@ export default {
         });
       }
     },
-    // handleScroll() {
-    //   console.log("hi");
-    //   anime({
-    //     targets: [".star g polygon"],
-    //     fill: ["#ff3d00", "#ff3d00"],
-    //     delay: anime.stagger(400),
-    //     easing: "easeOutExpo",
-    //     duration: 1400
-    //   });
-    // }
+    handleScroll(event) {
+      if (event.deltaY < 0) {
+        anime({
+          targets: [".index-footer"],
+          easing: "easeInOutSine",
+          opacity: [
+            {
+              duration: 500,
+              value: 0
+            }
+          ]
+        });
+      }
+
+      if (event.deltaY > 0) {
+        anime({
+          targets: [".index-footer"],
+          easing: "easeInOutSine",
+          opacity: [
+            {
+              duration: 500,
+              value: 1
+            }
+          ]
+        });
+      }
+      // console.log("event");
+      // this.showFooter;
+
+      // anime({
+      //   targets: [".star g polygon"],
+      //   fill: ["#ff3d00", "#ff3d00"],
+      //   delay: anime.stagger(400),
+      //   easing: "easeOutExpo",
+      //   duration: 1400
+      // });
+    },
+    showFooter() {
+      console.log("test");
+      // anime({
+      //   targets: ["page .index-footer"],
+      //   easing: "easeInOutSine",
+      //   opacity: [
+      //     {
+      //       duration: 1000,
+      //       value: 1
+      //     }
+      //   ]
+      // });
+    },
+    hideFooter() {
+      anime({
+        targets: [".index-footer"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 1000,
+            value: [1, 0]
+          }
+        ]
+      });
+    },
     showStars() {
       anime({
         targets: [".star"],
@@ -279,6 +328,10 @@ export default {
     this.windowHeight = window.innerHeight;
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
+    window.addEventListener("wheel", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("wheel", this.handleScroll);
   }
 };
 </script>
@@ -299,6 +352,9 @@ html {
   align-items: center;
   text-align: center;
   position: fixed;
+}
+.index-footer {
+  opacity: 0;
 }
 
 .loading-anim {
@@ -400,7 +456,7 @@ html {
   width: 50%;
   margin: 0 auto;
   z-index: 1;
-  justify-content: center;
+  justify-content: flex-end;
   margin-right: 5%;
   align-items: center;
   // flex-direction: column;
@@ -417,7 +473,6 @@ html {
   margin-left: 5%;
   z-index: 1;
   justify-content: center;
-  padding: 0 50px;
   flex-direction: column;
   display: flex;
   color: $lightBlue;
@@ -430,6 +485,7 @@ html {
     width: 100%;
     max-width: 400px;
     line-height: 55px;
+    min-width: 400px;
   }
   .subheading {
     width: 100%;
@@ -439,6 +495,7 @@ html {
     p {
       margin-bottom: 40px;
       font-size: 16px;
+      width: 400px;
     }
   }
   .home-btn {
@@ -499,7 +556,7 @@ html {
 //   }
 // }
 
-@media only screen and (max-width: 1630px) {
+@media only screen and (max-width: 1605px) {
   .main-left {
     .heading {
       font-size: 34px;
@@ -530,7 +587,10 @@ html {
   }
 }
 
-@media only screen and (max-width: 1025px) {
+// @media only screen and (max-width: 1330px) {
+// }
+
+@media only screen and (max-width: 1125px) {
   .center-content {
     display: flex;
     flex-direction: column-reverse;
@@ -560,7 +620,8 @@ html {
       font-size: 26px;
       line-height: 27px;
       width: 60%;
-      margin: 15px auto;
+      margin: 0px auto;
+      min-width: unset;
     }
     .subheading {
       p {
@@ -569,6 +630,7 @@ html {
         margin: 0 auto;
         font-weight: 600;
         line-height: 22px;
+        min-width: unset;
       }
     }
 
@@ -607,7 +669,6 @@ html {
     margin: 0 auto;
     padding-right: 0;
     .logo-img {
-      width: 20%;
       max-width: 125px;
       margin: 0 auto;
       padding-left: 2px;

@@ -1,82 +1,82 @@
 <template>
-  <div class="container-main">
-    <!-- <span class="title-pop">
-          GET IN TOUCH!
-    </span> -->
+  <div class="page">
     <Nav />
-    <Socials />
-    <div class="thanks">
-      <h3>Thank you</h3>
-      <p>You will receive a response within 24 hours</p>
-    </div>
-    <div v-if="!sent" class="form-background">
-      <FormulateForm
-        class="form"
-        v-model="formValues"
-        @submit="send"
-        name="contact"
-        ref="form"
-      >
-        <img
-          class="logo-small"
-          draggable="false"
-          src="~static/logo text trans.png"
-        />
 
-        <FormulateInput
-          name="name"
-          type="text"
-          placeholder="Your Name"
-          validation="required"
-        />
-        <FormulateInput
-          name="email"
-          type="email"
-          placeholder="Your Email Address"
-          validation="bail|required|email"
-        />
-        <FormulateInput
-          name="message"
-          type="textarea"
-          placeholder="Your Message"
-          validation="required"
-        />
+    <div class="container-main">
+      <div class="thanks">
+        <h3>Thank you</h3>
+        <p>You will receive a response within 24 hours</p>
+      </div>
+      <div v-if="!sent" class="form-background">
+        <FormulateForm
+          class="form"
+          v-model="formValues"
+          @submit="send"
+          name="contact"
+          ref="form"
+        >
+          <img
+            class="logo-small"
+            draggable="false"
+            src="~static/logo text trans.png"
+          />
 
-        <div class="actions">
-          <!-- <FormulateInput
+          <FormulateInput
+            name="name"
+            type="text"
+            placeholder="Your Name"
+            validation="required"
+          />
+          <FormulateInput
+            name="email"
+            type="email"
+            placeholder="Your Email Address"
+            validation="bail|required|email"
+          />
+          <FormulateInput
+            name="message"
+            type="textarea"
+            placeholder="Your Message"
+            validation="required"
+          />
+
+          <div class="actions">
+            <!-- <FormulateInput
               type="submit"
               name="SEND"
               input-class='main-btn small'
               /> -->
 
-          <div class="button" @click="submitForm">
-            <div class="text">Submit</div>
-          </div>
-          <div class="progress-bar"></div>
-          <svg
-            class="contact-button-svg"
-            x="0px"
-            y="0px"
-            viewBox="0 0 25 30"
-            style="enable-background:new 0 0 25 30;"
-          >
-            <path class="check" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
-          </svg>
+            <div class="button" @click="submitForm">
+              <div class="text">Submit</div>
+            </div>
+            <div class="progress-bar"></div>
+            <svg
+              class="contact-button-svg"
+              x="0px"
+              y="0px"
+              viewBox="0 0 25 30"
+              style="enable-background:new 0 0 25 30;"
+            >
+              <path class="check" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
+            </svg>
 
-          <!-- <FormulateInput
+            <!-- <FormulateInput
               type="button"
               label="RESET"
               data-ghost
               @click="reset"
               input-class='main-btn small'
             /> -->
-        </div>
-        <!-- <pre
+          </div>
+          <!-- <pre
           class="code"
           v-text="formValues"
         /> -->
-      </FormulateForm>
+        </FormulateForm>
+      </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -392,6 +392,7 @@ label {
   position: absolute;
   opacity: 0;
   top: 35%;
+  font-weight: 700;
   z-index: -1;
   padding: 0 20%;
   h3 {
@@ -463,8 +464,9 @@ label {
     font-size: 14px !important;
   }
   .logo-small {
-    height: 55px;
+    height: 100px;
     margin: 0 auto;
+    margin: 15px auto;
   }
 
   li {

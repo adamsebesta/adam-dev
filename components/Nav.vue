@@ -1,43 +1,52 @@
 <template>
-  <div>
-    <svg
-      version="1.1"
-      @click="showMenu"
-      id="corner-logo"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="30px"
-      height="30px"
-      x="1"
-      y="1"
-      viewBox="0 0 58 58"
-      xml:space="preserve"
-    >
-      <g>
-        <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	" />
-        <polygon
-          :style="{ fill: blockColor }"
-          points="29,58 55,45 55,13 29,26 	"
-        />
-        <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	" />
-      </g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-    </svg>
-    <nav class="menu" :style="{ display: menuShown ? '' : 'none' }">
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <svg
+        v-if="windowWidth > 1025"
+        version="1.1"
+        @click="showMenu"
+        id="corner-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="40px"
+        height="40px"
+        x="1"
+        y="1"
+        viewBox="0 0 58 58"
+        xml:space="preserve"
+      >
+        <g>
+          <polygon style="fill:#556080;" points="29,58 3,45 3,13 29,26 	" />
+          <polygon style="fill:#434C6D;" points="29,58 55,45 55,13 29,26 	" />
+          <polygon
+            :style="{ fill: blockColor }"
+            points="3,13 28,0 55,13 29,26 	"
+          />
+        </g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+        <g></g>
+      </svg>
+      <i
+        v-if="windowWidth < 1025"
+        @click="showMenu"
+        class="fa fa-bars nav-bars"
+        aria-hidden="true"
+      ></i>
+    </div>
+    <div class="menu" :style="{ display: menuShown ? '' : 'none' }">
       <div
         :class="
           'menu-wrapper ' +
@@ -78,8 +87,9 @@
       >
         <a class="menu__item">Portfolio</a>
       </div>
-    </nav>
-  </div>
+    </div>
+    <div v-if="windowWidth < 425" class="nav-placeholder"></div>
+  </nav>
 </template>
 
 <script>
@@ -89,12 +99,15 @@ export default {
   data() {
     return {
       menuShown: false,
-      page: null
+      page: null,
+      windowWidth: 1200,
+      windowHeight: 1200
     };
   },
   computed: {
     blockColor() {
-      return this.menuShown ? "#3fc1d9" : "#556080";
+      return this.menuShown ? "#3fc1d9" : "#7383BF";
+      // #364cf4
     }
   },
   methods: {
@@ -104,22 +117,32 @@ export default {
         easing: "easeInOutSine",
         opacity: [
           {
-            duration: 500,
+            duration: 750,
             value: this.menuShown ? 0 : 1
           }
         ]
       });
-      anime({
-        targets: ["#corner-logo"],
-        easing: "easeInOutSine",
-        rotate: [
-          {
-            duration: 300,
-            value: this.menuShown ? 0 : 45
-          }
-        ]
-      });
-      this.menuShown = !this.menuShown;
+      if (this.windowWidth > 1025) {
+        anime({
+          targets: ["#corner-logo"],
+          easing: "easeInOutSine",
+          // translateX: [
+          //   {
+          //     duration: 300,
+          //     value: this.menuShown ? 0 : 20
+          //   }
+          // ],
+          rotate: [
+            {
+              duration: 300,
+              value: this.menuShown ? 0 : 90
+            }
+          ]
+        });
+      }
+      setTimeout(() => {
+        this.menuShown = !this.menuShown;
+      }, 200);
     },
     async navChange(path) {
       if (window.location.pathname == "/") {
@@ -153,31 +176,53 @@ export default {
   },
   created() {},
   mounted() {
-    setTimeout(() => {
-      this.showMenu();
-    }, 750);
-    this.page = window;
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
+    this.page = window;
+    setTimeout(() => {
+      if (window.location.pathname != "/" || this.windowWidth > 1025) {
+        this.showMenu();
+      }
+    }, 750);
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.nav-bar {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 30px;
+  width: 100%;
+  .nav-logo {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+  }
+  .nav-placeholder {
+    width: 30px;
+  }
+}
+.nav-bars {
+  color: $lightBlue;
+  cursor: pointer;
+}
 .menu {
-  position: absolute;
-  top: 5%;
-  left: 4%;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%; /* Need a specific value to work */
+  // position: absolute;
+  // top: 5%;
+  // left: 4%;
+  // right: 0;
+  // margin-left: auto;
+  // margin-right: auto;
   opacity: 0;
   display: flex;
-  // flex-direction: column;
-  margin: 0 0 0 1vw;
   align-items: flex-start;
-  z-index: 1;
+  z-index: 10000;
 }
 
 .menu__item {
@@ -201,7 +246,7 @@ export default {
 
 .menu-wrapper {
   padding: 1px 1px 4px 1px;
-  margin: 0 1vw;
+  margin: 0 10px;
   &.active {
     // width: 100%;
     // height: 100%;
@@ -221,10 +266,6 @@ export default {
 }
 
 #corner-logo {
-  position: absolute;
-  top: 4.5%;
-  left: 1%;
-  opacity: 0.8;
   cursor: pointer;
   z-index: 10;
 }
@@ -235,31 +276,33 @@ export default {
   }
 }
 @media only screen and (max-width: 420px) {
-  .menu {
-    top: 75px;
-    left: 2%;
-    flex-direction: column;
+  .nav-bars {
   }
-
   .menu__item {
     font-size: 13px;
-    margin: 0;
+    // margin: 5px;
+    padding-bottom: 2px;
   }
 
   .menu-wrapper:hover .menu__item {
     transform: translateY(-1px);
   }
   .menu-wrapper {
-    padding-left: 3px;
     padding-bottom: 0;
-    margin: 1px;
+    margin: 5px;
     &.active {
-      background: linear-gradient(45deg, #0947db, #898ce9);
-      padding: 1px 3px 1px 3px;
-      border-radius: 5px;
+      // background: linear-gradient(45deg, #0947db, #898ce9);
+      // padding: 1px 3px 1px 3px;
+      // border-radius: 5px;
+      border-bottom: 1px solid $purple;
+      pointer-events: none;
     }
   }
-
+  .nav-bar {
+    .nav-logo {
+      margin-right: 0;
+    }
+  }
   #corner-logo {
     left: 3.5%;
   }
