@@ -236,7 +236,7 @@ export default {
 }
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 70px;
+    top: 75px;
     left: 2%;
     flex-direction: column;
   }

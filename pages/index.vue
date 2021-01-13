@@ -566,6 +566,12 @@ html {
       }
     }
 
+    .loading-anim {
+      .loading-logo-img {
+        margin-top: -40px;
+      }
+    }
+
     .home-btn {
       background: $purple;
       height: 30px;

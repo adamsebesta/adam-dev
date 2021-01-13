@@ -70,5 +70,17 @@ export default {};
     padding: 0px 10px;
     font-size: 16px;
   }
+  .wrapper a:nth-child(1),
+  .wrapper a:nth-child(1):hover {
+    margin-top: unset;
+    text-shadow: unset;
+    transform: unset;
+  }
+  .wrapper a:nth-child(2),
+  .wrapper a:nth-child(2):hover {
+    margin-top: unset;
+    text-shadow: unset;
+    transform: unset;
+  }
 }
 </style>
