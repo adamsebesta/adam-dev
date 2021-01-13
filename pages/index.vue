@@ -562,6 +562,7 @@ html {
         width: 80%;
         margin: 0 auto;
         font-weight: 600;
+        line-height: 22px;
       }
     }
 
@@ -583,10 +584,10 @@ html {
       font-size: 16px;
       border-radius: 5px;
       &:hover {
-        color: $background;
+        padding: 30px;
       }
       i {
-        font-size: 18px;
+        font-size: 16px;
         padding-left: 7px;
         color: $lightBlue;
       }
@@ -598,6 +599,7 @@ html {
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    padding-right: 0;
     .logo-img {
       width: 20%;
       max-width: 125px;

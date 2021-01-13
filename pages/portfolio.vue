@@ -575,7 +575,7 @@ img {
 
   .portfolio-background {
     width: 100%;
-    display: i;
+    margin-top: -20px;
   }
 
   .project-image {

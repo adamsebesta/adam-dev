@@ -236,13 +236,13 @@ export default {
 }
 @media only screen and (max-width: 420px) {
   .menu {
-    top: 67px;
-    left: 2.5%;
+    top: 70px;
+    left: 2%;
     flex-direction: column;
   }
 
   .menu__item {
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
   }
 
@@ -261,7 +261,7 @@ export default {
   }
 
   #corner-logo {
-    left: 2%;
+    left: 3.5%;
   }
 }
 
