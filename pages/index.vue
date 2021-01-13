@@ -4,7 +4,7 @@
     <div class="container-main">
       <Nav />
       <Socials />
-      <div v-if="loading" class="loading-anim">
+      <div v-if="!loading" class="loading-anim">
         <div class="">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
         </div>
@@ -539,6 +539,12 @@ html {
     margin-top: -40px;
   }
 
+  .loading-anim {
+    .loading-logo-img {
+      margin-top: -30px;
+    }
+  }
+
   .main-right {
     padding: 0;
     margin: 0 auto;
@@ -563,12 +569,6 @@ html {
         margin: 0 auto;
         font-weight: 600;
         line-height: 22px;
-      }
-    }
-
-    .loading-anim {
-      .loading-logo-img {
-        margin-top: -40px;
       }
     }
 
