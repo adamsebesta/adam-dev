@@ -467,6 +467,7 @@ label {
     height: 100px;
     margin: 0 auto;
     margin: 15px auto;
+    margin-top: -7px;
   }
 
   li {
