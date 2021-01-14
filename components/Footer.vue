@@ -65,26 +65,24 @@ export default {};
 .social-wrapper a:nth-child(1) {
   color: $lightBlue;
   cursor: pointer;
-  text-shadow: 0px 7px 10px rgba(255, 255, 255, 0.3);
+
   transition: all ease-in-out 150ms;
 }
 
 .social-wrapper a:nth-child(1):hover {
   margin-top: -10px;
-  text-shadow: 0px 16px 10px rgba(255, 255, 255, 0.3);
   transform: translate(0, -8);
 }
 
 .social-wrapper a:nth-child(2) {
   color: $lightBlue;
   cursor: pointer;
-  text-shadow: 0px 7px 10px rgba(255, 255, 255, 0.3);
+
   transition: all ease-in-out 150ms;
 }
 
 .social-wrapper a:nth-child(2):hover {
   margin-top: -10px;
-  text-shadow: 0px 16px 10px rgba(255, 255, 255, 0.3);
   transform: translate(0, -8);
 }
 

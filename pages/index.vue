@@ -1,8 +1,10 @@
 <template>
   <div class="page" ref="page">
     <!-- @mousewheel="handleScroll" -->
-    <Banner v-if="!loading" />
-    <Nav v-if="!loading" />
+    <div>
+      <Banner v-if="!loading" />
+      <Nav id="index-nav" v-if="!loading" />
+    </div>
     <div class="container-main">
       <div v-if="loading" class="loading-anim">
         <div class="">
@@ -370,6 +372,9 @@ html {
     width: 30%;
     margin: 0 auto;
   }
+}
+#index-nav {
+  padding: 50px 30px;
 }
 
 .background-home {

@@ -195,11 +195,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 30px;
+  padding: 30px 30px;
   width: 100%;
   .nav-logo {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     margin-right: 50px;
@@ -246,7 +246,7 @@ export default {
 
 .menu-wrapper {
   padding: 1px 1px 4px 1px;
-  margin: 0 10px;
+  margin-left: 3rem;
   &.active {
     // width: 100%;
     // height: 100%;

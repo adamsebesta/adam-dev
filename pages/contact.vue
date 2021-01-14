@@ -75,6 +75,7 @@
         /> -->
         </FormulateForm>
       </div>
+      <div class="background-center"></div>
     </div>
     <Footer />
   </div>
@@ -272,6 +273,9 @@ html {
   /* border: 1px solid #004b19 !important; */
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
 }
+.logo-small {
+  margin-left: 4px;
+}
 
 .button {
   background: $background;
@@ -443,13 +447,13 @@ label {
   }
   .form-background {
     margin-top: 0;
-  }
-  .form {
-    width: 70%;
-  }
-  .logo-small {
-    height: 70px;
-    margin: 0 auto;
+    .form {
+      width: 70%;
+      .logo-small {
+        height: 70px;
+        margin: 0 auto;
+      }
+    }
   }
 }
 
