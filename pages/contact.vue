@@ -510,7 +510,7 @@ label {
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 70px;
+    margin-top: 40px;
     font-size: 14px !important;
   }
 
