@@ -121,11 +121,7 @@ export default {
       bg3: false
     };
   },
-  computed: {
-    logicAppUrl() {
-      return this.$config.logicAppUrl.replace(/\\\//g, "/");
-    }
-  },
+  computed: {},
   methods: {
     moveLogo() {
       setTimeout(() => {

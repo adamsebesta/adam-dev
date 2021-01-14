@@ -138,7 +138,7 @@ export default {
         easing: "easeInOutSine"
       });
     },
-    hidefields() {
+    hideFields() {
       anime({
         targets: [".logo-small", ".formulate-input"],
         duration: 300,
@@ -147,9 +147,29 @@ export default {
         delay: anime.stagger(300)
       });
     },
+    openAnim() {
+      let openTimeline = anime.timeline({
+        autoplay: false
+      });
+      openTimeline
+        .add({
+          targets: [".logo-small", ".formulate-input"],
+          duration: 300,
+          opacity: "1",
+          easing: "easeInOutSine",
+          delay: anime.stagger(300)
+        })
+        .add({
+          targets: [".button"],
+          duration: 300,
+          opacity: "1",
+          easing: "easeInOutSine"
+        });
+      openTimeline.play();
+    },
     morphSumbitBtn() {
       let that = this;
-      this.hidefields();
+      this.hideFields();
       let basicTimeline = anime.timeline({
         autoplay: false
       });
@@ -230,7 +250,11 @@ export default {
       this.$formulate.reset("contact");
     }
   },
-  mounted() {}
+  mounted() {
+    setTimeout(() => {
+      this.openAnim();
+    }, 500);
+  }
 };
 </script>
 
@@ -261,20 +285,25 @@ html {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: $background;
+  background-color: transparent;
+  z-index: 1;
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
 }
 
 .form {
   position: absolute;
   width: 50%;
-  background-color: $background;
+  background-color: transparent;
   font-size: 20px !important;
   /* border: 1px solid #004b19 !important; */
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
+  .formulate-input {
+    opacity: 0;
+  }
 }
 .logo-small {
   margin-left: 4px;
+  opacity: 0;
 }
 
 .button {
@@ -291,6 +320,7 @@ html {
   margin-top: 30px;
   cursor: pointer;
   border-radius: 4px;
+  opacity: 0;
 }
 
 .text {
@@ -417,6 +447,7 @@ label {
 .actions .formulate-input {
   margin-right: 0.5em;
   margin-bottom: 0;
+  opacity: 0;
 }
 
 @media only screen and (max-width: 1200px) {

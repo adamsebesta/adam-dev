@@ -17,24 +17,26 @@
                 <VueSlickCarousel ref="carousel" v-bind="settings">
                   <div class="project-image">
                     <div
-                      @click="glassClickHandler('1')"
+                      @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
                         windowWidth < 425
-                          ? { opacity: glassClicked['1'] ? '1' : '0' }
+                          ? { opacity: glassClicked['0'] ? '1' : '0' }
                           : {}
                       "
                     >
                       <div class="glass-title-wrapper">
                         <div>
-                          <p class="glass-title">Muriel Revisa Designs</p>
+                          <p class="glass-title">MR Designs</p>
                           <p class="glass-subtitle">Travel App</p>
                         </div>
-                        <p class="glass-date">(Coming Soon)</p>
+                        <p class="glass-date">
+                          (Coming Soon)
+                        </p>
                       </div>
                       <div class="glass-icons">
                         <img
-                          v-tooltip="'Nativescript'"
+                          v-tooltip="'Nativescript-Vue'"
                           src="~/static/icons/nativescript-vue.png"
                           alt=""
                         />
@@ -53,7 +55,7 @@
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel" v-bind="settings">
+                <VueSlickCarousel ref="carousel2" v-bind="settings">
                   <div class="project-image mac">
                     <div
                       @click="glassClickHandler('1')"
@@ -66,24 +68,131 @@
                     >
                       <div class="glass-title-wrapper">
                         <div>
-                          <p class="glass-title">Muriel Revisa Designs</p>
-                          <p class="glass-subtitle">Travel App</p>
+                          <p class="glass-title">Berlin Bytes</p>
+                          <p class="glass-subtitle">
+                            Business Intelligence Tool
+                          </p>
                         </div>
-                        <p class="glass-date">(Coming Soon)</p>
+                        <p class="glass-date">October 2020</p>
                       </div>
                       <div class="glass-icons">
                         <img
-                          v-tooltip="'Nativescript'"
-                          src="~/static/icons/nativescript-vue.png"
+                          v-tooltip="'Vue'"
+                          src="~/static/icons/vue.png"
                           alt=""
                         />
                         <img
-                          v-tooltip="'Firebase'"
-                          src="~/static/icons/firebase.png"
+                          v-tooltip="'Postgres'"
+                          src="~/static/icons/postgres.png"
+                          alt=""
+                        />
+                        <img
+                          v-tooltip="'ZingChart'"
+                          src="~/static/icons/zingchart.png"
                           alt=""
                         />
                       </div>
-                      <div class="glass-project-type">Mobile</div>
+                      <div class="glass-project-type">Web</div>
+                    </div>
+                    <img src="~/static/CinderellaDB.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool 1.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BI tool 3.png" alt="" />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <VueSlickCarousel ref="carousel1" v-bind="settings">
+                  <div class="project-image">
+                    <div
+                      @click="glassClickHandler('2')"
+                      class="slide-glass desktop"
+                      :style="
+                        windowWidth < 425
+                          ? { opacity: glassClicked['2'] ? '1' : '0' }
+                          : {}
+                      "
+                    >
+                      <div class="glass-title-wrapper">
+                        <div>
+                          <p class="glass-title">Berlin Bytes</p>
+                          <p class="glass-subtitle">Homepage</p>
+                        </div>
+                        <p class="glass-date">September 2020</p>
+                      </div>
+                      <div class="glass-icons">
+                        <img
+                          v-tooltip="'HTML'"
+                          src="~/static/icons/html.png"
+                          alt=""
+                        />
+                        <img
+                          v-tooltip="'CSS'"
+                          src="~/static/icons/css.png"
+                          alt=""
+                        />
+                        <img
+                          v-tooltip="'Javascript'"
+                          src="~/static/icons/js.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="glass-project-type">Web</div>
+                    </div>
+                    <img src="~/static/BerlinBytes.png" alt="" />
+                  </div>
+                  <div class="project-image">
+                    <img src="~/static/BB home.png" alt="" />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <VueSlickCarousel ref="carousel" v-bind="settings">
+                  <div class="project-image mac">
+                    <div
+                      @click="glassClickHandler('3')"
+                      class="slide-glass desktop"
+                      :style="
+                        windowWidth < 425
+                          ? { opacity: glassClicked['3'] ? '1' : '0' }
+                          : {}
+                      "
+                    >
+                      <div class="glass-title-wrapper">
+                        <div>
+                          <p class="glass-title">Streamhub</p>
+                          <p class="glass-subtitle">Video Dashboard</p>
+                        </div>
+                        <p class="glass-date">July 2020</p>
+                      </div>
+                      <div class="glass-icons">
+                        <img
+                          v-tooltip="'Ruby'"
+                          src="~/static/icons/ruby.png"
+                          alt=""
+                        />
+                        <img
+                          v-tooltip="'Rails'"
+                          src="~/static/icons/rails.png"
+                          alt=""
+                        />
+                        <img
+                          v-tooltip="'Postgres'"
+                          src="~/static/icons/postgres.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="glass-project-type">Web</div>
                     </div>
                     <img src="~/static/Streamhub.png" alt="" rel="preload" />
                   </div>
@@ -104,47 +213,6 @@
                   </video>
                   <div class="project-image">
                     <img src="~/static/Streamhub 1.png" alt="" />
-                  </div>
-                </VueSlickCarousel>
-              </div>
-            </swiper-slide>
-
-            <swiper-slide>
-              <div class="slide-wrapper">
-                <span class="project-title">
-                  <span class="left">Berlin Bytes </span>
-                  <i class="fa fa-square middle" aria-hidden="true"></i>
-                  <span class="right"> Homepage </span>
-                </span>
-                <VueSlickCarousel ref="carousel1" v-bind="settings">
-                  <div class="project-image mac">
-                    <img src="~/static/BerlinBytes.png" alt="" />
-                  </div>
-                  <div class="project-image">
-                    <img src="~/static/BB home.png" alt="" />
-                  </div>
-                </VueSlickCarousel>
-              </div>
-            </swiper-slide>
-            <swiper-slide>
-              <div class="slide-wrapper">
-                <span class="project-title">
-                  <span class="left">Berlin Bytes </span>
-                  <i class="fa fa-square middle" aria-hidden="true"></i>
-                  <span class="right"> Business Intelligence Tool </span>
-                </span>
-                <VueSlickCarousel ref="carousel2" v-bind="settings">
-                  <div class="project-image mac">
-                    <img src="~/static/CinderellaDB.png" alt="" />
-                  </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool.png" alt="" />
-                  </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool 1.png" alt="" />
-                  </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool 3.png" alt="" />
                   </div>
                 </VueSlickCarousel>
               </div>
@@ -219,9 +287,7 @@ export default {
         carousel2: 0
       },
       mainSwiperIndex: 0,
-      glassClicked: {
-        1: null
-      },
+      glassClicked: { 0: null, 1: null, 2: null, 3: null },
       windowHeight: 1200,
       windowWidth: 1200
     };
@@ -245,7 +311,16 @@ export default {
         this.showBounce = false;
       }
     },
+    removeTooltipsOnScroll() {
+      let tooltip = document.querySelector(".v-tooltip-open");
+
+      // if (tooltip) {
+      //   tooltip.classList.remove("v-tooltip-open");
+      // }
+      console.log(tooltip);
+    },
     onSwiperSlideChangeTransitionStart(index) {
+      this.removeTooltipsOnScroll();
       this.mainSwiperIndex = index.activeIndex;
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
@@ -257,11 +332,7 @@ export default {
       this.glassClicked[key] = !this.glassClicked[key];
     }
   },
-  created() {
-    // this.moveLogo();
-    // let image = new Image();
-    // this.image.src = '~/static/Streamhub.png';
-  },
+  created() {},
   mounted() {
     this.windowWidth = window.innerWidth;
     this.windowHeight = window.innerHeight;
@@ -490,7 +561,7 @@ img {
   }
   .slide-glass {
     margin: 0 auto;
-    background-color: rgba($color: #1c1f35, $alpha: 0.98);
+    background-color: rgba($color: #1c1f35, $alpha: 0.99);
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -505,6 +576,7 @@ img {
     transition: all 250ms ease-in;
     &:hover {
       opacity: 1;
+      // box-shadow: -5px 5px #0f0f17;
     }
     .glass-title-wrapper {
       display: flex;
@@ -515,7 +587,7 @@ img {
       font-size: 26px;
       line-height: normal;
       .glass-subtitle {
-        font-size: 20px;
+        font-size: 26px;
       }
       .glass-date {
         font-size: 20px;
@@ -667,31 +739,40 @@ img {
   }
 
   .slide-wrapper {
+    .mobile {
+      width: 200px;
+      height: 250px;
+    }
+    .desktop {
+      width: 295px;
+      height: 250px;
+    }
     .slide-glass {
       padding: 2rem 2rem;
-      height: 300px;
 
       &:hover {
-        opacity: 1;
+        opacity: unset;
       }
       .glass-title-wrapper {
-        font-size: 12px;
+        font-size: 13px;
         line-height: normal;
+
         .glass-subtitle {
-          font-size: 10px;
+          font-size: 13px;
         }
         .glass-date {
-          font-size: 12px;
+          font-size: 10px;
         }
       }
       .glass-icons {
+        width: unset;
         img {
           height: 60px;
           width: 60px;
         }
       }
       .glass-project-type {
-        font-size: 12px;
+        font-size: 13px;
       }
     }
   }
@@ -707,14 +788,6 @@ img {
   }
   .slide-wrapper {
     padding: 0;
-    .project-title {
-      font-size: 13px !important;
-      letter-spacing: 1px;
-      width: 90%;
-      .middle {
-        font-size: 6px;
-      }
-    }
   }
 
   .project-wrapper {
