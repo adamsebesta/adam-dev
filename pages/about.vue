@@ -179,8 +179,6 @@ export default {
     }
   },
   mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
     this.moveBackground();
     this.aboutAppear();
   }
@@ -214,6 +212,7 @@ html {
   z-index: 3;
   opacity: 0;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .about {

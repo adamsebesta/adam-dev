@@ -1,6 +1,5 @@
 <template>
   <div class="page" ref="page">
-    <!-- @mousewheel="handleScroll" -->
     <div>
       <Banner v-if="!loading" />
       <Nav id="index-nav" v-if="!loading" />
@@ -18,11 +17,11 @@
       </div>
       <div class="center-content">
         <div class="main-left">
-          <p v-if="windowWidth > 1630" class="heading">
+          <p v-if="!mobile" class="heading">
             Your <br />
             <span class="purple"> Creative Ideas</span> Brought To Life
           </p>
-          <p v-if="windowWidth < 1630" class="heading">
+          <p v-if="mobile" class="heading">
             Your <br />
             <span class="purple"> Creative Ideas</span><br />
             Brought To Life
@@ -123,8 +122,6 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      windowWidth: 1200,
-      windowHeight: 1200,
       stars: [...Array(40)],
       loading: true
     };
@@ -194,7 +191,7 @@ export default {
       });
     },
     initLogo() {
-      if (this.windowWidth > 1025) {
+      if (!this.mobile) {
         anime({
           targets: [".rise1"],
           easing: "easeInOutSine",
@@ -223,7 +220,7 @@ export default {
         });
       }
     },
-    handleScroll(event) {
+    toggleFooter(event) {
       if (event.deltaY < 0) {
         anime({
           targets: [".index-footer"],
@@ -326,14 +323,13 @@ export default {
     setTimeout(() => {
       this.rippleStars();
     }, 1200);
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
+
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
-    window.addEventListener("wheel", this.handleScroll);
+    window.addEventListener("wheel", this.toggleFooter);
   },
   destroyed() {
-    window.removeEventListener("wheel", this.handleScroll);
+    window.removeEventListener("wheel", this.toggleFooter);
   }
 };
 </script>

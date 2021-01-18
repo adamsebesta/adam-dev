@@ -251,6 +251,7 @@ export default {
     }
   },
   mounted() {
+    this.windowWrapper();
     setTimeout(() => {
       this.openAnim();
     }, 500);

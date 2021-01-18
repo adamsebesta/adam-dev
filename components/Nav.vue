@@ -2,7 +2,7 @@
   <nav class="nav-bar">
     <div class="nav-logo">
       <svg
-        v-if="windowWidth > 1025"
+        v-if="!mobile"
         version="1.1"
         @click="showMenu"
         id="corner-logo"
@@ -40,7 +40,7 @@
         <g></g>
       </svg>
       <i
-        v-if="windowWidth < 1025"
+        v-if="mobile"
         @click="showMenu"
         class="fa fa-bars nav-bars"
         aria-hidden="true"
@@ -88,7 +88,7 @@
         <a class="menu__item">Portfolio</a>
       </div>
     </div>
-    <div v-if="windowWidth < 425" class="nav-placeholder"></div>
+    <div v-if="mobile" class="nav-placeholder"></div>
   </nav>
 </template>
 
@@ -99,9 +99,7 @@ export default {
   data() {
     return {
       menuShown: false,
-      page: null,
-      windowWidth: 1200,
-      windowHeight: 1200
+      page: null
     };
   },
   computed: {
@@ -122,7 +120,7 @@ export default {
           }
         ]
       });
-      if (this.windowWidth > 1025) {
+      if (!this.mobile) {
         anime({
           targets: ["#corner-logo"],
           easing: "easeInOutSine",
@@ -176,8 +174,6 @@ export default {
   },
   created() {},
   mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
     this.page = window;
     setTimeout(() => {
       if (window.location.pathname != "/" || this.windowWidth > 1025) {

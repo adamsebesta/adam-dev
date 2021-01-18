@@ -2,12 +2,20 @@
   <div class="page">
     <Nav />
     <div class="container-main">
+      <InfoBox
+        :text="
+          mobile
+            ? 'Tap title image to see details'
+            : 'Hover over title image to see details'
+        "
+      />
       <div @click="handleSwiper" v-if="showBounce" class="arrow"></div>
       <div class="portfolio-background">
         <div class="project-wrapper">
           <swiper
             class="swiper vertical"
             ref="mySwiper"
+            @ready="onSwiperRedied"
             @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
             :options="swiperOptionv"
           >
@@ -20,9 +28,7 @@
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['0'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['0'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -61,9 +67,7 @@
                       @click="glassClickHandler('1')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['1'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['1'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -116,9 +120,7 @@
                       @click="glassClickHandler('2')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['2'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['2'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -163,9 +165,7 @@
                       @click="glassClickHandler('3')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['3'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['3'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -229,6 +229,7 @@
 <script>
 import Nav from "../components/Nav";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import anime from "animejs";
 
 export default {
   components: { Nav, Swiper, SwiperSlide },
@@ -287,9 +288,7 @@ export default {
         carousel2: 0
       },
       mainSwiperIndex: 0,
-      glassClicked: { 0: null, 1: null, 2: null, 3: null },
-      windowHeight: 1200,
-      windowWidth: 1200
+      glassClicked: { 0: null, 1: null, 2: null, 3: null }
     };
   },
   computed: {
@@ -312,15 +311,16 @@ export default {
       }
     },
     removeTooltipsOnScroll() {
-      let tooltip = document.querySelector(".v-tooltip-open");
+      // let tooltip = document.querySelector(".v-tooltip-open");
+      let popover = document.querySelector(".tooltip");
 
-      // if (tooltip) {
-      //   tooltip.classList.remove("v-tooltip-open");
-      // }
-      console.log(tooltip);
+      popover.style.visibility = "hidden";
+      // popover.style.visibility = "visible";
+
+      console.log(popover);
     },
     onSwiperSlideChangeTransitionStart(index) {
-      this.removeTooltipsOnScroll();
+      // this.removeTooltipsOnScroll();
       this.mainSwiperIndex = index.activeIndex;
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
@@ -328,15 +328,24 @@ export default {
         this.showBounce = true;
       }
     },
+    onSwiperRedied() {
+      anime({
+        targets: ".project-wrapper",
+        opacity: [
+          {
+            duration: 2000,
+            value: [0, 1]
+          }
+        ],
+        easing: "easeOutExpo"
+      });
+    },
     glassClickHandler(key) {
       this.glassClicked[key] = !this.glassClicked[key];
     }
   },
   created() {},
-  mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
-  }
+  mounted() {}
 };
 </script>
 
@@ -438,6 +447,7 @@ img {
   height: 100%;
   margin-left: 40px;
   background-color: transparent;
+  opacity: 0;
 }
 
 // .project-background {
@@ -507,7 +517,7 @@ img {
   border-left: none;
   border-top: none;
   border-right: 2px #fff solid;
-  z-index: 1;
+  z-index: 10000;
   cursor: pointer;
   border-bottom: 2px #fff solid;
 }
