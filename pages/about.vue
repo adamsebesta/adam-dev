@@ -200,28 +200,36 @@ export default {
         easing: "easeInOutSine",
         translateX: [
           {
-            duration: 2000,
+            duration: 1500,
             value: function(el) {
-              return that.calcuateTranslate(el);
+              return that.calcuateTranslate(el, "X");
             }
           }
         ],
         translateY: [
           {
-            duration: 2000,
+            duration: 1500,
             value: function(el) {
-              return that.calcuateTranslate(el);
+              return that.calcuateTranslate(el, "Y");
             }
           }
         ],
         delay: 1000
       });
     },
-    calcuateTranslate(el, dir) {
-      if (el.classList.contains("bg2")) {
-        return "-12%";
+    calcuateTranslate(el, axis) {
+      if (axis == "Y") {
+        if (el.classList.contains("bg2")) {
+          return "-10%";
+        } else {
+          return "-20%";
+        }
       } else {
-        return "-24%";
+        if (el.classList.contains("bg2")) {
+          return "-20%";
+        } else {
+          return "-40%";
+        }
       }
     },
     aboutAppear() {
@@ -257,9 +265,10 @@ export default {
 <style lang="scss">
 .main-wrapper {
   display: flex;
-  margin: 0;
+  margin: 6% 0;
+
   display: flex;
-  width: 85%;
+  width: 70%;
   justify-content: center;
   .about-left {
     width: 60%;
@@ -299,8 +308,7 @@ export default {
           padding-left: 2px;
           font-size: 16px !important;
           .about-services-list-item {
-            font-size: 10px;
-
+            font-size: 8px;
             vertical-align: middle;
             color: #3fc1d9;
           }
@@ -354,10 +362,10 @@ export default {
     opacity: 0;
     width: 40%;
     position: relative;
-    padding: 60px;
+    justify-content: center;
     display: flex;
     align-items: center;
-    margin-top: 2%;
+    margin-top: 5%;
     .photo-background {
       width: 70%;
       height: 60%;
@@ -367,7 +375,10 @@ export default {
     }
     .bg1 {
       // background-color: rgba($color: #e9eeff, $alpha: 0.25);
-      background-color: rgb(92 99 125 / 10%);
+      // background-color: rgb(92 99 125 / 10%);
+
+      background-color: rgb(30 41 78 / 29%);
+
       z-index: 0;
       opacity: 0;
       box-shadow: 0 10px 30px -15px #010310;
@@ -387,14 +398,15 @@ export default {
     }
     .bg2 {
       // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-      background-color: rgb(203 212 219 / 5%);
+      background-color: rgb(30 54 119 / 35%);
       transform: translate(-6%, -6%);
       box-shadow: 0 10px 30px -15px #010310;
       z-index: -1;
     }
     .bg3 {
       // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
-      background-color: rgb(13 16 39 / 91%);
+      // background-color: rgb(13 16 39 / 91%);
+      background-color: rgba($color: $purple, $alpha: 0.2);
       box-shadow: 0 10px 30px -15px #010310;
       transform: translate(-12%, -12%);
       z-index: -2;
@@ -410,10 +422,10 @@ export default {
   z-index: 2;
   padding: 25px;
   border-radius: 5px;
-  background-color: rgb(13 16 39 / 91%);
+  background-color: rgb(13 16 39 / 60%);
 }
 html {
-  overflow: hidden;
+  overflow: auto;
 }
 
 #about-background {
@@ -446,32 +458,141 @@ html {
 @media only screen and (max-width: 420px) {
   .main-wrapper {
     justify-content: flex-start;
-    flex-direction: column;
+    flex-direction: column-reverse;
     margin: 0 auto;
     top: 0;
+    width: 95%;
     align-items: center;
+    padding: 50px 200px;
+    .about-left {
+      width: 100%;
+      .about {
+        .about-text {
+          margin-top: 10px;
+        }
+        .about-desc {
+          width: 100%;
+          margin-bottom: 10px;
+          font-weight: 600;
+          span {
+            // background-color: #82ab71;
+            padding: 0px;
+          }
+          font-size: 16px;
 
-    overflow: auto;
-    padding: 50px 20px;
-  }
-  .headshot {
-    height: 30%;
-    width: 30%;
-    margin-top: 15%;
-  }
+          text-align: left;
+        }
+        .about-services {
+          margin-bottom: 10px;
+          width: 450px;
 
-  .about {
-    width: 93%;
-    .about-title {
-      margin-top: 20px;
-      font-size: 20px;
-    }
-    .about-desc {
-      font-size: 13.5px;
-      margin-bottom: 0;
-    }
-    span {
-      padding: 0 !important;
+          ul li {
+            padding-left: 2px;
+            font-size: 16px !important;
+            .about-services-list-item {
+              font-size: 8px;
+              vertical-align: middle;
+              color: #3fc1d9;
+            }
+          }
+        }
+
+        /* ADAM SEBESTA */
+
+        .about-skills {
+          margin-bottom: 10px;
+          .about-skills-icons {
+            display: flex;
+            max-width: 355px;
+            min-width: 258px;
+            flex-wrap: wrap;
+          }
+          .about-skills-icon {
+            // width: 20%;
+            // height: 20%;
+            max-height: 65px;
+            max-width: 65px;
+            filter: grayscale(100%);
+            margin: 5px;
+            &:hover {
+              filter: unset;
+            }
+          }
+        }
+      }
+      .about-headline {
+        // margin-bottom: 20px;
+        font-size: 18px;
+        font-weight: 700;
+        color: $purple;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
+        &:after {
+          content: "";
+          display: block;
+          position: relative;
+          width: 100px;
+          height: 1px;
+          margin-left: 20px;
+          background-color: rgba($color: $lightBlue, $alpha: 0.1);
+        }
+      }
+      .about-right {
+        opacity: 0;
+        width: 100%;
+        position: relative;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin-top: 15%;
+        .photo-background {
+          width: 70%;
+          height: 60%;
+          position: absolute;
+          border-radius: 5px;
+          min-height: 355px;
+        }
+        .bg1 {
+          // background-color: rgba($color: #e9eeff, $alpha: 0.25);
+          // background-color: rgb(92 99 125 / 10%);
+
+          background-color: rgb(30 41 78 / 29%);
+
+          z-index: 0;
+          opacity: 0;
+          box-shadow: 0 10px 30px -15px #010310;
+          // transform: translate(-2%, -2%);
+          .headshot {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+            max-width: 280px;
+            height: 100%;
+            top: 50%;
+            z-index: 1000000;
+            opacity: 0;
+            object-fit: cover;
+            border-radius: 15px;
+          }
+        }
+        .bg2 {
+          // background-color: rgba($color: #cbd4db, $alpha: 0.2);
+          background-color: rgb(30 54 119 / 35%);
+          transform: translate(-6%, -6%);
+          box-shadow: 0 10px 30px -15px #010310;
+          z-index: -1;
+        }
+        .bg3 {
+          // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
+          // background-color: rgb(13 16 39 / 91%);
+          background-color: rgba($color: $purple, $alpha: 0.2);
+          box-shadow: 0 10px 30px -15px #010310;
+          transform: translate(-12%, -12%);
+          z-index: -2;
+        }
+      }
     }
   }
 }
