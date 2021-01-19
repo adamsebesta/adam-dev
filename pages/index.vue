@@ -2,7 +2,7 @@
   <div class="page" ref="page">
     <div>
       <Banner v-if="!loading" />
-      <Nav id="index-nav" v-if="!loading" />
+      <Nav class="banner-nav" v-if="!loading" />
     </div>
     <div class="container-main">
       <div v-if="loading" class="loading-anim">
@@ -19,7 +19,7 @@
         <div class="main-left">
           <p v-if="!mobile" class="heading">
             Your <br />
-            <span class="purple"> Creative Ideas</span> Brought To Life
+            <span class="purple"> Creative Ideas <br /></span> Brought To Life
           </p>
           <p v-if="mobile" class="heading">
             Your <br />
@@ -369,9 +369,6 @@ html {
     margin: 0 auto;
   }
 }
-#index-nav {
-  padding: 50px 30px;
-}
 
 .background-home {
   background: url("~static/background home4.png");
@@ -424,7 +421,7 @@ html {
     color: $lightBlue;
     font-size: 60px;
     line-height: 1.25;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     text-indent: -0.025em;
     font-weight: 700;
     opacity: 0;
@@ -433,7 +430,7 @@ html {
     color: $purple;
     font-size: 32px;
     line-height: 1.5;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
@@ -482,7 +479,7 @@ html {
 
   .heading {
     font-size: 50px;
-    font-weight: 800;
+    font-weight: 700;
     width: 100%;
     max-width: 400px;
     line-height: 55px;
@@ -491,7 +488,7 @@ html {
   .subheading {
     width: 100%;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     margin-top: 20px;
     p {
       margin-bottom: 40px;
@@ -509,7 +506,7 @@ html {
     cursor: pointer;
     border-radius: 4px;
     padding: 10px 20px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;

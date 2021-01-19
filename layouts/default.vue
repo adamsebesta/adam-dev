@@ -23,7 +23,8 @@ html {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
+
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -76,7 +77,7 @@ html {
   position: absolute;
   width: 80%;
   height: 100%;
-  z-index: 0;
+  z-index: -10;
 }
 .tooltip {
   display: block !important;
@@ -216,6 +217,9 @@ html {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.banner-nav {
+  padding: 50px 30px !important;
 }
 
 .purple {

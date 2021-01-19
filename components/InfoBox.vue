@@ -104,7 +104,7 @@ export default {
 @media only screen and (max-width: 1030px) {
   .top-banner {
     span {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 10px;
     }
   }

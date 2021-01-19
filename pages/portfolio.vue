@@ -421,7 +421,7 @@ img {
   h2 {
     font-size: 24px;
     font-weight: 00;
-    letter-spacing: 3px;
+
     // margin-left: 40px;
     img {
       height: 15px;
@@ -429,7 +429,6 @@ img {
   }
   p {
     margin-top: 5px;
-    letter-spacing: 2px;
   }
   img {
   }
@@ -621,7 +620,7 @@ img {
   }
   .project-title {
     font-size: 22px;
-    letter-spacing: 2px;
+
     font-weight: 700;
     color: $lightBlue;
     width: 50%;

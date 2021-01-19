@@ -149,7 +149,7 @@ export default {
         let that = this;
         anime.timeline({ loop: false }).add({
           targets: target,
-          opacity: 0.6,
+          opacity: 0.3,
           zIndex: [{ value: [1, 5], round: true }],
           x:
             this.windowWidth / 2 -
@@ -225,7 +225,6 @@ export default {
   color: $lightBlue;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
-  letter-spacing: -0.025em;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 900;
