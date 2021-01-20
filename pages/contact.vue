@@ -139,7 +139,7 @@ export default {
     },
     hideFields() {
       anime({
-        targets: [".logo-small", ".formulate-input"],
+        targets: [".contact-logo", ".formulate-input"],
         duration: 300,
         opacity: "0",
         easing: "easeInOutSine",
@@ -530,7 +530,7 @@ label {
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 14px !important;
     .contact-logo {
       .contact-logo-upper {
