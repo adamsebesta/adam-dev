@@ -104,7 +104,7 @@ export default {
 @media only screen and (max-width: 1030px) {
   .info-box {
     // padding: 1rem;
-    width: 100px;
+    width: 150px;
     height: 75px;
     color: $darkerBlue;
     background-color: rgb(13 16 39 / 99%);
