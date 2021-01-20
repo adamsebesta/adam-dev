@@ -801,7 +801,7 @@ img {
         line-height: normal;
 
         .glass-subtitle {
-          font-size: 13px;
+          font-size: 12px;
         }
         .glass-date {
           font-size: 10px;
