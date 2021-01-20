@@ -481,8 +481,6 @@ export default {
         .about-desc {
           width: 100%;
           margin-bottom: 10px;
-          font-weight: 600;
-
           span {
             // background-color: #82ab71;
             padding: 0px;

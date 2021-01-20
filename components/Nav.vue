@@ -301,11 +301,8 @@ export default {
   #corner-logo {
     left: 3.5%;
   }
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
+  .banner-nav {
+    padding: 30px 30px !important;
   }
 }
 </style>
