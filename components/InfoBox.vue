@@ -49,7 +49,7 @@ export default {
     this.showInfoBox();
     setTimeout(() => {
       this.hideInfoBox();
-    }, 6000);
+    }, 60000);
   }
 };
 </script>
@@ -105,7 +105,7 @@ export default {
   .info-box {
     // padding: 1rem;
     width: 150px;
-    height: 75px;
+    height: 50px;
     color: $darkerBlue;
     background-color: rgb(13 16 39 / 99%);
     position: absolute;
@@ -125,6 +125,7 @@ export default {
       height: 100%;
       width: 10%;
       border-radius: 0px 5px 5px 0px;
+      margin-left: -10px;
     }
     .info-box-text {
       padding: 10px;
@@ -137,8 +138,8 @@ export default {
       }
       p {
         position: absolute;
-        bottom: 10px;
-        right: 10px;
+        bottom: 5px;
+        right: 5px;
         font-weight: 600;
         font-size: 8px;
         text-align: right;

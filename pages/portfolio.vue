@@ -3,7 +3,9 @@
     <Nav />
     <div class="container-main">
       <InfoBox
-        :text="mobile ? 'Tap for more details' : 'Hover over for more details'"
+        :text="
+          mobile ? 'Tap image for more details' : 'Hover image for more details'
+        "
       />
       <div @click="handleSwiper" v-if="showBounce" class="arrow"></div>
       <div class="portfolio-background">
