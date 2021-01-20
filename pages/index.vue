@@ -122,7 +122,7 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      stars: [...Array(40)],
+      stars: [...Array(50)],
       loading: true
     };
   },
@@ -288,7 +288,7 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: [0, 0.3]
+            value: [0, 0.4]
           }
         ]
       });
@@ -502,7 +502,7 @@ export default {
     cursor: pointer;
     border-radius: 4px;
     padding: 10px 20px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;

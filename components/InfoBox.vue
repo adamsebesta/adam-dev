@@ -3,7 +3,7 @@
     <div class="info-box-block"></div>
     <div class="info-box-text">
       <span>{{ text }}</span>
-      <p>{{ mobile ? "tap" : "click" + " to dismiss" }}</p>
+      <p>{{ (mobile ? "tap" : "click") + " to dismiss" }}</p>
     </div>
   </div>
 </template>
