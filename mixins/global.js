@@ -14,7 +14,7 @@ export default {
     resizeWindow() {
       window.addEventListener('resize', () => {
         setTimeout(() => {
-          console.log('test')
+
           this.setupWindow();
           this.isMobile();
         }, 250)

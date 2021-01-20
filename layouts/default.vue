@@ -16,6 +16,7 @@ export default {
 
 <style lang="scss">
 html {
+  overflow: auto;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -188,6 +189,15 @@ html {
     transition: opacity 0.15s;
   }
 }
+
+.main-depth {
+  box-shadow: 0 10px 30px -15px #010310;
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  border-radius: 5px;
+  background-color: rgb(13 16 39 / 99%);
+}
 .main-btn {
   display: inline-block !important;
   cursor: pointer !important;
@@ -244,7 +254,7 @@ html {
   }
   .background-center {
     height: 100%;
-    width: 117%;
+    width: 100%;
   }
 }
 </style>

@@ -24,23 +24,43 @@
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
                   <div class="project-image">
-                    <div
+                    <div class="project-image-overlay">
+                      <div class="project-image-overlay-title-wrapper">
+                        <div>
+                          <p class="overlay-featured">Featured Project</p>
+                          <p class="overlay-title">Muriel Revisa Designs</p>
+                          <p class="overlay-subtitle  main-depth">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Eaque vel nostrum perspiciatis quaerat?
+                            Facilis, rerum ea? Sapiente deserunt error commodi
+                            temporibus nisi aliquid quam saepe, quod architecto
+                            ipsum, dicta sed?
+                          </p>
+                          <p class="overlay-stack">Nativescript-vue Firebase</p>
+                        </div>
+                        <p class="overlay-date">
+                          (Coming Soon)
+                        </p>
+                      </div>
+                    </div>
+                    <!-- <div
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
                         mobile ? { opacity: glassClicked['0'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                     
+                      <div class="glass-title-wrapper main-depth">
                         <div>
-                          <p class="glass-title">MR Designs</p>
+                          <p class="glass-title">Muriel Revisa Designs</p>
                           <p class="glass-subtitle">Travel App</p>
                         </div>
                         <p class="glass-date">
                           (Coming Soon)
                         </p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'Nativescript-Vue'"
                           src="~/static/icons/nativescript-vue.png"
@@ -53,7 +73,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Mobile</div>
-                    </div>
+                    </div> -->
                     <img src="~/static/construction.png" alt="" rel="preload" />
                   </div>
                 </VueSlickCarousel>
@@ -70,7 +90,7 @@
                         mobile ? { opacity: glassClicked['1'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                      <div class="glass-title-wrapper main-depth">
                         <div>
                           <p class="glass-title">Berlin Bytes</p>
                           <p class="glass-subtitle">
@@ -79,7 +99,7 @@
                         </div>
                         <p class="glass-date">October 2020</p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'Vue'"
                           src="~/static/icons/vue.png"
@@ -355,9 +375,6 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-html {
-  overflow: hidden;
-}
 
 img {
   -moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
@@ -561,16 +578,19 @@ img {
   margin-bottom: 0;
 
   .mobile {
-    width: 400px;
+    width: 500px;
     height: 500px;
+    padding: 3rem 5rem;
   }
   .desktop {
     width: 700px;
     height: 500px;
+    padding: 3rem 6rem;
   }
   .slide-glass {
+    box-shadow: 0 10px 30px -15px #010310;
     margin: 0 auto;
-    background-color: rgba($color: #1c1f35, $alpha: 0.99);
+    background-color: rgba($color: #151728, $alpha: 0.99);
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -579,7 +599,7 @@ img {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding: 3rem 6rem;
+
     opacity: 0;
     justify-content: space-between;
     transition: all 250ms ease-in;
@@ -593,10 +613,10 @@ img {
       justify-content: space-between;
       align-items: center;
       color: $lightBlue;
-      font-size: 26px;
+      font-size: 24px;
       line-height: normal;
       .glass-subtitle {
-        font-size: 26px;
+        font-size: 24px;
       }
       .glass-date {
         font-size: 20px;
@@ -614,7 +634,7 @@ img {
     }
     .glass-project-type {
       color: $lightBlue;
-      font-size: 26px;
+      font-size: 20px;
       opacity: 0.3;
     }
   }
@@ -626,14 +646,17 @@ img {
     width: 50%;
     margin: 0 auto;
     margin-bottom: 5px;
-    .middle {
-      color: #3fc1d9;
-      font-size: 11px;
-      vertical-align: middle;
-      margin-top: -2px;
-    }
+
     // background: linear-gradient(45deg, #f19872, #e86c9a);
   }
+}
+
+.project-image-overlay {
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
 }
 
 .project-image {
@@ -781,7 +804,7 @@ img {
         }
       }
       .glass-project-type {
-        font-size: 13px;
+        font-size: 10px;
       }
     }
   }

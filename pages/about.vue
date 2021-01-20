@@ -5,7 +5,7 @@
       <Nav class="banner-nav" />
     </div>
 
-    <div class="container-main">
+    <div class="container-main-about">
       <!-- <svg
         version="1.1"
         id="about-background"
@@ -58,17 +58,18 @@
           <div class="about">
             <div class="about-text">
               <p class="about-headline">Adam Sebesta</p>
-              <p class="about-desc about-depth">
+              <p class="about-desc main-depth">
                 <span>
-                  I am a Canadian / Estonian Full Stack Developer living in
-                  Berlin. Avid about the cloud, and creating elegant solutions,
-                  I look forward to working with you on your next project.</span
+                  I am a Canadian / Estonian Full Stack Developer currently
+                  living in Berlin. Avid about the cloud, and creating elegant
+                  solutions, my aim is to bring your creative ideas to life. I
+                  look forward to working with you on your next project.</span
                 >
               </p>
             </div>
             <div class="about-services">
               <p class="about-headline">Services</p>
-              <ul class="about-depth">
+              <ul class="main-depth">
                 <li v-for="s in services" :key="s">
                   <i
                     class="fa fa-square about-services-list-item"
@@ -80,7 +81,7 @@
             </div>
             <div class="about-skills">
               <div><p class="about-headline">Skills</p></div>
-              <div class="about-skills-icons about-depth">
+              <div class="about-skills-icons main-depth">
                 <img
                   v-for="i in icons"
                   :key="i[0]"
@@ -200,7 +201,7 @@ export default {
         easing: "easeInOutSine",
         translateX: [
           {
-            duration: 1500,
+            duration: 1200,
             value: function(el) {
               return that.calcuateTranslate(el, "X");
             }
@@ -208,7 +209,7 @@ export default {
         ],
         translateY: [
           {
-            duration: 1500,
+            duration: 1200,
             value: function(el) {
               return that.calcuateTranslate(el, "Y");
             }
@@ -243,7 +244,7 @@ export default {
           width: [
             {
               duration: 600,
-              value: that.windowWidth < 420 ? "90%" : "80%"
+              value: "100%"
             }
           ]
         })
@@ -263,15 +264,24 @@ export default {
 </script>
 
 <style lang="scss">
+.container-main-about {
+  margin: 0 auto;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .main-wrapper {
   display: flex;
-  margin: 6% 0;
-
+  margin: 6% 0 2% 0;
   display: flex;
   width: 70%;
   justify-content: center;
   .about-left {
-    width: 60%;
+    width: 100%;
     .about {
       font-weight: 600;
       opacity: 0;
@@ -311,6 +321,7 @@ export default {
             font-size: 8px;
             vertical-align: middle;
             color: #3fc1d9;
+            margin-right: 3px;
           }
         }
       }
@@ -367,7 +378,7 @@ export default {
     align-items: center;
     margin-top: 5%;
     .photo-background {
-      width: 70%;
+      width: 100%;
       height: 60%;
       position: absolute;
       border-radius: 5px;
@@ -415,17 +426,7 @@ export default {
 }
 .fa.square::before {
   vertical-align: super;
-}
-.about-depth {
-  box-shadow: 0 10px 30px -15px #010310;
-  position: relative;
-  z-index: 2;
-  padding: 25px;
-  border-radius: 5px;
-  background-color: rgb(13 16 39 / 60%);
-}
-html {
-  overflow: auto;
+  margin-right: 2px;
 }
 
 #about-background {
@@ -453,6 +454,9 @@ html {
         }
       }
     }
+    .about-right {
+      display: none;
+    }
   }
 }
 @media only screen and (max-width: 420px) {
@@ -463,10 +467,11 @@ html {
     top: 0;
     width: 95%;
     align-items: center;
-    padding: 50px 200px;
+    padding: 50px 20px;
     .about-left {
       width: 100%;
       .about {
+        width: 100%;
         .about-text {
           margin-top: 10px;
         }
@@ -478,17 +483,17 @@ html {
             // background-color: #82ab71;
             padding: 0px;
           }
-          font-size: 16px;
+          font-size: 12px;
 
           text-align: left;
         }
         .about-services {
           margin-bottom: 10px;
-          width: 450px;
+          width: 300px;
 
           ul li {
             padding-left: 2px;
-            font-size: 16px !important;
+            font-size: 12px !important;
             .about-services-list-item {
               font-size: 8px;
               vertical-align: middle;
@@ -503,15 +508,15 @@ html {
           margin-bottom: 10px;
           .about-skills-icons {
             display: flex;
-            max-width: 355px;
-            min-width: 258px;
+            max-width: 270px;
+            min-width: 158px;
             flex-wrap: wrap;
           }
           .about-skills-icon {
             // width: 20%;
             // height: 20%;
-            max-height: 65px;
-            max-width: 65px;
+            max-height: 45px;
+            max-width: 45px;
             filter: grayscale(100%);
             margin: 5px;
             &:hover {
@@ -519,79 +524,79 @@ html {
             }
           }
         }
-      }
-      .about-headline {
-        // margin-bottom: 20px;
-        font-size: 18px;
-        font-weight: 700;
-        color: $purple;
-        margin: 10px 0;
-        display: flex;
-        align-items: center;
-        // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
-        &:after {
-          content: "";
-          display: block;
-          position: relative;
-          width: 100px;
-          height: 1px;
-          margin-left: 20px;
-          background-color: rgba($color: $lightBlue, $alpha: 0.1);
-        }
-      }
-      .about-right {
-        opacity: 0;
-        width: 100%;
-        position: relative;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        margin-top: 15%;
-        .photo-background {
-          width: 70%;
-          height: 60%;
-          position: absolute;
-          border-radius: 5px;
-          min-height: 355px;
-        }
-        .bg1 {
-          // background-color: rgba($color: #e9eeff, $alpha: 0.25);
-          // background-color: rgb(92 99 125 / 10%);
 
-          background-color: rgb(30 41 78 / 29%);
-
-          z-index: 0;
-          opacity: 0;
-          box-shadow: 0 10px 30px -15px #010310;
-          // transform: translate(-2%, -2%);
-          .headshot {
-            width: 100%;
-            margin: 0 auto;
-            padding: 10px;
-            max-width: 280px;
-            height: 100%;
-            top: 50%;
-            z-index: 1000000;
-            opacity: 0;
-            object-fit: cover;
-            border-radius: 15px;
+        .about-headline {
+          // margin-bottom: 20px;
+          font-size: 16px;
+          font-weight: 700;
+          width: 100%;
+          color: $purple;
+          margin: 10px 0;
+          display: flex;
+          align-items: center;
+          // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
+          &:after {
+            content: "";
+            display: block;
+            position: relative;
+            width: 100px;
+            height: 1px;
+            margin-left: 20px;
+            background-color: rgba($color: $lightBlue, $alpha: 0.1);
           }
         }
-        .bg2 {
-          // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-          background-color: rgb(30 54 119 / 35%);
-          transform: translate(-6%, -6%);
-          box-shadow: 0 10px 30px -15px #010310;
-          z-index: -1;
+      }
+    }
+    .about-right {
+      display: flex;
+      width: 80%;
+      height: 30vh;
+      margin-left: 12%;
+      margin-top: 28%;
+      .photo-background {
+        width: 55%;
+        height: 40%;
+        position: absolute;
+        border-radius: 5px;
+        min-height: 180px;
+      }
+      .bg1 {
+        // background-color: rgba($color: #e9eeff, $alpha: 0.25);
+        // background-color: rgb(92 99 125 / 10%);
+
+        background-color: rgb(30 41 78 / 29%);
+
+        z-index: 0;
+        opacity: 0;
+        box-shadow: 0 10px 30px -15px #010310;
+        // transform: translate(-2%, -2%);
+        .headshot {
+          width: 100%;
+          margin: 0 auto;
+          padding: 10px;
+          max-width: 280px;
+          height: 100%;
+          top: 50%;
+          z-index: 1000000;
+          opacity: 0;
+          object-fit: cover;
+          border-radius: 15px;
         }
-        .bg3 {
-          // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
-          // background-color: rgb(13 16 39 / 91%);
-          background-color: rgba($color: $purple, $alpha: 0.2);
-          box-shadow: 0 10px 30px -15px #010310;
-          transform: translate(-12%, -12%);
-          z-index: -2;
-        }
+      }
+      .bg2 {
+        // background-color: rgba($color: #cbd4db, $alpha: 0.2);
+        background-color: rgb(30 54 119 / 35%);
+        transform: translate(-6%, -6%);
+        box-shadow: 0 10px 30px -15px #010310;
+        z-index: -1;
+      }
+      .bg3 {
+        // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
+        // background-color: rgb(13 16 39 / 91%);
+        background-color: rgba($color: $purple, $alpha: 0.2);
+        box-shadow: 0 10px 30px -15px #010310;
+        transform: translate(-12%, -12%);
+        z-index: -2;
       }
     }
   }

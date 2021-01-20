@@ -257,19 +257,18 @@ export default {
       //   duration: 1400
       // });
     },
-    showFooter() {
-      console.log("test");
-      // anime({
-      //   targets: ["page .index-footer"],
-      //   easing: "easeInOutSine",
-      //   opacity: [
-      //     {
-      //       duration: 1000,
-      //       value: 1
-      //     }
-      //   ]
-      // });
-    },
+    // showFooter() {
+    // anime({
+    //   targets: ["page .index-footer"],
+    //   easing: "easeInOutSine",
+    //   opacity: [
+    //     {
+    //       duration: 1000,
+    //       value: 1
+    //     }
+    //   ]
+    // });
+    // },
     hideFooter() {
       anime({
         targets: [".index-footer"],
@@ -335,10 +334,6 @@ export default {
 </script>
 
 <style lang="scss">
-html {
-  overflow: hidden;
-}
-
 .container-main {
   margin: 0 auto;
   height: 100vh;
@@ -623,8 +618,8 @@ html {
     }
     .subheading {
       p {
-        font-size: 16px;
-        width: 80%;
+        font-size: 12px;
+        width: 75%;
         margin: 0 auto;
         font-weight: 600;
         line-height: 22px;
