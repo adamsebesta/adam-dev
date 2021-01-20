@@ -49,7 +49,7 @@ export default {
     this.showInfoBox();
     setTimeout(() => {
       this.hideInfoBox();
-    }, 4000);
+    }, 6000);
   }
 };
 </script>
@@ -60,8 +60,8 @@ export default {
   width: 175px;
   height: 75px;
 
-  color: $background;
-  background-color: rgba($color: #c4c4c4, $alpha: 0.9);
+  color: $darkerBlue;
+  background-color: rgb(13 16 39 / 99%);
   position: absolute;
   top: 13%;
   left: 0;
@@ -75,7 +75,7 @@ export default {
   z-index: 100000;
   cursor: pointer;
   .info-box-block {
-    background-color: rgba($color: #c4c4c4, $alpha: 1);
+    background-color: rgba($color: $purple, $alpha: 1);
     height: 100%;
     width: 15%;
     border-radius: 0px 5px 5px 0px;
@@ -102,10 +102,48 @@ export default {
 }
 
 @media only screen and (max-width: 1030px) {
-  .top-banner {
-    span {
-      font-weight: 700;
-      font-size: 10px;
+  .info-box {
+    // padding: 1rem;
+    width: 150px;
+    height: 75px;
+    color: $darkerBlue;
+    background-color: rgb(13 16 39 / 99%);
+    position: absolute;
+    top: 15%;
+    left: 0;
+    text-align: left;
+    line-height: 15px;
+    display: flex;
+    // flex-direction: column;
+    justify-content: space-around;
+    transform: translateX(-100%);
+    border-radius: 0px 5px 5px 0px;
+    z-index: 100000;
+    cursor: pointer;
+    .info-box-block {
+      background-color: rgba($color: $purple, $alpha: 1);
+      height: 100%;
+      width: 10%;
+      border-radius: 0px 5px 5px 0px;
+    }
+    .info-box-text {
+      padding: 10px;
+      position: relative;
+      border-radius: 0px 5px 5px 0px;
+      span {
+        font-weight: 700;
+        font-size: 10px;
+        word-spacing: 1px;
+      }
+      p {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-weight: 600;
+        font-size: 8px;
+        text-align: right;
+        // padding-top: 5px;
+      }
     }
   }
 }

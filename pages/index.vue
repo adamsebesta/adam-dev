@@ -483,8 +483,9 @@ export default {
   .subheading {
     width: 100%;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
     margin-top: 20px;
+    font-family: $bodyFont;
     p {
       margin-bottom: 40px;
       font-size: 16px;

@@ -19,12 +19,11 @@
             @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
             :options="swiperOptionv"
           >
-            <!-- <div class="swiper-pagination" slot="pagination"></div> -->
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
                   <div class="project-image">
-                    <div class="project-image-overlay">
+                    <!-- <div class="project-image-overlay">
                       <div class="project-image-overlay-title-wrapper">
                         <div>
                           <p class="overlay-featured">Featured Project</p>
@@ -36,21 +35,24 @@
                             temporibus nisi aliquid quam saepe, quod architecto
                             ipsum, dicta sed?
                           </p>
-                          <p class="overlay-stack">Nativescript-vue Firebase</p>
+                          <div class="overlay-stack">
+                            <p></p>
+                            <p>Nativescript-Vue</p>
+                            <p>Firebase</p>
+                          </div>
                         </div>
                         <p class="overlay-date">
                           (Coming Soon)
                         </p>
                       </div>
-                    </div>
-                    <!-- <div
+                    </div> -->
+                    <div
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
                         mobile ? { opacity: glassClicked['0'] ? '1' : '0' } : {}
                       "
                     >
-                     
                       <div class="glass-title-wrapper main-depth">
                         <div>
                           <p class="glass-title">Muriel Revisa Designs</p>
@@ -73,7 +75,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Mobile</div>
-                    </div> -->
+                    </div>
                     <img src="~/static/construction.png" alt="" rel="preload" />
                   </div>
                 </VueSlickCarousel>
@@ -143,14 +145,14 @@
                         mobile ? { opacity: glassClicked['2'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                      <div class="glass-title-wrapper main-depth">
                         <div>
                           <p class="glass-title">Berlin Bytes</p>
                           <p class="glass-subtitle">Homepage</p>
                         </div>
                         <p class="glass-date">September 2020</p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'HTML'"
                           src="~/static/icons/html.png"
@@ -188,14 +190,14 @@
                         mobile ? { opacity: glassClicked['3'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                      <div class="glass-title-wrapper main-depth">
                         <div>
                           <p class="glass-title">Streamhub</p>
                           <p class="glass-subtitle">Video Dashboard</p>
                         </div>
                         <p class="glass-date">July 2020</p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'Ruby'"
                           src="~/static/icons/ruby.png"
@@ -396,28 +398,6 @@ img {
   z-index: 10;
 }
 
-.bounce {
-  -moz-animation: bounce 2s infinite;
-  -webkit-animation: bounce 2s infinite;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(-15px);
-  }
-}
-
 .portfolio-background {
   width: 80%;
   height: 80vh;
@@ -590,7 +570,7 @@ img {
   .slide-glass {
     box-shadow: 0 10px 30px -15px #010310;
     margin: 0 auto;
-    background-color: rgba($color: #151728, $alpha: 0.99);
+    background-color: #0e1331;
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -599,7 +579,6 @@ img {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-
     opacity: 0;
     justify-content: space-between;
     transition: all 250ms ease-in;
@@ -616,10 +595,16 @@ img {
       font-size: 24px;
       line-height: normal;
       .glass-subtitle {
-        font-size: 24px;
+        font-size: 18px;
+        color: $darkerBlue;
+        font-family: $bodyFont;
+        font-weight: 400;
       }
       .glass-date {
-        font-size: 20px;
+        font-size: 18px;
+        color: $darkerBlue;
+        font-family: $bodyFont;
+        font-weight: 400;
       }
     }
     .glass-icons {
@@ -633,14 +618,14 @@ img {
       }
     }
     .glass-project-type {
-      color: $lightBlue;
+      color: $darkerBlue;
       font-size: 20px;
       opacity: 0.3;
+      font-family: $bodyFont;
     }
   }
   .project-title {
     font-size: 22px;
-
     font-weight: 700;
     color: $lightBlue;
     width: 50%;
@@ -651,13 +636,43 @@ img {
   }
 }
 
-.project-image-overlay {
-  width: 40%;
-  height: 40%;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-}
+// .project-image-overlay {
+//   width: 40%;
+//   height: 40%;
+//   position: absolute;
+//   top: 40%;
+//   left: 50%;
+//   text-align: right;
+//   .overlay-featured {
+//     color: $purple;
+//     font-size: 12px;
+//     margin-bottom: 10px;
+//   }
+//   .overlay-title {
+//     color: $lightBlue;
+//     margin-bottom: 20px;
+//     font-size: 18px;
+//   }
+//   .overlay-subtitle {
+//     color: $darkerBlue;
+//     font-size: 12px;
+//     font-weight: 400;
+//   }
+//   .overlay-stack {
+//     display: flex;
+//     width: 60%;
+//     margin-left: auto;
+//     color: $darkerBlue;
+//     justify-content: space-between;
+//     margin-top: 20px;
+//     font-size: 12px;
+//   }
+//   .overlay-date {
+//     margin-top: 10px;
+//     color: $darkerBlue;
+//     font-size: 12px;
+//   }
+// }
 
 .project-image {
   position: relative;
@@ -780,7 +795,7 @@ img {
       height: 250px;
     }
     .slide-glass {
-      padding: 2rem 2rem;
+      padding: 15px;
 
       &:hover {
         opacity: unset;
@@ -799,8 +814,9 @@ img {
       .glass-icons {
         width: unset;
         img {
-          height: 60px;
-          width: 60px;
+          height: 50px;
+          width: 50px;
+          pointer-events: none;
         }
       }
       .glass-project-type {

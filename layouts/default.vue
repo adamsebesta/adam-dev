@@ -24,7 +24,7 @@ html {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  font-family: "Raleway", sans-serif;
+  font-family: $headingFont;
 
   font-size: 16px;
   word-spacing: 1px;
@@ -256,5 +256,8 @@ html {
     height: 100%;
     width: 100%;
   }
+}
+.main-depth {
+  padding: 10px;
 }
 </style>

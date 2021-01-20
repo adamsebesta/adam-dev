@@ -15,11 +15,10 @@
           name="contact"
           ref="form"
         >
-          <img
-            class="logo-small"
-            draggable="false"
-            src="~static/logo text trans.png"
-          />
+          <div class="contact-logo">
+            <p class="contact-logo-upper">Adam Sebesta</p>
+            <p class="contact-logo-lower">DEVELOPMENT</p>
+          </div>
 
           <FormulateInput
             name="name"
@@ -251,7 +250,6 @@ export default {
     }
   },
   mounted() {
-    this.windowWrapper();
     setTimeout(() => {
       this.openAnim();
     }, 500);
@@ -265,9 +263,6 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-html {
-  overflow: hidden;
-}
 
 /* .container {
   margin: 0 auto;
@@ -300,6 +295,32 @@ html {
   /* box-shadow: -5px 1px 10px 5px #4f654e; */
   .formulate-input {
     opacity: 0;
+  }
+  .contact-logo {
+    // position: absolute;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+    text-align: center;
+    margin: 30px auto;
+
+    .contact-logo-upper {
+      color: $lightBlue;
+      font-size: 56px;
+      line-height: 1.25;
+      letter-spacing: 1px;
+      text-indent: -0.025em;
+      font-weight: 700;
+    }
+    .contact-logo-lower {
+      color: $purple;
+      font-size: 30px;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      // text-transform: uppercase;
+      text-indent: -0.025em;
+      font-weight: 700;
+      margin-top: -8px;
+    }
   }
 }
 .logo-small {
@@ -399,7 +420,7 @@ input {
   text-align: center !important;
   border: 1px solid rgb(56, 65, 92) !important;
   background-color: transparent !important;
-  letter-spacing: 2px !important;
+  font-family: $bodyFont !important;
   font-size: 16px !important;
   padding: 30px !important;
   color: $purple !important;
@@ -409,7 +430,7 @@ textarea {
   text-align: left !important;
   border: 1px solid rgb(56, 65, 92) !important;
   background-color: transparent !important;
-  letter-spacing: 2px !important;
+  font-family: $bodyFont !important;
   font-size: 16px !important;
   padding: 30px !important;
   color: $purple !important;
@@ -431,7 +452,6 @@ input:-webkit-autofill {
 }
 
 label {
-  letter-spacing: 2px !important;
   font-size: 14px !important;
   color: $purple !important;
 }
@@ -450,7 +470,6 @@ label {
   p {
     font-size: 18 px;
     color: $lightBlue;
-    letter-spacing: 1px;
   }
 }
 
@@ -513,6 +532,14 @@ label {
     width: 90%;
     margin-top: 40px;
     font-size: 14px !important;
+    .contact-logo {
+      .contact-logo-upper {
+        font-size: 34px;
+      }
+      .contact-logo-lower {
+        font-size: 20px;
+      }
+    }
   }
 
   input,
