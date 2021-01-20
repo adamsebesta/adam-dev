@@ -1,9 +1,8 @@
 <template>
   <div class="page" ref="page">
-    <!-- @mousewheel="handleScroll" -->
     <div>
       <Banner v-if="!loading" />
-      <Nav id="index-nav" v-if="!loading" />
+      <Nav class="banner-nav" v-if="!loading" />
     </div>
     <div class="container-main">
       <div v-if="loading" class="loading-anim">
@@ -18,11 +17,11 @@
       </div>
       <div class="center-content">
         <div class="main-left">
-          <p v-if="windowWidth > 1630" class="heading">
+          <p v-if="!mobile" class="heading">
             Your <br />
-            <span class="purple"> Creative Ideas</span> Brought To Life
+            <span class="purple"> Creative Ideas <br /></span> Brought To Life
           </p>
-          <p v-if="windowWidth < 1630" class="heading">
+          <p v-if="mobile" class="heading">
             Your <br />
             <span class="purple"> Creative Ideas</span><br />
             Brought To Life
@@ -123,8 +122,6 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      windowWidth: 1200,
-      windowHeight: 1200,
       stars: [...Array(40)],
       loading: true
     };
@@ -194,7 +191,7 @@ export default {
       });
     },
     initLogo() {
-      if (this.windowWidth > 1025) {
+      if (!this.mobile) {
         anime({
           targets: [".rise1"],
           easing: "easeInOutSine",
@@ -223,7 +220,7 @@ export default {
         });
       }
     },
-    handleScroll(event) {
+    toggleFooter(event) {
       if (event.deltaY < 0) {
         anime({
           targets: [".index-footer"],
@@ -260,19 +257,18 @@ export default {
       //   duration: 1400
       // });
     },
-    showFooter() {
-      console.log("test");
-      // anime({
-      //   targets: ["page .index-footer"],
-      //   easing: "easeInOutSine",
-      //   opacity: [
-      //     {
-      //       duration: 1000,
-      //       value: 1
-      //     }
-      //   ]
-      // });
-    },
+    // showFooter() {
+    // anime({
+    //   targets: ["page .index-footer"],
+    //   easing: "easeInOutSine",
+    //   opacity: [
+    //     {
+    //       duration: 1000,
+    //       value: 1
+    //     }
+    //   ]
+    // });
+    // },
     hideFooter() {
       anime({
         targets: [".index-footer"],
@@ -326,23 +322,18 @@ export default {
     setTimeout(() => {
       this.rippleStars();
     }, 1200);
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
+
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
-    window.addEventListener("wheel", this.handleScroll);
+    window.addEventListener("wheel", this.toggleFooter);
   },
   destroyed() {
-    window.removeEventListener("wheel", this.handleScroll);
+    window.removeEventListener("wheel", this.toggleFooter);
   }
 };
 </script>
 
 <style lang="scss">
-html {
-  overflow: hidden;
-}
-
 .container-main {
   margin: 0 auto;
   height: 100vh;
@@ -372,9 +363,6 @@ html {
     width: 30%;
     margin: 0 auto;
   }
-}
-#index-nav {
-  padding: 50px 30px;
 }
 
 .background-home {
@@ -428,7 +416,7 @@ html {
     color: $lightBlue;
     font-size: 60px;
     line-height: 1.25;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     text-indent: -0.025em;
     font-weight: 700;
     opacity: 0;
@@ -437,7 +425,7 @@ html {
     color: $purple;
     font-size: 32px;
     line-height: 1.5;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-indent: -0.025em;
     font-weight: 700;
@@ -486,7 +474,7 @@ html {
 
   .heading {
     font-size: 50px;
-    font-weight: 800;
+    font-weight: 700;
     width: 100%;
     max-width: 400px;
     line-height: 55px;
@@ -495,7 +483,7 @@ html {
   .subheading {
     width: 100%;
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 600;
     margin-top: 20px;
     p {
       margin-bottom: 40px;
@@ -513,7 +501,7 @@ html {
     cursor: pointer;
     border-radius: 4px;
     padding: 10px 20px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;
@@ -630,8 +618,8 @@ html {
     }
     .subheading {
       p {
-        font-size: 16px;
-        width: 80%;
+        font-size: 12px;
+        width: 75%;
         margin: 0 auto;
         font-weight: 600;
         line-height: 22px;

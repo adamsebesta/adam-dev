@@ -4,8 +4,19 @@
   </div>
 </template>
 
+<script>
+import Vue from "vue";
+import global from "~/mixins/global.js";
+Vue.mixin(global);
+
+export default {
+  name: "App"
+};
+</script>
+
 <style lang="scss">
 html {
+  overflow: auto;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -13,7 +24,8 @@ html {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  font-family: "Nunito Sans", sans-serif;
+  font-family: "Raleway", sans-serif;
+
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -66,7 +78,7 @@ html {
   position: absolute;
   width: 80%;
   height: 100%;
-  z-index: 0;
+  z-index: -10;
 }
 .tooltip {
   display: block !important;
@@ -177,6 +189,15 @@ html {
     transition: opacity 0.15s;
   }
 }
+
+.main-depth {
+  box-shadow: 0 10px 30px -15px #010310;
+  position: relative;
+  z-index: 2;
+  padding: 25px;
+  border-radius: 5px;
+  background-color: rgb(13 16 39 / 99%);
+}
 .main-btn {
   display: inline-block !important;
   cursor: pointer !important;
@@ -207,6 +228,9 @@ html {
   align-items: center;
   text-align: center;
 }
+.banner-nav {
+  padding: 50px 30px !important;
+}
 
 .purple {
   color: $purple;
@@ -230,7 +254,7 @@ html {
   }
   .background-center {
     height: 100%;
-    width: 117%;
+    width: 100%;
   }
 }
 </style>

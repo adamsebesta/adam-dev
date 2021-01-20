@@ -29,7 +29,7 @@ export default {
   position: fixed;
   z-index: 10000;
   span {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 12px;
     cursor: pointer;
   }
@@ -38,7 +38,7 @@ export default {
 @media only screen and (max-width: 1030px) {
   .top-banner {
     span {
-      font-weight: 800;
+      font-weight: 700;
       font-size: 10px;
     }
   }

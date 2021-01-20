@@ -2,12 +2,20 @@
   <div class="page">
     <Nav />
     <div class="container-main">
+      <InfoBox
+        :text="
+          mobile
+            ? 'Tap title image to see details'
+            : 'Hover over title image to see details'
+        "
+      />
       <div @click="handleSwiper" v-if="showBounce" class="arrow"></div>
       <div class="portfolio-background">
         <div class="project-wrapper">
           <swiper
             class="swiper vertical"
             ref="mySwiper"
+            @ready="onSwiperRedied"
             @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
             :options="swiperOptionv"
           >
@@ -16,25 +24,43 @@
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
                   <div class="project-image">
-                    <div
+                    <div class="project-image-overlay">
+                      <div class="project-image-overlay-title-wrapper">
+                        <div>
+                          <p class="overlay-featured">Featured Project</p>
+                          <p class="overlay-title">Muriel Revisa Designs</p>
+                          <p class="overlay-subtitle  main-depth">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Eaque vel nostrum perspiciatis quaerat?
+                            Facilis, rerum ea? Sapiente deserunt error commodi
+                            temporibus nisi aliquid quam saepe, quod architecto
+                            ipsum, dicta sed?
+                          </p>
+                          <p class="overlay-stack">Nativescript-vue Firebase</p>
+                        </div>
+                        <p class="overlay-date">
+                          (Coming Soon)
+                        </p>
+                      </div>
+                    </div>
+                    <!-- <div
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['0'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['0'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                     
+                      <div class="glass-title-wrapper main-depth">
                         <div>
-                          <p class="glass-title">MR Designs</p>
+                          <p class="glass-title">Muriel Revisa Designs</p>
                           <p class="glass-subtitle">Travel App</p>
                         </div>
                         <p class="glass-date">
                           (Coming Soon)
                         </p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'Nativescript-Vue'"
                           src="~/static/icons/nativescript-vue.png"
@@ -47,7 +73,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Mobile</div>
-                    </div>
+                    </div> -->
                     <img src="~/static/construction.png" alt="" rel="preload" />
                   </div>
                 </VueSlickCarousel>
@@ -61,12 +87,10 @@
                       @click="glassClickHandler('1')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['1'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['1'] ? '1' : '0' } : {}
                       "
                     >
-                      <div class="glass-title-wrapper">
+                      <div class="glass-title-wrapper main-depth">
                         <div>
                           <p class="glass-title">Berlin Bytes</p>
                           <p class="glass-subtitle">
@@ -75,7 +99,7 @@
                         </div>
                         <p class="glass-date">October 2020</p>
                       </div>
-                      <div class="glass-icons">
+                      <div class="glass-icons main-depth">
                         <img
                           v-tooltip="'Vue'"
                           src="~/static/icons/vue.png"
@@ -116,9 +140,7 @@
                       @click="glassClickHandler('2')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['2'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['2'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -163,9 +185,7 @@
                       @click="glassClickHandler('3')"
                       class="slide-glass desktop"
                       :style="
-                        windowWidth < 425
-                          ? { opacity: glassClicked['3'] ? '1' : '0' }
-                          : {}
+                        mobile ? { opacity: glassClicked['3'] ? '1' : '0' } : {}
                       "
                     >
                       <div class="glass-title-wrapper">
@@ -229,6 +249,7 @@
 <script>
 import Nav from "../components/Nav";
 import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import anime from "animejs";
 
 export default {
   components: { Nav, Swiper, SwiperSlide },
@@ -287,9 +308,7 @@ export default {
         carousel2: 0
       },
       mainSwiperIndex: 0,
-      glassClicked: { 0: null, 1: null, 2: null, 3: null },
-      windowHeight: 1200,
-      windowWidth: 1200
+      glassClicked: { 0: null, 1: null, 2: null, 3: null }
     };
   },
   computed: {
@@ -312,15 +331,16 @@ export default {
       }
     },
     removeTooltipsOnScroll() {
-      let tooltip = document.querySelector(".v-tooltip-open");
+      // let tooltip = document.querySelector(".v-tooltip-open");
+      let popover = document.querySelector(".tooltip");
 
-      // if (tooltip) {
-      //   tooltip.classList.remove("v-tooltip-open");
-      // }
-      console.log(tooltip);
+      popover.style.visibility = "hidden";
+      // popover.style.visibility = "visible";
+
+      console.log(popover);
     },
     onSwiperSlideChangeTransitionStart(index) {
-      this.removeTooltipsOnScroll();
+      // this.removeTooltipsOnScroll();
       this.mainSwiperIndex = index.activeIndex;
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
@@ -328,15 +348,24 @@ export default {
         this.showBounce = true;
       }
     },
+    onSwiperRedied() {
+      anime({
+        targets: ".project-wrapper",
+        opacity: [
+          {
+            duration: 2000,
+            value: [0, 1]
+          }
+        ],
+        easing: "easeOutExpo"
+      });
+    },
     glassClickHandler(key) {
       this.glassClicked[key] = !this.glassClicked[key];
     }
   },
   created() {},
-  mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
-  }
+  mounted() {}
 };
 </script>
 
@@ -346,9 +375,6 @@ export default {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
-html {
-  overflow: hidden;
-}
 
 img {
   -moz-user-select: none; /* These user-select properties are inheritable, used to prevent text selection */
@@ -412,7 +438,7 @@ img {
   h2 {
     font-size: 24px;
     font-weight: 00;
-    letter-spacing: 3px;
+
     // margin-left: 40px;
     img {
       height: 15px;
@@ -420,7 +446,6 @@ img {
   }
   p {
     margin-top: 5px;
-    letter-spacing: 2px;
   }
   img {
   }
@@ -438,6 +463,7 @@ img {
   height: 100%;
   margin-left: 40px;
   background-color: transparent;
+  opacity: 0;
 }
 
 // .project-background {
@@ -507,7 +533,7 @@ img {
   border-left: none;
   border-top: none;
   border-right: 2px #fff solid;
-  z-index: 1;
+  z-index: 10000;
   cursor: pointer;
   border-bottom: 2px #fff solid;
 }
@@ -552,16 +578,19 @@ img {
   margin-bottom: 0;
 
   .mobile {
-    width: 400px;
+    width: 500px;
     height: 500px;
+    padding: 3rem 5rem;
   }
   .desktop {
     width: 700px;
     height: 500px;
+    padding: 3rem 6rem;
   }
   .slide-glass {
+    box-shadow: 0 10px 30px -15px #010310;
     margin: 0 auto;
-    background-color: rgba($color: #1c1f35, $alpha: 0.99);
+    background-color: rgba($color: #151728, $alpha: 0.99);
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -570,7 +599,7 @@ img {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    padding: 3rem 6rem;
+
     opacity: 0;
     justify-content: space-between;
     transition: all 250ms ease-in;
@@ -584,10 +613,10 @@ img {
       justify-content: space-between;
       align-items: center;
       color: $lightBlue;
-      font-size: 26px;
+      font-size: 24px;
       line-height: normal;
       .glass-subtitle {
-        font-size: 26px;
+        font-size: 24px;
       }
       .glass-date {
         font-size: 20px;
@@ -605,26 +634,29 @@ img {
     }
     .glass-project-type {
       color: $lightBlue;
-      font-size: 26px;
+      font-size: 20px;
       opacity: 0.3;
     }
   }
   .project-title {
     font-size: 22px;
-    letter-spacing: 2px;
+
     font-weight: 700;
     color: $lightBlue;
     width: 50%;
     margin: 0 auto;
     margin-bottom: 5px;
-    .middle {
-      color: #3fc1d9;
-      font-size: 11px;
-      vertical-align: middle;
-      margin-top: -2px;
-    }
+
     // background: linear-gradient(45deg, #f19872, #e86c9a);
   }
+}
+
+.project-image-overlay {
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
 }
 
 .project-image {
@@ -772,7 +804,7 @@ img {
         }
       }
       .glass-project-type {
-        font-size: 13px;
+        font-size: 10px;
       }
     }
   }

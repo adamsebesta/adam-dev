@@ -251,6 +251,7 @@ export default {
     }
   },
   mounted() {
+    this.windowWrapper();
     setTimeout(() => {
       this.openAnim();
     }, 500);
@@ -394,8 +395,7 @@ li {
   position: relative;
 }
 
-input,
-textarea {
+input {
   text-align: center !important;
   border: 1px solid rgb(56, 65, 92) !important;
   background-color: transparent !important;
@@ -403,6 +403,21 @@ textarea {
   font-size: 16px !important;
   padding: 30px !important;
   color: $purple !important;
+}
+
+textarea {
+  text-align: left !important;
+  border: 1px solid rgb(56, 65, 92) !important;
+  background-color: transparent !important;
+  letter-spacing: 2px !important;
+  font-size: 16px !important;
+  padding: 30px !important;
+  color: $purple !important;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  text-align: center !important;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -479,10 +494,11 @@ label {
   .form-background {
     margin-top: 0;
     .form {
-      width: 70%;
+      width: 80%;
       .logo-small {
         height: 70px;
         margin: 0 auto;
+        margin-bottom: 10px;
       }
     }
   }
@@ -495,8 +511,14 @@ label {
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 70px;
+    margin-top: 40px;
     font-size: 14px !important;
+  }
+
+  input,
+  textarea {
+    font-size: 12px !important;
+    padding: 20px !important;
   }
   .logo-small {
     height: 100px;

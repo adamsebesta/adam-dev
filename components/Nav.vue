@@ -2,7 +2,7 @@
   <nav class="nav-bar">
     <div class="nav-logo">
       <svg
-        v-if="windowWidth > 1025"
+        v-if="!mobile"
         version="1.1"
         @click="showMenu"
         id="corner-logo"
@@ -40,7 +40,7 @@
         <g></g>
       </svg>
       <i
-        v-if="windowWidth < 1025"
+        v-if="mobile"
         @click="showMenu"
         class="fa fa-bars nav-bars"
         aria-hidden="true"
@@ -88,7 +88,7 @@
         <a class="menu__item">Portfolio</a>
       </div>
     </div>
-    <div v-if="windowWidth < 425" class="nav-placeholder"></div>
+    <div v-if="mobile" class="nav-placeholder"></div>
   </nav>
 </template>
 
@@ -99,9 +99,7 @@ export default {
   data() {
     return {
       menuShown: false,
-      page: null,
-      windowWidth: 1200,
-      windowHeight: 1200
+      page: null
     };
   },
   computed: {
@@ -122,7 +120,7 @@ export default {
           }
         ]
       });
-      if (this.windowWidth > 1025) {
+      if (!this.mobile) {
         anime({
           targets: ["#corner-logo"],
           easing: "easeInOutSine",
@@ -151,7 +149,7 @@ export default {
         let that = this;
         anime.timeline({ loop: false }).add({
           targets: target,
-          opacity: 0.6,
+          opacity: 0.3,
           zIndex: [{ value: [1, 5], round: true }],
           x:
             this.windowWidth / 2 -
@@ -176,8 +174,6 @@ export default {
   },
   created() {},
   mounted() {
-    this.windowWidth = window.innerWidth;
-    this.windowHeight = window.innerHeight;
     this.page = window;
     setTimeout(() => {
       if (window.location.pathname != "/" || this.windowWidth > 1025) {
@@ -229,7 +225,6 @@ export default {
   color: $lightBlue;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
-  letter-spacing: -0.025em;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 900;
