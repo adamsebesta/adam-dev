@@ -301,7 +301,8 @@ export default {
       .about-desc {
         width: 575px;
         margin-bottom: 10px;
-        font-weight: 600;
+        font-weight: 400;
+        font-family: $bodyFont;
         span {
           // background-color: #82ab71;
           padding: 0px;
@@ -317,10 +318,12 @@ export default {
         ul li {
           padding-left: 2px;
           font-size: 16px !important;
+          font-family: $bodyFont;
+          font-weight: 400;
           .about-services-list-item {
             font-size: 8px;
             vertical-align: middle;
-            color: #3fc1d9;
+            color: $purple;
             margin-right: 3px;
           }
         }
@@ -353,7 +356,7 @@ export default {
       // margin-bottom: 20px;
       font-size: 32px;
       font-weight: 700;
-      color: $purple;
+      color: $lightBlue;
       margin: 10px 0;
       display: flex;
       align-items: center;
@@ -365,7 +368,7 @@ export default {
         width: 200px;
         height: 1px;
         margin-left: 20px;
-        background-color: rgba($color: $lightBlue, $alpha: 0.1);
+        background-color: rgba($color: $purple, $alpha: 0.3);
       }
     }
   }
@@ -479,6 +482,7 @@ export default {
           width: 100%;
           margin-bottom: 10px;
           font-weight: 600;
+
           span {
             // background-color: #82ab71;
             padding: 0px;
@@ -494,6 +498,7 @@ export default {
           ul li {
             padding-left: 2px;
             font-size: 12px !important;
+            font-family: $bodyFont;
             .about-services-list-item {
               font-size: 8px;
               vertical-align: middle;
@@ -530,7 +535,7 @@ export default {
           font-size: 16px;
           font-weight: 700;
           width: 100%;
-          color: $purple;
+          color: $lightBlue;
           margin: 10px 0;
           display: flex;
           align-items: center;
