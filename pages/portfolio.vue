@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <Nav />
-    <div class="container-main">
+    <div class="container-main" style="overflow: hidden">
       <InfoBox
         :text="
           mobile ? 'Tap image for more details' : 'Hover image for more details'
