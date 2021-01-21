@@ -3,7 +3,7 @@
     <div class="info-box-block"></div>
     <div class="info-box-text">
       <span>{{ text }}</span>
-      <p>click to dismiss</p>
+      <p>{{ (mobile ? "tap" : "click") + " to dismiss" }}</p>
     </div>
   </div>
 </template>
@@ -85,7 +85,7 @@ export default {
     position: relative;
     border-radius: 0px 5px 5px 0px;
     span {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 12px;
       word-spacing: 1px;
     }

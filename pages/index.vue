@@ -1,5 +1,15 @@
 <template>
   <div class="page" ref="page">
+    <div
+      @click="resetStars"
+      class="index-replay"
+      :style="{
+        'pointer-events': replay ? '' : 'none',
+        cursor: replay ? 'pointer' : 'none'
+      }"
+    >
+      <i class="fa fa-play" aria-hidden="true"></i>
+    </div>
     <div>
       <Banner v-if="!loading" />
       <Nav class="banner-nav" v-if="!loading" />
@@ -47,8 +57,6 @@
             <p class="logo-upper rise1">Adam Sebesta</p>
             <p class="logo-lower">Development</p>
           </div>
-
-          <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
         </div>
       </div>
       <svg id="sky">
@@ -122,8 +130,9 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      stars: [...Array(40)],
-      loading: true
+      stars: [...Array(50)],
+      loading: true,
+      replay: false
     };
   },
   methods: {
@@ -160,7 +169,7 @@ export default {
       anime.timeline({ loop: false }).add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(400),
+        delay: anime.stagger(300),
         y: [
           {
             duration: 2000,
@@ -175,6 +184,7 @@ export default {
         ],
         complete: function(anim) {
           that.spinLogo();
+          that.toggleReplay();
         }
       });
     },
@@ -221,31 +231,17 @@ export default {
       }
     },
     toggleFooter(event) {
-      if (event.deltaY < 0) {
-        anime({
-          targets: [".index-footer"],
-          easing: "easeInOutSine",
-          opacity: [
-            {
-              duration: 500,
-              value: 0
-            }
-          ]
-        });
-      }
+      anime({
+        targets: [".index-footer"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 500,
+            value: event.deltaY < 0 ? 0 : 1
+          }
+        ]
+      });
 
-      if (event.deltaY > 0) {
-        anime({
-          targets: [".index-footer"],
-          easing: "easeInOutSine",
-          opacity: [
-            {
-              duration: 500,
-              value: 1
-            }
-          ]
-        });
-      }
       // console.log("event");
       // this.showFooter;
 
@@ -288,23 +284,44 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: [0, 0.3]
+            value: 0.2
           }
         ]
       });
     },
-    showUpper() {
+    toggleReplay() {
       anime({
-        targets: [".star"],
+        targets: [".index-replay"],
         easing: "easeInOutSine",
         opacity: [
           {
-            duration: 1000,
-            value: [0, 0.3]
+            duration: 400,
+            value: this.replay ? 0 : 1
           }
-        ]
+        ],
+        cursor: "pointer"
       });
-    }
+      this.replay = !this.replay;
+    },
+    resetStars() {
+      this.toggleReplay();
+      let that = this;
+      let stars = document.querySelectorAll(".star");
+      stars.forEach(s => {
+        anime.timeline({ loop: false }).add({
+          targets: s,
+          easing: "easeInOutSine",
+          y: this.getRandomY(),
+          x: this.getRandomX(),
+          opacity: 0.2,
+          duration: 1500
+        });
+      });
+      setTimeout(() => {
+        this.rippleStars();
+      }, 1500);
+    },
+    shuffleStars() {}
   },
   created() {},
   mounted() {
@@ -321,7 +338,7 @@ export default {
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 1200);
+    }, 3200);
 
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
@@ -348,6 +365,16 @@ export default {
 }
 .index-footer {
   opacity: 0;
+}
+.index-replay {
+  position: absolute;
+  bottom: 5%;
+  right: 2.75%;
+  color: $lightBlue;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  z-index: 1001;
 }
 
 .loading-anim {
@@ -502,7 +529,7 @@ export default {
     cursor: pointer;
     border-radius: 4px;
     padding: 10px 20px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;
@@ -694,6 +721,14 @@ export default {
     height: 100%;
     width: 117%;
     top: 0;
+  }
+  .index-replay {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    color: $lightBlue;
+    font-size: 12px;
+    z-index: 1001;
   }
 }
 </style>
