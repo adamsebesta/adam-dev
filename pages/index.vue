@@ -284,7 +284,7 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.2
+            value: 0.15
           }
         ]
       });
@@ -369,7 +369,7 @@ export default {
 .index-replay {
   position: absolute;
   bottom: 5%;
-  right: 2.75%;
+  right: 110px;
   color: $lightBlue;
   font-size: 20px;
   font-weight: 600;
@@ -577,7 +577,7 @@ export default {
 //   }
 // }
 
-@media only screen and (max-width: 1605px) {
+@media only screen and (max-width: 1450px) {
   .main-left {
     .heading {
       font-size: 34px;

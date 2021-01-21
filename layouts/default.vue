@@ -231,7 +231,7 @@ html {
   text-align: center;
 }
 .banner-nav {
-  padding: 50px 30px !important;
+  padding: 50px 100px !important;
 }
 
 .purple {

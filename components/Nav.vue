@@ -191,7 +191,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 30px;
+  padding: 30px 60px;
   width: 100%;
   .nav-logo {
     width: 40px;

@@ -29,16 +29,18 @@ export default {};
 <style lang="scss" scoped>
 .footer-main {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   bottom: 0;
   height: 30px;
   width: 100%;
   z-index: 1;
-  padding: 0 30px;
+  padding: 0px 100px;
+  margin-bottom: 10px;
 }
 
 .copyright {
-  position: absolute;
-  left: 2%;
   .copyright-info {
     font-size: 12px;
     color: $lightBlue;
@@ -46,8 +48,8 @@ export default {};
   }
 }
 .social-wrapper {
-  position: absolute;
-  right: 2%;
+  // position: absolute;
+  // right: 2%;
   display: inline-flex;
   margin: 0;
   padding: 0;
