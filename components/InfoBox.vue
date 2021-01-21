@@ -85,7 +85,7 @@ export default {
     position: relative;
     border-radius: 0px 5px 5px 0px;
     span {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 12px;
       word-spacing: 1px;
     }

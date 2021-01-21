@@ -5,6 +5,16 @@
       <Nav class="banner-nav" v-if="!loading" />
     </div>
     <div class="container-main">
+      <div
+        @click="resetStars"
+        class="index-replay"
+        :style="{
+          'pointer-events': replay ? '' : 'none',
+          cursor: replay ? 'pointer' : 'none'
+        }"
+      >
+        <i class="fa fa-play" aria-hidden="true"></i>
+      </div>
       <div v-if="loading" class="loading-anim">
         <div class="">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
@@ -47,8 +57,6 @@
             <p class="logo-upper rise1">Adam Sebesta</p>
             <p class="logo-lower">Development</p>
           </div>
-
-          <!-- <h1 class='title-subheading'>Test Text may go lore here....</h1> -->
         </div>
       </div>
       <svg id="sky">
@@ -123,7 +131,8 @@ export default {
       description: "Web and Mobile App Development",
       image: "/meta.png",
       stars: [...Array(50)],
-      loading: true
+      loading: true,
+      replay: false
     };
   },
   methods: {
@@ -160,7 +169,7 @@ export default {
       anime.timeline({ loop: false }).add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(400),
+        delay: anime.stagger(300),
         y: [
           {
             duration: 2000,
@@ -175,6 +184,7 @@ export default {
         ],
         complete: function(anim) {
           that.spinLogo();
+          that.toggleReplay();
         }
       });
     },
@@ -221,31 +231,17 @@ export default {
       }
     },
     toggleFooter(event) {
-      if (event.deltaY < 0) {
-        anime({
-          targets: [".index-footer"],
-          easing: "easeInOutSine",
-          opacity: [
-            {
-              duration: 500,
-              value: 0
-            }
-          ]
-        });
-      }
+      anime({
+        targets: [".index-footer"],
+        easing: "easeInOutSine",
+        opacity: [
+          {
+            duration: 500,
+            value: event.deltaY < 0 ? 0 : 1
+          }
+        ]
+      });
 
-      if (event.deltaY > 0) {
-        anime({
-          targets: [".index-footer"],
-          easing: "easeInOutSine",
-          opacity: [
-            {
-              duration: 500,
-              value: 1
-            }
-          ]
-        });
-      }
       // console.log("event");
       // this.showFooter;
 
@@ -288,23 +284,44 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: [0, 0.4]
+            value: 0.5
           }
         ]
       });
     },
-    showUpper() {
+    toggleReplay() {
       anime({
-        targets: [".star"],
+        targets: [".index-replay"],
         easing: "easeInOutSine",
         opacity: [
           {
-            duration: 1000,
-            value: [0, 0.3]
+            duration: 100,
+            value: this.replay ? 0 : 1
           }
-        ]
+        ],
+        cursor: "pointer"
       });
-    }
+      this.replay = !this.replay;
+    },
+    resetStars() {
+      this.toggleReplay();
+      let that = this;
+      let stars = document.querySelectorAll(".star");
+      stars.forEach(s => {
+        anime.timeline({ loop: false }).add({
+          targets: s,
+          easing: "easeInOutSine",
+          y: this.getRandomY(),
+          x: this.getRandomX(),
+          opacity: 0.2,
+          duration: 1500
+        });
+      });
+      setTimeout(() => {
+        this.rippleStars();
+      }, 1500);
+    },
+    shuffleStars() {}
   },
   created() {},
   mounted() {
@@ -348,6 +365,16 @@ export default {
 }
 .index-footer {
   opacity: 0;
+}
+.index-replay {
+  position: absolute;
+  bottom: 5%;
+  right: 2.75%;
+  color: $lightBlue;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  z-index: 10;
 }
 
 .loading-anim {

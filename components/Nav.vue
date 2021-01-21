@@ -227,8 +227,8 @@ export default {
   line-height: 1.25;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
-  font-weight: 900;
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 18px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -241,7 +241,7 @@ export default {
 
 .menu-wrapper {
   padding: 1px 1px 4px 1px;
-  margin-left: 3rem;
+  margin-left: 2.5rem;
   &.active {
     // width: 100%;
     // height: 100%;

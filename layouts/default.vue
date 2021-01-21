@@ -163,7 +163,9 @@ html {
 
   &.popover {
     $color: #f9f9f9;
-
+    &:hover .slide-glass {
+      opacity: 1;
+    }
     .popover-inner {
       background: $color;
       color: $background;
