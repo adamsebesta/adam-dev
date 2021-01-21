@@ -1,20 +1,20 @@
 <template>
   <div class="page" ref="page">
+    <div
+      @click="resetStars"
+      class="index-replay"
+      :style="{
+        'pointer-events': replay ? '' : 'none',
+        cursor: replay ? 'pointer' : 'none'
+      }"
+    >
+      <i class="fa fa-play" aria-hidden="true"></i>
+    </div>
     <div>
       <Banner v-if="!loading" />
       <Nav class="banner-nav" v-if="!loading" />
     </div>
     <div class="container-main">
-      <div
-        @click="resetStars"
-        class="index-replay"
-        :style="{
-          'pointer-events': replay ? '' : 'none',
-          cursor: replay ? 'pointer' : 'none'
-        }"
-      >
-        <i class="fa fa-play" aria-hidden="true"></i>
-      </div>
       <div v-if="loading" class="loading-anim">
         <div class="">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
@@ -284,7 +284,7 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.5
+            value: 0.2
           }
         ]
       });
@@ -295,7 +295,7 @@ export default {
         easing: "easeInOutSine",
         opacity: [
           {
-            duration: 100,
+            duration: 400,
             value: this.replay ? 0 : 1
           }
         ],
@@ -338,7 +338,7 @@ export default {
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 1200);
+    }, 3200);
 
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
@@ -374,7 +374,7 @@ export default {
   font-size: 20px;
   font-weight: 600;
   opacity: 0;
-  z-index: 10;
+  z-index: 1001;
 }
 
 .loading-anim {
@@ -721,6 +721,14 @@ export default {
     height: 100%;
     width: 117%;
     top: 0;
+  }
+  .index-replay {
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    color: $lightBlue;
+    font-size: 12px;
+    z-index: 1001;
   }
 }
 </style>
