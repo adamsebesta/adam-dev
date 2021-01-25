@@ -5,7 +5,7 @@
       class="index-replay"
       :style="{
         'pointer-events': replay ? '' : 'none',
-        cursor: replay ? 'pointer' : 'none'
+        cursor: replay ? 'pointer' : 'none',
       }"
     >
       <i class="fa fa-play" aria-hidden="true"></i>
@@ -77,9 +77,9 @@
           xml:space="preserve"
         >
           <g>
-            <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	" />
-            <polygon style="fill:#556080;" points="29,58 55,45 55,13 29,26 	" />
-            <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	" />
+            <polygon style="fill: #434c6d" points="29,58 3,45 3,13 29,26 	" />
+            <polygon style="fill: #556080" points="29,58 55,45 55,13 29,26 	" />
+            <polygon style="fill: #7383bf" points="3,13 28,0 55,13 29,26 	" />
           </g>
           <g></g>
           <g></g>
@@ -117,11 +117,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   transition: "page",
@@ -132,7 +132,7 @@ export default {
       image: "/meta.png",
       stars: [...Array(50)],
       loading: true,
-      replay: false
+      replay: false,
     };
   },
   methods: {
@@ -159,9 +159,9 @@ export default {
         opacity: [
           {
             duration: 2400,
-            value: ["0", "1"]
-          }
-        ]
+            value: ["0", "1"],
+          },
+        ],
       });
     },
     rippleStars() {
@@ -169,23 +169,23 @@ export default {
       anime.timeline({ loop: false }).add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(200),
+        delay: anime.stagger(300),
         y: [
           {
             duration: 2000,
-            value: "5px"
-          }
+            value: "5px",
+          },
         ],
         opacity: [
           {
             duration: 2500,
-            value: "0.0"
-          }
+            value: "0.0",
+          },
         ],
-        complete: function(anim) {
+        complete: function (anim) {
           that.spinLogo();
           that.toggleReplay();
-        }
+        },
       });
     },
     spinLogo() {
@@ -194,10 +194,10 @@ export default {
         rotate: [
           {
             duration: 2000,
-            value: 360
-          }
+            value: 360,
+          },
         ],
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
     },
     initLogo() {
@@ -208,9 +208,9 @@ export default {
           opacity: [
             {
               duration: 1000,
-              value: [0, 1]
-            }
-          ]
+              value: [0, 1],
+            },
+          ],
         });
 
         var textWrapper1 = document.querySelector(".rise1");
@@ -226,7 +226,7 @@ export default {
           opacity: [0, 1],
           easing: "easeOutExpo",
           duration: 1400,
-          delay: (el, i) => 1000 + 30 * i
+          delay: (el, i) => 1000 + 30 * i,
         });
       }
     },
@@ -237,9 +237,9 @@ export default {
         opacity: [
           {
             duration: 500,
-            value: event.deltaY < 0 ? 0 : 1
-          }
-        ]
+            value: event.deltaY < 0 ? 0 : 1,
+          },
+        ],
       });
 
       // console.log("event");
@@ -272,9 +272,9 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: [1, 0]
-          }
-        ]
+            value: [1, 0],
+          },
+        ],
       });
     },
     showStars() {
@@ -284,9 +284,9 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.15
-          }
-        ]
+            value: 0.3,
+          },
+        ],
       });
     },
     toggleReplay() {
@@ -296,10 +296,10 @@ export default {
         opacity: [
           {
             duration: 400,
-            value: this.replay ? 0 : 1
-          }
+            value: this.replay ? 0 : 1,
+          },
         ],
-        cursor: "pointer"
+        cursor: "pointer",
       });
       this.replay = !this.replay;
     },
@@ -307,21 +307,21 @@ export default {
       this.toggleReplay();
       let that = this;
       let stars = document.querySelectorAll(".star");
-      stars.forEach(s => {
+      stars.forEach((s) => {
         anime.timeline({ loop: false }).add({
           targets: s,
           easing: "easeInOutSine",
           y: this.getRandomY(),
           x: this.getRandomX(),
           opacity: 0.2,
-          duration: 1500
+          duration: 1500,
         });
       });
       setTimeout(() => {
         this.rippleStars();
       }, 1500);
     },
-    shuffleStars() {}
+    shuffleStars() {},
   },
   created() {},
   mounted() {
@@ -346,7 +346,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("wheel", this.toggleFooter);
-  }
+  },
 };
 </script>
 
@@ -445,7 +445,7 @@ export default {
     line-height: 1.25;
     letter-spacing: 1px;
     text-indent: -0.025em;
-    font-weight: 700;
+    font-weight: 600;
     opacity: 0;
   }
   .logo-lower {
@@ -454,8 +454,9 @@ export default {
     line-height: 1.5;
     letter-spacing: 1px;
     text-transform: uppercase;
+    font-family: $bodyFont;
     text-indent: -0.025em;
-    font-weight: 700;
+    font-weight: 600;
     margin-left: 16%;
     margin-top: -8px;
   }
@@ -475,12 +476,15 @@ export default {
 .main-right {
   width: 50%;
   margin: 0 auto;
+  // background-color: rgb(30 54 119 / 100%);
+  // border-radius: 5px;
   z-index: 1;
   justify-content: flex-end;
   margin-right: 5%;
   align-items: center;
   // flex-direction: column;
   display: flex;
+  flex-direction: column;
 }
 
 .center-content {
