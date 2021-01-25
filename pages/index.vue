@@ -169,7 +169,7 @@ export default {
       anime.timeline({ loop: false }).add({
         targets: ["#sky .star"],
         easing: "easeInOutSine",
-        delay: anime.stagger(300),
+        delay: anime.stagger(200),
         y: [
           {
             duration: 2000,
@@ -338,7 +338,7 @@ export default {
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 3200);
+    }, 1200);
 
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
@@ -608,10 +608,42 @@ export default {
   }
 }
 
-// @media only screen and (max-width: 1330px) {
-// }
+@media only screen and (max-width: 1130px) {
+  .main-left {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    .heading {
+      font-size: 26px;
+      line-height: 27px;
+      width: 60%;
+      min-width: 187px;
+    }
+    .subheading {
+      p {
+        font-size: 12px;
+        width: 75%;
 
-@media only screen and (max-width: 1125px) {
+        font-weight: 600;
+        line-height: 22px;
+        min-width: unset;
+      }
+    }
+  }
+
+  .logo {
+    min-width: 160px;
+    .logo-upper {
+      font-size: 24px;
+    }
+    .logo-lower {
+      font-size: 16px;
+      // margin-left: 5%;
+    }
+  }
+}
+@media only screen and (max-width: 450px) {
   .center-content {
     display: flex;
     flex-direction: column-reverse;

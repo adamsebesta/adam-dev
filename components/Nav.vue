@@ -155,8 +155,8 @@ export default {
             this.windowWidth / 2 -
             this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
           y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.windowWidth / 7,
-          height: this.windowHeight / 7,
+          width: this.mobile ? this.windowWidth / 7 : this.windowWidth / 10,
+          height: this.mobile ? this.windowHeight / 7 : this.windowHeight / 10,
           easing: "easeOutExpo",
           duration: 2000
         });
@@ -191,7 +191,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 60px;
+  padding: 30px 100px;
   width: 100%;
   .nav-logo {
     width: 40px;
@@ -294,6 +294,7 @@ export default {
     }
   }
   .nav-bar {
+    padding: 10px 30px;
     .nav-logo {
       margin-right: 0;
     }
