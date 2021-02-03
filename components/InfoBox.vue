@@ -16,7 +16,7 @@ export default {
     return {};
   },
   props: {
-    text: String
+    text: String,
   },
   methods: {
     showInfoBox() {
@@ -25,11 +25,11 @@ export default {
         translateX: [
           {
             duration: 1000,
-            value: ["-100%", 0]
-          }
+            value: ["-100%", 0],
+          },
         ],
         easing: "easeOutExpo",
-        delay: 1000
+        delay: 1000,
       });
     },
     hideInfoBox() {
@@ -38,19 +38,19 @@ export default {
         translateX: [
           {
             duration: 400,
-            value: ["-100%"]
-          }
+            value: ["-100%"],
+          },
         ],
-        easing: "easeInExpo"
+        easing: "easeInExpo",
       });
-    }
+    },
   },
   mounted() {
     this.showInfoBox();
     setTimeout(() => {
       this.hideInfoBox();
     }, 60000);
-  }
+  },
 };
 </script>
 

@@ -3,11 +3,37 @@
     <Nav />
     <div class="container-main" style="overflow: hidden">
       <InfoBox
+        v-if="mobile"
         :text="
           mobile ? 'Tap image for more details' : 'Hover image for more details'
         "
       />
-      <div @click="handleSwiper" v-if="showBounce" class="arrow"></div>
+      <!-- <div @click="handleSwiper" v-if="showBounce" class="arrow"></div> -->
+      <div class="grab-container">
+        <div
+          class="cursor-container"
+          ref="cursorContainer"
+          :style="{
+            transform: 'translateY(' + calcYTrans + '%)'
+          }"
+        >
+          <div class="cursor">
+            <p class="number grabui-current">
+              {{ mainSwiperIndex + 1 }}
+            </p>
+            <div class="grabui-burg">
+              <div class="burg-trail one"></div>
+            </div>
+            <p class="number grabui-total">
+              {{ totalSlides }}
+            </p>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-trail timeline-trail-top"></div>
+          <div class="timeline-trail timeline-trail-bot"></div>
+        </div>
+      </div>
       <div class="portfolio-background">
         <div class="project-wrapper">
           <swiper
@@ -20,31 +46,44 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
-                  <div class="project-image">
-                    <!-- <div class="project-image-overlay">
-                      <div class="project-image-overlay-title-wrapper">
-                        <div>
-                          <p class="overlay-featured">Featured Project</p>
-                          <p class="overlay-title">Muriel Revisa Designs</p>
-                          <p class="overlay-subtitle  main-depth">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Eaque vel nostrum perspiciatis quaerat?
-                            Facilis, rerum ea? Sapiente deserunt error commodi
-                            temporibus nisi aliquid quam saepe, quod architecto
-                            ipsum, dicta sed?
-                          </p>
-                          <div class="overlay-stack">
-                            <p></p>
-                            <p>Nativescript-Vue</p>
-                            <p>Firebase</p>
-                          </div>
-                        </div>
-                        <p class="overlay-date">
-                          (Coming Soon)
-                        </p>
+                  <div class="project-image caro1">
+                    <div class="project-image-title-overlay">
+                      <div class="title">MR Designs</div>
+                      <div class="subtitle">Mobile App</div>
+                    </div>
+                    <div @click="infoClickHandler(1)" class="project-info-div">
+                      <div :style="{ overflow: 'hidden' }">
+                        <h4>Info</h4>
                       </div>
-                    </div> -->
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay" v-if="!mobile">
+                        <div class="project-image-overlay-title-wrapper">
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">Muriel Revisa Designs</p>
+                            <p class="overlay-subtitle  main-depth">
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit. Eaque vel nostrum perspiciatis
+                              quaerat? Facilis, rerum ea? Sapiente deserunt
+                              error commodi temporibus nisi aliquid quam saepe,
+                              quod architecto ipsum, dicta sed?
+                            </p>
+                            <div class="overlay-stack">
+                              <p>Nativescript-Vue</p>
+                              <p>Firebase</p>
+                              <p></p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">
+                            (Coming Soon)
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <div
+                      v-if="mobile"
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
                       :style="
@@ -82,8 +121,44 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel2" v-bind="settings">
-                  <div class="project-image mac">
+                  <div class="project-image mac caro2">
+                    <div class="project-image-title-overlay">
+                      <div class="title">Berlin Bytes</div>
+                      <div class="subtitle">Web App</div>
+                    </div>
+                    <div @click="infoClickHandler(2)" class="project-info-div">
+                      <div :style="{ overflow: 'hidden' }">
+                        <h4>Info</h4>
+                      </div>
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay" v-if="!mobile">
+                        <div class="project-image-overlay-title-wrapper">
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">Berlin Bytes</p>
+                            <p class="overlay-subtitle  main-depth">
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit. Eaque vel nostrum perspiciatis
+                              quaerat? Facilis, rerum ea? Sapiente deserunt
+                              error commodi temporibus nisi aliquid quam saepe,
+                              quod architecto ipsum, dicta sed?
+                            </p>
+                            <div class="overlay-stack">
+                              <p>Vue</p>
+                              <p>Postgres</p>
+                              <p>ZingChart</p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">
+                            October 2020
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <div
+                      v-if="mobile"
                       @click="glassClickHandler('1')"
                       class="slide-glass desktop"
                       :style="
@@ -135,8 +210,44 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel1" v-bind="settings">
-                  <div class="project-image">
+                  <div class="project-image caro3">
+                    <div class="project-image-title-overlay">
+                      <div class="title">Berlin Bytes</div>
+                      <div class="subtitle">Landing Page</div>
+                    </div>
+                    <div @click="infoClickHandler(3)" class="project-info-div">
+                      <div :style="{ overflow: 'hidden' }">
+                        <h4>Info</h4>
+                      </div>
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay" v-if="!mobile">
+                        <div class="project-image-overlay-title-wrapper">
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">Berlin Bytes</p>
+                            <p class="overlay-subtitle  main-depth">
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit. Eaque vel nostrum perspiciatis
+                              quaerat? Facilis, rerum ea? Sapiente deserunt
+                              error commodi temporibus nisi aliquid quam saepe,
+                              quod architecto ipsum, dicta sed?
+                            </p>
+                            <div class="overlay-stack">
+                              <p>HTML</p>
+                              <p>CSS</p>
+                              <p>Javascript</p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">
+                            September 2020
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <div
+                      v-if="mobile"
                       @click="glassClickHandler('2')"
                       class="slide-glass desktop"
                       :style="
@@ -180,8 +291,44 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
-                  <div class="project-image mac">
+                  <div class="project-image mac caro4">
+                    <div class="project-image-title-overlay">
+                      <div class="title">Streamhub</div>
+                      <div class="subtitle">Web App</div>
+                    </div>
+                    <div @click="infoClickHandler(4)" class="project-info-div">
+                      <div :style="{ overflow: 'hidden' }">
+                        <h4>Info</h4>
+                      </div>
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay" v-if="!mobile">
+                        <div class="project-image-overlay-title-wrapper">
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">Streamhub</p>
+                            <p class="overlay-subtitle  main-depth">
+                              Lorem ipsum dolor sit amet, consectetur
+                              adipisicing elit. Eaque vel nostrum perspiciatis
+                              quaerat? Facilis, rerum ea? Sapiente deserunt
+                              error commodi temporibus nisi aliquid quam saepe,
+                              quod architecto ipsum, dicta sed?
+                            </p>
+                            <div class="overlay-stack">
+                              <p>Ruby</p>
+                              <p>Rails</p>
+                              <p>Postgres</p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">
+                            July 2020
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <div
+                      v-if="mobile"
                       @click="glassClickHandler('3')"
                       class="slide-glass desktop"
                       :style="
@@ -240,7 +387,7 @@
           </swiper>
         </div>
       </div>
-      <div class="background-center"></div>
+      <div class="background-center" :style="{ width: '70%' }"></div>
     </div>
     <Footer />
   </div>
@@ -248,7 +395,7 @@
 
 <script>
 import Nav from "../components/Nav";
-import { Swiper, SwiperSlide, directive } from "vue-awesome-swiper";
+import { Swiper, SwiperSlide, directive, EffectFade } from "vue-awesome-swiper";
 import anime from "animejs";
 
 export default {
@@ -278,20 +425,28 @@ export default {
       image: "~/static/meta.png",
       settings: {
         dots: false,
-        arrows: true,
+        arrows: false,
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
-        speed: 300,
+        speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1
       },
       swiperOptionv: {
         direction: "vertical",
+        // effect: "coverflow",
+        // coverflowEffect: {
+        //   rotate: 50,
+        //   stretch: 0,
+        //   depth: 100,
+        //   modifier: 1,
+        //   slideShadows: true
+        // },
         slidesPerView: 1,
         spaceBetween: 30,
         clickable: false,
-        effect: "fade",
+        speed: 400,
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
@@ -308,6 +463,7 @@ export default {
         carousel2: 0
       },
       mainSwiperIndex: 0,
+      totalSlides: null,
       glassClicked: { 0: null, 1: null, 2: null, 3: null }
     };
   },
@@ -316,6 +472,11 @@ export default {
       if (this.$refs.mySwiper) {
         return this.$refs.mySwiper.$swiper;
       }
+    },
+    calcYTrans() {
+      return (
+        (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
+      );
     }
   },
   methods: {
@@ -329,6 +490,7 @@ export default {
       if (this.swiper.activeIndex == this.swiper.slides.length - 1) {
         this.showBounce = false;
       }
+      this.mainSwiperIndex = this.swiper.activeIndex;
     },
     removeTooltipsOnScroll() {
       // let tooltip = document.querySelector(".v-tooltip-open");
@@ -362,10 +524,59 @@ export default {
     },
     glassClickHandler(key) {
       this.glassClicked[key] = !this.glassClicked[key];
+    },
+    infoClickHandler(key) {
+      let targetClass = ".caro" + key;
+      anime({
+        targets: [`${targetClass} .project-info-div div`],
+        translateX: [
+          {
+            duration: 1000,
+            value: "100px"
+          }
+        ],
+        easing: "easeOutExpo",
+        delay: 100
+      });
+      anime({
+        targets: [`${targetClass} .trail`],
+        translateX: [
+          {
+            duration: 1000,
+            value: ["75%", "100%"]
+          }
+        ],
+        translateY: ["-10px", "-10px"],
+        easing: "easeOutExpo"
+      });
+
+      anime({
+        targets: [`${targetClass} .title`, `${targetClass} .subtitle`],
+        translateY: [
+          {
+            duration: 1000,
+            value: "-120px"
+          }
+        ],
+        easing: "easeOutExpo"
+      });
+      anime({
+        targets: `${targetClass} .project-image-overlay`,
+        translateY: [
+          {
+            duration: 1000,
+            value: ["150%", "0%"]
+          }
+        ],
+        easing: "easeOutExpo",
+        delay: 750
+      });
     }
   },
   created() {},
-  mounted() {}
+  mounted() {
+    this.totalSlides = this.swiper.slides.length;
+  }
 };
 </script>
 
@@ -392,7 +603,7 @@ img {
   font-size: 14px;
   bottom: 5%;
   left: 48%;
-  color: $lightBlue;
+
   z-index: 10;
 }
 
@@ -510,10 +721,10 @@ img {
   -webkit-transform: translateX(-15px) rotate(45deg);
   border-left: none;
   border-top: none;
-  border-right: 2px #fff solid;
+  border-right: 2px #fff5 solid;
   z-index: 10000;
   cursor: pointer;
-  border-bottom: 2px #fff solid;
+  border-bottom: 2px #fff5 solid;
 }
 
 .arrow:before {
@@ -524,8 +735,8 @@ img {
   margin: -10px 0 0 -10px;
   border-left: none;
   border-top: none;
-  border-right: 1px #fff solid;
-  border-bottom: 1px #fff solid;
+  border-right: 1px #fff5 solid;
+  border-bottom: 1px #fff5 solid;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-name: arrow;
@@ -540,9 +751,100 @@ img {
   }
 }
 
+.grab-container {
+  height: 60%;
+  width: 90px;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  z-index: 100;
+  // cursor: move;
+  // cursor: -webkit-grab;
+  // cursor: grab;
+  // opacity: 0;
+  // visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  .timeline {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 50%;
+    top: 0;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    .timeline-trail {
+      width: 100%;
+      position: absolute;
+      height: 100%;
+      background-color: #fff2;
+    }
+  }
+  .cursor-container {
+    width: 100%;
+    height: 88px;
+    position: relative;
+    background-color: $background;
+    z-index: 1;
+    transition: all 500ms ease-in-out;
+    .cursor {
+      width: 100%;
+      height: 18px;
+      text-align: center;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      position: absolute;
+      margin: auto;
+      bottom: 0;
+      top: 0;
+      .grabui-current {
+        transform-origin: 50% 50% 0px;
+        transform: matrix(1, 0, 0, 1, 15, -15);
+      }
+      .grabui-total {
+        transform-origin: 50% 50% 0px;
+        transform: matrix(1, 0, 0, 1, -15, 15);
+      }
+      .grabui-burg {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width: 16px;
+        height: 1px;
+        transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, 0, 0);
+
+        .burg-trail {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: #fff6;
+        }
+      }
+      .number {
+        width: 32px;
+        height: 20px;
+        color: #fff;
+        -webkit-transition: color 0.25s;
+        transition: color 0.25s;
+        font-size: 15px;
+        line-height: 20px;
+        letter-spacing: 1px;
+        color: $lightBlue;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
 .swiper-container {
   background-color: transparent !important;
   z-index: 1;
+}
+.swiper-wrapper {
+  transition: all 500ms ease-in-out !important;
 }
 
 .slide-wrapper {
@@ -580,6 +882,7 @@ img {
     opacity: 0;
     justify-content: space-between;
     transition: all 250ms ease-in;
+    transition-delay: 0.1s;
     &:hover {
       opacity: 1;
       // box-shadow: -5px 5px #0f0f17;
@@ -633,44 +936,97 @@ img {
     // background: linear-gradient(45deg, #f19872, #e86c9a);
   }
 }
+.project-image-title-overlay {
+  color: $lightBlue;
+  width: 540px;
+  cursor: default;
+  pointer-events: none;
+  position: absolute;
+  top: 40%;
+  left: 8%;
+  text-align: left;
+  overflow: hidden;
+  z-index: 1;
+  .title {
+    font-size: 60px;
+    font-weight: 700;
+  }
+  .subtitle {
+    color: $darkerBlue;
+    font-weight: 700;
+  }
+}
+.project-info-div {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 8%;
+  transform: rotate(270deg);
+  overflow: hidden;
+  width: 100px;
+  cursor: pointer;
+  h4 {
+    padding: 3px 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: $lightBlue;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .trail {
+    width: 100px;
+    height: 1px;
+    opacity: 0.4;
+    background-color: #fff8;
+    vertical-align: middle;
+    transform: translate(75%, -10px);
+    // transform-origin: 100% 50% 0px;
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
 
-// .project-image-overlay {
-//   width: 40%;
-//   height: 40%;
-//   position: absolute;
-//   top: 40%;
-//   left: 50%;
-//   text-align: right;
-//   .overlay-featured {
-//     color: $purple;
-//     font-size: 12px;
-//     margin-bottom: 10px;
-//   }
-//   .overlay-title {
-//     color: $lightBlue;
-//     margin-bottom: 20px;
-//     font-size: 18px;
-//   }
-//   .overlay-subtitle {
-//     color: $darkerBlue;
-//     font-size: 12px;
-//     font-weight: 400;
-//   }
-//   .overlay-stack {
-//     display: flex;
-//     width: 60%;
-//     margin-left: auto;
-//     color: $darkerBlue;
-//     justify-content: space-between;
-//     margin-top: 20px;
-//     font-size: 12px;
-//   }
-//   .overlay-date {
-//     margin-top: 10px;
-//     color: $darkerBlue;
-//     font-size: 12px;
-//   }
-// }
+.project-image-overlay-wrapper {
+  overflow: hidden;
+  .project-image-overlay {
+    transform: translateY(350%);
+    z-index: 1;
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    text-align: left;
+    .overlay-featured {
+      color: $purple;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .overlay-title {
+      color: $lightBlue;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .overlay-subtitle {
+      color: $darkerBlue;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .overlay-stack {
+      display: flex;
+      width: 60%;
+      margin-right: auto;
+      color: $darkerBlue;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .overlay-date {
+      margin-top: 10px;
+      color: $darkerBlue;
+      font-size: 16px;
+    }
+  }
+}
 
 .project-image {
   position: relative;
@@ -681,6 +1037,8 @@ img {
     object-fit: contain;
     padding-bottom: 10px;
     outline: none;
+    filter: brightness(0.7);
+    z-index: -1;
   }
   &:focus {
     outline: none;

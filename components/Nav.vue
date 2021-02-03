@@ -68,6 +68,15 @@
       </div>
 
       <div
+        :class="
+          'menu-wrapper ' +
+            (page && page.location.pathname == '/portfolio' ? ' active' : '')
+        "
+        @click="navChange('/portfolio')"
+      >
+        <a class="menu__item">Portfolio</a>
+      </div>
+      <div
         id="contact"
         :class="
           'menu-wrapper ' +
@@ -76,16 +85,6 @@
         @click="navChange('/contact')"
       >
         <a class="menu__item">Contact</a>
-      </div>
-
-      <div
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/portfolio' ? ' active' : '')
-        "
-        @click="navChange('/portfolio')"
-      >
-        <a class="menu__item">Portfolio</a>
       </div>
     </div>
     <div v-if="mobile" class="nav-placeholder"></div>
@@ -228,9 +227,10 @@ export default {
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
+  letter-spacing: 0.5px;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
@@ -265,7 +265,7 @@ export default {
   z-index: 10;
 }
 
-@media only screen and (max-width: 1630px) {
+@media only screen and (max-width: 1130px) {
   .menu__item {
     font-size: 14px;
   }

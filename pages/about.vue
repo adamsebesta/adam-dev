@@ -167,9 +167,9 @@ export default {
       ],
       services: [
         "Web and Mobile Builds",
+        "Shopify Implementations",
         "Architecture Consultation",
-        "Live App Maintenance",
-        "Existing App Refactoring"
+        "Live App Maintenance"
       ]
     };
   },

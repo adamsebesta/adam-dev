@@ -5,7 +5,7 @@
       class="index-replay"
       :style="{
         'pointer-events': replay ? '' : 'none',
-        cursor: replay ? 'pointer' : 'none',
+        cursor: replay ? 'pointer' : 'none'
       }"
     >
       <i class="fa fa-play" aria-hidden="true"></i>
@@ -117,11 +117,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description,
+          content: this.description
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image },
-      ],
+        { hid: "og:image", property: "og:image", content: this.image }
+      ]
     };
   },
   transition: "page",
@@ -132,7 +132,7 @@ export default {
       image: "/meta.png",
       stars: [...Array(50)],
       loading: true,
-      replay: false,
+      replay: false
     };
   },
   methods: {
@@ -159,9 +159,9 @@ export default {
         opacity: [
           {
             duration: 2400,
-            value: ["0", "1"],
-          },
-        ],
+            value: ["0", "1"]
+          }
+        ]
       });
     },
     rippleStars() {
@@ -173,19 +173,19 @@ export default {
         y: [
           {
             duration: 2000,
-            value: "5px",
-          },
+            value: "5px"
+          }
         ],
         opacity: [
           {
             duration: 2500,
-            value: "0.0",
-          },
+            value: "0.0"
+          }
         ],
-        complete: function (anim) {
+        complete: function(anim) {
           that.spinLogo();
           that.toggleReplay();
-        },
+        }
       });
     },
     spinLogo() {
@@ -194,10 +194,10 @@ export default {
         rotate: [
           {
             duration: 2000,
-            value: 360,
-          },
+            value: 360
+          }
         ],
-        easing: "easeOutExpo",
+        easing: "easeOutExpo"
       });
     },
     initLogo() {
@@ -208,9 +208,9 @@ export default {
           opacity: [
             {
               duration: 1000,
-              value: [0, 1],
-            },
-          ],
+              value: [0, 1]
+            }
+          ]
         });
 
         var textWrapper1 = document.querySelector(".rise1");
@@ -226,7 +226,7 @@ export default {
           opacity: [0, 1],
           easing: "easeOutExpo",
           duration: 1400,
-          delay: (el, i) => 1000 + 30 * i,
+          delay: (el, i) => 1000 + 30 * i
         });
       }
     },
@@ -237,9 +237,9 @@ export default {
         opacity: [
           {
             duration: 500,
-            value: event.deltaY < 0 ? 0 : 1,
-          },
-        ],
+            value: event.deltaY < 0 ? 0 : 1
+          }
+        ]
       });
 
       // console.log("event");
@@ -272,9 +272,9 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: [1, 0],
-          },
-        ],
+            value: [1, 0]
+          }
+        ]
       });
     },
     showStars() {
@@ -284,9 +284,9 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.3,
-          },
-        ],
+            value: 0.3
+          }
+        ]
       });
     },
     toggleReplay() {
@@ -296,10 +296,10 @@ export default {
         opacity: [
           {
             duration: 400,
-            value: this.replay ? 0 : 1,
-          },
+            value: this.replay ? 0 : 1
+          }
         ],
-        cursor: "pointer",
+        cursor: "pointer"
       });
       this.replay = !this.replay;
     },
@@ -307,21 +307,21 @@ export default {
       this.toggleReplay();
       let that = this;
       let stars = document.querySelectorAll(".star");
-      stars.forEach((s) => {
+      stars.forEach(s => {
         anime.timeline({ loop: false }).add({
           targets: s,
           easing: "easeInOutSine",
           y: this.getRandomY(),
           x: this.getRandomX(),
           opacity: 0.2,
-          duration: 1500,
+          duration: 1500
         });
       });
       setTimeout(() => {
         this.rippleStars();
       }, 1500);
     },
-    shuffleStars() {},
+    shuffleStars() {}
   },
   created() {},
   mounted() {
@@ -346,7 +346,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("wheel", this.toggleFooter);
-  },
+  }
 };
 </script>
 
@@ -504,10 +504,10 @@ export default {
   text-align: left;
 
   .heading {
-    font-size: 50px;
+    font-size: 70px;
     font-weight: 700;
     width: 100%;
-    max-width: 400px;
+    max-width: 480x;
     line-height: 55px;
     min-width: 400px;
   }
@@ -527,18 +527,18 @@ export default {
     background: $purple;
     color: $lightBlue;
     text-align: center;
-    border: 3px solid $purple;
+    // border: 3px solid $purple;
     margin: 0 auto;
     margin-top: 40px;
     cursor: pointer;
     border-radius: 4px;
-    padding: 10px 20px;
+    padding: 15px 55px;
     font-weight: 600;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;
     &:hover {
-      padding: 12px 22px;
+      padding: 17px 58px;
     }
   }
 }
