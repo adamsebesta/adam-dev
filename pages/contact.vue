@@ -49,6 +49,7 @@
             <div class="button" @click="submitForm">
               <div class="text">Submit</div>
             </div>
+
             <div class="progress-bar"></div>
             <svg
               class="contact-button-svg"
@@ -67,6 +68,11 @@
               @click="reset"
               input-class='main-btn small'
             /> -->
+          </div>
+          <div class="contact-email">
+            <a href="mailto:adam.sebesta5@gmail.com?subject=Inquiry"
+              >Prefer to email?</a
+            >
           </div>
           <!-- <pre
           class="code"
@@ -139,7 +145,7 @@ export default {
     },
     hideFields() {
       anime({
-        targets: [".contact-logo", ".formulate-input"],
+        targets: [".contact-email", ".contact-logo", ".formulate-input"],
         duration: 300,
         opacity: "0",
         easing: "easeInOutSine",
@@ -163,7 +169,14 @@ export default {
           duration: 300,
           opacity: "1",
           easing: "easeInOutSine"
+        })
+        .add({
+          targets: [".contact-email"],
+          duration: 300,
+          opacity: "1",
+          easing: "easeInOutSine"
         });
+
       openTimeline.play();
     },
     morphSumbitBtn() {
@@ -247,6 +260,9 @@ export default {
     },
     reset() {
       this.$formulate.reset("contact");
+    },
+    swapToEmail() {
+      // this.morphSumbitBtn();
     }
   },
   mounted() {
@@ -475,7 +491,7 @@ label {
 
 .actions {
   display: flex;
-  margin: 40px 0px;
+  margin: 40px 0px 10px 0px;
   justify-content: center;
 }
 .actions .formulate-input {
@@ -484,11 +500,16 @@ label {
   opacity: 0;
 }
 
-@media only screen and (max-width: 1200px) {
-  .title-pop {
-    font-size: 100px;
-    margin-top: 20px;
+.contact-email {
+  opacity: 0;
+  a {
+    color: $darkerBlue;
+    font-size: 12px;
+    opacity: 0.5;
   }
+}
+
+@media only screen and (max-width: 1200px) {
   .form-background {
     margin-top: 0;
   }
@@ -506,10 +527,6 @@ label {
 }
 
 @media only screen and (max-width: 800px) {
-  .title-pop {
-    font-size: 60px;
-    margin-top: 40px;
-  }
   .form-background {
     margin-top: 0;
     .form {

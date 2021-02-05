@@ -36,13 +36,13 @@ module.exports = {
       },
       {
         rel: 'stylesheet',
-        href: "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+        href: "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap"
       },
       // { rel: "stylesheet", href:"https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity:"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p", crossorigin:"anonymous" },
       {
         rel: "stylesheet",
         href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      }
+      },
     ]
   },
 

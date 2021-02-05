@@ -195,14 +195,13 @@ html {
 .main-btn {
   display: inline-block !important;
   cursor: pointer !important;
-  border-radius: 4px !important;
+  border-radius: 2px !important;
   letter-spacing: 0.15em !important;
   border: 2px solid $purple !important;
   color: $purple !important;
   text-decoration: none !important;
-  padding: 10px 20px;
+  padding: 20px 30px;
   margin: 5px !important;
-  font-weight: 600 !important;
   font-size: 14px;
   background-color: transparent !important;
   /* box-shadow: -1px 1px 2px 1px #01301177; */

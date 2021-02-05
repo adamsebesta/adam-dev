@@ -77,9 +77,9 @@
           xml:space="preserve"
         >
           <g>
-            <polygon style="fill:#434C6D;" points="29,58 3,45 3,13 29,26 	" />
-            <polygon style="fill:#556080;" points="29,58 55,45 55,13 29,26 	" />
-            <polygon style="fill:#7383BF;" points="3,13 28,0 55,13 29,26 	" />
+            <polygon style="fill: #434c6d" points="29,58 3,45 3,13 29,26 	" />
+            <polygon style="fill: #556080" points="29,58 55,45 55,13 29,26 	" />
+            <polygon style="fill: #7383bf" points="3,13 28,0 55,13 29,26 	" />
           </g>
           <g></g>
           <g></g>
@@ -284,7 +284,7 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.15
+            value: 0.3
           }
         ]
       });
@@ -338,7 +338,7 @@ export default {
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 3200);
+    }, 1200);
 
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
@@ -445,7 +445,7 @@ export default {
     line-height: 1.25;
     letter-spacing: 1px;
     text-indent: -0.025em;
-    font-weight: 700;
+    font-weight: 600;
     opacity: 0;
   }
   .logo-lower {
@@ -454,8 +454,9 @@ export default {
     line-height: 1.5;
     letter-spacing: 1px;
     text-transform: uppercase;
+    font-family: $bodyFont;
     text-indent: -0.025em;
-    font-weight: 700;
+    font-weight: 600;
     margin-left: 16%;
     margin-top: -8px;
   }
@@ -475,12 +476,15 @@ export default {
 .main-right {
   width: 50%;
   margin: 0 auto;
+  // background-color: rgb(30 54 119 / 100%);
+  // border-radius: 5px;
   z-index: 1;
   justify-content: flex-end;
   margin-right: 5%;
   align-items: center;
   // flex-direction: column;
   display: flex;
+  flex-direction: column;
 }
 
 .center-content {
@@ -500,10 +504,10 @@ export default {
   text-align: left;
 
   .heading {
-    font-size: 50px;
+    font-size: 70px;
     font-weight: 700;
     width: 100%;
-    max-width: 400px;
+    max-width: 480x;
     line-height: 55px;
     min-width: 400px;
   }
@@ -523,18 +527,18 @@ export default {
     background: $purple;
     color: $lightBlue;
     text-align: center;
-    border: 3px solid $purple;
+    // border: 3px solid $purple;
     margin: 0 auto;
     margin-top: 40px;
     cursor: pointer;
     border-radius: 4px;
-    padding: 10px 20px;
+    padding: 15px 55px;
     font-weight: 600;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;
     &:hover {
-      padding: 12px 22px;
+      padding: 17px 58px;
     }
   }
 }
@@ -608,10 +612,42 @@ export default {
   }
 }
 
-// @media only screen and (max-width: 1330px) {
-// }
+@media only screen and (max-width: 1130px) {
+  .main-left {
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    .heading {
+      font-size: 26px;
+      line-height: 27px;
+      width: 60%;
+      min-width: 187px;
+    }
+    .subheading {
+      p {
+        font-size: 12px;
+        width: 75%;
 
-@media only screen and (max-width: 1125px) {
+        font-weight: 600;
+        line-height: 22px;
+        min-width: unset;
+      }
+    }
+  }
+
+  .logo {
+    min-width: 160px;
+    .logo-upper {
+      font-size: 24px;
+    }
+    .logo-lower {
+      font-size: 16px;
+      // margin-left: 5%;
+    }
+  }
+}
+@media only screen and (max-width: 450px) {
   .center-content {
     display: flex;
     flex-direction: column-reverse;

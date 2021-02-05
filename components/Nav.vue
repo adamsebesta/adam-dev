@@ -68,6 +68,15 @@
       </div>
 
       <div
+        :class="
+          'menu-wrapper ' +
+            (page && page.location.pathname == '/portfolio' ? ' active' : '')
+        "
+        @click="navChange('/portfolio')"
+      >
+        <a class="menu__item">Portfolio</a>
+      </div>
+      <div
         id="contact"
         :class="
           'menu-wrapper ' +
@@ -76,16 +85,6 @@
         @click="navChange('/contact')"
       >
         <a class="menu__item">Contact</a>
-      </div>
-
-      <div
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/portfolio' ? ' active' : '')
-        "
-        @click="navChange('/portfolio')"
-      >
-        <a class="menu__item">Portfolio</a>
       </div>
     </div>
     <div v-if="mobile" class="nav-placeholder"></div>
@@ -155,8 +154,8 @@ export default {
             this.windowWidth / 2 -
             this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
           y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.windowWidth / 7,
-          height: this.windowHeight / 7,
+          width: this.mobile ? this.windowWidth / 7 : this.windowWidth / 10,
+          height: this.mobile ? this.windowHeight / 7 : this.windowHeight / 10,
           easing: "easeOutExpo",
           duration: 2000
         });
@@ -191,7 +190,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 60px;
+  padding: 30px 100px;
   width: 100%;
   .nav-logo {
     width: 40px;
@@ -228,9 +227,10 @@ export default {
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
+  letter-spacing: 0.5px;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
@@ -265,7 +265,7 @@ export default {
   z-index: 10;
 }
 
-@media only screen and (max-width: 1630px) {
+@media only screen and (max-width: 1130px) {
   .menu__item {
     font-size: 14px;
   }
@@ -294,6 +294,7 @@ export default {
     }
   }
   .nav-bar {
+    padding: 10px 30px;
     .nav-logo {
       margin-right: 0;
     }
