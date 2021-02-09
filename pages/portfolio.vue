@@ -48,8 +48,18 @@
                 <VueSlickCarousel ref="carousel" v-bind="settings">
                   <div class="project-image caro0">
                     <div class="project-image-title-overlay">
-                      <div class="title">MR Designs</div>
-                      <div class="subtitle">Mobile App</div>
+                      <div
+                        class="title"
+                        :style="{ transform: 'translateY(-120px)' }"
+                      >
+                        MR Designs
+                      </div>
+                      <div
+                        class="subtitle"
+                        :style="{ transform: 'translateY(-120px)' }"
+                      >
+                        Mobile App
+                      </div>
                     </div>
                     <div @click="infoClickHandler(0)" class="project-info-div">
                       <div :style="{ overflow: 'hidden' }">
@@ -506,7 +516,7 @@ export default {
       let dir = this.mainSwiperIndex < index.activeIndex ? "down" : "up";
       this.mainSwiperIndex = index.activeIndex;
       this.toggleTitle(index.activeIndex, dir);
-      this.toggleTitle(index.activeIndex, dir == "down" ? "up" : "down");
+      // this.toggleTitle(index.activeIndex, dir == "down" ? "up" : "down");
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
       } else {
@@ -528,20 +538,37 @@ export default {
     glassClickHandler(key) {
       this.glassClicked[key] = !this.glassClicked[key];
     },
-    toggleTitle(key, dir) {
-      if (dir == "up") key--;
-      console.log(key, dir);
-      let targetClass = ".caro" + key;
+    translateTitle(tar, val) {
       anime({
-        targets: [`${targetClass} .title`, `${targetClass} .subtitle`],
+        targets: [`${tar} .title`, `${tar} .subtitle`],
         translateY: [
           {
             duration: 1600,
-            value: dir === "up" ? ["0px", "-120px"] : ["-120px", "0px"]
+            value: val
           }
         ],
         easing: "easeInOutExpo"
       });
+    },
+    upscrollAnim(key) {
+      let targetClass = ".caro" + key;
+      let targetClassNext = ".caro" + (key + 1);
+      this.translateTitle(targetClass, ["120px", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "-120px"]);
+    },
+    downscrollAnim(key) {
+      let targetClass = ".caro" + key;
+      let targetClassNext = ".caro" + (key - 1);
+      this.translateTitle(targetClass, ["-120px", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "120px"]);
+    },
+    toggleTitle(key, dir) {
+      if (dir == "up") {
+        this.upscrollAnim(key);
+      }
+      if (dir == "down") {
+        this.downscrollAnim(key);
+      }
     },
     infoClickHandler(key) {
       let targetClass = ".caro" + key;
@@ -567,7 +594,7 @@ export default {
         translateY: ["-10px", "-10px"],
         easing: "easeOutExpo"
       });
-      this.toggleTitle(key);
+      this.toggleTitle(key + 1, "up");
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
@@ -585,7 +612,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.toggleTitle(0, "down");
-    }, 1000);
+    }, 750);
 
     this.totalSlides = this.swiper.slides.length;
   }
@@ -960,12 +987,12 @@ img {
   overflow: hidden;
   z-index: 1;
   .title {
-    transform: translateY(-120px);
+    // transform: translateY(-120px);
     font-size: 60px;
     font-weight: 700;
   }
   .subtitle {
-    transform: translateY(-120px);
+    // transform: translateY(-120px);
     color: $darkerBlue;
     font-weight: 700;
   }
