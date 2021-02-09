@@ -46,12 +46,12 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
-                  <div class="project-image caro1">
+                  <div class="project-image caro0">
                     <div class="project-image-title-overlay">
                       <div class="title">MR Designs</div>
                       <div class="subtitle">Mobile App</div>
                     </div>
-                    <div @click="infoClickHandler(1)" class="project-info-div">
+                    <div @click="infoClickHandler(0)" class="project-info-div">
                       <div :style="{ overflow: 'hidden' }">
                         <h4>Info</h4>
                       </div>
@@ -121,12 +121,12 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel2" v-bind="settings">
-                  <div class="project-image mac caro2">
+                  <div class="project-image mac caro1">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Web App</div>
                     </div>
-                    <div @click="infoClickHandler(2)" class="project-info-div">
+                    <div @click="infoClickHandler(1)" class="project-info-div">
                       <div :style="{ overflow: 'hidden' }">
                         <h4>Info</h4>
                       </div>
@@ -210,12 +210,12 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel1" v-bind="settings">
-                  <div class="project-image caro3">
+                  <div class="project-image caro2">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Landing Page</div>
                     </div>
-                    <div @click="infoClickHandler(3)" class="project-info-div">
+                    <div @click="infoClickHandler(2)" class="project-info-div">
                       <div :style="{ overflow: 'hidden' }">
                         <h4>Info</h4>
                       </div>
@@ -291,12 +291,12 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel" v-bind="settings">
-                  <div class="project-image mac caro4">
+                  <div class="project-image mac caro3">
                     <div class="project-image-title-overlay">
                       <div class="title">Streamhub</div>
                       <div class="subtitle">Web App</div>
                     </div>
-                    <div @click="infoClickHandler(4)" class="project-info-div">
+                    <div @click="infoClickHandler(3)" class="project-info-div">
                       <div :style="{ overflow: 'hidden' }">
                         <h4>Info</h4>
                       </div>
@@ -446,7 +446,7 @@ export default {
         slidesPerView: 1,
         spaceBetween: 30,
         clickable: false,
-        speed: 400,
+        speed: 1400,
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
@@ -503,7 +503,10 @@ export default {
     },
     onSwiperSlideChangeTransitionStart(index) {
       // this.removeTooltipsOnScroll();
+      let dir = this.mainSwiperIndex < index.activeIndex ? "down" : "up";
       this.mainSwiperIndex = index.activeIndex;
+      this.toggleTitle(index.activeIndex, dir);
+      this.toggleTitle(index.activeIndex, dir == "down" ? "up" : "down");
       if (index.activeIndex == index.slides.length - 1) {
         this.showBounce = false;
       } else {
@@ -524,6 +527,21 @@ export default {
     },
     glassClickHandler(key) {
       this.glassClicked[key] = !this.glassClicked[key];
+    },
+    toggleTitle(key, dir) {
+      if (dir == "up") key--;
+      console.log(key, dir);
+      let targetClass = ".caro" + key;
+      anime({
+        targets: [`${targetClass} .title`, `${targetClass} .subtitle`],
+        translateY: [
+          {
+            duration: 1600,
+            value: dir === "up" ? ["0px", "-120px"] : ["-120px", "0px"]
+          }
+        ],
+        easing: "easeInOutExpo"
+      });
     },
     infoClickHandler(key) {
       let targetClass = ".caro" + key;
@@ -549,17 +567,7 @@ export default {
         translateY: ["-10px", "-10px"],
         easing: "easeOutExpo"
       });
-
-      anime({
-        targets: [`${targetClass} .title`, `${targetClass} .subtitle`],
-        translateY: [
-          {
-            duration: 1000,
-            value: "-120px"
-          }
-        ],
-        easing: "easeOutExpo"
-      });
+      this.toggleTitle(key);
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
@@ -575,6 +583,10 @@ export default {
   },
   created() {},
   mounted() {
+    setTimeout(() => {
+      this.toggleTitle(0, "down");
+    }, 1000);
+
     this.totalSlides = this.swiper.slides.length;
   }
 };
@@ -787,7 +799,7 @@ img {
     position: relative;
     background-color: $background;
     z-index: 1;
-    transition: all 500ms ease-in-out;
+    transition: all 1000ms ease-in-out;
     .cursor {
       width: 100%;
       height: 18px;
@@ -843,9 +855,9 @@ img {
   background-color: transparent !important;
   z-index: 1;
 }
-.swiper-wrapper {
-  transition: all 500ms ease-in-out !important;
-}
+// .swiper-wrapper {
+//   transition: all 500ms ease-in-out !important;
+// }
 
 .slide-wrapper {
   width: 100%;
@@ -948,10 +960,12 @@ img {
   overflow: hidden;
   z-index: 1;
   .title {
+    transform: translateY(-120px);
     font-size: 60px;
     font-weight: 700;
   }
   .subtitle {
+    transform: translateY(-120px);
     color: $darkerBlue;
     font-weight: 700;
   }
@@ -1037,7 +1051,7 @@ img {
     object-fit: contain;
     padding-bottom: 10px;
     outline: none;
-    filter: brightness(0.7);
+    filter: brightness(0.75);
     z-index: -1;
   }
   &:focus {

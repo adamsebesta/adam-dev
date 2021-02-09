@@ -284,7 +284,7 @@ export default {
         opacity: [
           {
             duration: 1000,
-            value: 0.3
+            value: 0.4
           }
         ]
       });
