@@ -69,17 +69,18 @@
           xmlns:xlink="http://www.w3.org/1999/xlink"
           :x="getRandomX()"
           :y="getRandomY()"
-          width="2%"
-          height="2%"
+          width="40%"
+          height="40%"
           class="star"
           fill="#fff"
           viewBox="0 0 58 58"
           xml:space="preserve"
         >
           <g>
-            <polygon style="fill: #434c6d" points="29,58 3,45 3,13 29,26 	" />
-            <polygon style="fill: #556080" points="29,58 55,45 55,13 29,26 	" />
-            <polygon style="fill: #7383bf" points="3,13 28,0 55,13 29,26 	" />
+            <polygon style="fill: #cccccc" points="29,58 3,45 3,13 29,26 	" />
+            <!-- <polygon style="fill: #020517" points="29,58 3,45 3,13 29,26 	" /> -->
+            <polygon style="fill: #f4f4f4" points="29,58 55,45 55,13 29,26 	" />
+            <polygon style="fill: #ebebeb" points="3,13 28,0 55,13 29,26 	" />
           </g>
           <g></g>
           <g></g>
@@ -166,26 +167,42 @@ export default {
     },
     rippleStars() {
       let that = this;
-      anime.timeline({ loop: false }).add({
+      anime({
         targets: ["#sky .star"],
-        easing: "easeInOutSine",
-        delay: anime.stagger(300),
-        y: [
-          {
-            duration: 2000,
-            value: "5px"
-          }
-        ],
-        opacity: [
-          {
-            duration: 2500,
-            value: "0.0"
-          }
-        ],
-        complete: function(anim) {
-          that.spinLogo();
-          that.toggleReplay();
-        }
+        y: function() {
+          return anime.random(0, that.windowHeight);
+        },
+        x: function() {
+          return anime.random(0, that.windowWidth);
+        },
+        width: function() {
+          return anime.random(20, 40);
+        },
+        height: function() {
+          return anime.random(20, 40);
+        },
+        easing: "linear",
+        duration: 2000,
+        delay: anime.stagger(10)
+        // complete: that.starAnim
+        // easing: "easeInOutSine",
+        // delay: anime.stagger(300),
+        // y: [
+        //   {
+        //     duration: 2000,
+        //     value: "5px"
+        //   }
+        // ],
+        // opacity: [
+        //   {
+        //     duration: 2500,
+        //     value: "0.0"
+        //   }
+        // ],
+        // complete: function(anim) {
+        //   that.spinLogo();
+        //   that.toggleReplay();
+        // }
       });
     },
     spinLogo() {
@@ -277,18 +294,18 @@ export default {
         ]
       });
     },
-    showStars() {
-      anime({
-        targets: [".star"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 1000,
-            value: 0.4
-          }
-        ]
-      });
-    },
+    // showStars() {
+    //   anime({
+    //     targets: [".star"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 1000,
+    //         value: 1
+    //       }
+    //     ]
+    //   });
+    // },
     toggleReplay() {
       anime({
         targets: [".index-replay"],
@@ -333,12 +350,12 @@ export default {
       this.loading = false;
     }
     setTimeout(() => {
-      this.showStars();
+      // this.showStars();
       this.riseLogo();
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 1200);
+    }, 200);
 
     localStorage.setItem("wasVisited", "1");
     this.initLogo();
@@ -423,7 +440,8 @@ export default {
 }
 
 .star {
-  opacity: 0;
+  display: none;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.2));
 }
 
 .logo-img {

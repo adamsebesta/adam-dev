@@ -397,7 +397,7 @@
           </swiper>
         </div>
       </div>
-      <div class="background-center" :style="{ width: '70%' }"></div>
+      <!-- <div class="background-center" :style="{ width: '70%' }"></div> -->
     </div>
     <Footer />
   </div>
@@ -826,7 +826,7 @@ img {
     position: relative;
     background-color: $background;
     z-index: 1;
-    transition: all 1000ms ease-in-out;
+    transition: all 1000ms ease-out;
     .cursor {
       width: 100%;
       height: 18px;
@@ -1078,7 +1078,7 @@ img {
     object-fit: contain;
     padding-bottom: 10px;
     outline: none;
-    filter: brightness(0.75);
+    filter: brightness(0.95);
     z-index: -1;
   }
   &:focus {
