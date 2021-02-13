@@ -16,7 +16,7 @@
     </div>
     <div class="container-main">
       <div v-if="loading" class="loading-anim">
-        <div class="">
+        <div class="loading-img-wrapper">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
         </div>
 
@@ -27,7 +27,7 @@
       </div>
       <div class="center-content">
         <div class="main-left">
-          <p v-if="!mobile" class="heading">
+          <!-- <p v-if="!mobile" class="heading">
             Your <br />
             <span class="purple"> Creative Ideas <br /></span> Brought To Life
           </p>
@@ -44,18 +44,11 @@
             <a class="home-btn home-btn-animated" @click="proceedContact"
               >Contact <i class="fa fa-envelope" aria-hidden="true"></i
             ></a>
-          </div>
+          </div> -->
         </div>
         <div class="main-right">
           <div class="device-images">
-            <!-- <img id="iphone-home" class="home-img" draggable="false" src='~static/iphone-test.png' />
-            <img id="macbook-home" class="home-img" draggable="false" src='~static/macbook.png' />  -->
-            <img class="logo-img" src="~static/logo.png" alt="" />
-          </div>
-
-          <div class="logo">
-            <p class="logo-upper rise1">Adam Sebesta</p>
-            <p class="logo-lower">Development</p>
+            <img class="logo-img" src="~static/logo-full.png" alt="" />
           </div>
         </div>
       </div>
@@ -69,17 +62,18 @@
           xmlns:xlink="http://www.w3.org/1999/xlink"
           :x="getRandomX()"
           :y="getRandomY()"
-          width="2%"
-          height="2%"
+          width="40%"
+          height="40%"
           class="star"
           fill="#fff"
           viewBox="0 0 58 58"
           xml:space="preserve"
         >
           <g>
-            <polygon style="fill: #434c6d" points="29,58 3,45 3,13 29,26 	" />
-            <polygon style="fill: #556080" points="29,58 55,45 55,13 29,26 	" />
-            <polygon style="fill: #7383bf" points="3,13 28,0 55,13 29,26 	" />
+            <polygon style="fill: #cccccc" points="29,58 3,45 3,13 29,26 	" />
+            <!-- <polygon style="fill: #020517" points="29,58 3,45 3,13 29,26 	" /> -->
+            <polygon style="fill: #f4f4f4" points="29,58 55,45 55,13 29,26 	" />
+            <polygon style="fill: #ebebeb" points="3,13 28,0 55,13 29,26 	" />
           </g>
           <g></g>
           <g></g>
@@ -98,7 +92,7 @@
           <g></g>
         </svg>
       </svg>
-      <div class="background-home"></div>
+      <!-- <div class="background-home"></div> -->
     </div>
     <Footer class="index-footer" />
   </div>
@@ -152,84 +146,100 @@ export default {
         .toString()
         .trim();
     },
-    riseLogo() {
-      anime({
-        targets: [".logo-img"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 2400,
-            value: ["0", "1"]
-          }
-        ]
-      });
-    },
+    // riseLogo() {
+    //   anime({
+    //     targets: [".logo-img"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 2400,
+    //         value: ["0", "1"]
+    //       }
+    //     ]
+    //   });
+    // },
     rippleStars() {
       let that = this;
-      anime.timeline({ loop: false }).add({
-        targets: ["#sky .star"],
-        easing: "easeInOutSine",
-        delay: anime.stagger(300),
-        y: [
-          {
-            duration: 2000,
-            value: "5px"
-          }
-        ],
-        opacity: [
-          {
-            duration: 2500,
-            value: "0.0"
-          }
-        ],
-        complete: function(anim) {
-          that.spinLogo();
-          that.toggleReplay();
-        }
-      });
-    },
-    spinLogo() {
       anime({
-        targets: ".logo-img ",
-        rotate: [
-          {
-            duration: 2000,
-            value: 360
-          }
-        ],
-        easing: "easeOutExpo"
+        targets: ["#sky .star"],
+        y: function() {
+          return anime.random(0, that.windowHeight);
+        },
+        x: function() {
+          return anime.random(0, that.windowWidth);
+        },
+        width: function() {
+          return anime.random(20, 40);
+        },
+        height: function() {
+          return anime.random(20, 40);
+        },
+        easing: "linear",
+        duration: 2000,
+        delay: anime.stagger(10)
+        // complete: that.starAnim
+        // easing: "easeInOutSine",
+        // delay: anime.stagger(300),
+        // y: [
+        //   {
+        //     duration: 2000,
+        //     value: "5px"
+        //   }
+        // ],
+        // opacity: [
+        //   {
+        //     duration: 2500,
+        //     value: "0.0"
+        //   }
+        // ],
+        // complete: function(anim) {
+        //   that.spinLogo();
+        //   that.toggleReplay();
+        // }
       });
     },
-    initLogo() {
-      if (!this.mobile) {
-        anime({
-          targets: [".rise1"],
-          easing: "easeInOutSine",
-          opacity: [
-            {
-              duration: 1000,
-              value: [0, 1]
-            }
-          ]
-        });
+    // spinLogo() {
+    //   anime({
+    //     targets: ".logo-img ",
+    //     rotate: [
+    //       {
+    //         duration: 2000,
+    //         value: 360
+    //       }
+    //     ],
+    //     easing: "easeOutExpo"
+    //   });
+    // },
+    // initLogo() {
+    //   if (!this.mobile) {
+    //     anime({
+    //       targets: [".rise1"],
+    //       easing: "easeInOutSine",
+    //       opacity: [
+    //         {
+    //           duration: 1000,
+    //           value: [0, 1]
+    //         }
+    //       ]
+    //     });
 
-        var textWrapper1 = document.querySelector(".rise1");
-        textWrapper1.innerHTML = textWrapper1.textContent.replace(
-          /\S/g,
-          "<span class='letter'>$&</span>"
-        );
+    //     var textWrapper1 = document.querySelector(".rise1");
+    //     textWrapper1.innerHTML = textWrapper1.textContent.replace(
+    //       /\S/g,
+    //       "<span class='letter'>$&</span>"
+    //     );
 
-        anime.timeline({ loop: false }).add({
-          targets: ".rise1 .letter",
-          translateY: [100, 0],
-          translateZ: 0,
-          opacity: [0, 1],
-          easing: "easeOutExpo",
-          duration: 1400,
-          delay: (el, i) => 1000 + 30 * i
-        });
-      }
-    },
+    //     anime.timeline({ loop: false }).add({
+    //       targets: ".rise1 .letter",
+    //       translateY: [100, 0],
+    //       translateZ: 0,
+    //       opacity: [0, 1],
+    //       easing: "easeOutExpo",
+    //       duration: 1400,
+    //       delay: (el, i) => 1000 + 30 * i
+    //     });
+    //   }
+    // },
     toggleFooter(event) {
       anime({
         targets: [".index-footer"],
@@ -277,18 +287,18 @@ export default {
         ]
       });
     },
-    showStars() {
-      anime({
-        targets: [".star"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 1000,
-            value: 0.3
-          }
-        ]
-      });
-    },
+    // showStars() {
+    //   anime({
+    //     targets: [".star"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 1000,
+    //         value: 1
+    //       }
+    //     ]
+    //   });
+    // },
     toggleReplay() {
       anime({
         targets: [".index-replay"],
@@ -325,23 +335,46 @@ export default {
   },
   created() {},
   mounted() {
-    if (localStorage.getItem("wasVisited") === null) {
-      setTimeout(() => {
-        this.loading = false;
-      }, 400);
-    } else {
-      this.loading = false;
-    }
+    // if (localStorage.getItem("wasVisited") === null) {
     setTimeout(() => {
-      this.showStars();
-      this.riseLogo();
+      // this.loading = false;
+      anime({
+        targets: ".loading-anim",
+        translateX: "45%",
+        duration: 1000,
+        easing: "easeInOutSine"
+      });
+
+      anime({
+        targets: ".loading-logo-img",
+        translateX: "100%",
+        duration: 750,
+        easing: "easeInOutSine",
+        delay: 200
+      });
+
+      anime({
+        targets: ".logo-img",
+        translateY: ["100%", "0"],
+        duration: 750,
+        easing: "easeInOutSine",
+        delay: 400
+      });
+    }, 1000);
+
+    // } else {
+    //   this.loading = false;
+    // }
+    setTimeout(() => {
+      // this.showStars();
+      // this.riseLogo();
     }, 850);
     setTimeout(() => {
       this.rippleStars();
-    }, 1200);
+    }, 200);
 
     localStorage.setItem("wasVisited", "1");
-    this.initLogo();
+    // this.initLogo();
     window.addEventListener("wheel", this.toggleFooter);
   },
   destroyed() {
@@ -378,17 +411,21 @@ export default {
 }
 
 .loading-anim {
-  z-index: 1000;
+  z-index: 1;
   height: 100%;
   width: 100%;
+  margin-left: auto;
   position: absolute;
-  background-color: $background;
+  background-color: #f9f9f9;
   display: flex;
   justify-content: center;
   align-items: center;
-  .loading-logo-img {
-    width: 30%;
-    margin: 0 auto;
+  .loading-img-wrapper {
+    overflow: hidden;
+    .loading-logo-img {
+      width: 30%;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -423,14 +460,8 @@ export default {
 }
 
 .star {
-  opacity: 0;
-}
-
-.logo-img {
-  min-width: 112px;
-  height: 125px;
-  opacity: 0;
-  margin-right: 20px;
+  display: none;
+  filter: drop-shadow(10px 10px 50px rgba(0, 0, 0, 0.2));
 }
 
 .logo {
@@ -474,7 +505,9 @@ export default {
 }
 
 .main-right {
-  width: 50%;
+  overflow: hidden;
+  transform: translateX(-25%);
+  width: 80%;
   margin: 0 auto;
   // background-color: rgb(30 54 119 / 100%);
   // border-radius: 5px;
@@ -485,6 +518,12 @@ export default {
   // flex-direction: column;
   display: flex;
   flex-direction: column;
+  .logo-img {
+    min-width: 112px;
+    width: 100%;
+    transform: translateY(100%);
+    // margin-right: 20px;
+  }
 }
 
 .center-content {
