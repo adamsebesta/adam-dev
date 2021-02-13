@@ -229,9 +229,9 @@ html {
   align-items: center;
   text-align: center;
 }
-.banner-nav {
-  padding: 50px 100px !important;
-}
+// .banner-nav {
+//   padding: 50px 100px !important;
+// }
 
 .purple {
   color: $purple;

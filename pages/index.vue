@@ -1,18 +1,8 @@
 <template>
   <div class="page" ref="page">
-    <div
-      @click="resetStars"
-      class="index-replay"
-      :style="{
-        'pointer-events': replay ? '' : 'none',
-        cursor: replay ? 'pointer' : 'none'
-      }"
-    >
-      <i class="fa fa-play" aria-hidden="true"></i>
-    </div>
     <div>
       <Banner v-if="!loading" />
-      <Nav class="banner-nav" v-if="!loading" />
+      <Nav class="banner-nav" />
     </div>
     <div class="container-main">
       <div v-if="loading" class="loading-anim">
@@ -26,6 +16,12 @@
         </div> -->
       </div>
       <div class="center-content">
+        <div class="scroll-div">
+          <div :style="{ overflow: 'hidden' }">
+            <h4>Scroll</h4>
+          </div>
+          <div class="trail"></div>
+        </div>
         <div class="main-left">
           <!-- <p v-if="!mobile" class="heading">
             Your <br />
@@ -94,7 +90,7 @@
       </svg>
       <!-- <div class="background-home"></div> -->
     </div>
-    <Footer class="index-footer" />
+    <!-- <Footer class="index-footer" /> -->
   </div>
 </template>
 
@@ -197,7 +193,7 @@ export default {
         //   that.toggleReplay();
         // }
       });
-    },
+    }
     // spinLogo() {
     //   anime({
     //     targets: ".logo-img ",
@@ -240,29 +236,29 @@ export default {
     //     });
     //   }
     // },
-    toggleFooter(event) {
-      anime({
-        targets: [".index-footer"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 500,
-            value: event.deltaY < 0 ? 0 : 1
-          }
-        ]
-      });
+    // toggleFooter(event) {
+    //   anime({
+    //     targets: [".index-footer"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 500,
+    //         value: event.deltaY < 0 ? 0 : 1
+    //       }
+    //     ]
+    //   });
 
-      // console.log("event");
-      // this.showFooter;
+    // console.log("event");
+    // this.showFooter;
 
-      // anime({
-      //   targets: [".star g polygon"],
-      //   fill: ["#ff3d00", "#ff3d00"],
-      //   delay: anime.stagger(400),
-      //   easing: "easeOutExpo",
-      //   duration: 1400
-      // });
-    },
+    // anime({
+    //   targets: [".star g polygon"],
+    //   fill: ["#ff3d00", "#ff3d00"],
+    //   delay: anime.stagger(400),
+    //   easing: "easeOutExpo",
+    //   duration: 1400
+    // });
+    // },
     // showFooter() {
     // anime({
     //   targets: ["page .index-footer"],
@@ -275,18 +271,18 @@ export default {
     //   ]
     // });
     // },
-    hideFooter() {
-      anime({
-        targets: [".index-footer"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 1000,
-            value: [1, 0]
-          }
-        ]
-      });
-    },
+    // hideFooter() {
+    //   anime({
+    //     targets: [".index-footer"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 1000,
+    //         value: [1, 0]
+    //       }
+    //     ]
+    //   });
+    // }
     // showStars() {
     //   anime({
     //     targets: [".star"],
@@ -299,50 +295,50 @@ export default {
     //     ]
     //   });
     // },
-    toggleReplay() {
-      anime({
-        targets: [".index-replay"],
-        easing: "easeInOutSine",
-        opacity: [
-          {
-            duration: 400,
-            value: this.replay ? 0 : 1
-          }
-        ],
-        cursor: "pointer"
-      });
-      this.replay = !this.replay;
-    },
-    resetStars() {
-      this.toggleReplay();
-      let that = this;
-      let stars = document.querySelectorAll(".star");
-      stars.forEach(s => {
-        anime.timeline({ loop: false }).add({
-          targets: s,
-          easing: "easeInOutSine",
-          y: this.getRandomY(),
-          x: this.getRandomX(),
-          opacity: 0.2,
-          duration: 1500
-        });
-      });
-      setTimeout(() => {
-        this.rippleStars();
-      }, 1500);
-    },
-    shuffleStars() {}
+    // toggleReplay() {
+    //   anime({
+    //     targets: [".index-replay"],
+    //     easing: "easeInOutSine",
+    //     opacity: [
+    //       {
+    //         duration: 400,
+    //         value: this.replay ? 0 : 1
+    //       }
+    //     ],
+    //     cursor: "pointer"
+    //   });
+    //   this.replay = !this.replay;
+    // },
+    // resetStars() {
+    //   this.toggleReplay();
+    //   let that = this;
+    //   let stars = document.querySelectorAll(".star");
+    //   stars.forEach(s => {
+    //     anime.timeline({ loop: false }).add({
+    //       targets: s,
+    //       easing: "easeInOutSine",
+    //       y: this.getRandomY(),
+    //       x: this.getRandomX(),
+    //       opacity: 0.2,
+    //       duration: 1500
+    //     });
+    //   });
+    //   setTimeout(() => {
+    //     this.rippleStars();
+    //   }, 1500);
+    // },
+    // shuffleStars() {}
   },
   created() {},
   mounted() {
     // if (localStorage.getItem("wasVisited") === null) {
     setTimeout(() => {
-      // this.loading = false;
       anime({
         targets: ".loading-anim",
         translateX: "45%",
-        duration: 1000,
-        easing: "easeInOutSine"
+        duration: 750,
+        easing: "easeInOutSine",
+        delay: 200
       });
 
       anime({
@@ -350,18 +346,26 @@ export default {
         translateX: "100%",
         duration: 750,
         easing: "easeInOutSine",
-        delay: 200
+        delay: 0
       });
 
       anime({
         targets: ".logo-img",
         translateY: ["100%", "0"],
-        duration: 750,
+        duration: 650,
         easing: "easeInOutSine",
         delay: 400
       });
+      anime({
+        targets: ".scroll-div",
+        translateY: ["500%", "0"],
+        duration: 650,
+        rotate: ["270deg", "270deg"],
+        easing: "easeInOutSine",
+        delay: 1000
+      });
     }, 1000);
-
+    // this.loading = false;
     // } else {
     //   this.loading = false;
     // }
@@ -399,15 +403,35 @@ export default {
 .index-footer {
   opacity: 0;
 }
-.index-replay {
+
+.scroll-div {
   position: absolute;
-  bottom: 5%;
-  right: 110px;
-  color: $lightBlue;
-  font-size: 20px;
-  font-weight: 600;
-  opacity: 0;
-  z-index: 1001;
+  z-index: 1;
+  bottom: 100px;
+  left: 8%;
+  transform: translateY(500%) rotate(270deg);
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+  h4 {
+    padding: 3px 0;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: $lightBlue;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .trail {
+    width: 100px;
+    height: 1px;
+    opacity: 0.6;
+    background-color: rgb(187, 187, 187);
+    vertical-align: middle;
+    transform: translate(-25%, -15px);
+    // transform-origin: 100% 50% 0px;
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+  }
 }
 
 .loading-anim {
@@ -416,7 +440,7 @@ export default {
   width: 100%;
   margin-left: auto;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -641,14 +665,14 @@ export default {
     }
   }
 
-  .device-images {
-    .logo-img {
-      min-width: 80px;
-      height: 89px;
-      opacity: 0;
-      margin-right: 5px;
-    }
-  }
+  // .device-images {
+  //   .logo-img {
+  //     min-width: 80px;
+  //     height: 89px;
+  //     opacity: 0;
+  //     margin-right: 5px;
+  //   }
+  // }
 }
 
 @media only screen and (max-width: 1130px) {
@@ -796,14 +820,6 @@ export default {
     height: 100%;
     width: 117%;
     top: 0;
-  }
-  .index-replay {
-    position: absolute;
-    top: 40px;
-    right: 25px;
-    color: $lightBlue;
-    font-size: 12px;
-    z-index: 1001;
   }
 }
 </style>

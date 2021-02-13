@@ -1,44 +1,7 @@
 <template>
   <nav class="nav-bar">
     <div class="nav-logo">
-      <svg
-        v-if="!mobile"
-        version="1.1"
-        @click="showMenu"
-        id="corner-logo"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="40px"
-        height="40px"
-        x="1"
-        y="1"
-        viewBox="0 0 58 58"
-        xml:space="preserve"
-      >
-        <g>
-          <polygon style="fill:#556080;" points="29,58 3,45 3,13 29,26 	" />
-          <polygon style="fill:#434C6D;" points="29,58 55,45 55,13 29,26 	" />
-          <polygon
-            :style="{ fill: blockColor }"
-            points="3,13 28,0 55,13 29,26 	"
-          />
-        </g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-      </svg>
+      <img src="logo.png" alt="" @click="navChange('/')" />
       <i
         v-if="mobile"
         @click="showMenu"
@@ -110,33 +73,34 @@ export default {
   methods: {
     showMenu() {
       anime({
-        targets: [".menu"],
+        targets: [".menu", ".nav-logo"],
         easing: "easeInOutSine",
-        opacity: [
+        translateY: [
           {
-            duration: 750,
-            value: this.menuShown ? 0 : 1
+            duration: 500,
+            value: ["120%", "0%"]
           }
-        ]
+        ],
+        delay: 750
       });
-      if (!this.mobile) {
-        anime({
-          targets: ["#corner-logo"],
-          easing: "easeInOutSine",
-          // translateX: [
-          //   {
-          //     duration: 300,
-          //     value: this.menuShown ? 0 : 20
-          //   }
-          // ],
-          rotate: [
-            {
-              duration: 300,
-              value: this.menuShown ? 0 : 90
-            }
-          ]
-        });
-      }
+      // if (!this.mobile) {
+      //   anime({
+      //     targets: ["#corner-logo"],
+      //     easing: "easeInOutSine",
+      //     // translateX: [
+      //     //   {
+      //     //     duration: 300,
+      //     //     value: this.menuShown ? 0 : 20
+      //     //   }
+      //     // ],
+      //     rotate: [
+      //       {
+      //         duration: 300,
+      //         value: this.menuShown ? 0 : 90
+      //       }
+      //     ]
+      //   });
+      // }
       setTimeout(() => {
         this.menuShown = !this.menuShown;
       }, 200);
@@ -185,12 +149,13 @@ export default {
 
 <style lang="scss" scoped>
 .nav-bar {
+  overflow: hidden;
   position: fixed;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 100px;
+  padding: 30px 100px 0 100px;
   width: 100%;
   .nav-logo {
     width: 40px;
@@ -198,6 +163,8 @@ export default {
     display: flex;
     align-items: center;
     margin-right: 50px;
+    transform: translateY(100%);
+    filter: grayscale(100%);
   }
   .nav-placeholder {
     width: 30px;
@@ -214,15 +181,15 @@ export default {
   // right: 0;
   // margin-left: auto;
   // margin-right: auto;
-  opacity: 0;
   display: flex;
   align-items: flex-start;
   z-index: 10000;
+  transform: translateY(100%);
 }
 
 .menu__item {
-  color: $lightBlue;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+  color: $darkerBlue;
+  // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
@@ -294,7 +261,7 @@ export default {
     }
   }
   .nav-bar {
-    padding: 10px 30px;
+    margin: 10px 30px;
     .nav-logo {
       margin-right: 0;
     }
@@ -303,7 +270,7 @@ export default {
     left: 3.5%;
   }
   .banner-nav {
-    padding: 30px 30px !important;
+    margin: 30px 30px !important;
   }
 }
 </style>
