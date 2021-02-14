@@ -188,7 +188,7 @@ export default {
 }
 
 .menu__item {
-  color: $darkerBlue;
+  color: #c4c4c4;
   // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   text-indent: -0.025em;

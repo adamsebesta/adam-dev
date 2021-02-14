@@ -229,12 +229,13 @@ html {
   align-items: center;
   text-align: center;
 }
-// .banner-nav {
-//   padding: 50px 100px !important;
-// }
+//
 
 .purple {
   color: $purple;
+}
+.gold {
+  color: $mainGold;
 }
 
 @media only screen and (max-width: 420px) {

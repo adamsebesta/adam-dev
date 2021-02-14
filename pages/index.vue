@@ -25,7 +25,7 @@
         <div class="main-left">
           <p class="heading">
             Your <br />
-            <span class="purple"> Creative Ideas</span>
+            <span class="gold"> Creative Ideas</span>
             Brought To Life
           </p>
           <div class="subheading">
@@ -332,7 +332,7 @@ export default {
           translateX: [
             {
               duration: 1000,
-              value: ["-25%", "100%"]
+              value: ["-55%", "80%"]
             }
           ]
         });
@@ -346,6 +346,16 @@ export default {
             }
           ]
         });
+        anime({
+          targets: [".loading-anim"],
+          easing: "easeInOutSine",
+          translateX: [
+            {
+              duration: 1000,
+              value: ["45%", "100%"]
+            }
+          ]
+        });
         this.scrolled = true;
       }
       if (event.deltaY < 0 && this.scrolled) {
@@ -355,7 +365,27 @@ export default {
           translateX: [
             {
               duration: 1000,
-              value: ["100%", "-25%"]
+              value: ["80%", "-55%"]
+            }
+          ]
+        });
+        anime({
+          targets: [".main-left .heading, .main-left .subheading"],
+          easing: "easeInOutSine",
+          translateY: [
+            {
+              duration: 1000,
+              value: ["0%", "300%"]
+            }
+          ]
+        });
+        anime({
+          targets: [".loading-anim"],
+          easing: "easeInOutSine",
+          translateX: [
+            {
+              duration: 1000,
+              value: ["100%", "45%"]
             }
           ]
         });
@@ -385,8 +415,8 @@ export default {
 
       anime({
         targets: ".logo-img",
-        translateY: ["100%", "0"],
-        duration: 650,
+        translateY: ["150%", "0"],
+        duration: 1000,
         easing: "easeInOutSine",
         delay: 400
       });
@@ -564,8 +594,8 @@ export default {
 
 .main-right {
   overflow: hidden;
-  transform: translateX(-25%);
-  width: 80%;
+  transform: translateX(-55%);
+  // width: 155%;
   margin: 0 auto;
   // background-color: rgb(30 54 119 / 100%);
   // border-radius: 5px;
@@ -579,18 +609,18 @@ export default {
   .logo-img {
     min-width: 112px;
     width: 100%;
-    transform: translateY(100%);
+    transform: translateY(150%);
     // margin-right: 20px;
   }
 }
 
 .center-content {
   display: flex;
-  width: 80%;
+  width: 100%;
 }
 .main-left {
   overflow: hidden;
-  // width: 60%;
+  // width: 150%;
   margin: 0 auto;
   padding: 15px;
   margin-left: 10%;
@@ -598,7 +628,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   display: flex;
-  color: $lightBlue;
+  color: #c4c4c4;
   // padding: 0 10%;
   text-align: left;
 
@@ -608,6 +638,7 @@ export default {
     font-weight: 700;
     width: 100%;
     line-height: 55px;
+
     // min-width: 400px;
   }
   .subheading {
@@ -624,10 +655,10 @@ export default {
     }
   }
   .home-btn {
-    background: $purple;
-    color: $lightBlue;
+    background: transparent;
+    color: #c4c4c4;
     text-align: center;
-    // border: 3px solid $purple;
+    border: 3px solid #c4c4c4;
     margin: 0 auto;
     margin-top: 40px;
     cursor: pointer;
