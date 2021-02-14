@@ -194,7 +194,7 @@ export default {
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   letter-spacing: 0.5px;
@@ -212,7 +212,7 @@ export default {
   &.active {
     // width: 100%;
     // height: 100%;
-    border-bottom: 1px solid $purple;
+    border-bottom: 1px solid #c4c4c4;
     pointer-events: none;
     // padding: 1px 3px 1px 3px;
   }

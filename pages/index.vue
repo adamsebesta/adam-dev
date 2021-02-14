@@ -23,13 +23,9 @@
           <div class="trail"></div>
         </div>
         <div class="main-left">
-          <!-- <p v-if="!mobile" class="heading">
+          <p class="heading">
             Your <br />
-            <span class="purple"> Creative Ideas <br /></span> Brought To Life
-          </p>
-          <p v-if="mobile" class="heading">
-            Your <br />
-            <span class="purple"> Creative Ideas</span><br />
+            <span class="purple"> Creative Ideas</span>
             Brought To Life
           </p>
           <div class="subheading">
@@ -40,7 +36,7 @@
             <a class="home-btn home-btn-animated" @click="proceedContact"
               >Contact <i class="fa fa-envelope" aria-hidden="true"></i
             ></a>
-          </div> -->
+          </div>
         </div>
         <div class="main-right">
           <div class="device-images">
@@ -122,7 +118,7 @@ export default {
       image: "/meta.png",
       stars: [...Array(50)],
       loading: true,
-      replay: false
+      scrolled: false
     };
   },
   methods: {
@@ -193,7 +189,7 @@ export default {
         //   that.toggleReplay();
         // }
       });
-    }
+    },
     // spinLogo() {
     //   anime({
     //     targets: ".logo-img ",
@@ -327,7 +323,45 @@ export default {
     //     this.rippleStars();
     //   }, 1500);
     // },
-    // shuffleStars() {}
+
+    toggleFooter(event) {
+      if (event.deltaY > 0 && !this.scrolled) {
+        anime({
+          targets: [".main-right"],
+          easing: "easeInOutSine",
+          translateX: [
+            {
+              duration: 1000,
+              value: ["-25%", "100%"]
+            }
+          ]
+        });
+        anime({
+          targets: [".main-left .heading, .main-left .subheading"],
+          easing: "easeInOutSine",
+          translateY: [
+            {
+              duration: 1000,
+              value: ["300%", "0%"]
+            }
+          ]
+        });
+        this.scrolled = true;
+      }
+      if (event.deltaY < 0 && this.scrolled) {
+        anime({
+          targets: [".main-right"],
+          easing: "easeInOutSine",
+          translateX: [
+            {
+              duration: 1000,
+              value: ["100%", "-25%"]
+            }
+          ]
+        });
+        this.scrolled = false;
+      }
+    }
   },
   created() {},
   mounted() {
@@ -536,7 +570,7 @@ export default {
   // background-color: rgb(30 54 119 / 100%);
   // border-radius: 5px;
   z-index: 1;
-  justify-content: flex-end;
+  justify-content: center;
   margin-right: 5%;
   align-items: center;
   // flex-direction: column;
@@ -555,9 +589,11 @@ export default {
   width: 80%;
 }
 .main-left {
-  width: 50%;
+  overflow: hidden;
+  // width: 60%;
   margin: 0 auto;
-  margin-left: 5%;
+  padding: 15px;
+  margin-left: 10%;
   z-index: 1;
   justify-content: center;
   flex-direction: column;
@@ -568,20 +604,21 @@ export default {
 
   .heading {
     font-size: 70px;
+    transform: translateY(300%);
     font-weight: 700;
     width: 100%;
-    max-width: 480x;
     line-height: 55px;
-    min-width: 400px;
+    // min-width: 400px;
   }
   .subheading {
+    transform: translateY(300%);
     width: 100%;
     font-size: 12px;
     font-weight: 400;
     margin-top: 20px;
     font-family: $bodyFont;
     p {
-      margin-bottom: 40px;
+      padding-bottom: 40px;
       font-size: 16px;
       width: 400px;
     }
