@@ -35,7 +35,7 @@ export default {};
   justify-content: space-between;
   background-color: #fff;
   bottom: 0;
-  height: 150px;
+  height: 135px;
   width: 100%;
   z-index: 1;
   padding: 0px 100px;

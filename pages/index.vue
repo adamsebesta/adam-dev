@@ -5,15 +5,38 @@
       <Nav class="banner-nav" />
     </div>
     <div class="container-main">
+      <div id="lineDrawing">
+        <svg viewBox="0 0 792 512">
+          <g class="lines">
+            <path
+              class="my-path"
+              d="M296.7,240.8l-11.4,92.1h-20.7l4.9-39.2h-33.2l-4.9,39.2h-20.7l11.4-92.1h20.7l-4.8,38.9h33.2l4.8-38.9H296.7z"
+            />
+            <path
+              class="my-path"
+              d="M332.2,256.6l-2.7,22.2h26l-2,15.3h-25.9l-2.8,22.8h34.3l-2,15.9h-55l11.4-92.1h54.8l-2,15.9H332.2z"
+            />
+            <path
+              class="my-path"
+              d="M423.3,316.4l-2,16.4h-51.6l11.4-92.1h20.6l-9.4,75.6H423.3z"
+            />
+            <path
+              class="my-path"
+              d="M485.2,316.4l-2,16.4h-51.6l11.4-92.1h20.6l-9.4,75.6H485.2z"
+            />
+            <path
+              class="my-path"
+              d="M580.2,280.9c0,19.5-10,38.7-27.8,47.6c-16.6,8.3-38.7,7.5-51.7-6.9c-13-14.5-12.6-37.5-4.3-54.2
+	c8.7-17.5,26.9-28.2,46.4-27.6c10.2,0.3,20.1,4.3,27,11.9C577,259.6,580.2,270.3,580.2,280.9z M559.1,281.4c0-11.3-5-23.5-17.6-25
+	c-11.6-1.4-21.5,5.5-26.1,15.9c-4.5,10.2-5.8,24.5-0.8,34.7c5.3,10.6,18.5,13.1,28.6,7.9C555.3,308.6,559.1,293.9,559.1,281.4z"
+            />
+          </g>
+        </svg>
+      </div>
       <div v-if="loading" class="loading-anim">
         <div class="loading-img-wrapper">
           <img class="loading-logo-img" src="~static/logo.png" alt="" />
         </div>
-
-        <!-- <div class="loading-logo">
-          <p class="loading-logo-upper">Adam Sebesta</p>
-          <p class="loading-logo-lower">Development</p>
-        </div> -->
       </div>
       <div class="center-content">
         <div class="scroll-div">
@@ -23,25 +46,37 @@
           <div class="trail"></div>
         </div>
         <div class="main-left">
-          <p class="heading">
+          <div class="heading">
             Your <br />
-            <span class="gold"> Creative Ideas</span>
-            Brought To Life
-          </p>
+            <span class="gold"> Creative Ideas <br /> </span>
+            <span> Brought To Life</span>
+            <div class="lightbulb-wrapper">
+              <img class="lightbulb" src="~/static/lightbulb.png" alt="" />
+            </div>
+          </div>
           <div class="subheading">
             <p>
               Collaborative mobile and web development for small to large scale
               applications
             </p>
-            <a class="home-btn home-btn-animated" @click="proceedContact"
-              >Contact <i class="fa fa-envelope" aria-hidden="true"></i
-            ></a>
+            <div class="home-btn home-btn-animated" @click="proceedContact">
+              <div class="wrapper">
+                <span>Contact</span>
+                <i class="fa fa-envelope" aria-hidden="true"> </i>
+              </div>
+            </div>
           </div>
         </div>
         <div class="main-right">
           <div class="device-images">
-            <img class="logo-img" src="~static/logo-full.png" alt="" />
+            <img
+              v-if="!mobile"
+              class="logo-img"
+              src="~static/logo-full.png"
+              alt=""
+            />
           </div>
+          <img v-if="mobile" class="logo-img" src="~static/logo.png" alt="" />
         </div>
       </div>
 
@@ -81,7 +116,10 @@ export default {
       // stars: [...Array(50)],
       loading: true,
       step1: false,
-      step2: false
+      step2: false,
+      scrollCounter: 0,
+      touchStart: null,
+      touchEnd: null
     };
   },
   methods: {
@@ -292,7 +330,7 @@ export default {
         easing: "easeInOutSine",
         translateY: [
           {
-            duration: 1000,
+            duration: 1200,
             value: val
           }
         ]
@@ -312,20 +350,38 @@ export default {
     },
     scrollAnim(event) {
       console.log(event);
-      if (event.deltaY > 0 && this.step1 && !this.step2) {
+      // determine direction of scroll
+      let dir;
+      if (event == "up" || event == "down") {
+        dir = event;
+      } else {
+        dir = event.deltaY > 0 ? "down" : "up";
+      }
+
+      this.scrollCounter++;
+      if (
+        dir == "down" &&
+        this.step1 &&
+        !this.step2 &&
+        this.scrollCounter > 1
+      ) {
         this.translateElementsY([".index-footer"], ["100%", "0%"]);
         this.step2 = true;
       }
-      if (event.deltaY < 0 && this.step1 && this.step2) {
-        this.translateElementsY([".index-footer"], ["0%", "100%"]);
-        this.step2 = false;
-      }
-      if (event.deltaY > 0 && !this.step1) {
+
+      if (dir == "down" && !this.step1) {
         this.translateElementsX([".main-right"], ["-55%", "70%"]);
         this.translateElementsY(
           [".main-left .heading, .main-left .subheading"],
-          ["300%", "0%"]
+          ["350%", "0%"]
         );
+        anime({
+          targets: [".home-btn .wrapper"],
+          translateY: ["150%", "0"],
+          duration: 650,
+          delay: 500,
+          easing: "easeInOutSine"
+        });
         anime({
           targets: ".scroll-div",
           left: ["8", "0%"],
@@ -335,70 +391,136 @@ export default {
           easing: "easeInOutSine"
         });
         this.translateElementsX([".loading-anim"], ["50%", "100%"]);
+        this.translateElementsX(["#lineDrawing svg"], ["0%", "100%"]);
+        anime({
+          targets: ".lightbulb",
+          translateY: ["100", "0%"],
+          delay: 1000,
+          duration: 650,
+          easing: "easeInOutSine"
+        });
         this.step1 = true;
       }
-      if (event.deltaY < 0 && this.step1 && !this.step2) {
+      if (dir == "up" && this.step1 && !this.step2) {
+        console.log("here");
         this.translateElementsX([".main-right"], ["70%", "-55%"]);
         this.translateElementsY(
           [".main-left .heading, .main-left .subheading"],
-          ["0%", "300%"]
+          ["0%", "350%"]
         );
         this.translateElementsX([".loading-anim"], ["100%", "50%"]);
         anime({
           targets: ".scroll-div",
           left: ["0", "8%"],
           rotate: ["270deg", "270deg"],
-          delay: 400,
+          // delay: 400,
+          duration: 1000,
+          easing: "easeInOutSine"
+        });
+        anime({
+          targets: ".lightbulb",
+          translateY: ["0", "100%"],
           duration: 650,
           easing: "easeInOutSine"
         });
+        this.translateElementsX(["#lineDrawing svg"], ["100%", "0%"]);
         this.step1 = false;
+      }
+      if (dir == "up" && this.step1 && this.step2) {
+        console.log("here");
+        this.translateElementsY([".index-footer"], ["0%", "100%"]);
+        this.step2 = false;
+      }
+    },
+    welcomeAnim() {
+      setTimeout(() => {
+        anime({
+          targets: ".loading-anim",
+          translateX: "50%",
+          duration: 750,
+          easing: "easeInOutSine",
+          delay: 200
+        });
+
+        anime({
+          targets: ".loading-logo-img",
+          translateX: "100%",
+          duration: 750,
+          easing: "easeInOutSine",
+          delay: 0
+        });
+
+        anime({
+          targets: ".logo-img",
+          translateY: ["150%", "0"],
+          duration: 1000,
+          easing: "easeInOutSine",
+          delay: 400
+        });
+        anime({
+          targets: ".scroll-div",
+          translateY: ["500%", "0"],
+          duration: 650,
+          rotate: ["270deg", "270deg"],
+          easing: "easeInOutSine",
+          delay: 1000
+        });
+        document.querySelector("#lineDrawing").style.zIndex = 10;
+        anime({
+          targets: "#lineDrawing .lines path",
+          strokeDashoffset: [anime.setDashoffset, 0],
+          easing: "easeInOutSine",
+          duration: 1000,
+          delay: function(el, i) {
+            return i * 250;
+          }
+        });
+      }, 1000);
+    },
+    scrollListenerInit() {
+      let that = this;
+      if (!this.mobile) {
+        window.addEventListener("wheel", _.throttle(this.scrollAnim, 1000));
+      } else {
+        setTimeout(() => {
+          window.addEventListener("touchstart", function(e) {
+            this.touchStart = e.changedTouches[0];
+          });
+          window.addEventListener("touchend", function(e) {
+            this.touchEnd = e.changedTouches[0];
+            // determine direction
+            if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+              that.scrollAnim("up");
+            } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+              that.scrollAnim("down");
+            }
+          });
+        }, 1000);
       }
     }
   },
   created() {},
   mounted() {
     // if (localStorage.getItem("wasVisited") === null) {
-    setTimeout(() => {
-      anime({
-        targets: ".loading-anim",
-        translateX: "50%",
-        duration: 750,
-        easing: "easeInOutSine",
-        delay: 200
-      });
-
-      anime({
-        targets: ".loading-logo-img",
-        translateX: "100%",
-        duration: 750,
-        easing: "easeInOutSine",
-        delay: 0
-      });
-
-      anime({
-        targets: ".logo-img",
-        translateY: ["150%", "0"],
-        duration: 1000,
-        easing: "easeInOutSine",
-        delay: 400
-      });
-      anime({
-        targets: ".scroll-div",
-        translateY: ["500%", "0"],
-        duration: 650,
-        rotate: ["270deg", "270deg"],
-        easing: "easeInOutSine",
-        delay: 1000
-      });
-    }, 1000);
-
+    this.welcomeAnim();
+    this.scrollListenerInit();
     localStorage.setItem("wasVisited", "1");
     // this.initLogo();
-    window.addEventListener("wheel", _.throttle(this.scrollAnim, 1000));
   },
   destroyed() {
     window.removeEventListener("wheel", this.scrollAnim);
+    window.removeEventListener("touchstart", function(e) {
+      this.touchStart = e.changedTouches[0];
+    });
+    window.removeEventListener("touchend", function(e) {
+      this.touchEnd = e.changedTouches[0];
+
+      if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+        console.log("scrolling up");
+      } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+        console.log("scrolling down");
+      }
+    });
   }
 };
 </script>
@@ -421,6 +543,32 @@ export default {
 }
 .index-footer {
   transform: translateY(100%);
+}
+.lightbulb-wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  transform: translateX(25%) translateY(-310%);
+}
+.lightbulb {
+  position: relative;
+  width: 10%;
+  transform: translateY(100%);
+}
+
+.my-path {
+  fill: none;
+  stroke: $mainGold;
+  stroke-width: 10;
+}
+
+#lineDrawing {
+  position: absolute;
+  overflow: hidden;
+  left: 20%;
+  top: 29%;
+  width: 20%;
 }
 
 .scroll-div {
@@ -580,8 +728,7 @@ export default {
   position: absolute;
   top: 25%;
   overflow: hidden;
-  width: 52%;
-  max-width: 775px;
+  width: 815px;
   margin: 0 auto;
   padding: 15px;
   margin-left: 10%;
@@ -595,7 +742,7 @@ export default {
 
   .heading {
     font-size: 120px;
-    transform: translateY(300%);
+    transform: translateY(350%);
     font-weight: 700;
     width: 150%;
     line-height: 95px;
@@ -604,7 +751,7 @@ export default {
     // min-width: 400px;
   }
   .subheading {
-    transform: translateY(300%);
+    transform: translateY(350%);
     width: 100%;
     font-size: 14px;
     font-weight: 400;
@@ -619,10 +766,11 @@ export default {
   .home-btn {
     background: transparent;
     color: $grey;
+    overflow: hidden;
     text-align: center;
     border: 3px solid $grey;
-    margin: 0 auto;
-    margin-top: 40px;
+    width: 30%;
+    // margin-top: 40px;
     cursor: pointer;
     border-radius: 4px;
     padding: 15px 55px;
@@ -632,23 +780,14 @@ export default {
     z-index: 1;
     &:hover {
       background-color: $mainBlue;
-      color: $grey;
+      color: #fff;
       border: 3px solid $mainBlue;
     }
+    .wrapper {
+      // display: flex;
+      transform: translateY(150%);
+    }
   }
-}
-
-#iphone-home {
-  z-index: 1;
-  width: 5%;
-
-  // filter: drop-shadow(2px 10px 4px black);
-}
-
-#macbook-home {
-  z-index: 1;
-  width: 14%;
-  // filter: drop-shadow(2px 10px 4px black);
 }
 
 .device-images {
@@ -679,8 +818,8 @@ export default {
 @media only screen and (max-width: 1450px) {
   .main-left {
     .heading {
-      font-size: 34px;
-      line-height: 37px;
+      font-size: 75px;
+      line-height: 65px;
     }
     .subheading {
       p {
@@ -688,41 +827,34 @@ export default {
       }
     }
   }
-  .logo {
-    .logo-upper {
-      font-size: 40px;
-    }
-    .logo-lower {
-      font-size: 22px;
+
+  #lineDrawing {
+    left: 20%;
+    top: 28.5%;
+  }
+  .lightbulb-wrapper {
+    transform: translateX(-21%) translateY(-278%);
+    .lightbulb {
+      width: 8%;
     }
   }
-
-  // .device-images {
-  //   .logo-img {
-  //     min-width: 80px;
-  //     height: 89px;
-  //     opacity: 0;
-  //     margin-right: 5px;
-  //   }
-  // }
 }
 
 @media only screen and (max-width: 1130px) {
   .main-left {
-    padding: 0;
-    margin: 0 auto;
     width: 100%;
     text-align: left;
+    top: 34%;
     .heading {
-      font-size: 26px;
-      line-height: 27px;
+      font-size: 46px;
+      line-height: 40px;
       width: 60%;
       min-width: 187px;
     }
     .subheading {
       p {
         font-size: 12px;
-        width: 75%;
+        // width: 75%;
 
         font-weight: 600;
         line-height: 22px;
@@ -730,25 +862,31 @@ export default {
       }
     }
   }
+  .btn-home {
+    width: 20%;
+  }
 
-  .logo {
-    min-width: 160px;
-    .logo-upper {
-      font-size: 24px;
-    }
-    .logo-lower {
-      font-size: 16px;
-      // margin-left: 5%;
+  .lightbulb-wrapper {
+    transform: translateX(-314px) translateY(-260%);
+    min-width: 640px;
+    .lightbulb {
+      width: 6%;
     }
   }
 }
 @media only screen and (max-width: 450px) {
   .center-content {
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
+    // flex-direction: column-reverse;
+    // justify-content: center;
     width: 95%;
     margin-top: -40px;
+  }
+  #lineDrawing {
+    left: 30%;
+    top: 64%;
+    // z-index: 10;
+    width: 40%;
   }
 
   .loading-anim {
@@ -768,16 +906,17 @@ export default {
     margin: 0 auto;
     width: 100%;
     text-align: center;
+    left: 0%;
     .heading {
-      font-size: 26px;
-      line-height: 27px;
-      width: 60%;
+      font-size: 36px;
+      line-height: 37px;
+      width: 70%;
       margin: 0px auto;
       min-width: unset;
     }
     .subheading {
       p {
-        font-size: 12px;
+        font-size: 14px;
         width: 75%;
         margin: 0 auto;
         font-weight: 600;
@@ -785,31 +924,32 @@ export default {
         min-width: unset;
       }
     }
+    .lightbulb-wrapper {
+      transform: translateX(-55%) translateY(-235%);
+    }
 
     .home-btn {
-      background: $purple;
+      background: $mainBlue;
       height: 30px;
-      color: $lightBlue;
+      color: #fff;
       width: 80%;
-      position: absolute;
-      bottom: 10%;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%, 0);
-      // margin: 0 10px;
+
+      margin: 0 auto;
+      // margin-top: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 30px;
       font-size: 16px;
       border-radius: 5px;
+      border-color: $mainBlue;
       &:hover {
         padding: 30px;
       }
       i {
         font-size: 16px;
         padding-left: 7px;
-        color: $lightBlue;
+        color: #fff;
       }
     }
   }
@@ -821,7 +961,6 @@ export default {
     margin: 0 auto;
     padding-right: 0;
     .logo-img {
-      max-width: 125px;
       margin: 0 auto;
       padding-left: 2px;
     }
@@ -830,28 +969,6 @@ export default {
     height: 90%;
     width: 87%;
     top: 11%;
-  }
-  .logo {
-    margin: 0;
-    width: 65%;
-    display: none;
-    .logo-upper {
-      font-size: 30px;
-      letter-spacing: 1px;
-    }
-    .logo-lower {
-      font-size: 17px;
-      letter-spacing: 1px;
-      margin-left: 12%;
-      margin-top: -5px;
-    }
-  }
-
-  .background-home {
-    left: -16%;
-    height: 100%;
-    width: 117%;
-    top: 0;
   }
 }
 </style>
