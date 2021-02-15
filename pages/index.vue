@@ -44,49 +44,10 @@
           </div>
         </div>
       </div>
-      <svg id="sky">
-        <svg
-          v-for="i in stars"
-          :key="i"
-          version="1.1"
-          id="Capa_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          :x="getRandomX()"
-          :y="getRandomY()"
-          width="40%"
-          height="40%"
-          class="star"
-          fill="#fff"
-          viewBox="0 0 58 58"
-          xml:space="preserve"
-        >
-          <g>
-            <polygon style="fill: #cccccc" points="29,58 3,45 3,13 29,26 	" />
-            <!-- <polygon style="fill: #020517" points="29,58 3,45 3,13 29,26 	" /> -->
-            <polygon style="fill: #f4f4f4" points="29,58 55,45 55,13 29,26 	" />
-            <polygon style="fill: #ebebeb" points="3,13 28,0 55,13 29,26 	" />
-          </g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-          <g></g>
-        </svg>
-      </svg>
+
       <!-- <div class="background-home"></div> -->
     </div>
-    <!-- <Footer class="index-footer" /> -->
+    <Footer class="index-footer" />
   </div>
 </template>
 
@@ -94,6 +55,7 @@
 import anime from "animejs";
 import about from "./about";
 import Nav from "../components/Nav";
+import _ from "lodash";
 
 export default {
   head() {
@@ -116,28 +78,29 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      stars: [...Array(50)],
+      // stars: [...Array(50)],
       loading: true,
-      scrolled: false
+      step1: false,
+      step2: false
     };
   },
   methods: {
     proceedContact() {
       document.querySelector("#contact").click();
     },
-    randomRadius() {
-      return Math.random() * 0.7 + 5.6;
-    },
-    getRandomX() {
-      return Math.floor(Math.random() * Math.floor(this.windowWidth))
-        .toString()
-        .trim();
-    },
-    getRandomY() {
-      return Math.floor(Math.random() * Math.floor(this.windowHeight))
-        .toString()
-        .trim();
-    },
+    // randomRadius() {
+    //   return Math.random() * 0.7 + 5.6;
+    // },
+    // getRandomX() {
+    //   return Math.floor(Math.random() * Math.floor(this.windowWidth))
+    //     .toString()
+    //     .trim();
+    // },
+    // getRandomY() {
+    //   return Math.floor(Math.random() * Math.floor(this.windowHeight))
+    //     .toString()
+    //     .trim();
+    // },
     // riseLogo() {
     //   anime({
     //     targets: [".logo-img"],
@@ -150,46 +113,46 @@ export default {
     //     ]
     //   });
     // },
-    rippleStars() {
-      let that = this;
-      anime({
-        targets: ["#sky .star"],
-        y: function() {
-          return anime.random(0, that.windowHeight);
-        },
-        x: function() {
-          return anime.random(0, that.windowWidth);
-        },
-        width: function() {
-          return anime.random(20, 40);
-        },
-        height: function() {
-          return anime.random(20, 40);
-        },
-        easing: "linear",
-        duration: 2000,
-        delay: anime.stagger(10)
-        // complete: that.starAnim
-        // easing: "easeInOutSine",
-        // delay: anime.stagger(300),
-        // y: [
-        //   {
-        //     duration: 2000,
-        //     value: "5px"
-        //   }
-        // ],
-        // opacity: [
-        //   {
-        //     duration: 2500,
-        //     value: "0.0"
-        //   }
-        // ],
-        // complete: function(anim) {
-        //   that.spinLogo();
-        //   that.toggleReplay();
-        // }
-      });
-    },
+    // rippleStars() {
+    //   let that = this;
+    //   anime({
+    //     targets: ["#sky .star"],
+    //     y: function() {
+    //       return anime.random(0, that.windowHeight);
+    //     },
+    //     x: function() {
+    //       return anime.random(0, that.windowWidth);
+    //     },
+    //     width: function() {
+    //       return anime.random(20, 40);
+    //     },
+    //     height: function() {
+    //       return anime.random(20, 40);
+    //     },
+    //     easing: "linear",
+    //     duration: 2000,
+    //     delay: anime.stagger(10)
+    // complete: that.starAnim
+    // easing: "easeInOutSine",
+    // delay: anime.stagger(300),
+    // y: [
+    //   {
+    //     duration: 2000,
+    //     value: "5px"
+    //   }
+    // ],
+    // opacity: [
+    //   {
+    //     duration: 2500,
+    //     value: "0.0"
+    //   }
+    // ],
+    // complete: function(anim) {
+    //   that.spinLogo();
+    //   that.toggleReplay();
+    // }
+    // });
+    // },
     // spinLogo() {
     //   anime({
     //     targets: ".logo-img ",
@@ -323,73 +286,73 @@ export default {
     //     this.rippleStars();
     //   }, 1500);
     // },
-
-    toggleFooter(event) {
-      if (event.deltaY > 0 && !this.scrolled) {
-        anime({
-          targets: [".main-right"],
-          easing: "easeInOutSine",
-          translateX: [
-            {
-              duration: 1000,
-              value: ["-55%", "80%"]
-            }
-          ]
-        });
-        anime({
-          targets: [".main-left .heading, .main-left .subheading"],
-          easing: "easeInOutSine",
-          translateY: [
-            {
-              duration: 1000,
-              value: ["300%", "0%"]
-            }
-          ]
-        });
-        anime({
-          targets: [".loading-anim"],
-          easing: "easeInOutSine",
-          translateX: [
-            {
-              duration: 1000,
-              value: ["45%", "100%"]
-            }
-          ]
-        });
-        this.scrolled = true;
+    translateElementsY(el, val) {
+      anime({
+        targets: el,
+        easing: "easeInOutSine",
+        translateY: [
+          {
+            duration: 1000,
+            value: val
+          }
+        ]
+      });
+    },
+    translateElementsX(el, val) {
+      anime({
+        targets: el,
+        easing: "easeInOutSine",
+        translateX: [
+          {
+            duration: 1000,
+            value: val
+          }
+        ]
+      });
+    },
+    scrollAnim(event) {
+      console.log(event);
+      if (event.deltaY > 0 && this.step1 && !this.step2) {
+        this.translateElementsY([".index-footer"], ["100%", "0%"]);
+        this.step2 = true;
       }
-      if (event.deltaY < 0 && this.scrolled) {
+      if (event.deltaY < 0 && this.step1 && this.step2) {
+        this.translateElementsY([".index-footer"], ["0%", "100%"]);
+        this.step2 = false;
+      }
+      if (event.deltaY > 0 && !this.step1) {
+        this.translateElementsX([".main-right"], ["-55%", "70%"]);
+        this.translateElementsY(
+          [".main-left .heading, .main-left .subheading"],
+          ["300%", "0%"]
+        );
         anime({
-          targets: [".main-right"],
-          easing: "easeInOutSine",
-          translateX: [
-            {
-              duration: 1000,
-              value: ["80%", "-55%"]
-            }
-          ]
+          targets: ".scroll-div",
+          left: ["8", "0%"],
+          rotate: ["270deg", "270deg"],
+          // translateY: ["10%", "-50%"],
+          duration: 650,
+          easing: "easeInOutSine"
         });
+        this.translateElementsX([".loading-anim"], ["50%", "100%"]);
+        this.step1 = true;
+      }
+      if (event.deltaY < 0 && this.step1 && !this.step2) {
+        this.translateElementsX([".main-right"], ["70%", "-55%"]);
+        this.translateElementsY(
+          [".main-left .heading, .main-left .subheading"],
+          ["0%", "300%"]
+        );
+        this.translateElementsX([".loading-anim"], ["100%", "50%"]);
         anime({
-          targets: [".main-left .heading, .main-left .subheading"],
-          easing: "easeInOutSine",
-          translateY: [
-            {
-              duration: 1000,
-              value: ["0%", "300%"]
-            }
-          ]
+          targets: ".scroll-div",
+          left: ["0", "8%"],
+          rotate: ["270deg", "270deg"],
+          delay: 400,
+          duration: 650,
+          easing: "easeInOutSine"
         });
-        anime({
-          targets: [".loading-anim"],
-          easing: "easeInOutSine",
-          translateX: [
-            {
-              duration: 1000,
-              value: ["100%", "45%"]
-            }
-          ]
-        });
-        this.scrolled = false;
+        this.step1 = false;
       }
     }
   },
@@ -399,7 +362,7 @@ export default {
     setTimeout(() => {
       anime({
         targets: ".loading-anim",
-        translateX: "45%",
+        translateX: "50%",
         duration: 750,
         easing: "easeInOutSine",
         delay: 200
@@ -429,32 +392,24 @@ export default {
         delay: 1000
       });
     }, 1000);
-    // this.loading = false;
-    // } else {
-    //   this.loading = false;
-    // }
-    setTimeout(() => {
-      // this.showStars();
-      // this.riseLogo();
-    }, 850);
-    setTimeout(() => {
-      this.rippleStars();
-    }, 200);
 
     localStorage.setItem("wasVisited", "1");
     // this.initLogo();
-    window.addEventListener("wheel", this.toggleFooter);
+    window.addEventListener("wheel", _.throttle(this.scrollAnim, 1000));
   },
   destroyed() {
-    window.removeEventListener("wheel", this.toggleFooter);
+    window.removeEventListener("wheel", this.scrollAnim);
   }
 };
 </script>
 
 <style lang="scss">
+.page {
+}
 .container-main {
   margin: 0 auto;
   height: 100vh;
+  overflow: hidden;
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -465,7 +420,7 @@ export default {
   position: fixed;
 }
 .index-footer {
-  opacity: 0;
+  transform: translateY(100%);
 }
 
 .scroll-div {
@@ -594,15 +549,18 @@ export default {
 
 .main-right {
   overflow: hidden;
+  position: absolute;
+  left: 51%;
+  top: 28%;
   transform: translateX(-55%);
-  // width: 155%;
+  width: 50%;
   margin: 0 auto;
   // background-color: rgb(30 54 119 / 100%);
   // border-radius: 5px;
   z-index: 1;
   justify-content: center;
-  margin-right: 5%;
   align-items: center;
+  margin-left: 9.5%;
   // flex-direction: column;
   display: flex;
   flex-direction: column;
@@ -619,8 +577,11 @@ export default {
   width: 100%;
 }
 .main-left {
+  position: absolute;
+  top: 25%;
   overflow: hidden;
-  // width: 150%;
+  width: 52%;
+  max-width: 775px;
   margin: 0 auto;
   padding: 15px;
   margin-left: 10%;
@@ -628,37 +589,38 @@ export default {
   justify-content: center;
   flex-direction: column;
   display: flex;
-  color: #c4c4c4;
+  color: $grey;
   // padding: 0 10%;
   text-align: left;
 
   .heading {
-    font-size: 70px;
+    font-size: 120px;
     transform: translateY(300%);
     font-weight: 700;
-    width: 100%;
-    line-height: 55px;
+    width: 150%;
+    line-height: 95px;
+    z-index: 1;
 
     // min-width: 400px;
   }
   .subheading {
     transform: translateY(300%);
     width: 100%;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     margin-top: 20px;
     font-family: $bodyFont;
     p {
       padding-bottom: 40px;
-      font-size: 16px;
-      width: 400px;
+      font-size: 18px;
+      width: 500px;
     }
   }
   .home-btn {
     background: transparent;
-    color: #c4c4c4;
+    color: $grey;
     text-align: center;
-    border: 3px solid #c4c4c4;
+    border: 3px solid $grey;
     margin: 0 auto;
     margin-top: 40px;
     cursor: pointer;
@@ -669,7 +631,9 @@ export default {
     transition: all ease-in-out 150ms;
     z-index: 1;
     &:hover {
-      padding: 17px 58px;
+      background-color: $mainBlue;
+      color: $grey;
+      border: 3px solid $mainBlue;
     }
   }
 }

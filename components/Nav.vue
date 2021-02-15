@@ -1,7 +1,7 @@
 <template>
   <nav class="nav-bar">
-    <div class="nav-logo">
-      <img src="logo.png" alt="" @click="navChange('/')" />
+    <div class="nav-logo" @click="navChange('/')">
+      <img src="logo.png" alt="" />
       <i
         v-if="mobile"
         @click="showMenu"
@@ -106,33 +106,9 @@ export default {
       }, 200);
     },
     async navChange(path) {
-      if (window.location.pathname == "/") {
-        let target = document.querySelectorAll(".star")[39];
-        let pos = target.getBoundingClientRect();
-        let that = this;
-        anime.timeline({ loop: false }).add({
-          targets: target,
-          opacity: 0.3,
-          zIndex: [{ value: [1, 5], round: true }],
-          x:
-            this.windowWidth / 2 -
-            this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
-          y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.mobile ? this.windowWidth / 7 : this.windowWidth / 10,
-          height: this.mobile ? this.windowHeight / 7 : this.windowHeight / 10,
-          easing: "easeOutExpo",
-          duration: 2000
-        });
-        setTimeout(() => {
-          that.$router.push({
-            path: path
-          });
-        }, 300);
-      } else {
-        this.$router.push({
-          path: path
-        });
-      }
+      this.$router.push({
+        path: path
+      });
     }
   },
   created() {},
@@ -188,13 +164,13 @@ export default {
 }
 
 .menu__item {
-  color: #c4c4c4;
+  color: $grey;
   // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   flex-direction: row;
   letter-spacing: 0.5px;
@@ -212,7 +188,7 @@ export default {
   &.active {
     // width: 100%;
     // height: 100%;
-    border-bottom: 1px solid #c4c4c4;
+    border-bottom: 1px solid $grey;
     pointer-events: none;
     // padding: 1px 3px 1px 3px;
   }

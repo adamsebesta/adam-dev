@@ -15,6 +15,13 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: "Neuzeit Grotesk";
+  src: url("~static/fonts/NeuzeitGro-Bla.ttf"); /* IE9 Compat Mode */
+  src: url("~static/fonts/NeuzeitGro-Bol.ttf"); /* IE9 Compat Mode */
+  src: url("~static/fonts/NeuzeitGro-Reg.ttf"); /* IE9 Compat Mode */
+}
+
 html {
   overflow: auto;
   -webkit-touch-callout: none; /* iOS Safari */
