@@ -1,94 +1,147 @@
 <template>
-  <nav class="nav-bar">
-    <div class="nav-logo">
-      <svg
-        v-if="!mobile"
-        version="1.1"
-        @click="showMenu"
-        id="corner-logo"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="40px"
-        height="40px"
-        x="1"
-        y="1"
-        viewBox="0 0 58 58"
-        xml:space="preserve"
-      >
-        <g>
-          <polygon style="fill:#556080;" points="29,58 3,45 3,13 29,26 	" />
-          <polygon style="fill:#434C6D;" points="29,58 55,45 55,13 29,26 	" />
-          <polygon
-            :style="{ fill: blockColor }"
-            points="3,13 28,0 55,13 29,26 	"
-          />
-        </g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-      </svg>
-      <i
-        v-if="mobile"
-        @click="showMenu"
-        class="fa fa-bars nav-bars"
-        aria-hidden="true"
-      ></i>
-    </div>
-    <div class="menu" :style="{ display: menuShown ? '' : 'none' }">
-      <div
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/' ? ' active' : '')
-        "
-        @click="navChange('/')"
-      >
-        <a class="menu__item">Home</a>
+  <div>
+    <nav v-if="!mobile" class="nav-bar">
+      <div class="nav-logo desktop" @click="navChange('/')">
+        <img src="logo.png" alt="" />
       </div>
-      <div
-        ref="about"
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/about' ? ' active' : '')
-        "
-        @click="navChange('/about')"
-      >
-        <a id="about" class="menu__item">About</a>
+      <div class="menu desktop">
+        <div
+          :class="
+            'menu-wrapper ' +
+              (page && page.location.pathname == '/' ? ' active' : '')
+          "
+          @click="navChange('/')"
+        >
+          <a class="menu__item">Home</a>
+        </div>
+        <div
+          ref="about"
+          :class="
+            'menu-wrapper ' +
+              (page && page.location.pathname == '/about' ? ' active' : '')
+          "
+          @click="navChange('/about')"
+        >
+          <a id="about" class="menu__item">About</a>
+        </div>
+
+        <div
+          :class="
+            'menu-wrapper ' +
+              (page && page.location.pathname == '/portfolio' ? ' active' : '')
+          "
+          @click="navChange('/portfolio')"
+        >
+          <a class="menu__item">Portfolio</a>
+        </div>
+        <div
+          id="contact"
+          :class="
+            'menu-wrapper ' +
+              (page && page.location.pathname == '/contact' ? ' active' : '')
+          "
+          @click="navChange('/contact')"
+        >
+          <a class="menu__item">Contact</a>
+        </div>
+      </div>
+    </nav>
+    <nav v-if="mobile" class="nav-bar">
+      <div class="nav-info-wrapper">
+        <div class="nav-logo" @click="navChange('/', home)">
+          <img src="logo-text.png" alt="" />
+        </div>
+        <div>
+          <i
+            v-if="mobile"
+            @click="toggleSidebar"
+            class="fa fa-bars nav-bars"
+            aria-hidden="true"
+          ></i>
+        </div>
       </div>
 
-      <div
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/portfolio' ? ' active' : '')
-        "
-        @click="navChange('/portfolio')"
-      >
-        <a class="menu__item">Portfolio</a>
+      <div class="sidebar-menu">
+        <div class="sidebar-banner">
+          <img src="logo.png" alt="" />
+          <div>
+            <i
+              class="fa fa-times"
+              aria-hidden="true"
+              @click="toggleSidebar"
+            ></i>
+          </div>
+        </div>
+        <div class="menu">
+          <div
+            :class="
+              'menu-wrapper ' +
+                (page && page.location.pathname == '/' ? ' active' : '')
+            "
+            @click="navChange('/')"
+          >
+            <a class="menu__item">Home</a>
+          </div>
+          <div
+            ref="about"
+            :class="
+              'menu-wrapper ' +
+                (page && page.location.pathname == '/about' ? ' active' : '')
+            "
+            @click="navChange('/about')"
+          >
+            <a id="about" class="menu__item">About</a>
+          </div>
+
+          <div
+            :class="
+              'menu-wrapper ' +
+                (page && page.location.pathname == '/portfolio'
+                  ? ' active'
+                  : '')
+            "
+            @click="navChange('/portfolio')"
+          >
+            <a class="menu__item">Portfolio</a>
+          </div>
+          <div
+            id="contact"
+            :class="
+              'menu-wrapper ' +
+                (page && page.location.pathname == '/contact' ? ' active' : '')
+            "
+            @click="navChange('/contact')"
+          >
+            <a class="menu__item">Contact</a>
+          </div>
+        </div>
+        <div class="sidebar-footer">
+          <div class="">
+            <span class="copyright-info"
+              >© 2021 Design & Build by Adam Sebesta. <br />
+              +49 015 208341820</span
+            >
+          </div>
+          <div class="">
+            <a
+              href="https://www.linkedin.com/company/69564956/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+            <a
+              href="https://github.com/adamsebesta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa fa-github-alt" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div
-        id="contact"
-        :class="
-          'menu-wrapper ' +
-            (page && page.location.pathname == '/contact' ? ' active' : '')
-        "
-        @click="navChange('/contact')"
-      >
-        <a class="menu__item">Contact</a>
-      </div>
-    </div>
-    <div v-if="mobile" class="nav-placeholder"></div>
-  </nav>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -98,72 +151,84 @@ export default {
   data() {
     return {
       menuShown: false,
-      page: null
+      page: null,
+      sidebarShown: false
     };
   },
   computed: {
-    blockColor() {
-      return this.menuShown ? "#3fc1d9" : "#7383BF";
-      // #364cf4
+    home() {
+      return window.location.pathname == "/";
     }
   },
   methods: {
     showMenu() {
       anime({
-        targets: [".menu"],
+        targets: [".menu", ".nav-logo", ".nav-bars"],
+        easing: "easeInOutSine",
+        translateY: [
+          {
+            duration: 500,
+            value: ["120%", "0%"]
+          }
+        ],
+        delay: 750
+      });
+    },
+    toggleSidebar() {
+      anime({
+        targets: [".sidebar-menu"],
         easing: "easeInOutSine",
         opacity: [
           {
+            duration: this.sidebarShown ? 1000 : 500,
+            value: this.sidebarShown ? ["100%", "0%"] : ["0%", "100%"]
+          }
+        ],
+        translateY: [
+          {
             duration: 750,
-            value: this.menuShown ? 0 : 1
+            value: this.sidebarShown ? ["0%", "-100%"] : ["-100%", "0%"]
           }
         ]
       });
-      if (!this.mobile) {
-        anime({
-          targets: ["#corner-logo"],
-          easing: "easeInOutSine",
-          // translateX: [
-          //   {
-          //     duration: 300,
-          //     value: this.menuShown ? 0 : 20
-          //   }
-          // ],
-          rotate: [
-            {
-              duration: 300,
-              value: this.menuShown ? 0 : 90
-            }
-          ]
-        });
-      }
-      setTimeout(() => {
-        this.menuShown = !this.menuShown;
-      }, 200);
+
+      anime({
+        targets: [".menu__item"],
+        easing: "easeOutSine",
+        delay: 500,
+        translateY: [
+          {
+            duration: 300,
+            value: this.sidebarShown ? ["0%", "100%"] : ["100%", "0%"]
+          }
+        ]
+      });
+      this.sidebarShown = !this.sidebarShown;
+      // if (!this.mobile) {
+      //   anime({
+      //     targets: ["#corner-logo"],
+      //     easing: "easeInOutSine",
+      //     // translateX: [
+      //     //   {
+      //     //     duration: 300,
+      //     //     value: this.menuShown ? 0 : 20
+      //     //   }
+      //     // ],
+      //     rotate: [
+      //       {
+      //         duration: 300,
+      //         value: this.menuShown ? 0 : 90
+      //       }
+      //     ]
+      //   });
+      // }
+      // setTimeout(() => {
+      //   this.menuShown = !this.menuShown;
+      // }, 200);
     },
-    async navChange(path) {
-      if (window.location.pathname == "/") {
-        let target = document.querySelectorAll(".star")[39];
-        let pos = target.getBoundingClientRect();
-        let that = this;
-        anime.timeline({ loop: false }).add({
-          targets: target,
-          opacity: 0.3,
-          zIndex: [{ value: [1, 5], round: true }],
-          x:
-            this.windowWidth / 2 -
-            this.windowWidth / (this.windowWidth > 450 ? 1 : 3),
-          y: this.windowHeight / 2 - this.windowHeight / 2.5,
-          width: this.mobile ? this.windowWidth / 7 : this.windowWidth / 10,
-          height: this.mobile ? this.windowHeight / 7 : this.windowHeight / 10,
-          easing: "easeOutExpo",
-          duration: 2000
-        });
-        setTimeout(() => {
-          that.$router.push({
-            path: path
-          });
-        }, 300);
+    async navChange(path, home) {
+      if (window.location.pathname == path && !home) {
+        this.toggleSidebar();
       } else {
         this.$router.push({
           path: path
@@ -175,9 +240,9 @@ export default {
   mounted() {
     this.page = window;
     setTimeout(() => {
-      if (window.location.pathname != "/" || this.windowWidth > 1025) {
-        this.showMenu();
-      }
+      // if (window.location.pathname != "/" || this.windowWidth > 1025) {
+      this.showMenu();
+      // }
     }, 750);
   }
 };
@@ -185,19 +250,24 @@ export default {
 
 <style lang="scss" scoped>
 .nav-bar {
+  overflow: hidden;
   position: fixed;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 100px;
+  padding: 30px 100px 0 100px;
   width: 100%;
   .nav-logo {
+    z-index: 1;
+    cursor: pointer;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     margin-right: 50px;
+    transform: translateY(100%);
+    // filter: grayscale(100%);
   }
   .nav-placeholder {
     width: 30px;
@@ -214,15 +284,15 @@ export default {
   // right: 0;
   // margin-left: auto;
   // margin-right: auto;
-  opacity: 0;
   display: flex;
   align-items: flex-start;
-  z-index: 10000;
+  z-index: -1;
+  transform: translateY(120%);
 }
 
 .menu__item {
-  color: $lightBlue;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
+  color: $grey;
+  // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
@@ -236,7 +306,6 @@ export default {
   position: relative;
   cursor: pointer;
   text-align: left;
-  transition: all ease-in-out 150ms;
 }
 
 .menu-wrapper {
@@ -245,8 +314,7 @@ export default {
   &.active {
     // width: 100%;
     // height: 100%;
-    border-bottom: 1px solid $purple;
-    pointer-events: none;
+    // border-bottom: 1px solid $grey;
     // padding: 1px 3px 1px 3px;
   }
 }
@@ -257,7 +325,7 @@ export default {
 }
 
 .menu-wrapper:hover .menu__item {
-  transform: translateY(-7px);
+  opacity: 0.5;
 }
 
 #corner-logo {
@@ -272,38 +340,111 @@ export default {
 }
 @media only screen and (max-width: 420px) {
   .nav-bars {
-  }
-  .menu__item {
-    font-size: 13px;
-    // margin: 5px;
-    padding-bottom: 2px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    color: $mainBlue;
+    transform: translateY(120%);
   }
 
-  .menu-wrapper:hover .menu__item {
-    transform: translateY(-1px);
-  }
-  .menu-wrapper {
-    padding-bottom: 0;
-    margin: 5px;
-    &.active {
-      // background: linear-gradient(45deg, #0947db, #898ce9);
-      // padding: 1px 3px 1px 3px;
-      // border-radius: 5px;
-      border-bottom: 1px solid $purple;
-      pointer-events: none;
-    }
-  }
   .nav-bar {
-    padding: 10px 30px;
-    .nav-logo {
-      margin-right: 0;
+    width: 100%;
+    padding: 0 5%;
+    margin: 10% auto;
+    left: 0%;
+    overflow: unset;
+    .nav-info-wrapper {
+      display: flex;
+      justify-content: space-between;
+      overflow: hidden;
+      align-items: center;
+      .nav-logo {
+        margin-right: 0;
+        width: 40%;
+        filter: unset;
+        z-index: 1;
+      }
     }
   }
   #corner-logo {
     left: 3.5%;
   }
-  .banner-nav {
-    padding: 30px 30px !important;
+
+  .sidebar-menu {
+    width: 100%;
+    height: 100vh;
+    transform: translateY(-100%);
+    margin: -10% -5%;
+    padding: 50px;
+    position: absolute;
+    top: 0;
+    background-color: $grey;
+    z-index: 1000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // opacity: 0;
+    .sidebar-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // margin-bottom: 50px;
+      // padding: 5px;
+      width: 100%;
+      img {
+        width: 23%;
+      }
+    }
+    .fa-times {
+      font-size: 22px;
+      z-index: 1001;
+    }
+    .sidebar-footer {
+      .copyright-info,
+      a {
+        font-size: 12px;
+      }
+    }
+    .menu {
+      flex-direction: column;
+      justify-content: space-between;
+      height: 50%;
+    }
+    .menu__item {
+      font-size: 36px;
+      margin: 0px;
+      padding-bottom: 2px;
+      color: white;
+      transform: translateY(100%);
+    }
+
+    .menu-wrapper:hover .menu__item {
+      transform: translateY(-1px);
+    }
+    .menu-wrapper {
+      padding-bottom: -1;
+      margin: 5px;
+      height: unset;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      &.active {
+        // background: linear-gradient(45deg, #0947db, #898ce9);
+        // padding: 1px 3px 1px 3px;
+        // border-radius: 5px;
+        // border-bottom: 1px solid $grey;
+      }
+    }
   }
+  .desktop {
+    display: none;
+    img {
+      display: none;
+    }
+  }
+  // .banner-nav {
+  //   margin: 30px 30px !important;
+  // }
 }
 </style>

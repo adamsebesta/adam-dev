@@ -3,6 +3,7 @@
     <div class="copyright">
       <span class="copyright-info">© 2021 Design & Build by Adam Sebesta.</span>
     </div>
+    <img class="footer-logo" src="logo.png" alt="" />
     <div class="social-wrapper">
       <a
         href="https://www.linkedin.com/company/69564956/"
@@ -32,18 +33,26 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #fff;
   bottom: 0;
-  height: 30px;
+  height: 135px;
   width: 100%;
   z-index: 1;
   padding: 0px 100px;
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
+  box-shadow: 0 10px 30px -15px #010310;
+  transform: translateY(100%);
+}
+
+.footer-logo {
+  width: 5%;
+  margin-right: 10%;
 }
 
 .copyright {
   .copyright-info {
-    font-size: 12px;
-    color: $lightBlue;
+    font-size: 14px;
+    color: $mainBlue;
     opacity: 0.4;
   }
 }
@@ -62,6 +71,7 @@ export default {};
 .social-wrapper i {
   padding: 0px 10px;
   font-size: 20px;
+  color: $mainBlue;
 }
 
 .social-wrapper a:nth-child(1) {

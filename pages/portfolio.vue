@@ -2,12 +2,12 @@
   <div class="page">
     <Nav />
     <div class="container-main" style="overflow: hidden">
-      <InfoBox
+      <!-- <InfoBox
         v-if="mobile"
         :text="
           mobile ? 'Tap image for more details' : 'Hover image for more details'
         "
-      />
+      /> -->
       <!-- <div @click="handleSwiper" v-if="showBounce" class="arrow"></div> -->
       <div class="grab-container">
         <div

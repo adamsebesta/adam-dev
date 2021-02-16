@@ -6,53 +6,6 @@
     </div>
 
     <div class="container-main-about">
-      <!-- <svg
-        version="1.1"
-        id="about-background"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        width="160vw"
-        height="160vh"
-        x="-400"
-        y="20"
-        viewBox="0 0 58 58"
-        xml:space="preserve"
-      >
-        <g>
-          <polygon
-            style="fill:#434C6D;"
-            points="29,58 3,45 3,13 29,26 "
-            fill-opacity="30%"
-          />
-          />
-          <polygon
-            :style="{ fill: '#556080' }"
-            points="29,58 55,45 55,13 29,26"
-            fill-opacity="30%"
-          />
-          <polygon
-            style="fill:#7383BF;"
-            points="3,13 28,0 55,13 29,26"
-            fill-opacity="30%"
-          />
-        </g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-        <g></g>
-      </svg> -->
-
       <div class="main-wrapper">
         <div class="about-left">
           <div class="about">
@@ -68,7 +21,7 @@
               </p>
             </div>
             <div class="about-services">
-              <p class="about-headline">Services</p>
+              <p class="about-headline appear">Services</p>
               <ul class="main-depth">
                 <li v-for="s in services" :key="s">
                   <i
@@ -274,6 +227,9 @@ export default {
   align-items: center;
   text-align: center;
 }
+.appear {
+  transform: translateY(100%);
+}
 .main-wrapper {
   display: flex;
   margin: 6% 0 2% 0;
@@ -289,7 +245,7 @@ export default {
       width: 0%;
       // margin-left: 40px;
       text-align: left;
-      color: $lightBlue;
+      color: $grey;
       z-index: 2;
       display: flex;
       flex-direction: column;
@@ -323,7 +279,7 @@ export default {
           .about-services-list-item {
             font-size: 8px;
             vertical-align: middle;
-            color: $purple;
+            color: $mainBlue;
             margin-right: 3px;
           }
         }
@@ -356,7 +312,7 @@ export default {
       // margin-bottom: 20px;
       font-size: 32px;
       font-weight: 700;
-      color: $lightBlue;
+      color: $grey;
       margin: 10px 0;
       display: flex;
       align-items: center;
@@ -368,7 +324,7 @@ export default {
         width: 200px;
         height: 1px;
         margin-left: 20px;
-        background-color: rgba($color: $purple, $alpha: 0.3);
+        background-color: rgba($color: $mainBlue, $alpha: 0.3);
       }
     }
   }
@@ -420,7 +376,7 @@ export default {
     .bg3 {
       // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
       // background-color: rgb(13 16 39 / 91%);
-      background-color: rgba($color: $purple, $alpha: 0.2);
+      background-color: rgba($color: $mainBlue, $alpha: 0.2);
       box-shadow: 0 10px 30px -15px #010310;
       transform: translate(-12%, -12%);
       z-index: -2;
@@ -533,7 +489,7 @@ export default {
           font-size: 16px;
           font-weight: 700;
           width: 100%;
-          color: $lightBlue;
+          color: $grey;
           margin: 10px 0;
           display: flex;
           align-items: center;
@@ -545,7 +501,7 @@ export default {
             width: 100px;
             height: 1px;
             margin-left: 20px;
-            background-color: rgba($color: $lightBlue, $alpha: 0.1);
+            background-color: rgba($color: $grey, $alpha: 0.1);
           }
         }
       }
@@ -596,7 +552,7 @@ export default {
       .bg3 {
         // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
         // background-color: rgb(13 16 39 / 91%);
-        background-color: rgba($color: $purple, $alpha: 0.2);
+        background-color: rgba($color: $mainBlue, $alpha: 0.2);
         box-shadow: 0 10px 30px -15px #010310;
         transform: translate(-12%, -12%);
         z-index: -2;
