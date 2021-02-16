@@ -1,7 +1,7 @@
 <template>
   <div class="page" ref="page">
     <div>
-      <Banner v-if="!loading" />
+      <!-- <Banner /> -->
       <Nav class="banner-nav" />
     </div>
     <div ref="contMain" class="container-main">
@@ -514,7 +514,7 @@ export default {
     localStorage.setItem("wasVisited", "1");
     // this.initLogo();
   },
-  destroyed() {
+  beforeDestroy() {
     window.removeEventListener("wheel", this.scrollAnim);
     this.$refs.contMain.removeEventListener("touchstart", function(e) {
       this.touchStart = e.changedTouches[0];
@@ -782,6 +782,7 @@ export default {
     border-radius: 4px;
     padding: 15px 55px;
     font-weight: 600;
+    font-family: $headingFont;
     font-size: 16px;
     transition: all ease-in-out 150ms;
     z-index: 1;

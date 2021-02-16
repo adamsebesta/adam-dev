@@ -1,6 +1,6 @@
 <template>
   <div @click="proceedContact" class="top-banner">
-    <span>NOW BOOKING FEBRUARY 2021. APPLY HERE!</span>
+    <span>NOW BOOKING MARCH 2021. APPLY HERE!</span>
   </div>
 </template>
 
@@ -24,8 +24,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $purple;
-  color: $lightBlue;
+  background-color: $mainBlue;
+  color: $white;
   position: fixed;
   z-index: 10000;
   span {
