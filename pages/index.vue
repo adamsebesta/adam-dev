@@ -536,6 +536,7 @@ export default {
 .page {
 }
 .container-main {
+  // background-color: red;
   margin: 0 auto;
   height: 100vh;
   overflow: hidden;

@@ -260,13 +260,14 @@ export default {
   width: 100%;
   .nav-logo {
     z-index: 1;
+    cursor: pointer;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     margin-right: 50px;
     transform: translateY(100%);
-    filter: grayscale(100%);
+    // filter: grayscale(100%);
   }
   .nav-placeholder {
     width: 30px;
