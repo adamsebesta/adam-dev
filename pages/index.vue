@@ -4,7 +4,7 @@
       <Banner v-if="!loading" />
       <Nav class="banner-nav" />
     </div>
-    <div class="container-main">
+    <div ref="contMain" class="container-main">
       <div id="lineDrawing">
         <svg viewBox="0 0 792 512">
           <g class="lines">
@@ -349,7 +349,6 @@ export default {
       });
     },
     scrollAnim(event) {
-      console.log(event);
       // determine direction of scroll
       let dir;
       if (event == "up" || event == "down") {
@@ -365,7 +364,9 @@ export default {
         !this.step2 &&
         this.scrollCounter > 1
       ) {
-        this.translateElementsY([".index-footer"], ["100%", "0%"]);
+        if (!this.mobile) {
+          this.translateElementsY([".index-footer"], ["100%", "0%"]);
+        }
         this.step2 = true;
       }
 
@@ -384,7 +385,7 @@ export default {
         });
         anime({
           targets: ".scroll-div",
-          left: ["8", "0%"],
+          left: !this.mobile ? ["8", "0%"] : ["-10%", "-35%"],
           rotate: ["270deg", "270deg"],
           // translateY: ["10%", "-50%"],
           duration: 650,
@@ -402,7 +403,6 @@ export default {
         this.step1 = true;
       }
       if (dir == "up" && this.step1 && !this.step2) {
-        console.log("here");
         this.translateElementsX([".main-right"], ["70%", "-55%"]);
         this.translateElementsY(
           [".main-left .heading, .main-left .subheading"],
@@ -411,7 +411,7 @@ export default {
         this.translateElementsX([".loading-anim"], ["100%", "50%"]);
         anime({
           targets: ".scroll-div",
-          left: ["0", "8%"],
+          left: !this.mobile ? ["0", "8%"] : ["-35%", "-10%"],
           rotate: ["270deg", "270deg"],
           // delay: 400,
           duration: 1000,
@@ -427,8 +427,9 @@ export default {
         this.step1 = false;
       }
       if (dir == "up" && this.step1 && this.step2) {
-        console.log("here");
-        this.translateElementsY([".index-footer"], ["0%", "100%"]);
+        if (!this.mobile) {
+          this.translateElementsY([".index-footer"], ["0%", "100%"]);
+        }
         this.step2 = false;
       }
     },
@@ -480,13 +481,19 @@ export default {
     scrollListenerInit() {
       let that = this;
       if (!this.mobile) {
-        window.addEventListener("wheel", _.throttle(this.scrollAnim, 1000));
+        window.addEventListener(
+          "wheel",
+          _.debounce(this.scrollAnim, 400, {
+            leading: true,
+            trailing: false
+          })
+        );
       } else {
         setTimeout(() => {
-          window.addEventListener("touchstart", function(e) {
+          this.$refs.contMain.addEventListener("touchstart", function(e) {
             this.touchStart = e.changedTouches[0];
           });
-          window.addEventListener("touchend", function(e) {
+          this.$refs.contMain.addEventListener("touchend", function(e) {
             this.touchEnd = e.changedTouches[0];
             // determine direction
             if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
@@ -509,10 +516,10 @@ export default {
   },
   destroyed() {
     window.removeEventListener("wheel", this.scrollAnim);
-    window.removeEventListener("touchstart", function(e) {
+    this.$refs.contMain.removeEventListener("touchstart", function(e) {
       this.touchStart = e.changedTouches[0];
     });
-    window.removeEventListener("touchend", function(e) {
+    this.$refs.contMain.removeEventListener("touchend", function(e) {
       this.touchEnd = e.changedTouches[0];
 
       if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
@@ -889,6 +896,10 @@ export default {
     width: 40%;
   }
 
+  .scroll-div {
+    left: -10%;
+  }
+
   .loading-anim {
     .loading-logo-img {
       margin-top: -30px;
@@ -902,17 +913,19 @@ export default {
     margin-bottom: 20px;
   }
   .main-left {
-    padding: 0;
+    padding: 50px 0;
     margin: 0 auto;
     width: 100%;
-    text-align: center;
+    text-align: left;
     left: 0%;
+    top: 13%;
     .heading {
-      font-size: 36px;
-      line-height: 37px;
-      width: 70%;
+      font-size: 74px;
+      line-height: 57px;
+      width: 90%;
       margin: 0px auto;
       min-width: unset;
+      font-weight: 600;
     }
     .subheading {
       p {
@@ -922,17 +935,21 @@ export default {
         font-weight: 600;
         line-height: 22px;
         min-width: unset;
+        text-align: center;
       }
     }
     .lightbulb-wrapper {
-      transform: translateX(-55%) translateY(-235%);
+      transform: translateX(-54%) translateY(-647%);
+      .lightbulb {
+        width: 5%;
+      }
     }
 
     .home-btn {
       background: $mainBlue;
       height: 30px;
       color: #fff;
-      width: 80%;
+      width: 90%;
 
       margin: 0 auto;
       // margin-top: 40px;
