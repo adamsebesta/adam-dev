@@ -1,44 +1,65 @@
 <template>
   <div class="page">
     <div>
-      <Banner />
+      <!-- <Banner /> -->
       <Nav class="banner-nav" />
     </div>
-
-    <div class="container-main-about">
+    <div ref="contMain" class="container-main-about">
+      <div class="scroll-div">
+        <div :style="{ overflow: 'hidden' }">
+          <h4>Scroll</h4>
+        </div>
+        <div class="trail"></div>
+      </div>
       <div class="main-wrapper">
         <div class="about-left">
           <div class="about">
-            <div class="about-text">
-              <p class="about-headline">Adam Sebesta</p>
-              <p class="about-desc main-depth">
-                <span>
-                  I am a Canadian / Estonian Full Stack Developer currently
-                  living in Berlin. Avid about the cloud, and creating elegant
-                  solutions, my aim is to bring your creative ideas to life. I
-                  look forward to working with you on your next project.</span
-                >
-              </p>
+            <div class="about-text about-block">
+              <div class="about-headline-wrapper overflow">
+                <p v-if="!mobile" class="about-headline-main appear appear0">
+                  Adam <br />
+                  Sebesta
+                </p>
+                <p v-if="mobile" class="about-headline-main appear appear0">
+                  Adam Sebesta
+                </p>
+              </div>
+              <div class="about-desc-wrapper overflow">
+                <p class="about-desc appear appear0">
+                  <span>
+                    I am a Canadian / Estonian Full Stack Developer currently
+                    living in Berlin. Avid about the cloud, and creating elegant
+                    solutions, my aim is to bring your creative ideas to life. I
+                    look forward to working with you on your next project.</span
+                  >
+                </p>
+              </div>
             </div>
-            <div class="about-services">
-              <p class="about-headline appear">Services</p>
-              <ul class="main-depth">
-                <li v-for="s in services" :key="s">
-                  <i
-                    class="fa fa-square about-services-list-item"
-                    aria-hidden="true"
-                  ></i>
-                  {{ s }}
-                </li>
-              </ul>
+            <div class="about-services about-block">
+              <div class="about-headline-wrapper overflow">
+                <p class="about-headline appear appear1">Services</p>
+              </div>
+              <div class="about-services-wrapper overflow">
+                <ul class="about-services appear appear1">
+                  <li v-for="s in services" :key="s">
+                    <i
+                      class="fa fa-square about-services-list-item"
+                      aria-hidden="true"
+                    ></i>
+                    {{ s }}
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="about-skills">
-              <div><p class="about-headline">Skills</p></div>
-              <div class="about-skills-icons main-depth">
+            <div class="about-skills about-block">
+              <div class="about-headline-wrapper overflow">
+                <p class="about-headline appear2">Skills</p>
+              </div>
+              <div class="about-skills-icons main-depth overflow">
                 <img
                   v-for="i in icons"
                   :key="i[0]"
-                  class="about-skills-icon"
+                  class="about-skills-icon appear appear2"
                   v-tooltip="i[1]"
                   :src="require('static/icons/' + i[0])"
                   alt=""
@@ -69,7 +90,6 @@
           ></div>
         </div>
       </div>
-      <div class="background-center"></div>
     </div>
     <Footer />
   </div>
@@ -79,6 +99,7 @@
 import Nav from "../components/Nav";
 import anime from "animejs";
 import Footer from "../components/Footer.vue";
+import _ from "lodash";
 
 export default {
   transition: "page",
@@ -89,11 +110,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -116,14 +137,15 @@ export default {
         ["azure-dev.png", "Azure Developer Associate"],
         ["azure-fun.png", "Azure Fundamentals"],
         ["firebase.png", "Firebase"],
-        ["rails.png", "Rails"]
+        ["rails.png", "Rails"],
       ],
       services: [
         "Web and Mobile Builds",
         "Shopify Implementations",
         "Architecture Consultation",
-        "Live App Maintenance"
-      ]
+        "Live App Maintenance",
+      ],
+      scrollCount: 0,
     };
   },
   computed: {},
@@ -133,19 +155,86 @@ export default {
         this.logo = true;
       }, 750);
     },
-
-    moveBackground() {
-      anime.timeline({ loop: true }).add({
-        targets: ["#about-background"],
-        easing: "linear",
-        rotate: [
+    scrollInfo(event) {
+      let that = this;
+      // console.log(event);
+      let dir;
+      if (event == "up" || event == "down") {
+        dir = event;
+      } else {
+        dir = event.deltaY > 0 ? "down" : "up";
+      }
+      // console.log(this.scrollCount, this.calculateScrollValue(dir));
+      anime({
+        targets: [".about"],
+        easing: "easeInOutExpo",
+        translateY: [
           {
-            duration: 150000,
-            value: 360
-          }
-        ]
+            duration: 1500,
+            value: function () {
+              return that.calculateScrollValue(dir);
+            },
+          },
+        ],
       });
+      if (dir == "down" && this.scrollCount < 2) {
+        this.scrollCount++;
+        anime({
+          targets: [`.appear${this.scrollCount}`],
+          easing: "easeInOutExpo",
+          translateY: [
+            {
+              duration: 1800,
+              value: ["-210%", "0%"],
+            },
+          ],
+        });
+        anime({
+          targets: [`.appear${this.scrollCount - 1}`],
+          easing: "easeInOutExpo",
+          translateY: [
+            {
+              duration: 1800,
+              value: ["0%", "210%"],
+            },
+          ],
+        });
+      }
+      if (dir == "up" && this.scrollCount > 0) {
+        this.scrollCount--;
+        anime({
+          targets: [`.appear${this.scrollCount}`],
+          easing: "easeInOutExpo",
+          translateY: [
+            {
+              duration: 1800,
+              value: ["210%", "0%"],
+            },
+          ],
+        });
+        anime({
+          targets: [`.appear${this.scrollCount + 1}`],
+          easing: "easeInOutExpo",
+          translateY: [
+            {
+              duration: 1800,
+              value: ["0%", "-210%"],
+            },
+          ],
+        });
+      }
     },
+    calculateScrollValue(dir) {
+      let amount = this.mobile ? 36.1 : 34;
+      let current = amount * this.scrollCount;
+      if (this.scrollCount < 2 && dir == "down") {
+        return [`'-${current}%'`, `-${current + amount}%`];
+      }
+      if (this.scrollCount > 0 && dir == "up") {
+        return [`-${current}%`, `-${current - amount}%`];
+      }
+    },
+
     movePhotoBackgrounds() {
       let that = this;
 
@@ -155,34 +244,34 @@ export default {
         translateX: [
           {
             duration: 1200,
-            value: function(el) {
+            value: function (el) {
               return that.calcuateTranslate(el, "X");
-            }
-          }
+            },
+          },
         ],
         translateY: [
           {
             duration: 1200,
-            value: function(el) {
+            value: function (el) {
               return that.calcuateTranslate(el, "Y");
-            }
-          }
+            },
+          },
         ],
-        delay: 1000
+        delay: 1000,
       });
     },
     calcuateTranslate(el, axis) {
       if (axis == "Y") {
         if (el.classList.contains("bg2")) {
-          return "-10%";
+          return "-15%";
         } else {
-          return "-20%";
+          return "-30%";
         }
       } else {
         if (el.classList.contains("bg2")) {
-          return "-20%";
+          return "-30%";
         } else {
-          return "-40%";
+          return "-60%";
         }
       }
     },
@@ -197,26 +286,89 @@ export default {
           width: [
             {
               duration: 600,
-              value: "100%"
-            }
-          ]
+              value: "100%",
+            },
+          ],
         })
         .add({
           targets: [".about", ".about-right", ".headshot", ".bg1"],
           easing: "easeInOutSine",
-          opacity: 1
+          opacity: 1,
         });
-    }
+    },
+
+    scrollListenerInit() {
+      let that = this;
+      if (!this.mobile) {
+        window.addEventListener(
+          "wheel",
+          _.debounce(this.scrollInfo, 750, {
+            leading: true,
+            trailing: false,
+          })
+        );
+      } else {
+        setTimeout(() => {
+          this.$refs.contMain.addEventListener("touchstart", function (e) {
+            this.touchStart = e.changedTouches[0];
+          });
+          this.$refs.contMain.addEventListener("touchend", function (e) {
+            this.touchEnd = e.changedTouches[0];
+            // determine direction
+            if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+              that.scrollInfo("up");
+            } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+              that.scrollInfo("down");
+            }
+          });
+        }, 1000);
+      }
+    },
   },
   mounted() {
-    this.moveBackground();
     this.aboutAppear();
     this.movePhotoBackgrounds();
-  }
+    this.scrollListenerInit();
+    // this.scrollInfo();
+    anime({
+      targets: [".about-headline-main", ".about-desc"],
+      easing: "easeInOutSine",
+      translateY: [
+        {
+          duration: 750,
+          value: ["100%", "0%"],
+        },
+      ],
+      delay: 750,
+    });
+    anime({
+      targets: [".scroll-div"],
+      easing: "easeInOutSine",
+      bottom: [
+        {
+          duration: 750,
+          value: "27%",
+        },
+      ],
+      delay: 750,
+    });
+
+    // anime({
+    //   targets: [".about-desc"],
+    //   easing: "easeInOutSine",
+    //   translateY: [
+    //     {
+    //       duration: 750,
+    //       value: ["100%", "0%"],
+    //     },
+    //   ],
+    //   delay: 750,
+    // });
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container-main-about {
   margin: 0 auto;
   min-height: 100vh;
@@ -226,23 +378,30 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: fixed;
 }
 .appear {
-  transform: translateY(100%);
+  transform: translateY(-210%);
 }
 .main-wrapper {
   display: flex;
   margin: 6% 0 2% 0;
   display: flex;
-  width: 70%;
+  width: 80%;
   justify-content: center;
   .about-left {
     width: 100%;
+    overflow: hidden;
+    .about-block {
+      height: 50vh;
+      margin-top: 34%;
+    }
     .about {
       font-weight: 600;
       opacity: 0;
       height: 100%;
       width: 0%;
+      margin-top: -15%;
       // margin-left: 40px;
       text-align: left;
       color: $grey;
@@ -250,32 +409,40 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      .about-desc-wrapper {
+        overflow: hidden;
+        .about-desc {
+          transform: translateY(100%);
+          width: 440px;
+          margin-bottom: 10px;
+          font-weight: 400;
+          font-family: $bodyFont;
+          span {
+            // background-color: #82ab71;
+            padding: 0px;
+          }
+          font-size: 20px;
 
-      .about-text {
-        margin-top: 20px;
-      }
-      .about-desc {
-        width: 575px;
-        margin-bottom: 10px;
-        font-weight: 400;
-        font-family: $bodyFont;
-        span {
-          // background-color: #82ab71;
-          padding: 0px;
+          text-align: left;
         }
-        font-size: 16px;
-
-        text-align: left;
       }
+
       .about-services {
+        font-size: 105px;
+        font-weight: 700;
+        color: $mainGold;
         margin-bottom: 10px;
         width: 450px;
+        .about-headline-wrapper {
+          margin-top: -4%;
+        }
 
         ul li {
           padding-left: 2px;
-          font-size: 16px !important;
+          font-size: 20px !important;
           font-family: $bodyFont;
           font-weight: 400;
+          color: $grey;
           .about-services-list-item {
             font-size: 8px;
             vertical-align: middle;
@@ -289,6 +456,9 @@ export default {
 
       .about-skills {
         margin-bottom: 10px;
+        font-size: 105px;
+        font-weight: 700;
+        color: $mainGold;
         .about-skills-icons {
           display: flex;
           max-width: 355px;
@@ -308,37 +478,47 @@ export default {
         }
       }
     }
-    .about-headline {
-      // margin-bottom: 20px;
-      font-size: 32px;
-      font-weight: 700;
-      color: $grey;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
-      &:after {
-        content: "";
-        display: block;
-        position: relative;
-        width: 200px;
-        height: 1px;
-        margin-left: 20px;
-        background-color: rgba($color: $mainBlue, $alpha: 0.3);
+    .about-headline-wrapper {
+      overflow: hidden;
+      .about-headline-main {
+        transform: translateY(100%);
+        // margin-bottom: 20px;
+        font-size: 105px;
+        font-weight: 700;
+        color: $mainGold;
+        margin: 10px 0;
+        display: flex;
+        line-height: 101px;
+        width: 101%;
+        align-items: center;
+        // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
+        // &:after {
+        //   content: "";
+        //   display: block;
+        //   position: relative;
+        //   width: 200px;
+        //   height: 1px;
+        //   margin-left: 20px;
+        //   background-color: rgba($color: $mainBlue, $alpha: 0.3);
+        // }
       }
     }
   }
   .about-right {
     opacity: 0;
-    width: 40%;
+    width: 60%;
+    height: 112vh;
+    margin-left: auto;
     position: relative;
     justify-content: center;
+    transform: translateX(10%);
     display: flex;
     align-items: center;
-    margin-top: 5%;
+    // margin-top: 5%;
     .photo-background {
       width: 100%;
-      height: 60%;
+      max-width: 415px;
+      height: 50%;
       position: absolute;
       border-radius: 5px;
       min-height: 355px;
@@ -346,20 +526,22 @@ export default {
     .bg1 {
       // background-color: rgba($color: #e9eeff, $alpha: 0.25);
       // background-color: rgb(92 99 125 / 10%);
-
-      background-color: rgb(30 41 78 / 29%);
+      display: flex;
+      align-items: center;
+      background-color: rgb(30 41 78 / 10%);
 
       z-index: 0;
       opacity: 0;
       box-shadow: 0 10px 30px -15px #010310;
-      // transform: translate(-2%, -2%);
+      transform: translate(-2%, -2%);
       .headshot {
-        width: 100%;
+        width: 90%;
         margin: 0 auto;
+        height: 90%;
         padding: 10px;
         max-width: 280px;
-        height: 100%;
-        top: 50%;
+        // height: 50%;
+        bottom: 0%;
         z-index: 1000000;
         opacity: 0;
         object-fit: cover;
@@ -368,7 +550,7 @@ export default {
     }
     .bg2 {
       // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-      background-color: rgb(30 54 119 / 35%);
+      background-color: rgb(30 54 119 / 15%);
       transform: translate(-6%, -6%);
       box-shadow: 0 10px 30px -15px #010310;
       z-index: -1;
@@ -376,7 +558,7 @@ export default {
     .bg3 {
       // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
       // background-color: rgb(13 16 39 / 91%);
-      background-color: rgba($color: $mainBlue, $alpha: 0.2);
+      background-color: rgba($color: $mainBlue, $alpha: 0.1);
       box-shadow: 0 10px 30px -15px #010310;
       transform: translate(-12%, -12%);
       z-index: -2;
@@ -394,22 +576,28 @@ export default {
   z-index: -2;
 }
 
+.scroll-div {
+  position: fixed;
+  left: 3%;
+  bottom: 8%;
+}
+
 @media only screen and (max-width: 1200px) {
   .main-wrapper {
     .about-left {
       .about {
-        .about-desc {
-          font-size: 14px;
-          width: 420px;
+        margin-top: 0;
+        .about-desc-wrapper {
+          .about-desc {
+            font-size: 14px;
+            width: 90%;
+            margin: 0 auto;
+          }
         }
         .about-services {
           ul li {
             font-size: 14px !important;
           }
-        }
-        .about-headline {
-          font-size: 30px;
-          font-weight: 700;
         }
       }
     }
@@ -431,32 +619,41 @@ export default {
       width: 100%;
       .about {
         width: 100%;
-        .about-text {
-          margin-top: 10px;
+        .about-headline-main {
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 33px;
         }
-        .about-desc {
-          width: 100%;
-          margin-bottom: 10px;
-          span {
-            // background-color: #82ab71;
-            padding: 0px;
-          }
-          font-size: 12px;
+        .about-text {
+          margin-top: 20px;
+        }
+        .about-desc-wrapper {
+          .about-desc {
+            width: 100%;
+            margin-bottom: 10px;
+            span {
+              // background-color: #82ab71;
+              padding: 0px;
+            }
+            font-size: 14px;
 
-          text-align: left;
+            text-align: left;
+          }
         }
         .about-services {
           margin-bottom: 10px;
           width: 300px;
+          .about-headline-wrapper {
+            margin-top: 0;
+          }
 
           ul li {
             padding-left: 2px;
-            font-size: 12px !important;
+            font-size: 14px !important;
             font-family: $bodyFont;
             .about-services-list-item {
-              font-size: 8px;
+              font-size: 12px;
               vertical-align: middle;
-              color: #3fc1d9;
             }
           }
         }
@@ -485,24 +682,24 @@ export default {
         }
 
         .about-headline {
-          // margin-bottom: 20px;
-          font-size: 16px;
+          margin-bottom: 20px;
+          font-size: 30px;
           font-weight: 700;
           width: 100%;
-          color: $grey;
+          color: $mainGold;
           margin: 10px 0;
           display: flex;
           align-items: center;
           // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
-          &:after {
-            content: "";
-            display: block;
-            position: relative;
-            width: 100px;
-            height: 1px;
-            margin-left: 20px;
-            background-color: rgba($color: $grey, $alpha: 0.1);
-          }
+          // &:after {
+          //   content: "";
+          //   display: block;
+          //   position: relative;
+          //   width: 100px;
+          //   height: 1px;
+          //   margin-left: 20px;
+          //   background-color: rgba($color: $grey, $alpha: 0.1);
+          // }
         }
       }
     }
@@ -558,6 +755,10 @@ export default {
         z-index: -2;
       }
     }
+  }
+  .scroll-div {
+    left: 22%;
+    bottom: 29%;
   }
 }
 </style>

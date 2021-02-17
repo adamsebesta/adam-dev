@@ -10,7 +10,7 @@ import global from "~/mixins/global.js";
 Vue.mixin(global);
 
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
@@ -74,6 +74,39 @@ html {
 //   text-decoration: none;
 //   padding: 10px 30px;
 // }
+
+.scroll-div {
+  position: absolute;
+  z-index: 1;
+  bottom: 100px;
+  left: 8%;
+  transform: translateY(500%) rotate(270deg);
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+  h4 {
+    padding: 3px 0;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: $lightBlue;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .trail {
+    width: 100px;
+    height: 1px;
+    opacity: 0.6;
+    background-color: rgb(187, 187, 187);
+    vertical-align: middle;
+    transform: translate(-25%, -15px);
+    // transform-origin: 100% 50% 0px;
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+.overflow {
+  overflow: hidden;
+}
 
 .background-center {
   background: url("~static/background home4.png");
