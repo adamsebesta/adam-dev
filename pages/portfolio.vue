@@ -650,7 +650,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: $lightBlue;
+  color: $mainGold;
   height: 100%;
   width: 30%;
   h2 {
@@ -924,18 +924,18 @@ img {
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      color: $lightBlue;
+      color: $mainGold;
       font-size: 24px;
       line-height: normal;
       .glass-subtitle {
         font-size: 18px;
-        color: $darkerBlue;
+        color: $grey;
         font-family: $bodyFont;
         font-weight: 400;
       }
       .glass-date {
         font-size: 18px;
-        color: $darkerBlue;
+        color: $grey;
         font-family: $bodyFont;
         font-weight: 400;
       }
@@ -951,7 +951,7 @@ img {
       }
     }
     .glass-project-type {
-      color: $darkerBlue;
+      color: $grey;
       font-size: 20px;
       opacity: 0.3;
       font-family: $bodyFont;
@@ -960,7 +960,7 @@ img {
   .project-title {
     font-size: 22px;
     font-weight: 700;
-    color: $lightBlue;
+    color: $mainGold;
     width: 50%;
     margin: 0 auto;
     margin-bottom: 5px;
@@ -969,7 +969,7 @@ img {
   }
 }
 .project-image-title-overlay {
-  color: $lightBlue;
+  color: $mainGold;
   width: 540px;
   cursor: default;
   pointer-events: none;
@@ -981,29 +981,32 @@ img {
   z-index: 1;
   .title {
     // transform: translateY(-120px);
-    font-size: 60px;
+    font-size: 90px;
     font-weight: 700;
   }
   .subtitle {
     // transform: translateY(-120px);
-    color: $darkerBlue;
+    color: $grey;
     font-weight: 700;
+    font-size: 22px;
   }
 }
 .project-info-div {
   position: absolute;
   z-index: 1;
-  bottom: 0;
-  right: 8%;
+  bottom: 41px;
+  left: 15%;
   transform: rotate(270deg);
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100px;
+  // width: 0;
   cursor: pointer;
+  text-align: left;
   h4 {
     padding: 3px 0;
     font-size: 16px;
     letter-spacing: 1px;
-    color: $lightBlue;
+    color: $grey;
     display: inline-block;
     vertical-align: middle;
   }
@@ -1013,7 +1016,7 @@ img {
     opacity: 0.4;
     background-color: #fff8;
     vertical-align: middle;
-    transform: translate(75%, -10px);
+    transform: translate(35%, -15px);
     // transform-origin: 100% 50% 0px;
     // transform: matrix(1, 0, 0, 1, 0, 0);
   }
@@ -1036,12 +1039,12 @@ img {
       margin-bottom: 10px;
     }
     .overlay-title {
-      color: $lightBlue;
+      color: $mainGold;
       margin-bottom: 20px;
       font-size: 22px;
     }
     .overlay-subtitle {
-      color: $darkerBlue;
+      color: $grey;
       font-size: 16px;
       font-weight: 400;
     }
@@ -1049,14 +1052,14 @@ img {
       display: flex;
       width: 60%;
       margin-right: auto;
-      color: $darkerBlue;
+      color: $grey;
       justify-content: space-between;
       margin-top: 20px;
       font-size: 14px;
     }
     .overlay-date {
       margin-top: 10px;
-      color: $darkerBlue;
+      color: $grey;
       font-size: 16px;
     }
   }
