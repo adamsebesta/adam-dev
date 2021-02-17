@@ -314,6 +314,7 @@ export default {
     // height: 100%;
     // border-bottom: 1px solid $grey;
     // padding: 1px 3px 1px 3px;
+    pointer-events: none;
   }
 }
 
@@ -371,7 +372,7 @@ export default {
     width: 100%;
     height: 100vh;
     transform: translateY(-100%);
-    margin: -10% -5%;
+    margin: -4% -5%;
     padding: 50px;
     position: absolute;
     top: 0;
@@ -432,6 +433,7 @@ export default {
         // padding: 1px 3px 1px 3px;
         // border-radius: 5px;
         // border-bottom: 1px solid $grey;
+        pointer-events: unset;
       }
     }
   }

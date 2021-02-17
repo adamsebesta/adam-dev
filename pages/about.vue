@@ -5,7 +5,7 @@
       <Nav class="banner-nav" />
     </div>
     <div ref="contMain" class="container-main-about">
-      <div class="scroll-div">
+      <div class="scroll-div-about">
         <div :style="{ overflow: 'hidden' }">
           <h4>Scroll</h4>
         </div>
@@ -144,6 +144,9 @@ export default {
         "Shopify Implementations",
         "Architecture Consultation",
         "Live App Maintenance",
+        "Refactoring",
+        "Azure Deployment",
+        "Tutoring",
       ],
       scrollCount: 0,
     };
@@ -342,7 +345,7 @@ export default {
       delay: 750,
     });
     anime({
-      targets: [".scroll-div"],
+      targets: [".scroll-div-about"],
       easing: "easeInOutSine",
       bottom: [
         {
@@ -576,10 +579,35 @@ export default {
   z-index: -2;
 }
 
-.scroll-div {
+.scroll-div-about {
   position: fixed;
   left: 3%;
   bottom: 8%;
+
+  z-index: 1;
+  transform: translateY(500%) rotate(270deg);
+  overflow: hidden;
+  width: 200px;
+  cursor: pointer;
+  h4 {
+    padding: 3px 0;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: $lightBlue;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .trail {
+    width: 100px;
+    height: 1px;
+    opacity: 0.6;
+    background-color: rgb(187, 187, 187);
+    vertical-align: middle;
+    transform: translate(-25%, -15px);
+    // transform-origin: 100% 50% 0px;
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+  }
 }
 
 @media only screen and (max-width: 1200px) {
@@ -756,9 +784,9 @@ export default {
       }
     }
   }
-  .scroll-div {
+  .scroll-div-about {
     left: 22%;
-    bottom: 29%;
+    bottom: 10%;
   }
 }
 </style>

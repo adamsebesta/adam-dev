@@ -120,6 +120,7 @@ export default {
       scrollCounter: 0,
       touchStart: null,
       touchEnd: null,
+      windowScroll: null,
     };
   },
   methods: {
@@ -482,6 +483,7 @@ export default {
     scrollListenerInit() {
       let that = this;
       if (!this.mobile) {
+        // this.windowScroll = function windowScroll() {
         window.addEventListener(
           "wheel",
           _.debounce(this.scrollAnim, 400, {
@@ -489,7 +491,10 @@ export default {
             trailing: false,
           })
         );
-      } else {
+      }
+      // this.windowScroll();
+      // window.removeEventListener("wheel", this.windowScroll);
+      else {
         setTimeout(() => {
           this.$refs.contMain.addEventListener("touchstart", function (e) {
             this.touchStart = e.changedTouches[0];
@@ -506,6 +511,21 @@ export default {
         }, 1000);
       }
     },
+    removeEventListeners() {
+      window.removeEventListener("wheel", this.windowScroll);
+      this.$refs.contMain.removeEventListener("touchstart", function (e) {
+        this.touchStart = e.changedTouches[0];
+      });
+      this.$refs.contMain.removeEventListener("touchend", function (e) {
+        this.touchEnd = e.changedTouches[0];
+
+        if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+          console.log("scrolling up");
+        } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+          console.log("scrolling down");
+        }
+      });
+    },
   },
   created() {},
   mounted() {
@@ -516,19 +536,7 @@ export default {
     // this.initLogo();
   },
   beforeDestroy() {
-    window.removeEventListener("wheel", this.scrollAnim);
-    this.$refs.contMain.removeEventListener("touchstart", function (e) {
-      this.touchStart = e.changedTouches[0];
-    });
-    this.$refs.contMain.removeEventListener("touchend", function (e) {
-      this.touchEnd = e.changedTouches[0];
-
-      if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
-        console.log("scrolling up");
-      } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
-        console.log("scrolling down");
-      }
-    });
+    this.removeEventListeners();
   },
 };
 </script>
