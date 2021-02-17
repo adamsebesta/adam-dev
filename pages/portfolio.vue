@@ -14,7 +14,7 @@
           class="cursor-container"
           ref="cursorContainer"
           :style="{
-            transform: 'translateY(' + calcYTrans + '%)'
+            transform: 'translateY(' + calcYTrans + '%)',
           }"
         >
           <div class="cursor">
@@ -73,7 +73,7 @@
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Muriel Revisa Designs</p>
-                            <p class="overlay-subtitle  main-depth">
+                            <p class="overlay-subtitle main-depth">
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Eaque vel nostrum perspiciatis
                               quaerat? Facilis, rerum ea? Sapiente deserunt
@@ -86,9 +86,7 @@
                               <p></p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            (Coming Soon)
-                          </p>
+                          <p class="overlay-date">(Coming Soon)</p>
                         </div>
                       </div>
                     </div>
@@ -105,9 +103,7 @@
                           <p class="glass-title">Muriel Revisa Designs</p>
                           <p class="glass-subtitle">Travel App</p>
                         </div>
-                        <p class="glass-date">
-                          (Coming Soon)
-                        </p>
+                        <p class="glass-date">(Coming Soon)</p>
                       </div>
                       <div class="glass-icons main-depth">
                         <img
@@ -148,7 +144,7 @@
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Berlin Bytes</p>
-                            <p class="overlay-subtitle  main-depth">
+                            <p class="overlay-subtitle main-depth">
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Eaque vel nostrum perspiciatis
                               quaerat? Facilis, rerum ea? Sapiente deserunt
@@ -161,9 +157,7 @@
                               <p>ZingChart</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            October 2020
-                          </p>
+                          <p class="overlay-date">October 2020</p>
                         </div>
                       </div>
                     </div>
@@ -237,7 +231,7 @@
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Berlin Bytes</p>
-                            <p class="overlay-subtitle  main-depth">
+                            <p class="overlay-subtitle main-depth">
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Eaque vel nostrum perspiciatis
                               quaerat? Facilis, rerum ea? Sapiente deserunt
@@ -250,9 +244,7 @@
                               <p>Javascript</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            September 2020
-                          </p>
+                          <p class="overlay-date">September 2020</p>
                         </div>
                       </div>
                     </div>
@@ -318,7 +310,7 @@
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Streamhub</p>
-                            <p class="overlay-subtitle  main-depth">
+                            <p class="overlay-subtitle main-depth">
                               Lorem ipsum dolor sit amet, consectetur
                               adipisicing elit. Eaque vel nostrum perspiciatis
                               quaerat? Facilis, rerum ea? Sapiente deserunt
@@ -331,9 +323,7 @@
                               <p>Postgres</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            July 2020
-                          </p>
+                          <p class="overlay-date">July 2020</p>
                         </div>
                       </div>
                     </div>
@@ -411,7 +401,7 @@ import anime from "animejs";
 export default {
   components: { Nav, Swiper, SwiperSlide },
   directives: {
-    swiper: directive
+    swiper: directive,
   },
   head() {
     return {
@@ -420,11 +410,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -441,7 +431,7 @@ export default {
         infinite: false,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
       },
       swiperOptionv: {
         direction: "vertical",
@@ -460,8 +450,8 @@ export default {
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
-          type: "progressbar"
-        }
+          type: "progressbar",
+        },
       },
       formValues: {},
       logo: false,
@@ -470,11 +460,11 @@ export default {
       caroCounter: {
         carousel: 0,
         carousel1: 0,
-        carousel2: 0
+        carousel2: 0,
       },
       mainSwiperIndex: 0,
       totalSlides: null,
-      glassClicked: { 0: null, 1: null, 2: null, 3: null }
+      glassClicked: { 0: null, 1: null, 2: null, 3: null },
     };
   },
   computed: {
@@ -487,7 +477,7 @@ export default {
       return (
         (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
       );
-    }
+    },
   },
   methods: {
     moveLogo() {
@@ -529,10 +519,10 @@ export default {
         opacity: [
           {
             duration: 2000,
-            value: [0, 1]
-          }
+            value: [0, 1],
+          },
         ],
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
     },
     glassClickHandler(key) {
@@ -544,10 +534,10 @@ export default {
         translateY: [
           {
             duration: 1600,
-            value: val
-          }
+            value: val,
+          },
         ],
-        easing: "easeInOutExpo"
+        easing: "easeInOutExpo",
       });
     },
     upscrollAnim(key) {
@@ -577,22 +567,22 @@ export default {
         translateX: [
           {
             duration: 1000,
-            value: "100px"
-          }
+            value: "100px",
+          },
         ],
         easing: "easeOutExpo",
-        delay: 100
+        delay: 100,
       });
       anime({
         targets: [`${targetClass} .trail`],
         translateX: [
           {
             duration: 1000,
-            value: ["75%", "100%"]
-          }
+            value: ["75%", "100%"],
+          },
         ],
         translateY: ["-10px", "-10px"],
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
       this.toggleTitle(key + 1, "up");
       anime({
@@ -600,13 +590,13 @@ export default {
         translateY: [
           {
             duration: 1000,
-            value: ["150%", "0%"]
-          }
+            value: ["150%", "0%"],
+          },
         ],
         easing: "easeOutExpo",
-        delay: 750
+        delay: 750,
       });
-    }
+    },
   },
   created() {},
   mounted() {
@@ -615,7 +605,7 @@ export default {
     }, 750);
 
     this.totalSlides = this.swiper.slides.length;
-  }
+  },
 };
 </script>
 
@@ -817,7 +807,7 @@ img {
       width: 100%;
       position: absolute;
       height: 100%;
-      background-color: #fff2;
+      background-color: $grey;
     }
   }
   .cursor-container {
@@ -833,14 +823,18 @@ img {
       text-align: center;
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+      transform: translateY(-6%);
       position: absolute;
       margin: auto;
       bottom: 0;
       top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .grabui-current {
         transform-origin: 50% 50% 0px;
         transform: matrix(1, 0, 0, 1, 15, -15);
+        margin-top: 15px;
       }
       .grabui-total {
         transform-origin: 50% 50% 0px;
@@ -858,19 +852,18 @@ img {
           position: absolute;
           width: 100%;
           height: 100%;
-          background-color: #fff6;
+          background-color: $grey;
         }
       }
       .number {
         width: 32px;
         height: 20px;
-        color: #fff;
+        color: $grey;
         -webkit-transition: color 0.25s;
         transition: color 0.25s;
         font-size: 15px;
         line-height: 20px;
         letter-spacing: 1px;
-        color: $lightBlue;
         display: inline-block;
         vertical-align: middle;
       }
