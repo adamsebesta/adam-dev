@@ -8,7 +8,7 @@
         <div
           :class="
             'menu-wrapper ' +
-              (page && page.location.pathname == '/' ? ' active' : '')
+            (page && page.location.pathname == '/' ? ' active' : '')
           "
           @click="navChange('/')"
         >
@@ -18,7 +18,7 @@
           ref="about"
           :class="
             'menu-wrapper ' +
-              (page && page.location.pathname == '/about' ? ' active' : '')
+            (page && page.location.pathname == '/about' ? ' active' : '')
           "
           @click="navChange('/about')"
         >
@@ -28,7 +28,7 @@
         <div
           :class="
             'menu-wrapper ' +
-              (page && page.location.pathname == '/portfolio' ? ' active' : '')
+            (page && page.location.pathname == '/portfolio' ? ' active' : '')
           "
           @click="navChange('/portfolio')"
         >
@@ -38,7 +38,7 @@
           id="contact"
           :class="
             'menu-wrapper ' +
-              (page && page.location.pathname == '/contact' ? ' active' : '')
+            (page && page.location.pathname == '/contact' ? ' active' : '')
           "
           @click="navChange('/contact')"
         >
@@ -76,7 +76,7 @@
           <div
             :class="
               'menu-wrapper ' +
-                (page && page.location.pathname == '/' ? ' active' : '')
+              (page && page.location.pathname == '/' ? ' active' : '')
             "
             @click="navChange('/')"
           >
@@ -86,7 +86,7 @@
             ref="about"
             :class="
               'menu-wrapper ' +
-                (page && page.location.pathname == '/about' ? ' active' : '')
+              (page && page.location.pathname == '/about' ? ' active' : '')
             "
             @click="navChange('/about')"
           >
@@ -96,9 +96,7 @@
           <div
             :class="
               'menu-wrapper ' +
-                (page && page.location.pathname == '/portfolio'
-                  ? ' active'
-                  : '')
+              (page && page.location.pathname == '/portfolio' ? ' active' : '')
             "
             @click="navChange('/portfolio')"
           >
@@ -108,7 +106,7 @@
             id="contact"
             :class="
               'menu-wrapper ' +
-                (page && page.location.pathname == '/contact' ? ' active' : '')
+              (page && page.location.pathname == '/contact' ? ' active' : '')
             "
             @click="navChange('/contact')"
           >
@@ -152,13 +150,13 @@ export default {
     return {
       menuShown: false,
       page: null,
-      sidebarShown: false
+      sidebarShown: false,
     };
   },
   computed: {
     home() {
       return window.location.pathname == "/";
-    }
+    },
   },
   methods: {
     showMenu() {
@@ -168,10 +166,10 @@ export default {
         translateY: [
           {
             duration: 500,
-            value: ["120%", "0%"]
-          }
+            value: ["120%", "0%"],
+          },
         ],
-        delay: 750
+        delay: 750,
       });
     },
     toggleSidebar() {
@@ -181,15 +179,15 @@ export default {
         opacity: [
           {
             duration: this.sidebarShown ? 1000 : 500,
-            value: this.sidebarShown ? ["100%", "0%"] : ["0%", "100%"]
-          }
+            value: this.sidebarShown ? ["100%", "0%"] : ["0%", "100%"],
+          },
         ],
         translateY: [
           {
             duration: 750,
-            value: this.sidebarShown ? ["0%", "-100%"] : ["-100%", "0%"]
-          }
-        ]
+            value: this.sidebarShown ? ["0%", "-100%"] : ["-100%", "0%"],
+          },
+        ],
       });
 
       anime({
@@ -199,9 +197,9 @@ export default {
         translateY: [
           {
             duration: 300,
-            value: this.sidebarShown ? ["0%", "100%"] : ["100%", "0%"]
-          }
-        ]
+            value: this.sidebarShown ? ["0%", "100%"] : ["100%", "0%"],
+          },
+        ],
       });
       this.sidebarShown = !this.sidebarShown;
       // if (!this.mobile) {
@@ -231,10 +229,10 @@ export default {
         this.toggleSidebar();
       } else {
         this.$router.push({
-          path: path
+          path: path,
         });
       }
-    }
+    },
   },
   created() {},
   mounted() {
@@ -244,7 +242,7 @@ export default {
       this.showMenu();
       // }
     }, 750);
-  }
+  },
 };
 </script>
 
@@ -316,6 +314,7 @@ export default {
     // height: 100%;
     // border-bottom: 1px solid $grey;
     // padding: 1px 3px 1px 3px;
+    pointer-events: none;
   }
 }
 
@@ -349,7 +348,7 @@ export default {
   .nav-bar {
     width: 100%;
     padding: 0 5%;
-    margin: 10% auto;
+    margin: 15px auto;
     left: 0%;
     overflow: unset;
     .nav-info-wrapper {
@@ -373,7 +372,7 @@ export default {
     width: 100%;
     height: 100vh;
     transform: translateY(-100%);
-    margin: -10% -5%;
+    margin: -4% -5%;
     padding: 50px;
     position: absolute;
     top: 0;
@@ -434,6 +433,7 @@ export default {
         // padding: 1px 3px 1px 3px;
         // border-radius: 5px;
         // border-bottom: 1px solid $grey;
+        pointer-events: unset;
       }
     }
   }

@@ -100,11 +100,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   transition: "page",
@@ -119,7 +119,8 @@ export default {
       step2: false,
       scrollCounter: 0,
       touchStart: null,
-      touchEnd: null
+      touchEnd: null,
+      windowScroll: null,
     };
   },
   methods: {
@@ -331,9 +332,9 @@ export default {
         translateY: [
           {
             duration: 1200,
-            value: val
-          }
-        ]
+            value: val,
+          },
+        ],
       });
     },
     translateElementsX(el, val) {
@@ -343,9 +344,9 @@ export default {
         translateX: [
           {
             duration: 1000,
-            value: val
-          }
-        ]
+            value: val,
+          },
+        ],
       });
     },
     scrollAnim(event) {
@@ -381,7 +382,7 @@ export default {
           translateY: ["150%", "0"],
           duration: 650,
           delay: 500,
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
         anime({
           targets: ".scroll-div",
@@ -389,7 +390,7 @@ export default {
           rotate: ["270deg", "270deg"],
           // translateY: ["10%", "-50%"],
           duration: 650,
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
         this.translateElementsX([".loading-anim"], ["50%", "100%"]);
         this.translateElementsX(["#lineDrawing svg"], ["0%", "100%"]);
@@ -398,7 +399,7 @@ export default {
           translateY: ["100", "0%"],
           delay: 1000,
           duration: 650,
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
         this.step1 = true;
       }
@@ -415,13 +416,13 @@ export default {
           rotate: ["270deg", "270deg"],
           // delay: 400,
           duration: 1000,
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
         anime({
           targets: ".lightbulb",
           translateY: ["0", "100%"],
           duration: 650,
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
         this.translateElementsX(["#lineDrawing svg"], ["100%", "0%"]);
         this.step1 = false;
@@ -440,7 +441,7 @@ export default {
           translateX: "50%",
           duration: 750,
           easing: "easeInOutSine",
-          delay: 200
+          delay: 200,
         });
 
         anime({
@@ -448,7 +449,7 @@ export default {
           translateX: "100%",
           duration: 750,
           easing: "easeInOutSine",
-          delay: 0
+          delay: 0,
         });
 
         anime({
@@ -456,7 +457,7 @@ export default {
           translateY: ["150%", "0"],
           duration: 1000,
           easing: "easeInOutSine",
-          delay: 400
+          delay: 400,
         });
         anime({
           targets: ".scroll-div",
@@ -464,36 +465,41 @@ export default {
           duration: 650,
           rotate: ["270deg", "270deg"],
           easing: "easeInOutSine",
-          delay: 1000
+          delay: 1000,
         });
-        document.querySelector("#lineDrawing").style.zIndex = 10;
+        if (this.mobile)
+          document.querySelector("#lineDrawing").style.zIndex = 10;
         anime({
           targets: "#lineDrawing .lines path",
           strokeDashoffset: [anime.setDashoffset, 0],
           easing: "easeInOutSine",
           duration: 1000,
-          delay: function(el, i) {
+          delay: function (el, i) {
             return i * 250;
-          }
+          },
         });
       }, 1000);
     },
     scrollListenerInit() {
       let that = this;
       if (!this.mobile) {
+        // this.windowScroll = function windowScroll() {
         window.addEventListener(
           "wheel",
           _.debounce(this.scrollAnim, 400, {
             leading: true,
-            trailing: false
+            trailing: false,
           })
         );
-      } else {
+      }
+      // this.windowScroll();
+      // window.removeEventListener("wheel", this.windowScroll);
+      else {
         setTimeout(() => {
-          this.$refs.contMain.addEventListener("touchstart", function(e) {
+          this.$refs.contMain.addEventListener("touchstart", function (e) {
             this.touchStart = e.changedTouches[0];
           });
-          this.$refs.contMain.addEventListener("touchend", function(e) {
+          this.$refs.contMain.addEventListener("touchend", function (e) {
             this.touchEnd = e.changedTouches[0];
             // determine direction
             if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
@@ -504,7 +510,22 @@ export default {
           });
         }, 1000);
       }
-    }
+    },
+    removeEventListeners() {
+      window.removeEventListener("wheel", this.windowScroll);
+      this.$refs.contMain.removeEventListener("touchstart", function (e) {
+        this.touchStart = e.changedTouches[0];
+      });
+      this.$refs.contMain.removeEventListener("touchend", function (e) {
+        this.touchEnd = e.changedTouches[0];
+
+        if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+          console.log("scrolling up");
+        } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+          console.log("scrolling down");
+        }
+      });
+    },
   },
   created() {},
   mounted() {
@@ -515,20 +536,8 @@ export default {
     // this.initLogo();
   },
   beforeDestroy() {
-    window.removeEventListener("wheel", this.scrollAnim);
-    this.$refs.contMain.removeEventListener("touchstart", function(e) {
-      this.touchStart = e.changedTouches[0];
-    });
-    this.$refs.contMain.removeEventListener("touchend", function(e) {
-      this.touchEnd = e.changedTouches[0];
-
-      if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
-        console.log("scrolling up");
-      } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
-        console.log("scrolling down");
-      }
-    });
-  }
+    this.removeEventListeners();
+  },
 };
 </script>
 
@@ -579,43 +588,14 @@ export default {
   width: 20%;
 }
 
-.scroll-div {
-  position: absolute;
-  z-index: 1;
-  bottom: 100px;
-  left: 8%;
-  transform: translateY(500%) rotate(270deg);
-  overflow: hidden;
-  width: 200px;
-  cursor: pointer;
-  h4 {
-    padding: 3px 0;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: $lightBlue;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .trail {
-    width: 100px;
-    height: 1px;
-    opacity: 0.6;
-    background-color: rgb(187, 187, 187);
-    vertical-align: middle;
-    transform: translate(-25%, -15px);
-    // transform-origin: 100% 50% 0px;
-    // transform: matrix(1, 0, 0, 1, 0, 0);
-  }
-}
-
 .loading-anim {
   z-index: 1;
   height: 100%;
   width: 100%;
   margin-left: auto;
   position: absolute;
-  background-color: #f5f5f5;
+  background-color: white;
+  box-shadow: 20px -13px 30px 0px #010310;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -840,6 +820,7 @@ export default {
   #lineDrawing {
     left: 20%;
     top: 28.5%;
+    z-index: -1;
   }
   .lightbulb-wrapper {
     transform: translateX(-21%) translateY(-278%);
