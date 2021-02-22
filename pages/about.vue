@@ -509,14 +509,15 @@ export default {
   }
   .about-right {
     opacity: 0;
-    width: 60%;
-    height: 112vh;
+    width: 49%;
+    height: 111vh;
     margin-left: auto;
     position: relative;
     justify-content: center;
-    transform: translateX(10%);
+    transform: translateX(-9%);
     display: flex;
     align-items: center;
+    margin-top: -45px;
     // margin-top: 5%;
     .photo-background {
       width: 100%;

@@ -50,19 +50,22 @@
                     <div class="project-image-title-overlay">
                       <div
                         class="title"
-                        :style="{ transform: 'translateY(-120px)' }"
+                        :style="{ transform: 'translateY(-180px)' }"
                       >
                         MR Designs
                       </div>
                       <div
                         class="subtitle"
-                        :style="{ transform: 'translateY(-120px)' }"
+                        :style="{ transform: 'translateY(-180px)' }"
                       >
                         Mobile App
                       </div>
                     </div>
                     <div @click="infoClickHandler(0)" class="project-info-div">
-                      <div :style="{ overflow: 'hidden' }">
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
                         <h4>Info</h4>
                       </div>
                       <div class="trail"></div>
@@ -197,7 +200,7 @@
                       </div>
                       <div class="glass-project-type">Web</div>
                     </div>
-                    <img src="~/static/CinderellaDB.png" alt="" />
+                    <img src="~/static/BB Tool.png" alt="" />
                   </div>
                   <div class="project-image">
                     <img src="~/static/BI tool.png" alt="" />
@@ -465,6 +468,7 @@ export default {
       mainSwiperIndex: 0,
       totalSlides: null,
       glassClicked: { 0: null, 1: null, 2: null, 3: null },
+      infoShown: { 0: null, 1: null, 2: null, 3: null },
     };
   },
   computed: {
@@ -512,6 +516,10 @@ export default {
       } else {
         this.showBounce = true;
       }
+      // if info pane is shown, rehide when scrolling
+      if (this.infoShown[this.mainSwiperIndex - 1]) {
+        this.infoClickHandler(this.mainSwiperIndex - 1);
+      }
     },
     onSwiperRedied() {
       anime({
@@ -533,7 +541,7 @@ export default {
         targets: [`${tar} .title`, `${tar} .subtitle`],
         translateY: [
           {
-            duration: 1600,
+            duration: 1800,
             value: val,
           },
         ],
@@ -543,14 +551,14 @@ export default {
     upscrollAnim(key) {
       let targetClass = ".caro" + key;
       let targetClassNext = ".caro" + (key + 1);
-      this.translateTitle(targetClass, ["120px", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "-120px"]);
+      this.translateTitle(targetClass, ["180", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "-180"]);
     },
     downscrollAnim(key) {
       let targetClass = ".caro" + key;
       let targetClassNext = ".caro" + (key - 1);
-      this.translateTitle(targetClass, ["-120px", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "120px"]);
+      this.translateTitle(targetClass, ["-180px", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "180px"]);
     },
     toggleTitle(key, dir) {
       if (dir == "up") {
@@ -563,39 +571,46 @@ export default {
     infoClickHandler(key) {
       let targetClass = ".caro" + key;
       anime({
-        targets: [`${targetClass} .project-info-div div`],
-        translateX: [
+        targets: [`${targetClass} .project-info-div .trail-wrapper`],
+        translateY: [
           {
             duration: 1000,
-            value: "100px",
+            value: this.infoShown[key] ? "0px" : "100px",
           },
         ],
         easing: "easeOutExpo",
         delay: 100,
       });
+
+      this.translateTitle(
+        targetClass,
+        this.infoShown[key] ? ["-180px", "0px"] : ["0px", "-180px"]
+      );
+
       anime({
         targets: [`${targetClass} .trail`],
         translateX: [
           {
             duration: 1000,
-            value: ["75%", "100%"],
+            value: ["35%", "35%"],
           },
         ],
-        translateY: ["-10px", "-10px"],
+        translateY: this.infoShown[key] ? ["85px", "-15px"] : ["-15px", "85px"],
         easing: "easeOutExpo",
+        delay: 100,
       });
-      this.toggleTitle(key + 1, "up");
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
           {
             duration: 1000,
-            value: ["150%", "0%"],
+            value: this.infoShown[key] ? ["-50%", "100%"] : ["150%", "-50%"],
           },
         ],
-        easing: "easeOutExpo",
-        delay: 750,
+        easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
+        delay: this.infoShown[key] ? 0 : 800,
       });
+      this.infoShown[key] = !this.infoShown[key];
     },
   },
   created() {},
@@ -1027,39 +1042,40 @@ img {
   .project-image-overlay {
     transform: translateY(350%);
     z-index: 1;
-    width: 40%;
-    height: 40%;
+
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 8%;
+    width: 50%;
     text-align: left;
     .overlay-featured {
-      color: $purple;
-      font-size: 16px;
+      color: $grey;
+      font-size: 18px;
       margin-bottom: 10px;
     }
     .overlay-title {
       color: $mainGold;
-      margin-bottom: 20px;
-      font-size: 22px;
+      margin-bottom: 10px;
+      font-size: 30px;
     }
     .overlay-subtitle {
-      color: $grey;
-      font-size: 16px;
+      color: $white;
+      font-family: $bodyFont;
+      font-size: 18px;
       font-weight: 400;
     }
     .overlay-stack {
       display: flex;
       width: 60%;
       margin-right: auto;
-      color: $grey;
+      color: $white;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 14px;
     }
     .overlay-date {
       margin-top: 10px;
-      color: $grey;
+      color: $white;
       font-size: 16px;
     }
   }
@@ -1067,14 +1083,14 @@ img {
 
 .project-image {
   position: relative;
+  width: 85% !important;
   img {
-    width: 850px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     object-fit: contain;
     padding-bottom: 10px;
     outline: none;
-    filter: brightness(0.95);
     z-index: -1;
   }
   &:focus {
