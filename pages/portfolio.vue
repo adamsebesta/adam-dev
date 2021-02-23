@@ -45,7 +45,7 @@
           >
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel" v-bind="settings">
+                <VueSlickCarousel ref="carousel0" v-bind="settings">
                   <div class="project-image caro0">
                     <div class="project-image-title-overlay">
                       <div
@@ -124,6 +124,7 @@
                       src="~/static/construction.png"
                       alt=""
                       rel="preload"
+                      :style="'cursor:default'"
                     />
                     <img
                       v-if="mobile"
@@ -137,13 +138,11 @@
             </swiper-slide>
             <swiper-slide
               :style="{
-                transform: !mobile
-                  ? 'translate(0px, 12%)'
-                  : 'translate(0px, 0%)',
+                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)',
               }"
             >
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel2" v-bind="settings">
+                <VueSlickCarousel ref="carousel1" v-bind="settings">
                   <div class="project-image mac caro1">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
@@ -165,9 +164,8 @@
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Berlin Bytes</p>
                             <p class="overlay-subtitle main-depth">
-                              Conceived and developed a BI tool to assist
-                              leadership and project managers visualize and
-                              manipulate company data.
+                              BI tool to assist leadership and project managers
+                              visualize and manipulate company data.
                             </p>
                             <div class="overlay-stack">
                               <p>Vue</p>
@@ -215,25 +213,38 @@
                       </div>
                       <div class="glass-project-type">Web</div>
                     </div> -->
-                    <img v-if="!mobile" src="~/static/BB Tool.png" alt="" />
+                    <img
+                      v-if="!mobile"
+                      src="~/static/BB Tool.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
                     <img
                       v-if="mobile"
                       src="~/static/BB Tool mobile.png"
                       alt=""
                     />
                   </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool.png" alt="" />
+                  <div v-if="!mobile" class="project-image">
+                    <img
+                      src="~/static/BI tool.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
                   </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool 3.png" alt="" />
+                  <div v-if="!mobile" class="project-image">
+                    <img
+                      src="~/static/BI tool 3.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel1" v-bind="settings">
+                <VueSlickCarousel ref="carousel2" v-bind="settings">
                   <div class="project-image caro2">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
@@ -302,7 +313,12 @@
                       </div>
                       <div class="glass-project-type">Web</div>
                     </div> -->
-                    <img v-if="!mobile" src="~/static/BerlinBytes.png" alt="" />
+                    <img
+                      v-if="!mobile"
+                      src="~/static/BerlinBytes.png"
+                      @click="slideClick(2)"
+                      alt=""
+                    />
                     <img
                       v-if="mobile"
                       src="~/static/BerlinBytes mobile.png"
@@ -310,14 +326,18 @@
                     />
                   </div>
                   <div class="project-image">
-                    <img src="~/static/BB home.png" alt="" />
+                    <img
+                      src="~/static/BB home.png"
+                      @click="slideClick(2)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel" v-bind="settings">
+                <VueSlickCarousel ref="carousel3" v-bind="settings">
                   <div class="project-image mac caro3">
                     <div class="project-image-title-overlay">
                       <div class="title">Streamhub</div>
@@ -336,7 +356,9 @@
                       <div class="project-image-overlay">
                         <div
                           class="project-image-overlay-title-wrapper"
-                          :style="{ 'margin-top': '-16%' }"
+                          :style="
+                            windowWidth > 1350 ? { 'margin-top': '-16%' } : ''
+                          "
                         >
                           <div>
                             <p class="overlay-featured">Featured Project</p>
@@ -394,6 +416,7 @@
                     <img
                       v-if="!mobile"
                       src="~/static/Streamhub.png"
+                      @click="slideClick(3)"
                       alt=""
                       rel="preload"
                     />
@@ -411,8 +434,7 @@
                     muted
                     loop
                     tabindex="0"
-                    width="550px"
-                    height="550px"
+                    @click="slideClick(3)"
                   >
                     <source
                       src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm"
@@ -420,7 +442,11 @@
                     />
                   </video>
                   <div class="project-image">
-                    <img src="~/static/Streamhub 1.png" alt="" />
+                    <img
+                      src="~/static/Streamhub 1.png"
+                      @click="slideClick(3)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
@@ -499,13 +525,13 @@ export default {
       sent: false,
       showBounce: true,
       caroCounter: {
-        carousel: 0,
-        carousel1: 0,
-        carousel2: 0,
+        // carousel0: { counter: 0, limit: 2 },
+        carousel1: { counter: 0, limit: 2 },
+        carousel2: { counter: 0, limit: 1 },
+        carousel3: { counter: 0, limit: 2 },
       },
       mainSwiperIndex: 0,
       totalSlides: null,
-      glassClicked: { 0: null, 1: null, 2: null, 3: null },
       infoShown: { 0: null, 1: null, 2: null, 3: null },
     };
   },
@@ -526,6 +552,17 @@ export default {
       setTimeout(() => {
         this.logo = true;
       }, 750);
+    },
+    slideClick(ref) {
+      let key = "carousel" + ref;
+      let caro = this.caroCounter[key];
+      if (!this.mobile && caro.counter < caro.limit) {
+        this.$refs[key].next();
+        caro.counter++;
+      } else {
+        this.$refs[key].goTo(0);
+        caro.counter = 0;
+      }
     },
     handleSwiper() {
       this.swiper.slideTo(this.swiper.activeIndex + 1, 300, false);
@@ -644,7 +681,7 @@ export default {
         translateY: [
           {
             duration: 1000,
-            value: this.infoShown[key] ? ["35%", "350%"] : ["350%", "35%"],
+            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
           },
         ],
         easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
@@ -1134,6 +1171,7 @@ img {
   position: relative;
   width: 85% !important;
   img {
+    cursor: e-resize;
     width: 100%;
     height: 100%;
     margin: 0 auto;
@@ -1152,11 +1190,11 @@ img {
 }
 
 #giftwitch {
-  width: 90%;
-  height: 100%;
   margin: 0 auto;
   // padding: 10px;
   object-fit: contain;
+  width: 80% !important;
+  cursor: e-resize;
 }
 
 .swiper {
@@ -1191,7 +1229,7 @@ img {
     left: 49%;
   }
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1350px) {
   .title-wrapper {
     display: none;
   }
@@ -1210,12 +1248,15 @@ img {
       font-size: 15px;
     }
   }
+  .grab-container {
+    display: none;
+  }
   .project-image-overlay-wrapper {
-    left: 12%;
+    left: 10%;
     .project-image-overlay {
       // transform: translateY(25%);
       .project-image-overlay-title-wrapper {
-        margin-top: 8%;
+        margin-top: 10%;
         .overlay-featured {
           font-size: 14px;
         }
@@ -1234,8 +1275,9 @@ img {
 
   .project-image {
     img {
-      width: 650px;
-      height: 400px;
+      width: 90%;
+      height: 90%;
+      min-width: 800px;
       margin: 0 auto;
       margin-top: 50px;
       padding-bottom: 10px;
@@ -1355,6 +1397,7 @@ img {
       width: 100%;
       height: 100%;
       margin: 0 auto;
+      min-width: unset;
       object-fit: contain;
       margin-top: 10px;
       padding-bottom: 10px;
@@ -1369,6 +1412,9 @@ img {
     padding-bottom: 10px;
     // padding: 10px;
     object-fit: contain;
+  }
+  .slick-dots {
+    display: none;
   }
 }
 </style>

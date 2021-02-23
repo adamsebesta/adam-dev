@@ -55,7 +55,7 @@
               <div class="about-headline-wrapper overflow">
                 <p class="about-headline appear2">Skills</p>
               </div>
-              <div class="about-skills-icons main-depth overflow">
+              <div class="about-skills-icons overflow">
                 <img
                   v-for="i in icons"
                   :key="i[0]"
