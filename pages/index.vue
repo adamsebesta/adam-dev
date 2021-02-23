@@ -885,8 +885,9 @@ export default {
   }
 
   .loading-anim {
-    .loading-logo-img {
-      margin-top: -30px;
+    cursor: pointer;
+    .loading-img-wrapper {
+      margin-top: -30%;
     }
   }
 

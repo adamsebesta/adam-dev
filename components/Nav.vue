@@ -172,7 +172,7 @@ export default {
         translateY: [
           {
             duration: 500,
-            value: ["150%", "0%"],
+            value: ["175%", "0%"],
           },
         ],
 
@@ -301,7 +301,7 @@ export default {
   display: flex;
   align-items: flex-start;
   z-index: -1;
-  transform: translateY(150%);
+  transform: translateY(175%);
 }
 
 .menu__item {
@@ -358,12 +358,12 @@ export default {
     padding-bottom: 3px;
     font-size: 18px;
     color: $mainBlue;
-    transform: translateY(150%);
+    transform: translateY(175%);
   }
 
   .nav-bar {
     width: 100%;
-    padding: 0 5%;
+    padding: 5px 5%;
     margin: 0px 15px 0 auto;
     left: 0%;
     overflow: unset;
@@ -392,7 +392,7 @@ export default {
     width: 100%;
     height: 100vh;
     transform: translateY(-100%);
-    margin: -4% -5%;
+    margin: -10% -5%;
     padding: 50px;
     position: absolute;
     top: 0;

@@ -756,7 +756,7 @@ export default {
         box-shadow: 0 10px 30px -15px #010310;
         // transform: translate(-2%, -2%);
         .headshot {
-          width: 100%;
+          width: 94%;
           margin: 0 auto;
           padding: 10px;
           max-width: 280px;

@@ -66,7 +66,7 @@
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[0] ? "Close" : "Info" }}</h4>
+                        <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -153,7 +153,7 @@
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[1] ? "Close" : "Info" }}</h4>
+                        <h4>{{ infoShown[1] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -255,7 +255,7 @@
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[2] ? "Close" : "Info" }}</h4>
+                        <h4>{{ infoShown[2] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -348,7 +348,7 @@
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[3] ? "Close" : "Info" }}</h4>
+                        <h4>{{ infoShown[3] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
