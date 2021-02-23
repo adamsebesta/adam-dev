@@ -1,11 +1,17 @@
 <template>
   <div>
     <nav v-if="!mobile" class="nav-bar">
-      <div class="nav-logo desktop" @click="navChange('/')">
+      <div
+        :class="
+          'nav-logo desktop' +
+          (page && page.location.pathname == '/' ? ' active' : '')
+        "
+        @click="navChange('/')"
+      >
         <img src="logo.png" alt="" />
       </div>
       <div class="menu desktop">
-        <div
+        <!-- <div
           :class="
             'menu-wrapper ' +
             (page && page.location.pathname == '/' ? ' active' : '')
@@ -13,7 +19,7 @@
           @click="navChange('/')"
         >
           <a class="menu__item">Home</a>
-        </div>
+        </div> -->
         <div
           ref="about"
           :class="
@@ -166,11 +172,21 @@ export default {
         translateY: [
           {
             duration: 500,
-            value: ["120%", "0%"],
+            value: ["150%", "0%"],
           },
         ],
+
         delay: 750,
       });
+      if (this.mobile) {
+        anime({
+          targets: ".nav-bar",
+          easing: "easeInOutSine",
+          translateY: ["-100%", "0%"],
+          duration: 1000,
+          delay: 1000,
+        });
+      }
     },
     toggleSidebar() {
       anime({
@@ -259,8 +275,8 @@ export default {
   .nav-logo {
     z-index: 1;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     margin-right: 50px;
@@ -285,11 +301,10 @@ export default {
   display: flex;
   align-items: flex-start;
   z-index: -1;
-  transform: translateY(120%);
+  transform: translateY(150%);
 }
 
 .menu__item {
-  color: $grey;
   // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
   line-height: 1.25;
   text-indent: -0.025em;
@@ -305,22 +320,23 @@ export default {
   cursor: pointer;
   text-align: left;
 }
+.active {
+  // width: 100%;
+  // height: 100%;
+  // border-bottom: 1px solid $grey;
+  // padding: 1px 3px 1px 3px;
+  pointer-events: none;
+}
 
 .menu-wrapper {
   padding: 1px 1px 4px 1px;
   margin-left: 2.5rem;
-  &.active {
-    // width: 100%;
-    // height: 100%;
-    // border-bottom: 1px solid $grey;
-    // padding: 1px 3px 1px 3px;
-    pointer-events: none;
-  }
-}
-
-.menu-wrapper {
   height: 100%;
   cursor: pointer;
+  color: $grey;
+  &.active {
+    color: #434343;
+  }
 }
 
 .menu-wrapper:hover .menu__item {
@@ -339,18 +355,22 @@ export default {
 }
 @media only screen and (max-width: 420px) {
   .nav-bars {
-    padding-bottom: 10px;
+    padding-bottom: 3px;
     font-size: 18px;
     color: $mainBlue;
-    transform: translateY(120%);
+    transform: translateY(150%);
   }
 
   .nav-bar {
     width: 100%;
     padding: 0 5%;
-    margin: 15px auto;
+    margin: 0px 15px 0 auto;
     left: 0%;
     overflow: unset;
+    transform: translateY(-100%);
+    background: white;
+    box-shadow: -3px -15px 20px 0px #010310;
+
     .nav-info-wrapper {
       display: flex;
       justify-content: space-between;

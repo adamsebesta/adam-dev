@@ -595,12 +595,13 @@ export default {
   margin-left: auto;
   position: absolute;
   background-color: white;
-  box-shadow: 20px -13px 30px 0px #010310;
+  box-shadow: 14px -6px 20px 0px #010310;
   display: flex;
   justify-content: center;
   align-items: center;
   .loading-img-wrapper {
     overflow: hidden;
+    margin-top: -10%;
     .loading-logo-img {
       width: 30%;
       margin: 0 auto;

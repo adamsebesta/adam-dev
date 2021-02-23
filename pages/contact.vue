@@ -546,7 +546,7 @@ label {
   .form {
     position: absolute;
     width: 90%;
-    margin-top: 20px;
+    margin-top: -20px;
     font-size: 14px !important;
     .contact-logo {
       .contact-logo-upper {

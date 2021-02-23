@@ -32,7 +32,7 @@ html {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
   font-family: $headingFont;
-
+  overscroll-behavior: contain;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
