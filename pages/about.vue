@@ -736,7 +736,7 @@ export default {
       display: flex;
       width: 80%;
       height: 30vh;
-      margin-left: 12%;
+      margin-left: 28%;
       margin-top: 28%;
       .photo-background {
         width: 55%;

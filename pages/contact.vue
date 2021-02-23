@@ -16,8 +16,7 @@
           ref="form"
         >
           <div class="contact-logo">
-            <p class="contact-logo-upper">Adam Sebesta</p>
-            <p class="contact-logo-lower">DEVELOPMENT</p>
+            <p class="contact-logo-upper">Contact</p>
           </div>
 
           <FormulateInput
@@ -56,7 +55,7 @@
               x="0px"
               y="0px"
               viewBox="0 0 25 30"
-              style="enable-background:new 0 0 25 30;"
+              style="enable-background: new 0 0 25 30"
             >
               <path class="check" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
             </svg>
@@ -99,11 +98,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -115,7 +114,7 @@ export default {
       formValues: {},
       logo: false,
       basicTimeline: null,
-      sent: false
+      sent: false,
     };
   },
   computed: {
@@ -140,7 +139,7 @@ export default {
         targets: ".thanks",
         duration: 1000,
         opacity: 1,
-        easing: "easeInOutSine"
+        easing: "easeInOutSine",
       });
     },
     hideFields() {
@@ -149,12 +148,12 @@ export default {
         duration: 300,
         opacity: "0",
         easing: "easeInOutSine",
-        delay: anime.stagger(300)
+        delay: anime.stagger(300),
       });
     },
     openAnim() {
       let openTimeline = anime.timeline({
-        autoplay: false
+        autoplay: false,
       });
       openTimeline
         .add({
@@ -162,19 +161,19 @@ export default {
           duration: 300,
           opacity: "1",
           easing: "easeInOutSine",
-          delay: anime.stagger(300)
+          delay: anime.stagger(300),
         })
         .add({
           targets: [".button"],
           duration: 300,
           opacity: "1",
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         })
         .add({
           targets: [".contact-email"],
           duration: 300,
           opacity: "1",
-          easing: "easeInOutSine"
+          easing: "easeInOutSine",
         });
 
       openTimeline.play();
@@ -183,7 +182,7 @@ export default {
       let that = this;
       this.hideFields();
       let basicTimeline = anime.timeline({
-        autoplay: false
+        autoplay: false,
       });
 
       var pathEls = document.querySelectorAll(".check");
@@ -197,31 +196,31 @@ export default {
         .add({
           targets: ".text",
           duration: 1,
-          opacity: "0"
+          opacity: "0",
         })
         .add({
           targets: ".button",
           duration: 1000,
           height: 10,
           width: 300,
-          backgroundColor: "$purple",
+          backgroundColor: "$mainBlue",
           border: "0",
-          borderRadius: 100
+          borderRadius: 100,
         })
         .add({
           targets: ".progress-bar",
           duration: 1000,
           width: 300,
-          easing: "linear"
+          easing: "linear",
         })
         .add({
           targets: ".button",
           width: 0,
-          duration: 1
+          duration: 1,
         })
         .add({
           targets: ".check",
-          opacity: 1
+          opacity: 1,
         })
         .add({
           targets: ".progress-bar",
@@ -230,20 +229,20 @@ export default {
           delay: 500,
           duration: 750,
           borderRadius: 80,
-          backgroundColor: "#364cf4"
+          backgroundColor: "$mainBlue",
         })
         .add({
           targets: ".thanks",
-          zIndex: 2
+          zIndex: 2,
         })
         .add({
           targets: pathEl,
           strokeDashoffset: [offset, 0],
           duration: 200,
           easing: "easeInOutSine",
-          complete: function(anim) {
+          complete: function (anim) {
             that.displayThanks();
-          }
+          },
         });
 
       basicTimeline.play();
@@ -254,8 +253,8 @@ export default {
         body: JSON.stringify(this.formValues),
         headers: {
           "Content-Type": "application/json",
-          Connection: "keep-alive"
-        }
+          Connection: "keep-alive",
+        },
       });
     },
     reset() {
@@ -263,13 +262,13 @@ export default {
     },
     swapToEmail() {
       // this.morphSumbitBtn();
-    }
+    },
   },
   mounted() {
     setTimeout(() => {
       this.openAnim();
     }, 500);
-  }
+  },
 };
 </script>
 
@@ -320,15 +319,15 @@ export default {
     margin: 30px auto;
 
     .contact-logo-upper {
-      color: $lightBlue;
-      font-size: 56px;
+      color: $mainGold;
+      font-size: 70px;
       line-height: 1.25;
       letter-spacing: 1px;
       text-indent: -0.025em;
       font-weight: 700;
     }
     .contact-logo-lower {
-      color: $purple;
+      color: $mainBlue;
       font-size: 30px;
       line-height: 1.5;
       letter-spacing: 1px;
@@ -349,7 +348,7 @@ export default {
   height: 60px;
   width: 150px;
   text-align: center;
-  border: 3px solid $purple;
+  border: 3px solid $mainBlue;
   top: 50%;
   transform: translateY(-50%);
   left: 0;
@@ -362,7 +361,7 @@ export default {
 }
 
 .text {
-  color: $purple;
+  color: $mainBlue;
   position: absolute;
   font-weight: 700;
   font-size: 16px;
@@ -381,7 +380,7 @@ export default {
   left: 50%;
   border-radius: 200px;
   transform: translateY(-50%) translateX(-50%);
-  background: $purple;
+  background: $mainBlue;
 }
 
 .contact-button-svg {
@@ -395,7 +394,7 @@ export default {
 
 .check {
   fill: none;
-  stroke: $lightBlue;
+  stroke: $grey;
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -424,10 +423,10 @@ export default {
 }
 
 .formulate-input .formulate-input-label {
-  color: $purple;
+  color: $mainBlue;
 }
 li {
-  color: $lightBlue !important;
+  color: $grey !important;
   font-size: 12px !important;
   position: relative;
 }
@@ -439,7 +438,7 @@ input {
   font-family: $bodyFont !important;
   font-size: 16px !important;
   padding: 30px !important;
-  color: $purple !important;
+  color: $mainBlue !important;
 }
 
 textarea {
@@ -449,7 +448,7 @@ textarea {
   font-family: $bodyFont !important;
   font-size: 16px !important;
   padding: 30px !important;
-  color: $purple !important;
+  color: $mainBlue !important;
 }
 
 ::-webkit-input-placeholder {
@@ -464,16 +463,16 @@ input:-webkit-autofill:active {
 }
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: $purple !important;
+  -webkit-text-fill-color: $mainBlue !important;
 }
 
 label {
   font-size: 14px !important;
-  color: $purple !important;
+  color: $mainBlue !important;
 }
 
 .thanks {
-  color: $lightBlue;
+  color: $grey;
   position: absolute;
   opacity: 0;
   top: 35%;
@@ -485,7 +484,7 @@ label {
   }
   p {
     font-size: 18 px;
-    color: $lightBlue;
+    color: $grey;
   }
 }
 

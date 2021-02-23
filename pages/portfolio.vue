@@ -325,7 +325,7 @@
                       alt=""
                     />
                   </div>
-                  <div class="project-image">
+                  <div class="project-image" v-if="!mobile">
                     <img
                       src="~/static/BB home.png"
                       @click="slideClick(2)"
@@ -429,6 +429,7 @@
                   </div>
                   <video
                     id="giftwitch"
+                    v-if="!mobile"
                     playsinline
                     autoplay
                     muted
@@ -441,9 +442,10 @@
                       type='video/webm; codecs="vp8, vorbis"'
                     />
                   </video>
-                  <div class="project-image">
+                  <div class="project-image" v-if="!mobile">
                     <img
                       src="~/static/Streamhub 1.png"
+                      v-if="!mobile"
                       @click="slideClick(3)"
                       alt=""
                     />
@@ -1388,6 +1390,8 @@ img {
     .project-image-overlay {
       .overlay-subtitle {
         font-weight: 600;
+        max-width: 252px;
+        min-width: unset;
       }
     }
   }

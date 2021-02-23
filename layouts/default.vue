@@ -116,7 +116,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  width: 80%;
+  width: 100%;
   height: 100%;
   z-index: -10;
 }
