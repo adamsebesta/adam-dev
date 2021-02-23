@@ -681,7 +681,7 @@ export default {
             font-size: 14px !important;
             font-family: $bodyFont;
             .about-services-list-item {
-              font-size: 12px;
+              font-size: 6px;
               vertical-align: middle;
             }
           }
@@ -736,7 +736,7 @@ export default {
       display: flex;
       width: 80%;
       height: 30vh;
-      margin-left: 28%;
+      margin-left: 34%;
       margin-top: 28%;
       .photo-background {
         width: 55%;
@@ -749,11 +749,11 @@ export default {
         // background-color: rgba($color: #e9eeff, $alpha: 0.25);
         // background-color: rgb(92 99 125 / 10%);
 
-        background-color: rgb(30 41 78 / 29%);
+        background-color: rgb(126 126 126 / 29%);
 
         z-index: 0;
         opacity: 0;
-        box-shadow: 0 10px 30px -15px #010310;
+        box-shadow: -3px -2px 16px -15px #010310;
         // transform: translate(-2%, -2%);
         .headshot {
           width: 94%;
@@ -770,16 +770,16 @@ export default {
       }
       .bg2 {
         // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-        background-color: rgb(30 54 119 / 35%);
+        background-color: rgb(164 164 164 / 35%);
         transform: translate(-6%, -6%);
-        box-shadow: 0 10px 30px -15px #010310;
+        box-shadow: -3px -2px 16px -15px #010310;
         z-index: -1;
       }
       .bg3 {
         // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
         // background-color: rgb(13 16 39 / 91%);
-        background-color: rgba($color: $mainBlue, $alpha: 0.2);
-        box-shadow: 0 10px 30px -15px #010310;
+        background-color: rgb(207 207 207 / 20%);
+        box-shadow: -3px -2px 16px -15px #010310;
         transform: translate(-12%, -12%);
         z-index: -2;
       }

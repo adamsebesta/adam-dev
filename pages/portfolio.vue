@@ -1156,10 +1156,10 @@ img {
       display: flex;
       width: 60%;
       margin-right: auto;
-      color: $grey;
+      color: $white;
       justify-content: space-between;
       margin-top: 20px;
-      font-size: 14px;
+      font-size: 12px;
     }
     .overlay-date {
       margin-top: 10px;

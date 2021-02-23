@@ -392,7 +392,7 @@ export default {
     width: 100%;
     height: 100vh;
     transform: translateY(-100%);
-    margin: -10% -5%;
+    margin: -8% -5%;
     padding: 50px;
     position: absolute;
     top: 0;
