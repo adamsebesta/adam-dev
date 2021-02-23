@@ -70,12 +70,17 @@
       <div class="sidebar-menu">
         <div class="sidebar-banner">
           <img src="logo.png" alt="" />
-          <div>
+          <!-- <div class="close-btn-wrapper">
             <i
               class="fa fa-times"
               aria-hidden="true"
               @click="toggleSidebar"
             ></i>
+          </div> -->
+          <div id="mdiv" @click="toggleSidebar">
+            <div class="mdiv">
+              <div class="md"></div>
+            </div>
           </div>
         </div>
         <div class="menu">
@@ -212,7 +217,7 @@ export default {
         delay: 500,
         translateY: [
           {
-            duration: 300,
+            duration: 650,
             value: this.sidebarShown ? ["0%", "100%"] : ["100%", "0%"],
           },
         ],
@@ -376,6 +381,7 @@ export default {
       justify-content: space-between;
       overflow: hidden;
       align-items: center;
+
       .nav-logo {
         margin-right: 0;
         width: 40%;
@@ -410,6 +416,32 @@ export default {
       // margin-bottom: 50px;
       // padding: 5px;
       width: 100%;
+      #mdiv {
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: 0px solid white;
+      }
+
+      .mdiv {
+        height: 20px;
+        width: 2.5px;
+        margin-left: 13px;
+        margin-top: 5px;
+        background-color: white;
+        transform: rotate(45deg);
+        z-index: 1;
+      }
+
+      .md {
+        height: 20px;
+        width: 2.5px;
+        background-color: white;
+        transform: rotate(90deg);
+        z-index: 2;
+      }
+
       img {
         width: 23%;
       }
