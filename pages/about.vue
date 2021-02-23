@@ -55,7 +55,7 @@
               <div class="about-headline-wrapper overflow">
                 <p class="about-headline appear2">Skills</p>
               </div>
-              <div class="about-skills-icons main-depth overflow">
+              <div class="about-skills-icons overflow">
                 <img
                   v-for="i in icons"
                   :key="i[0]"
@@ -509,14 +509,15 @@ export default {
   }
   .about-right {
     opacity: 0;
-    width: 60%;
-    height: 112vh;
+    width: 49%;
+    height: 111vh;
     margin-left: auto;
     position: relative;
     justify-content: center;
-    transform: translateX(10%);
+    transform: translateX(-9%);
     display: flex;
     align-items: center;
+    margin-top: -45px;
     // margin-top: 5%;
     .photo-background {
       width: 100%;
@@ -735,7 +736,7 @@ export default {
       display: flex;
       width: 80%;
       height: 30vh;
-      margin-left: 12%;
+      margin-left: 28%;
       margin-top: 28%;
       .photo-background {
         width: 55%;

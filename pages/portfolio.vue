@@ -9,12 +9,12 @@
         "
       /> -->
       <!-- <div @click="handleSwiper" v-if="showBounce" class="arrow"></div> -->
-      <div class="grab-container">
+      <div v-if="!mobile" class="grab-container">
         <div
           class="cursor-container"
           ref="cursorContainer"
           :style="{
-            transform: 'translateY(' + calcYTrans + '%)'
+            transform: 'translateY(' + calcYTrans + '%)',
           }"
         >
           <div class="cursor">
@@ -45,40 +45,40 @@
           >
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel" v-bind="settings">
+                <VueSlickCarousel ref="carousel0" v-bind="settings">
                   <div class="project-image caro0">
                     <div class="project-image-title-overlay">
                       <div
                         class="title"
-                        :style="{ transform: 'translateY(-120px)' }"
+                        :style="{ transform: 'translateY(-180px)' }"
                       >
                         MR Designs
                       </div>
                       <div
                         class="subtitle"
-                        :style="{ transform: 'translateY(-120px)' }"
+                        :style="{ transform: 'translateY(-180px)' }"
                       >
                         Mobile App
                       </div>
                     </div>
                     <div @click="infoClickHandler(0)" class="project-info-div">
-                      <div :style="{ overflow: 'hidden' }">
-                        <h4>Info</h4>
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[0] ? "Close" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
                     <div class="project-image-overlay-wrapper">
-                      <div class="project-image-overlay" v-if="!mobile">
+                      <div class="project-image-overlay">
                         <div class="project-image-overlay-title-wrapper">
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Muriel Revisa Designs</p>
-                            <p class="overlay-subtitle  main-depth">
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Eaque vel nostrum perspiciatis
-                              quaerat? Facilis, rerum ea? Sapiente deserunt
-                              error commodi temporibus nisi aliquid quam saepe,
-                              quod architecto ipsum, dicta sed?
+                            <p class="overlay-subtitle main-depth">
+                              Mobile travel companion app. Currently in
+                              progress, details to follow shortly.
                             </p>
                             <div class="overlay-stack">
                               <p>Nativescript-Vue</p>
@@ -86,13 +86,11 @@
                               <p></p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            (Coming Soon)
-                          </p>
+                          <p class="overlay-date">(Coming Soon)</p>
                         </div>
                       </div>
                     </div>
-                    <div
+                    <!-- <div
                       v-if="mobile"
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
@@ -105,9 +103,7 @@
                           <p class="glass-title">Muriel Revisa Designs</p>
                           <p class="glass-subtitle">Travel App</p>
                         </div>
-                        <p class="glass-date">
-                          (Coming Soon)
-                        </p>
+                        <p class="glass-date">(Coming Soon)</p>
                       </div>
                       <div class="glass-icons main-depth">
                         <img
@@ -122,38 +118,54 @@
                         />
                       </div>
                       <div class="glass-project-type">Mobile</div>
-                    </div>
-                    <img src="~/static/construction.png" alt="" rel="preload" />
+                    </div> -->
+                    <img
+                      v-if="!mobile"
+                      src="~/static/construction.png"
+                      alt=""
+                      rel="preload"
+                      :style="'cursor:default'"
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/construction mobile.png"
+                      alt=""
+                      rel="preload"
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
-            <swiper-slide>
+            <swiper-slide
+              :style="{
+                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)',
+              }"
+            >
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel2" v-bind="settings">
+                <VueSlickCarousel ref="carousel1" v-bind="settings">
                   <div class="project-image mac caro1">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Web App</div>
                     </div>
                     <div @click="infoClickHandler(1)" class="project-info-div">
-                      <div :style="{ overflow: 'hidden' }">
-                        <h4>Info</h4>
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[1] ? "Close" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
                     <div class="project-image-overlay-wrapper">
-                      <div class="project-image-overlay" v-if="!mobile">
+                      <div class="project-image-overlay">
                         <div class="project-image-overlay-title-wrapper">
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Berlin Bytes</p>
-                            <p class="overlay-subtitle  main-depth">
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Eaque vel nostrum perspiciatis
-                              quaerat? Facilis, rerum ea? Sapiente deserunt
-                              error commodi temporibus nisi aliquid quam saepe,
-                              quod architecto ipsum, dicta sed?
+                            <p class="overlay-subtitle main-depth">
+                              BI tool to assist leadership and project managers
+                              visualize and manipulate company data.
                             </p>
                             <div class="overlay-stack">
                               <p>Vue</p>
@@ -161,13 +173,11 @@
                               <p>ZingChart</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            October 2020
-                          </p>
+                          <p class="overlay-date">October 2020</p>
                         </div>
                       </div>
                     </div>
-                    <div
+                    <!-- <div
                       v-if="mobile"
                       @click="glassClickHandler('1')"
                       class="slide-glass desktop"
@@ -202,47 +212,62 @@
                         />
                       </div>
                       <div class="glass-project-type">Web</div>
-                    </div>
-                    <img src="~/static/CinderellaDB.png" alt="" />
+                    </div> -->
+                    <img
+                      v-if="!mobile"
+                      src="~/static/BB Tool.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/BB Tool mobile.png"
+                      alt=""
+                    />
                   </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool.png" alt="" />
+                  <div v-if="!mobile" class="project-image">
+                    <img
+                      src="~/static/BI tool.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
                   </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool 1.png" alt="" />
-                  </div>
-                  <div class="project-image">
-                    <img src="~/static/BI tool 3.png" alt="" />
+                  <div v-if="!mobile" class="project-image">
+                    <img
+                      src="~/static/BI tool 3.png"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel1" v-bind="settings">
+                <VueSlickCarousel ref="carousel2" v-bind="settings">
                   <div class="project-image caro2">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Landing Page</div>
                     </div>
                     <div @click="infoClickHandler(2)" class="project-info-div">
-                      <div :style="{ overflow: 'hidden' }">
-                        <h4>Info</h4>
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[2] ? "Close" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
                     <div class="project-image-overlay-wrapper">
-                      <div class="project-image-overlay" v-if="!mobile">
+                      <div class="project-image-overlay">
                         <div class="project-image-overlay-title-wrapper">
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Berlin Bytes</p>
-                            <p class="overlay-subtitle  main-depth">
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Eaque vel nostrum perspiciatis
-                              quaerat? Facilis, rerum ea? Sapiente deserunt
-                              error commodi temporibus nisi aliquid quam saepe,
-                              quod architecto ipsum, dicta sed?
+                            <p class="overlay-subtitle main-depth">
+                              Implementation of design for Berlin Bytes company
+                              landing page.
                             </p>
                             <div class="overlay-stack">
                               <p>HTML</p>
@@ -250,13 +275,11 @@
                               <p>Javascript</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            September 2020
-                          </p>
+                          <p class="overlay-date">September 2020</p>
                         </div>
                       </div>
                     </div>
-                    <div
+                    <!-- <div
                       v-if="mobile"
                       @click="glassClickHandler('2')"
                       class="slide-glass desktop"
@@ -289,41 +312,62 @@
                         />
                       </div>
                       <div class="glass-project-type">Web</div>
-                    </div>
-                    <img src="~/static/BerlinBytes.png" alt="" />
+                    </div> -->
+                    <img
+                      v-if="!mobile"
+                      src="~/static/BerlinBytes.png"
+                      @click="slideClick(2)"
+                      alt=""
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/BerlinBytes mobile.png"
+                      alt=""
+                    />
                   </div>
-                  <div class="project-image">
-                    <img src="~/static/BB home.png" alt="" />
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/BB home.png"
+                      @click="slideClick(2)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel" v-bind="settings">
+                <VueSlickCarousel ref="carousel3" v-bind="settings">
                   <div class="project-image mac caro3">
                     <div class="project-image-title-overlay">
                       <div class="title">Streamhub</div>
                       <div class="subtitle">Web App</div>
                     </div>
                     <div @click="infoClickHandler(3)" class="project-info-div">
-                      <div :style="{ overflow: 'hidden' }">
-                        <h4>Info</h4>
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[3] ? "Close" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
                     <div class="project-image-overlay-wrapper">
-                      <div class="project-image-overlay" v-if="!mobile">
-                        <div class="project-image-overlay-title-wrapper">
+                      <div class="project-image-overlay">
+                        <div
+                          class="project-image-overlay-title-wrapper"
+                          :style="
+                            windowWidth > 1350 ? { 'margin-top': '-16%' } : ''
+                          "
+                        >
                           <div>
                             <p class="overlay-featured">Featured Project</p>
                             <p class="overlay-title">Streamhub</p>
-                            <p class="overlay-subtitle  main-depth">
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Eaque vel nostrum perspiciatis
-                              quaerat? Facilis, rerum ea? Sapiente deserunt
-                              error commodi temporibus nisi aliquid quam saepe,
-                              quod architecto ipsum, dicta sed?
+                            <p class="overlay-subtitle main-depth">
+                              With a focus on intuitive UI (1-click login), and
+                              a clean, refined design, the app consolidates all
+                              of a users followed streamers from Twitch, Mixer,
+                              and Youtube Gaming into one hub.
                             </p>
                             <div class="overlay-stack">
                               <p>Ruby</p>
@@ -331,13 +375,11 @@
                               <p>Postgres</p>
                             </div>
                           </div>
-                          <p class="overlay-date">
-                            July 2020
-                          </p>
+                          <p class="overlay-date">July 2020</p>
                         </div>
                       </div>
                     </div>
-                    <div
+                    <!-- <div
                       v-if="mobile"
                       @click="glassClickHandler('3')"
                       class="slide-glass desktop"
@@ -370,26 +412,43 @@
                         />
                       </div>
                       <div class="glass-project-type">Web</div>
-                    </div>
-                    <img src="~/static/Streamhub.png" alt="" rel="preload" />
+                    </div> -->
+                    <img
+                      v-if="!mobile"
+                      src="~/static/Streamhub.png"
+                      @click="slideClick(3)"
+                      alt=""
+                      rel="preload"
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/Streamhub mobile.png"
+                      alt=""
+                      rel="preload"
+                    />
                   </div>
                   <video
                     id="giftwitch"
+                    v-if="!mobile"
                     playsinline
                     autoplay
                     muted
                     loop
                     tabindex="0"
-                    width="550px"
-                    height="550px"
+                    @click="slideClick(3)"
                   >
                     <source
                       src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm"
                       type='video/webm; codecs="vp8, vorbis"'
                     />
                   </video>
-                  <div class="project-image">
-                    <img src="~/static/Streamhub 1.png" alt="" />
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/Streamhub 1.png"
+                      v-if="!mobile"
+                      @click="slideClick(3)"
+                      alt=""
+                    />
                   </div>
                 </VueSlickCarousel>
               </div>
@@ -411,7 +470,7 @@ import anime from "animejs";
 export default {
   components: { Nav, Swiper, SwiperSlide },
   directives: {
-    swiper: directive
+    swiper: directive,
   },
   head() {
     return {
@@ -420,11 +479,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -434,14 +493,14 @@ export default {
       description: "My Recent Work",
       image: "~/static/meta.png",
       settings: {
-        dots: false,
-        arrows: false,
+        dots: true,
+        // arrows: true,
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
       },
       swiperOptionv: {
         direction: "vertical",
@@ -454,27 +513,28 @@ export default {
         //   slideShadows: true
         // },
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 160,
         clickable: false,
         speed: 1400,
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
-          type: "progressbar"
-        }
+          type: "progressbar",
+        },
       },
       formValues: {},
       logo: false,
       sent: false,
       showBounce: true,
       caroCounter: {
-        carousel: 0,
-        carousel1: 0,
-        carousel2: 0
+        // carousel0: { counter: 0, limit: 2 },
+        carousel1: { counter: 0, limit: 2 },
+        carousel2: { counter: 0, limit: 1 },
+        carousel3: { counter: 0, limit: 2 },
       },
       mainSwiperIndex: 0,
       totalSlides: null,
-      glassClicked: { 0: null, 1: null, 2: null, 3: null }
+      infoShown: { 0: null, 1: null, 2: null, 3: null },
     };
   },
   computed: {
@@ -487,13 +547,24 @@ export default {
       return (
         (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
       );
-    }
+    },
   },
   methods: {
     moveLogo() {
       setTimeout(() => {
         this.logo = true;
       }, 750);
+    },
+    slideClick(ref) {
+      let key = "carousel" + ref;
+      let caro = this.caroCounter[key];
+      if (!this.mobile && caro.counter < caro.limit) {
+        this.$refs[key].next();
+        caro.counter++;
+      } else {
+        this.$refs[key].goTo(0);
+        caro.counter = 0;
+      }
     },
     handleSwiper() {
       this.swiper.slideTo(this.swiper.activeIndex + 1, 300, false);
@@ -522,6 +593,12 @@ export default {
       } else {
         this.showBounce = true;
       }
+      // if info pane is shown, rehide when scrolling
+      let openInfo =
+        dir == "down" ? this.mainSwiperIndex - 1 : this.mainSwiperIndex + 1;
+      if (this.infoShown[openInfo]) {
+        this.infoClickHandler(openInfo);
+      }
     },
     onSwiperRedied() {
       anime({
@@ -529,38 +606,38 @@ export default {
         opacity: [
           {
             duration: 2000,
-            value: [0, 1]
-          }
+            value: [0, 1],
+          },
         ],
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
     },
-    glassClickHandler(key) {
-      this.glassClicked[key] = !this.glassClicked[key];
-    },
+    // glassClickHandler(key) {
+    //   this.glassClicked[key] = !this.glassClicked[key];
+    // },
     translateTitle(tar, val) {
       anime({
         targets: [`${tar} .title`, `${tar} .subtitle`],
         translateY: [
           {
-            duration: 1600,
-            value: val
-          }
+            duration: 1800,
+            value: val,
+          },
         ],
-        easing: "easeInOutExpo"
+        easing: "easeInOutExpo",
       });
     },
     upscrollAnim(key) {
       let targetClass = ".caro" + key;
       let targetClassNext = ".caro" + (key + 1);
-      this.translateTitle(targetClass, ["120px", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "-120px"]);
+      this.translateTitle(targetClass, ["180", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "-180"]);
     },
     downscrollAnim(key) {
       let targetClass = ".caro" + key;
       let targetClassNext = ".caro" + (key - 1);
-      this.translateTitle(targetClass, ["-120px", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "120px"]);
+      this.translateTitle(targetClass, ["-180px", "0px"]);
+      this.translateTitle(targetClassNext, ["0px", "180px"]);
     },
     toggleTitle(key, dir) {
       if (dir == "up") {
@@ -573,40 +650,47 @@ export default {
     infoClickHandler(key) {
       let targetClass = ".caro" + key;
       anime({
-        targets: [`${targetClass} .project-info-div div`],
-        translateX: [
+        targets: [`${targetClass} .project-info-div .trail-wrapper`],
+        translateY: [
           {
             duration: 1000,
-            value: "100px"
-          }
+            value: this.infoShown[key] ? "0px" : "100px",
+          },
         ],
         easing: "easeOutExpo",
-        delay: 100
+        delay: 100,
       });
+
+      this.translateTitle(
+        targetClass,
+        this.infoShown[key] ? ["-180px", "0px"] : ["0px", "-180px"]
+      );
+
       anime({
         targets: [`${targetClass} .trail`],
         translateX: [
           {
             duration: 1000,
-            value: ["75%", "100%"]
-          }
+            value: ["35%", "35%"],
+          },
         ],
-        translateY: ["-10px", "-10px"],
-        easing: "easeOutExpo"
+        translateY: this.infoShown[key] ? ["85px", "-15px"] : ["-15px", "85px"],
+        easing: "easeOutExpo",
+        delay: 100,
       });
-      this.toggleTitle(key + 1, "up");
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
           {
             duration: 1000,
-            value: ["150%", "0%"]
-          }
+            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
+          },
         ],
-        easing: "easeOutExpo",
-        delay: 750
+        easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
+        delay: this.infoShown[key] ? 0 : 800,
       });
-    }
+      this.infoShown[key] = !this.infoShown[key];
+    },
   },
   created() {},
   mounted() {
@@ -615,7 +699,7 @@ export default {
     }, 750);
 
     this.totalSlides = this.swiper.slides.length;
-  }
+  },
 };
 </script>
 
@@ -660,7 +744,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: $lightBlue;
+  color: $mainGold;
   height: 100%;
   width: 30%;
   h2 {
@@ -688,6 +772,7 @@ img {
 }
 .project-wrapper {
   width: 90%;
+  max-width: 1300px;
   height: 100%;
   margin-left: 40px;
   background-color: transparent;
@@ -744,6 +829,7 @@ img {
 .slick-prev:before,
 .slick-next:before {
   font-size: 26px !important;
+  display: none;
 }
 
 .arrow,
@@ -817,7 +903,7 @@ img {
       width: 100%;
       position: absolute;
       height: 100%;
-      background-color: #fff2;
+      background-color: $grey;
     }
   }
   .cursor-container {
@@ -833,14 +919,18 @@ img {
       text-align: center;
       -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
+      transform: translateY(-6%);
       position: absolute;
       margin: auto;
       bottom: 0;
       top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .grabui-current {
         transform-origin: 50% 50% 0px;
         transform: matrix(1, 0, 0, 1, 15, -15);
+        margin-top: 15px;
       }
       .grabui-total {
         transform-origin: 50% 50% 0px;
@@ -858,19 +948,18 @@ img {
           position: absolute;
           width: 100%;
           height: 100%;
-          background-color: #fff6;
+          background-color: $grey;
         }
       }
       .number {
         width: 32px;
         height: 20px;
-        color: #fff;
+        color: $grey;
         -webkit-transition: color 0.25s;
         transition: color 0.25s;
         font-size: 15px;
         line-height: 20px;
         letter-spacing: 1px;
-        color: $lightBlue;
         display: inline-block;
         vertical-align: middle;
       }
@@ -906,77 +995,77 @@ img {
     height: 500px;
     padding: 3rem 6rem;
   }
-  .slide-glass {
-    box-shadow: 0 10px 30px -15px #010310;
-    margin: 0 auto;
-    background-color: #0e1331;
-    z-index: 1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    justify-content: space-between;
-    transition: all 250ms ease-in;
-    transition-delay: 0.1s;
-    &:hover {
-      opacity: 1;
-      // box-shadow: -5px 5px #0f0f17;
-    }
-    .glass-title-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      color: $lightBlue;
-      font-size: 24px;
-      line-height: normal;
-      .glass-subtitle {
-        font-size: 18px;
-        color: $darkerBlue;
-        font-family: $bodyFont;
-        font-weight: 400;
-      }
-      .glass-date {
-        font-size: 18px;
-        color: $darkerBlue;
-        font-family: $bodyFont;
-        font-weight: 400;
-      }
-    }
-    .glass-icons {
-      display: flex;
-      width: 100%;
-      margin: 0 auto;
-      justify-content: center;
-      img {
-        height: 120px;
-        width: 120px;
-      }
-    }
-    .glass-project-type {
-      color: $darkerBlue;
-      font-size: 20px;
-      opacity: 0.3;
-      font-family: $bodyFont;
-    }
-  }
-  .project-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: $lightBlue;
-    width: 50%;
-    margin: 0 auto;
-    margin-bottom: 5px;
+  //   .slide-glass {
+  //     box-shadow: 0 10px 30px -15px #010310;
+  //     margin: 0 auto;
+  //     background-color: #0e1331;
+  //     z-index: 1;
+  //     position: absolute;
+  //     top: 50%;
+  //     left: 50%;
+  //     transform: translate(-50%, -50%);
+  //     border-radius: 10px;
+  //     display: flex;
+  //     flex-direction: column;
+  //     opacity: 0;
+  //     justify-content: space-between;
+  //     transition: all 250ms ease-in;
+  //     transition-delay: 0.1s;
+  //     &:hover {
+  //       opacity: 1;
+  //       // box-shadow: -5px 5px #0f0f17;
+  //     }
+  //     .glass-title-wrapper {
+  //       display: flex;
+  //       flex-direction: column;
+  //       justify-content: space-between;
+  //       align-items: center;
+  //       color: $mainGold;
+  //       font-size: 24px;
+  //       line-height: normal;
+  //       .glass-subtitle {
+  //         font-size: 18px;
+  //         color: $grey;
+  //         font-family: $bodyFont;
+  //         font-weight: 400;
+  //       }
+  //       .glass-date {
+  //         font-size: 18px;
+  //         color: $grey;
+  //         font-family: $bodyFont;
+  //         font-weight: 400;
+  //       }
+  //     }
+  //     .glass-icons {
+  //       display: flex;
+  //       width: 100%;
+  //       margin: 0 auto;
+  //       justify-content: center;
+  //       img {
+  //         height: 120px;
+  //         width: 120px;
+  //       }
+  //     }
+  //     .glass-project-type {
+  //       color: $grey;
+  //       font-size: 20px;
+  //       opacity: 0.3;
+  //       font-family: $bodyFont;
+  //     }
+  //   }
+  //   .project-title {
+  //     font-size: 22px;
+  //     font-weight: 700;
+  //     color: $mainGold;
+  //     width: 50%;
+  //     margin: 0 auto;
+  //     margin-bottom: 5px;
 
-    // background: linear-gradient(45deg, #f19872, #e86c9a);
-  }
+  //     // background: linear-gradient(45deg, #f19872, #e86c9a);
+  //   }
 }
 .project-image-title-overlay {
-  color: $lightBlue;
+  color: $mainGold;
   width: 540px;
   cursor: default;
   pointer-events: none;
@@ -988,39 +1077,42 @@ img {
   z-index: 1;
   .title {
     // transform: translateY(-120px);
-    font-size: 60px;
+    font-size: 90px;
     font-weight: 700;
   }
   .subtitle {
     // transform: translateY(-120px);
-    color: $darkerBlue;
+    color: $grey;
     font-weight: 700;
+    font-size: 22px;
   }
 }
 .project-info-div {
   position: absolute;
   z-index: 1;
-  bottom: 0;
-  right: 8%;
+  bottom: 5%;
+  left: 15%;
   transform: rotate(270deg);
-  overflow: hidden;
-  width: 100px;
+  /* overflow: hidden; */
+  width: 10%;
+  // width: 0;
   cursor: pointer;
+  text-align: left;
   h4 {
     padding: 3px 0;
     font-size: 16px;
     letter-spacing: 1px;
-    color: $lightBlue;
+    color: $grey;
     display: inline-block;
     vertical-align: middle;
   }
   .trail {
-    width: 100px;
+    width: 80%;
     height: 1px;
     opacity: 0.4;
     background-color: #fff8;
     vertical-align: middle;
-    transform: translate(75%, -10px);
+    transform: translate(35%, -15px);
     // transform-origin: 100% 50% 0px;
     // transform: matrix(1, 0, 0, 1, 0, 0);
   }
@@ -1028,42 +1120,50 @@ img {
 
 .project-image-overlay-wrapper {
   overflow: hidden;
+  height: 88%;
+  position: absolute;
+  top: 0%;
+  left: 8%;
+  width: 50%;
+  text-align: left;
   .project-image-overlay {
     transform: translateY(350%);
     z-index: 1;
-    width: 40%;
-    height: 40%;
-    position: absolute;
-    top: 40%;
-    left: 8%;
-    text-align: left;
+
+    // position: absolute;
+    top: 45%;
+    // left: 8%;
+    // width: 50%;
+    // text-align: left;
     .overlay-featured {
-      color: $purple;
-      font-size: 16px;
+      color: $grey;
+      font-size: 18px;
       margin-bottom: 10px;
     }
     .overlay-title {
-      color: $lightBlue;
-      margin-bottom: 20px;
-      font-size: 22px;
+      color: $mainGold;
+      margin-bottom: 10px;
+      font-size: 30px;
     }
     .overlay-subtitle {
-      color: $darkerBlue;
-      font-size: 16px;
+      color: $white;
+      font-family: $bodyFont;
+      font-size: 18px;
       font-weight: 400;
+      min-width: 450px;
     }
     .overlay-stack {
       display: flex;
       width: 60%;
       margin-right: auto;
-      color: $darkerBlue;
+      color: $grey;
       justify-content: space-between;
       margin-top: 20px;
       font-size: 14px;
     }
     .overlay-date {
       margin-top: 10px;
-      color: $darkerBlue;
+      color: $grey;
       font-size: 16px;
     }
   }
@@ -1071,14 +1171,15 @@ img {
 
 .project-image {
   position: relative;
+  width: 85% !important;
   img {
-    width: 850px;
-    height: 500px;
+    cursor: e-resize;
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     object-fit: contain;
     padding-bottom: 10px;
     outline: none;
-    filter: brightness(0.95);
     z-index: -1;
   }
   &:focus {
@@ -1091,13 +1192,11 @@ img {
 }
 
 #giftwitch {
-  width: 850px;
-  height: 500px;
   margin: 0 auto;
-  margin-top: 30px;
-  padding-bottom: 10px;
   // padding: 10px;
   object-fit: contain;
+  width: 80% !important;
+  cursor: e-resize;
 }
 
 .swiper {
@@ -1132,7 +1231,7 @@ img {
     left: 49%;
   }
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1350px) {
   .title-wrapper {
     display: none;
   }
@@ -1142,10 +1241,45 @@ img {
     width: 100%;
   }
 
+  .project-image-title-overlay {
+    left: 15%;
+    .title {
+      font-size: 54px;
+    }
+    .subtitle {
+      font-size: 15px;
+    }
+  }
+  .grab-container {
+    display: none;
+  }
+  .project-image-overlay-wrapper {
+    left: 10%;
+    .project-image-overlay {
+      // transform: translateY(25%);
+      .project-image-overlay-title-wrapper {
+        margin-top: 10%;
+        .overlay-featured {
+          font-size: 14px;
+        }
+        .overlay-title {
+          font-size: 24px;
+        }
+        .overlay-subtitle {
+          font-size: 12px;
+        }
+        .overlay-date {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
   .project-image {
     img {
-      width: 650px;
-      height: 400px;
+      width: 90%;
+      height: 90%;
+      min-width: 800px;
       margin: 0 auto;
       margin-top: 50px;
       padding-bottom: 10px;
@@ -1182,45 +1316,45 @@ img {
     margin-left: 2%;
   }
 
-  .slide-wrapper {
-    .mobile {
-      width: 200px;
-      height: 250px;
-    }
-    .desktop {
-      width: 295px;
-      height: 250px;
-    }
-    .slide-glass {
-      padding: 15px;
+  // .slide-wrapper {
+  //   .mobile {
+  //     width: 200px;
+  //     height: 250px;
+  //   }
+  //   .desktop {
+  //     width: 295px;
+  //     height: 250px;
+  //   }
+  //   .slide-glass {
+  //     padding: 15px;
 
-      &:hover {
-        opacity: unset;
-      }
-      .glass-title-wrapper {
-        font-size: 13px;
-        line-height: normal;
+  //     &:hover {
+  //       opacity: unset;
+  //     }
+  //     .glass-title-wrapper {
+  //       font-size: 13px;
+  //       line-height: normal;
 
-        .glass-subtitle {
-          font-size: 12px;
-        }
-        .glass-date {
-          font-size: 10px;
-        }
-      }
-      .glass-icons {
-        width: unset;
-        img {
-          height: 50px;
-          width: 50px;
-          pointer-events: none;
-        }
-      }
-      .glass-project-type {
-        font-size: 10px;
-      }
-    }
-  }
+  //       .glass-subtitle {
+  //         font-size: 12px;
+  //       }
+  //       .glass-date {
+  //         font-size: 10px;
+  //       }
+  //     }
+  //     .glass-icons {
+  //       width: unset;
+  //       img {
+  //         height: 50px;
+  //         width: 50px;
+  //         pointer-events: none;
+  //       }
+  //     }
+  //     .glass-project-type {
+  //       font-size: 10px;
+  //     }
+  //   }
+  // }
 
   .slick-prev {
     transform: translate(20px, -19px);
@@ -1233,23 +1367,41 @@ img {
   }
   .slide-wrapper {
     padding: 0;
+    margin-top: 13%;
   }
 
   .project-wrapper {
     margin: 0 auto !important;
     margin-left: 0;
+    width: 100%;
   }
-
+  .project-info-div {
+    bottom: 3%;
+    width: 20%;
+  }
   .portfolio-background {
     width: 100%;
     margin-top: -20px;
   }
 
+  .project-image-overlay-wrapper {
+    width: 70%;
+    margin-top: 10%;
+    .project-image-overlay {
+      .overlay-subtitle {
+        font-weight: 600;
+        max-width: 252px;
+        min-width: unset;
+      }
+    }
+  }
   .project-image {
+    width: 100% !important;
     img {
-      width: 375px;
-      height: 250px;
+      width: 100%;
+      height: 100%;
       margin: 0 auto;
+      min-width: unset;
       object-fit: contain;
       margin-top: 10px;
       padding-bottom: 10px;
@@ -1264,6 +1416,9 @@ img {
     padding-bottom: 10px;
     // padding: 10px;
     object-fit: contain;
+  }
+  .slick-dots {
+    display: none;
   }
 }
 </style>

@@ -116,7 +116,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  width: 80%;
+  width: 100%;
   height: 100%;
   z-index: -10;
 }
@@ -251,12 +251,12 @@ html {
   }
 }
 .main-depth {
-  // box-shadow: 0 10px 30px -15px #010310;
+  box-shadow: 0 10px 30px -15px #010310;
   position: relative;
   z-index: 2;
   padding: 25px;
   border-radius: 5px;
-  // background-color: rgb(13 16 39 / 99%);
+  background-color: #353535aa;
 }
 
 .container-main {
