@@ -59,29 +59,23 @@
               Collaborative mobile and web development for small to large scale
               applications
             </p>
-            <div class="home-btn home-btn-animated" @click="proceedContact">
-              <div class="wrapper">
-                <span>Contact</span>
-                <i class="fa fa-envelope" aria-hidden="true"> </i>
+            <div
+              ref="homeBtn"
+              class="home-btn home-btn-animated"
+              @click="proceedContact"
+            >
+              <div ref="homeBtnWrapper" class="wrapper">
+                <span ref="homeBtnSpan">Contact</span>
+                <i ref="homeBtnSpan" class="fa fa-envelope" aria-hidden="true">
+                </i>
               </div>
             </div>
           </div>
         </div>
         <div class="main-right">
           <div class="device-images">
-            <img
-              v-if="!mobile && anim"
-              class="logo-img"
-              src="~static/LOGO.svg"
-              alt=""
-            />
+            <logo-anim v-if="anim"></logo-anim>
           </div>
-          <img
-            v-if="mobile && anim"
-            class="logo-img"
-            src="~static/LOGO mobile.svg"
-            alt=""
-          />
         </div>
       </div>
 
@@ -505,17 +499,28 @@ export default {
       // this.windowScroll();
       // window.removeEventListener("wheel", this.windowScroll);
       else {
+        let noClicks = [
+          this.$refs.homeBtn,
+          this.$refs.homeBtnWrapper,
+          this.$refs.homeBtnSpan,
+          this.$refs.homeBtnSpan,
+        ];
         setTimeout(() => {
           this.$refs.contMain.addEventListener("touchstart", function (e) {
             this.touchStart = e.changedTouches[0];
           });
           this.$refs.contMain.addEventListener("touchend", function (e) {
             this.touchEnd = e.changedTouches[0];
-            // determine direction
-            if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
-              that.scrollAnim("up");
-            } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
-              that.scrollAnim("down");
+            // guard clause for contact button on homepage
+            if (noClicks.includes(e.target)) {
+              that.proceedContact();
+            } else {
+              // determine direction
+              if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+                that.scrollAnim("up");
+              } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+                that.scrollAnim("down");
+              }
             }
           });
         }, 1000);
@@ -611,7 +616,7 @@ export default {
   align-items: center;
   .loading-img-wrapper {
     overflow: hidden;
-    margin-top: -10%;
+    // margin-top: -10%;
     .loading-logo-img {
       width: 30%;
       margin: 0 auto;
@@ -697,8 +702,8 @@ export default {
 .main-right {
   overflow: hidden;
   position: absolute;
-  left: 51%;
-  top: 28%;
+  left: 49.5%;
+  top: 26.8%;
   transform: translateX(-55%);
   width: 50%;
   margin: 0 auto;
@@ -793,7 +798,8 @@ export default {
 .device-images {
   display: flex;
   justify-content: flex-end;
-  padding-right: 4%;
+  width: 100%;
+  // padding-right: 4%;
 }
 
 // @media only screen and (max-width: 1000px) {
@@ -904,8 +910,11 @@ export default {
   .main-right {
     padding: 0;
     margin: 0 auto;
-    width: 140%;
+    width: 150%;
     margin-bottom: 20px;
+    .device-images {
+      margin-left: 37%;
+    }
   }
   .main-left {
     padding: 50px 0;

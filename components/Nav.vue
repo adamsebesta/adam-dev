@@ -196,7 +196,7 @@ export default {
     toggleSidebar() {
       anime({
         targets: [".sidebar-menu"],
-        easing: "easeInOutSine",
+        easing: "easeInOutCirc",
         opacity: [
           {
             duration: this.sidebarShown ? 1000 : 500,
@@ -205,7 +205,7 @@ export default {
         ],
         translateY: [
           {
-            duration: 750,
+            duration: 1150,
             value: this.sidebarShown ? ["0%", "-100%"] : ["-100%", "0%"],
           },
         ],

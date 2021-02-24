@@ -39,6 +39,7 @@
           <swiper
             class="swiper vertical"
             ref="mySwiper"
+            v-if="showSwiper"
             @ready="onSwiperRedied"
             @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
             :options="swiperOptionv"
@@ -489,6 +490,7 @@ export default {
   data() {
     return {
       background: null,
+      showSwiper: null,
       title: "Adam Sebesta Development | Portfolio",
       description: "My Recent Work",
       image: "~/static/meta.png",
@@ -515,7 +517,8 @@ export default {
         slidesPerView: 1,
         spaceBetween: 160,
         clickable: false,
-        speed: 1400,
+        simulateTouch: false,
+        speed: 1200,
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
@@ -620,7 +623,7 @@ export default {
         targets: [`${tar} .title`, `${tar} .subtitle`],
         translateY: [
           {
-            duration: 1800,
+            duration: this.mobile ? 1200 : 1600,
             value: val,
           },
         ],
@@ -693,12 +696,18 @@ export default {
     },
   },
   created() {},
+
   mounted() {
     setTimeout(() => {
+      if (this.mobile) {
+        this.swiperOptionv.speed = 500;
+      }
+      this.showSwiper = true;
+    }, 250);
+    setTimeout(() => {
       this.toggleTitle(0, "down");
+      this.totalSlides = this.swiper.slides.length;
     }, 750);
-
-    this.totalSlides = this.swiper.slides.length;
   },
 };
 </script>
@@ -1365,9 +1374,12 @@ img {
     transform: translate(-28px, -18px);
     z-index: 1;
   }
+  .swiper-slide {
+    height: 100vh;
+  }
   .slide-wrapper {
     padding: 0;
-    margin-top: 13%;
+    // margin-top: 13%;
   }
 
   .project-wrapper {
