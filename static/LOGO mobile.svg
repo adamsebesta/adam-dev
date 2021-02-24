@@ -19,7 +19,7 @@
 
 	svg {
 
-		max-width: 1000px;
+		max-width: 1500px;
 		margin: 0 auto;
 		animation-delay: 2s;
 	}

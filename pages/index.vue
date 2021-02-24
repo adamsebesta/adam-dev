@@ -904,7 +904,7 @@ export default {
   .main-right {
     padding: 0;
     margin: 0 auto;
-    width: 90%;
+    width: 140%;
     margin-bottom: 20px;
   }
   .main-left {
@@ -969,7 +969,7 @@ export default {
   .logo-img {
     margin: 0 auto;
     padding-left: 2px;
-    margin-left: 18%;
+    margin-left: 19%;
   }
 }
 </style>
