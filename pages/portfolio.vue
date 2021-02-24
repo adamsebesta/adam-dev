@@ -685,7 +685,7 @@ export default {
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
           {
-            duration: 1000,
+            duration: this.mobile ? 750 : 1000,
             value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
           },
         ],
