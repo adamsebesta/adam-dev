@@ -70,13 +70,18 @@
         <div class="main-right">
           <div class="device-images">
             <img
-              v-if="!mobile"
+              v-if="!mobile && anim"
               class="logo-img"
-              src="~static/logo-full.png"
+              src="~static/LOGO.svg"
               alt=""
             />
           </div>
-          <img v-if="mobile" class="logo-img" src="~static/logo.png" alt="" />
+          <img
+            v-if="mobile && anim"
+            class="logo-img"
+            src="~static/LOGO mobile.svg"
+            alt=""
+          />
         </div>
       </div>
 
@@ -121,6 +126,7 @@ export default {
       touchStart: null,
       touchEnd: null,
       windowScroll: null,
+      anim: false,
     };
   },
   methods: {
@@ -436,6 +442,9 @@ export default {
     },
     welcomeAnim() {
       setTimeout(() => {
+        this.anim = true;
+      }, 1650);
+      setTimeout(() => {
         anime({
           targets: ".loading-anim",
           translateX: "50%",
@@ -452,13 +461,14 @@ export default {
           delay: 0,
         });
 
-        anime({
-          targets: ".logo-img",
-          translateY: ["150%", "0"],
-          duration: 1000,
-          easing: "easeInOutSine",
-          delay: 400,
-        });
+        // anime({
+        //   targets: ".logo-img",
+        //   translateY: ["150%", "0"],
+        //   duration: 1000,
+        //   easing: "easeInOutSine",
+        //   delay: 400,
+        // });
+
         anime({
           targets: ".scroll-div",
           translateY: ["500%", "0"],
@@ -703,8 +713,8 @@ export default {
   flex-direction: column;
   .logo-img {
     min-width: 112px;
-    width: 100%;
-    transform: translateY(150%);
+    width: 1000px;
+    // transform: translateY(150%);
     // margin-right: 20px;
   }
 }
@@ -956,21 +966,10 @@ export default {
     }
   }
 
-  .device-images {
-    justify-content: flex-end;
-    width: 100%;
-    height: 100%;
+  .logo-img {
     margin: 0 auto;
-    padding-right: 0;
-    .logo-img {
-      margin: 0 auto;
-      padding-left: 2px;
-    }
-  }
-  .background-home {
-    height: 90%;
-    width: 87%;
-    top: 11%;
+    padding-left: 2px;
+    margin-left: 18%;
   }
 }
 </style>
