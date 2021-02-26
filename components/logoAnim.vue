@@ -9,87 +9,6 @@
     style="enable-background: new 0 0 981.2 405.7"
     xml:space="preserve"
   >
-    <style type="text/css">
-      .st1 {
-        fill: #07074e;
-      }
-      .st6 {
-        fill: #07074e;
-      }
-      .st7 {
-        fill: #ffcf01;
-      }
-      .st9 {
-        fill: none;
-        stroke: #fff;
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-      .st10 {
-        clip-path: url(#SVGID_2_);
-      }
-      .st11 {
-        clip-path: url(#SVGID_4_);
-      }
-      .st12 {
-        clip-path: url(#SVGID_6_);
-      }
-      .st13 {
-        fill: none;
-        stroke: url(#SVGID_7_);
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-      .st14 {
-        clip-path: url(#SVGID_10_);
-      }
-      .st15 {
-        fill: none;
-        stroke: url(#SVGID_11_);
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-      .st16 {
-        clip-path: url(#SVGID_14_);
-      }
-      .st17 {
-        fill: none;
-        stroke: url(#SVGID_15_);
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-      .st18 {
-        clip-path: url(#SVGID_18_);
-      }
-      .st19 {
-        opacity: 0.45;
-        fill: none;
-        stroke: url(#SVGID_19_);
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-      .st20 {
-        clip-path: url(#SVGID_22_);
-      }
-      .st21 {
-        fill: none;
-        stroke: url(#SVGID_23_);
-        stroke-width: 65;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-miterlimit: 10;
-      }
-    </style>
     <g class="main">
       <g class="bg">
         <path
@@ -530,308 +449,7 @@
   </svg>
 </template>
 
-<style lang='scss' scoped>
-// svg {
-//   max-width: 1200px;
-//   width: 1000px;
-// }
-
-// @keyframes grow {
-//   100% {
-//     transform: scale(0.9);
-//   }
-// }
-
-// .main {
-//   transform-origin: 490.6px 202.75px;
-//   transform: scale(0.7);
-//   animation: grow 7s ease forwards;
-// }
-
-// @keyframes move_top {
-//   100% {
-//     transform: translateY(0px);
-//   }
-// }
-
-// .sub_one path:nth-of-type(1) {
-//   transform: translateY(450px);
-//   animation: move_top 1.2s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// .sub_one path:nth-of-type(2) {
-//   transform: translateY(450px);
-//   animation: move_top 1.2s 0.1s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// .sub_one path:nth-of-type(3) {
-//   transform: translateY(450px);
-//   animation: move_top 1.2s 0.2s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// @keyframes offset {
-//   100% {
-//     stroke-dashoffset: 0;
-//   }
-// }
-
-// .line polyline:nth-of-type(1) {
-//   stroke-dasharray: 1200;
-//   stroke-dashoffset: 1200;
-//   animation: offset 2.5s 0.5s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// .line polyline:nth-of-type(2) {
-//   stroke-dasharray: 1200;
-//   stroke-dashoffset: 1200;
-//   animation: offset 2.5s 0.6s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// .line polyline:nth-of-type(3) {
-//   stroke-dasharray: 1200;
-//   stroke-dashoffset: 1200;
-//   animation: offset 2.5s 0.7s cubic-bezier(0.74, 0.02, 0.36, 0.97) forwards;
-// }
-
-// @keyframes fade_in {
-//   100% {
-//     opacity: 1;
-//   }
-// }
-
-// .sub_two path:nth-of-type(1) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(2) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.05s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(3) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.1s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(4) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.15s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(5) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.2s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(6) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.25s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(7) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.3s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(8) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.35s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(9) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.4s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(10) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.45s linear forwards;
-// }
-
-// .sub_two path:nth-of-type(11) {
-//   opacity: 0;
-//   animation: fade_in 1.2s 2.5s linear forwards;
-// }
-
-// @keyframes fill {
-//   70% {
-//     stroke: transparent;
-//   }
-
-//   100% {
-//     fill: #07074e;
-//     stroke: transparent;
-//   }
-// }
-// .st1 {
-//   fill: #07074e;
-// }
-// .st6 {
-//   fill: transparent;
-//   stroke: #07074e;
-//   stroke-width: 2;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st7 {
-//   fill: #ffcf01;
-// }
-// .st9 {
-//   fill: none;
-//   stroke: #ffffff;
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st10 {
-//   clip-path: url(#SVGID_2_);
-// }
-// .st11 {
-//   clip-path: url(#SVGID_4_);
-// }
-// .st12 {
-//   clip-path: url(#SVGID_6_);
-// }
-// .st13 {
-//   fill: none;
-//   stroke: url(#SVGID_7_);
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st14 {
-//   clip-path: url(#SVGID_10_);
-// }
-// .st15 {
-//   fill: none;
-//   stroke: url(#SVGID_11_);
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st16 {
-//   clip-path: url(#SVGID_14_);
-// }
-// .st17 {
-//   fill: none;
-//   stroke: url(#SVGID_15_);
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st18 {
-//   clip-path: url(#SVGID_18_);
-// }
-// .st19 {
-//   opacity: 0.45;
-//   fill: none;
-//   stroke: url(#SVGID_19_);
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-// .st20 {
-//   clip-path: url(#SVGID_22_);
-// }
-// .st21 {
-//   fill: none;
-//   stroke: url(#SVGID_23_);
-//   stroke-width: 65;
-//   stroke-linecap: round;
-//   stroke-linejoin: round;
-//   stroke-miterlimit: 10;
-// }
-
-// .sub_three path:nth-of-type(1) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 4.5s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(2) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 4.6s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(3) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 4.7s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(4) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 4.8s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(5) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 4.9s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(6) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(7) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5.1s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(8) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5.2s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(9) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5.3s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(10) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5.4s linear forwards;
-// }
-
-// .sub_three path:nth-of-type(11) {
-//   stroke-dasharray: 250;
-//   stroke-dashoffset: 250;
-//   animation: offset 2.5s 3s ease forwards, fill 1.2s 5.5s linear forwards;
-// }
-
-// @keyframes pulsating_effect {
-//   50% {
-//     opacity: 0.4;
-//   }
-
-//   100% {
-//     opacity: 0;
-//     transform: scale(1.1);
-//   }
-// }
-
-// .bg path {
-//   opacity: 0;
-//   transform-origin: 344px 202px;
-//   animation: pulsating_effect 1.5s 6s linear forwards;
-// }
-
+<style lang="scss" scoped>
 body {
   text-align: center;
   margin: 0;
@@ -968,5 +586,84 @@ svg {
   opacity: 0;
   transform-origin: 344px 202px;
   animation: pulsating_effect 1.5s 3.5s linear forwards;
+}
+.st1 {
+  fill: #07074e;
+}
+.st6 {
+  fill: #07074e;
+}
+.st7 {
+  fill: #ffcf01;
+}
+.st9 {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.st10 {
+  clip-path: url(#SVGID_2_);
+}
+.st11 {
+  clip-path: url(#SVGID_4_);
+}
+.st12 {
+  clip-path: url(#SVGID_6_);
+}
+.st13 {
+  fill: none;
+  stroke: url(#SVGID_7_);
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.st14 {
+  clip-path: url(#SVGID_10_);
+}
+.st15 {
+  fill: none;
+  stroke: url(#SVGID_11_);
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.st16 {
+  clip-path: url(#SVGID_14_);
+}
+.st17 {
+  fill: none;
+  stroke: url(#SVGID_15_);
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.st18 {
+  clip-path: url(#SVGID_18_);
+}
+.st19 {
+  opacity: 0.45;
+  fill: none;
+  stroke: url(#SVGID_19_);
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+.st20 {
+  clip-path: url(#SVGID_22_);
+}
+.st21 {
+  fill: none;
+  stroke: url(#SVGID_23_);
+  stroke-width: 65;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
 }
 </style>

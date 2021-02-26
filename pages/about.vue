@@ -110,11 +110,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description,
+          content: this.description
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image },
-      ],
+        { hid: "og:image", property: "og:image", content: this.image }
+      ]
     };
   },
   data() {
@@ -137,7 +137,7 @@ export default {
         ["azure-dev.png", "Azure Developer Associate"],
         ["azure-fun.png", "Azure Fundamentals"],
         ["firebase.png", "Firebase"],
-        ["rails.png", "Rails"],
+        ["rails.png", "Rails"]
       ],
       services: [
         "Web and Mobile Builds",
@@ -146,9 +146,9 @@ export default {
         "Live App Maintenance",
         "Refactoring",
         "Azure Deployment",
-        "Tutoring",
+        "Tutoring"
       ],
-      scrollCount: 0,
+      scrollCount: 0
     };
   },
   computed: {},
@@ -174,11 +174,11 @@ export default {
         translateY: [
           {
             duration: 1500,
-            value: function () {
+            value: function() {
               return that.calculateScrollValue(dir);
-            },
-          },
-        ],
+            }
+          }
+        ]
       });
       if (dir == "down" && this.scrollCount < 2) {
         this.scrollCount++;
@@ -188,9 +188,9 @@ export default {
           translateY: [
             {
               duration: 1800,
-              value: ["-210%", "0%"],
-            },
-          ],
+              value: ["-210%", "0%"]
+            }
+          ]
         });
         anime({
           targets: [`.appear${this.scrollCount - 1}`],
@@ -198,9 +198,9 @@ export default {
           translateY: [
             {
               duration: 1800,
-              value: ["0%", "210%"],
-            },
-          ],
+              value: ["0%", "210%"]
+            }
+          ]
         });
       }
       if (dir == "up" && this.scrollCount > 0) {
@@ -211,9 +211,9 @@ export default {
           translateY: [
             {
               duration: 1800,
-              value: ["210%", "0%"],
-            },
-          ],
+              value: ["210%", "0%"]
+            }
+          ]
         });
         anime({
           targets: [`.appear${this.scrollCount + 1}`],
@@ -221,9 +221,9 @@ export default {
           translateY: [
             {
               duration: 1800,
-              value: ["0%", "-210%"],
-            },
-          ],
+              value: ["0%", "-210%"]
+            }
+          ]
         });
       }
     },
@@ -247,20 +247,20 @@ export default {
         translateX: [
           {
             duration: 1200,
-            value: function (el) {
+            value: function(el) {
               return that.calcuateTranslate(el, "X");
-            },
-          },
+            }
+          }
         ],
         translateY: [
           {
             duration: 1200,
-            value: function (el) {
+            value: function(el) {
               return that.calcuateTranslate(el, "Y");
-            },
-          },
+            }
+          }
         ],
-        delay: 1000,
+        delay: 1000
       });
     },
     calcuateTranslate(el, axis) {
@@ -289,14 +289,14 @@ export default {
           width: [
             {
               duration: 600,
-              value: "100%",
-            },
-          ],
+              value: "100%"
+            }
+          ]
         })
         .add({
           targets: [".about", ".about-right", ".headshot", ".bg1"],
           easing: "easeInOutSine",
-          opacity: 1,
+          opacity: 1
         });
     },
 
@@ -307,15 +307,15 @@ export default {
           "wheel",
           _.debounce(this.scrollInfo, 750, {
             leading: true,
-            trailing: false,
+            trailing: false
           })
         );
       } else {
         setTimeout(() => {
-          this.$refs.contMain.addEventListener("touchstart", function (e) {
+          this.$refs.contMain.addEventListener("touchstart", function(e) {
             this.touchStart = e.changedTouches[0];
           });
-          this.$refs.contMain.addEventListener("touchend", function (e) {
+          this.$refs.contMain.addEventListener("touchend", function(e) {
             this.touchEnd = e.changedTouches[0];
             // determine direction
             if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
@@ -326,7 +326,7 @@ export default {
           });
         }, 1000);
       }
-    },
+    }
   },
   mounted() {
     this.aboutAppear();
@@ -339,10 +339,10 @@ export default {
       translateY: [
         {
           duration: 750,
-          value: ["100%", "0%"],
-        },
+          value: ["100%", "0%"]
+        }
       ],
-      delay: 750,
+      delay: 750
     });
     anime({
       targets: [".scroll-div-about"],
@@ -350,10 +350,10 @@ export default {
       bottom: [
         {
           duration: 750,
-          value: "27%",
-        },
+          value: "27%"
+        }
       ],
-      delay: 750,
+      delay: 750
     });
 
     // anime({
@@ -367,7 +367,7 @@ export default {
     //   ],
     //   delay: 750,
     // });
-  },
+  }
 };
 </script>
 
@@ -693,7 +693,7 @@ export default {
           margin-bottom: 10px;
           .about-skills-icons {
             display: flex;
-            max-width: 270px;
+            max-width: 255px;
             min-width: 158px;
             flex-wrap: wrap;
           }
