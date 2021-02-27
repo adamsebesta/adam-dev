@@ -19,11 +19,29 @@ module.exports = {
         property: 'og:url',
         content: 'https://asdevelopment.ca'
       },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: '/meta.png'
-      },
+      // {
+      //   hid: 'og:image',
+      //   property: 'og:image',
+      //   content: this.BASE_URL + meta
+      // },
+      //       < !--Primary Meta Tags-- >
+      // <title>Adam Sebesta Development | Home</title>
+      // <meta name="title" content="Adam Sebesta Development | Home">
+      // <meta name="description" content="Web and Mobile App Development">
+
+      // <!-- Open Graph / Facebook -->
+      // <meta property="og:type" content="website">
+      // <meta property="og:url" content="https://www.asdevelopment.ca/">
+      // <meta property="og:title" content="Adam Sebesta Development | Home">
+      // <meta property="og:description" content="Web and Mobile App Development">
+      // <meta property="og:image" content="/meta.png">
+
+      // <!-- Twitter -->
+      // <meta property="twitter:card" content="summary_large_image">
+      // <meta property="twitter:url" content="https://www.asdevelopment.ca/">
+      // <meta property="twitter:title" content="Adam Sebesta Development | Home">
+      // <meta property="twitter:description" content="Web and Mobile App Development">
+      // <meta property="twitter:image" content="/meta.png">
     ],
     link: [{
         rel: 'icon',

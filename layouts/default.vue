@@ -7,10 +7,22 @@
 <script>
 import Vue from "vue";
 import global from "~/mixins/global.js";
+import meta from "~/static/meta.png";
 Vue.mixin(global);
 
 export default {
   name: "App",
+  head() {
+    return {
+      meta: [
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: this.BASE_URL + meta
+        }
+      ]
+    };
+  }
 };
 </script>
 
