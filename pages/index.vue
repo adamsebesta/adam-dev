@@ -102,7 +102,7 @@ export default {
           content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image },
+        // { hid: "og:image", property: "og:image", content: this.image },
       ],
     };
   },
