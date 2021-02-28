@@ -90,6 +90,7 @@ import anime from "animejs";
 import about from "./about";
 import Nav from "../components/Nav";
 import _ from "lodash";
+import meta from "~/static/meta.png";
 
 export default {
   head() {
@@ -102,7 +103,16 @@ export default {
           content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        // { hid: "og:image", property: "og:image", content: this.image },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: this.BASE_URL + meta,
+        },
+        {
+          hid: "twitter:image",
+          property: "twitter:image",
+          content: this.BASE_URL + meta,
+        },
       ],
     };
   },
