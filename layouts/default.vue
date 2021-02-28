@@ -18,11 +18,16 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: this.BASE_URL + meta
-        }
-      ]
+          content: this.BASE_URL + meta,
+        },
+        {
+          hid: "twitter:image",
+          property: "twitter:image",
+          content: this.BASE_URL + meta,
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 
