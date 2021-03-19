@@ -27,7 +27,8 @@
               <div class="about-desc-wrapper overflow">
                 <p class="about-desc appear appear0">
                   <span>
-                    I am a Canadian / Estonian Full Stack Developer currently
+                    Hello, Thank you for visiting my website! <br />
+                    I am a Canadian + Estonian Full Stack Developer currently
                     living in Berlin. Avid about the cloud, and creating elegant
                     solutions, my aim is to bring your creative ideas to life. I
                     look forward to working with you on your next project.</span
@@ -187,7 +188,7 @@ export default {
           easing: "easeInOutExpo",
           translateY: [
             {
-              duration: 1800,
+              duration: 1500,
               value: ["-210%", "0%"]
             }
           ]
@@ -197,7 +198,7 @@ export default {
           easing: "easeInOutExpo",
           translateY: [
             {
-              duration: 1800,
+              duration: 1500,
               value: ["0%", "210%"]
             }
           ]
@@ -210,7 +211,7 @@ export default {
           easing: "easeInOutExpo",
           translateY: [
             {
-              duration: 1800,
+              duration: 1500,
               value: ["210%", "0%"]
             }
           ]
@@ -220,7 +221,7 @@ export default {
           easing: "easeInOutExpo",
           translateY: [
             {
-              duration: 1800,
+              duration: 1500,
               value: ["0%", "-210%"]
             }
           ]
@@ -532,7 +533,7 @@ export default {
       // background-color: rgb(92 99 125 / 10%);
       display: flex;
       align-items: center;
-      background-color: rgb(30 41 78 / 10%);
+      background-color: rgb(126 126 126 / 29%);
 
       z-index: 0;
       opacity: 0;
@@ -554,7 +555,7 @@ export default {
     }
     .bg2 {
       // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-      background-color: rgb(30 54 119 / 15%);
+      background-color: rgb(164 164 164 / 35%);
       transform: translate(-6%, -6%);
       box-shadow: 0 10px 30px -15px #010310;
       z-index: -1;
@@ -562,7 +563,7 @@ export default {
     .bg3 {
       // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
       // background-color: rgb(13 16 39 / 91%);
-      background-color: rgba($color: $mainBlue, $alpha: 0.1);
+      background-color: rgb(207 207 207 / 20%);
       box-shadow: 0 10px 30px -15px #010310;
       transform: translate(-12%, -12%);
       z-index: -2;

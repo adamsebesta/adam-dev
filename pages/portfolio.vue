@@ -14,7 +14,7 @@
           class="cursor-container"
           ref="cursorContainer"
           :style="{
-            transform: 'translateY(' + calcYTrans + '%)',
+            transform: 'translateY(' + calcYTrans + '%)'
           }"
         >
           <div class="cursor">
@@ -139,7 +139,7 @@
             </swiper-slide>
             <swiper-slide
               :style="{
-                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)',
+                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)'
               }"
             >
               <div class="slide-wrapper">
@@ -358,7 +358,7 @@
                         <div
                           class="project-image-overlay-title-wrapper"
                           :style="
-                            windowWidth > 1350 ? { 'margin-top': '-16%' } : ''
+                            windowWidth > 1350 ? { 'margin-top': '-6%' } : ''
                           "
                         >
                           <div>
@@ -471,7 +471,7 @@ import anime from "animejs";
 export default {
   components: { Nav, Swiper, SwiperSlide },
   directives: {
-    swiper: directive,
+    swiper: directive
   },
   head() {
     return {
@@ -480,11 +480,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description,
+          content: this.description
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image },
-      ],
+        { hid: "og:image", property: "og:image", content: this.image }
+      ]
     };
   },
   data() {
@@ -500,9 +500,9 @@ export default {
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
-        speed: 500,
+        speed: 300,
         slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToScroll: 1
       },
       swiperOptionv: {
         direction: "vertical",
@@ -522,8 +522,8 @@ export default {
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
-          type: "progressbar",
-        },
+          type: "progressbar"
+        }
       },
       formValues: {},
       logo: false,
@@ -533,11 +533,11 @@ export default {
         // carousel0: { counter: 0, limit: 2 },
         carousel1: { counter: 0, limit: 2 },
         carousel2: { counter: 0, limit: 1 },
-        carousel3: { counter: 0, limit: 2 },
+        carousel3: { counter: 0, limit: 2 }
       },
       mainSwiperIndex: 0,
       totalSlides: null,
-      infoShown: { 0: null, 1: null, 2: null, 3: null },
+      infoShown: { 0: null, 1: null, 2: null, 3: null }
     };
   },
   computed: {
@@ -550,7 +550,7 @@ export default {
       return (
         (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
       );
-    },
+    }
   },
   methods: {
     moveLogo() {
@@ -609,10 +609,10 @@ export default {
         opacity: [
           {
             duration: 2000,
-            value: [0, 1],
-          },
+            value: [0, 1]
+          }
         ],
-        easing: "easeOutExpo",
+        easing: "easeOutExpo"
       });
     },
     // glassClickHandler(key) {
@@ -624,10 +624,10 @@ export default {
         translateY: [
           {
             duration: this.mobile ? 1200 : 1600,
-            value: val,
-          },
+            value: val
+          }
         ],
-        easing: "easeInOutExpo",
+        easing: "easeInOutExpo"
       });
     },
     upscrollAnim(key) {
@@ -657,11 +657,11 @@ export default {
         translateY: [
           {
             duration: 1000,
-            value: this.infoShown[key] ? "0px" : "100px",
-          },
+            value: this.infoShown[key] ? "0px" : "100px"
+          }
         ],
         easing: "easeOutExpo",
-        delay: 100,
+        delay: 100
       });
 
       this.translateTitle(
@@ -674,26 +674,26 @@ export default {
         translateX: [
           {
             duration: 1000,
-            value: ["35%", "35%"],
-          },
+            value: ["35%", "35%"]
+          }
         ],
         translateY: this.infoShown[key] ? ["85px", "-15px"] : ["-15px", "85px"],
         easing: "easeOutExpo",
-        delay: 100,
+        delay: 100
       });
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
           {
             duration: this.mobile ? 750 : 1000,
-            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
-          },
+            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"]
+          }
         ],
         easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
-        delay: this.infoShown[key] ? 0 : 800,
+        delay: this.infoShown[key] ? 0 : 800
       });
       this.infoShown[key] = !this.infoShown[key];
-    },
+    }
   },
   created() {},
 
@@ -708,7 +708,7 @@ export default {
       this.toggleTitle(0, "down");
       this.totalSlides = this.swiper.slides.length;
     }, 750);
-  },
+  }
 };
 </script>
 
@@ -1122,6 +1122,7 @@ img {
     background-color: #fff8;
     vertical-align: middle;
     transform: translate(35%, -15px);
+    will-change: transform;
     // transform-origin: 100% 50% 0px;
     // transform: matrix(1, 0, 0, 1, 0, 0);
   }
@@ -1135,6 +1136,7 @@ img {
   left: 8%;
   width: 50%;
   text-align: left;
+  will-change: transform;
   .project-image-overlay {
     transform: translateY(350%);
     z-index: 1;
@@ -1240,7 +1242,7 @@ img {
     left: 49%;
   }
 }
-@media only screen and (max-width: 1350px) {
+@media only screen and (max-width: 1400px) {
   .title-wrapper {
     display: none;
   }
@@ -1390,6 +1392,7 @@ img {
   .project-info-div {
     bottom: 3%;
     width: 20%;
+    left: 4%;
   }
   .portfolio-background {
     width: 100%;

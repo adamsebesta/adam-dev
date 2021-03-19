@@ -11,7 +11,7 @@ import meta from "~/static/meta.png";
 Vue.mixin(global);
 
 export default {
-  name: "App",
+  name: "App"
 };
 </script>
 
@@ -257,7 +257,7 @@ html {
   z-index: 2;
   padding: 25px;
   border-radius: 5px;
-  background-color: rgb(186 186 186 / 15%);
+  background-color: #1a202ceb;
 }
 
 .container-main {
