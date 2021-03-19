@@ -27,9 +27,9 @@
               <div class="about-desc-wrapper overflow">
                 <p class="about-desc appear appear0">
                   <span>
-                    Hello, Thank you for visiting my website! <br />
+                    Hello, Thank you for your interest <br />
                     I am a Canadian + Estonian Full Stack Developer currently
-                    living in Berlin. Avid about the cloud, and creating elegant
+                    living in Berlin. Avid about the cloud and creating elegant
                     solutions, my aim is to bring your creative ideas to life. I
                     look forward to working with you on your next project.</span
                   >
@@ -133,12 +133,16 @@ export default {
       icons: [
         ["vue.png", "Vue.js"],
         ["nativescript-vue.png", "Nativescript-Vue"],
-        ["js.png", "Javascript"],
+        ["shopify.png", "Shopify"],
         ["ruby.png", "Ruby"],
         ["azure-dev.png", "Azure Developer Associate"],
         ["azure-fun.png", "Azure Fundamentals"],
         ["firebase.png", "Firebase"],
-        ["rails.png", "Rails"]
+        ["rails.png", "Rails"],
+        ["js.png", "Javascript"],
+        ["html.png", "HTML 5"],
+        ["css.png", "CSS 3"],
+        ["postgres.png", "PostgreSQL"]
       ],
       services: [
         "Web and Mobile Builds",

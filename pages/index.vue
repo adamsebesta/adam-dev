@@ -411,6 +411,9 @@ export default {
           duration: 650,
           easing: "easeInOutSine"
         });
+        setTimeout(() => {
+          document.querySelector("#lineDrawing").style.zIndex = -1;
+        }, 500);
         this.step1 = true;
       }
       if (dir == "up" && this.step1 && !this.step2) {
@@ -435,6 +438,7 @@ export default {
           easing: "easeInOutSine"
         });
         this.translateElementsX(["#lineDrawing svg"], ["100%", "0%"]);
+        document.querySelector("#lineDrawing").style.zIndex = 10;
         this.step1 = false;
       }
       if (dir == "up" && this.step1 && this.step2) {
@@ -512,7 +516,6 @@ export default {
         let noClicks = [
           this.$refs.homeBtn,
           this.$refs.homeBtnWrapper,
-          this.$refs.homeBtnSpan,
           this.$refs.homeBtnSpan
         ];
         setTimeout(() => {
@@ -796,7 +799,7 @@ export default {
     font-family: $headingFont;
     font-size: 16px;
     transition: all ease-in-out 150ms;
-    z-index: 1;
+    z-index: 12;
     &:hover {
       background-color: $mainBlue;
       color: #fff;
