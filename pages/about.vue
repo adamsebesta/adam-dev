@@ -27,7 +27,7 @@
               <div class="about-desc-wrapper overflow">
                 <p class="about-desc appear appear0">
                   <span>
-                    Hello, Thank you for your interest <br />
+                    Hello, thank you for your interest! <br />
                     I am a Canadian + Estonian Full Stack Developer currently
                     living in Berlin. Avid about the cloud and creating elegant
                     solutions, my aim is to bring your creative ideas to life. I
