@@ -927,7 +927,7 @@ export default {
     width: 150%;
     margin-bottom: 20px;
     .device-images {
-      margin-left: 37%;
+      margin-left: 34%;
     }
   }
   .main-left {

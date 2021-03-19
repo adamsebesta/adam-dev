@@ -500,7 +500,7 @@ export default {
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
-        speed: 300,
+        speed: 100,
         slidesToShow: 1,
         slidesToScroll: 1
       },
@@ -700,7 +700,7 @@ export default {
   mounted() {
     setTimeout(() => {
       if (this.mobile) {
-        this.swiperOptionv.speed = 500;
+        this.swiperOptionv.speed = 250;
       }
       this.showSwiper = true;
     }, 250);
