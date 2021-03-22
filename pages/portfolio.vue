@@ -1352,8 +1352,11 @@ img {
   .project-info-div {
     bottom: 8%;
     width: 20%;
-    left: 9%;
+    left: 10%;
     transform: rotate(0deg);
+  }
+  .trail {
+    display: none;
   }
   .portfolio-background {
     width: 100%;
@@ -1402,7 +1405,7 @@ img {
   @supports (-webkit-appearance: none) {
     .mobile {
       .swiper-slide {
-        width: calc(100% - 20px) !important;
+        width: calc(100% - 50px) !important;
         margin: 0 auto;
         // margin-bottom: 300px !important;
       }
