@@ -37,7 +37,7 @@
       <div class="portfolio-background">
         <div class="project-wrapper">
           <swiper
-            class="swiper vertical"
+            :class="'swiper ' + (mobile ? 'mobile' : '') + ' vertical'"
             ref="mySwiper"
             v-if="showSwiper"
             @ready="onSwiperRedied"
@@ -1377,17 +1377,6 @@ img {
     z-index: 1;
   }
 
-  _::-webkit-full-page-media,
-  _:future,
-  :root .safari_only {
-    .swiper {
-      .swiper-slide {
-        height: 450px !important;
-        margin-bottom: 250px !important;
-      }
-    }
-  }
-
   .slide-wrapper {
     padding: 0;
     // margin-top: 13%;
@@ -1445,17 +1434,28 @@ img {
     display: none;
   }
 }
-
+// IOS SAFARI ONLY
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) {
-    .safari_only {
-      .swiper {
-        .swiper-slide {
-          height: 450px !important;
-          margin-bottom: 250px !important;
-        }
+    .mobile {
+      .swiper-slide {
+        height: 450px !important;
+        margin-bottom: 250px !important;
       }
     }
   }
 }
+
+// @media screen and (min-color-index: 0) and(-webkit-min-device-pixel-ratio:0) {
+//   .swiper {
+//     .swiper-slide {
+//       height: 450px !important;
+//       margin-bottom: 250px !important;
+//     }
+//   }
+/*
+      Define here the CSS styles applied only to Safari browsers
+      (any version and any device)
+     */
+// }
 </style>
