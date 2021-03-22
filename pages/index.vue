@@ -5,7 +5,7 @@
       <Nav class="banner-nav" />
     </div>
     <div ref="contMain" class="container-main">
-      <div id="lineDrawing">
+      <div ref="line" id="lineDrawing">
         <svg viewBox="0 0 792 512">
           <g class="lines">
             <path
@@ -411,9 +411,11 @@ export default {
           duration: 650,
           easing: "easeInOutSine"
         });
-        setTimeout(() => {
-          document.querySelector("#lineDrawing").style.zIndex = -1;
-        }, 500);
+        if (this.$refs.line) {
+          setTimeout(() => {
+            this.$refs.line.style.zIndex = -1;
+          }, 500);
+        }
         this.step1 = true;
       }
       if (dir == "up" && this.step1 && !this.step2) {
@@ -438,7 +440,7 @@ export default {
           easing: "easeInOutSine"
         });
         this.translateElementsX(["#lineDrawing svg"], ["100%", "0%"]);
-        document.querySelector("#lineDrawing").style.zIndex = 10;
+        if (this.$refs.line) this.$refs.line.style.zIndex = 10;
         this.step1 = false;
       }
       if (dir == "up" && this.step1 && this.step2) {
