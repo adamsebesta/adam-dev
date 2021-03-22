@@ -1,4 +1,4 @@
-<template>
+<template tabIndex="0">
   <div class="page">
     <Nav />
     <div class="container-main" style="overflow: hidden">
@@ -1440,7 +1440,7 @@ img {
     .mobile {
       .swiper-slide {
         height: 450px !important;
-        margin-bottom: 250px !important;
+        margin-bottom: 300px !important;
       }
     }
   }
