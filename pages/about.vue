@@ -166,6 +166,7 @@ export default {
     scrollInfo(event) {
       let that = this;
       // console.log(event);
+
       let dir;
       if (event == "up" || event == "down") {
         dir = event;
@@ -323,10 +324,13 @@ export default {
           this.$refs.contMain.addEventListener("touchend", function(e) {
             this.touchEnd = e.changedTouches[0];
             // determine direction
-            if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
-              that.scrollInfo("up");
-            } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
-              that.scrollInfo("down");
+            // stop scroll action if tapping icons
+            if (!event.target.classList.contains("about-skills-icon")) {
+              if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
+                that.scrollInfo("up");
+              } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
+                that.scrollInfo("down");
+              }
             }
           });
         }, 1000);

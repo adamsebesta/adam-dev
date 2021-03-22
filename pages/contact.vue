@@ -69,7 +69,7 @@
             /> -->
           </div>
           <div class="contact-email">
-            <a href="mailto:adam.sebesta5@gmail.com?subject=Inquiry"
+            <a href="mailto:info@asdevelopment.ca?subject=Inquiry"
               >Prefer to email?</a
             >
           </div>
@@ -98,11 +98,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description,
+          content: this.description
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image },
-      ],
+        { hid: "og:image", property: "og:image", content: this.image }
+      ]
     };
   },
   data() {
@@ -114,7 +114,7 @@ export default {
       formValues: {},
       logo: false,
       basicTimeline: null,
-      sent: false,
+      sent: false
     };
   },
   computed: {
@@ -139,7 +139,7 @@ export default {
         targets: ".thanks",
         duration: 1000,
         opacity: 1,
-        easing: "easeInOutSine",
+        easing: "easeInOutSine"
       });
     },
     hideFields() {
@@ -148,12 +148,12 @@ export default {
         duration: 300,
         opacity: "0",
         easing: "easeInOutSine",
-        delay: anime.stagger(300),
+        delay: anime.stagger(300)
       });
     },
     openAnim() {
       let openTimeline = anime.timeline({
-        autoplay: false,
+        autoplay: false
       });
       openTimeline
         .add({
@@ -161,19 +161,19 @@ export default {
           duration: 300,
           opacity: "1",
           easing: "easeInOutSine",
-          delay: anime.stagger(300),
+          delay: anime.stagger(300)
         })
         .add({
           targets: [".button"],
           duration: 300,
           opacity: "1",
-          easing: "easeInOutSine",
+          easing: "easeInOutSine"
         })
         .add({
           targets: [".contact-email"],
           duration: 300,
           opacity: "1",
-          easing: "easeInOutSine",
+          easing: "easeInOutSine"
         });
 
       openTimeline.play();
@@ -182,7 +182,7 @@ export default {
       let that = this;
       this.hideFields();
       let basicTimeline = anime.timeline({
-        autoplay: false,
+        autoplay: false
       });
 
       var pathEls = document.querySelectorAll(".check");
@@ -196,7 +196,7 @@ export default {
         .add({
           targets: ".text",
           duration: 1,
-          opacity: "0",
+          opacity: "0"
         })
         .add({
           targets: ".button",
@@ -205,22 +205,22 @@ export default {
           width: 300,
           backgroundColor: "$mainBlue",
           border: "0",
-          borderRadius: 100,
+          borderRadius: 100
         })
         .add({
           targets: ".progress-bar",
           duration: 1000,
           width: 300,
-          easing: "linear",
+          easing: "linear"
         })
         .add({
           targets: ".button",
           width: 0,
-          duration: 1,
+          duration: 1
         })
         .add({
           targets: ".check",
-          opacity: 1,
+          opacity: 1
         })
         .add({
           targets: ".progress-bar",
@@ -229,20 +229,20 @@ export default {
           delay: 500,
           duration: 750,
           borderRadius: 80,
-          backgroundColor: "$mainBlue",
+          backgroundColor: "$mainBlue"
         })
         .add({
           targets: ".thanks",
-          zIndex: 2,
+          zIndex: 2
         })
         .add({
           targets: pathEl,
           strokeDashoffset: [offset, 0],
           duration: 200,
           easing: "easeInOutSine",
-          complete: function (anim) {
+          complete: function(anim) {
             that.displayThanks();
-          },
+          }
         });
 
       basicTimeline.play();
@@ -253,8 +253,8 @@ export default {
         body: JSON.stringify(this.formValues),
         headers: {
           "Content-Type": "application/json",
-          Connection: "keep-alive",
-        },
+          Connection: "keep-alive"
+        }
       });
     },
     reset() {
@@ -262,13 +262,13 @@ export default {
     },
     swapToEmail() {
       // this.morphSumbitBtn();
-    },
+    }
   },
   mounted() {
     setTimeout(() => {
       this.openAnim();
     }, 500);
-  },
+  }
 };
 </script>
 

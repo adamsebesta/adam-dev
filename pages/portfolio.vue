@@ -68,8 +68,8 @@
                         :style="{ overflow: 'hidden' }"
                       >
                         <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
+                        <div class="trail"></div>
                       </div>
-                      <div class="trail"></div>
                     </div>
                     <div class="project-image-overlay-wrapper">
                       <div class="project-image-overlay">

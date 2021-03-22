@@ -19,8 +19,17 @@ export default {
 @font-face {
   font-family: "Neuzeit Grotesk";
   src: url("~static/fonts/NeuzeitGro-Bla.ttf"); /* IE9 Compat Mode */
-  src: url("~static/fonts/NeuzeitGro-Bol.ttf"); /* IE9 Compat Mode */
+  // src: url("~static/fonts/NeuzeitGro-Bol.ttf"); /* IE9 Compat Mode */
   src: url("~static/fonts/NeuzeitGro-Reg.ttf"); /* IE9 Compat Mode */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neuzeit Grotesk";
+  src: url("~static/fonts/NeuzeitGro-Bol.ttf"); /* IE9 Compat Mode */
+  font-weight: 700;
+  font-style: normal;
 }
 
 html {

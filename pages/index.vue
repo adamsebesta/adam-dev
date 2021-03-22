@@ -595,7 +595,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
-  transform: translateX(25%) translateY(-310%);
+  transform: translateX(28%) translateY(-310%);
 }
 .lightbulb {
   position: relative;
@@ -749,7 +749,7 @@ export default {
   position: absolute;
   top: 25%;
   overflow: hidden;
-  width: 815px;
+  width: 850px;
   margin: 0 auto;
   padding: 15px;
   margin-left: 10%;
@@ -780,7 +780,7 @@ export default {
     font-family: $bodyFont;
     p {
       padding-bottom: 40px;
-      font-size: 18px;
+      font-size: 20px;
       width: 500px;
     }
   }
@@ -846,7 +846,7 @@ export default {
     }
     .subheading {
       p {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
@@ -857,7 +857,7 @@ export default {
     z-index: -1;
   }
   .lightbulb-wrapper {
-    transform: translateX(-21%) translateY(-278%);
+    transform: translateX(-19%) translateY(-278%);
     .lightbulb {
       width: 8%;
     }
@@ -941,7 +941,7 @@ export default {
     left: 0%;
     top: 13%;
     .heading {
-      font-size: 74px;
+      font-size: 70px;
       line-height: 57px;
       width: 90%;
       margin: 0px auto;
@@ -960,7 +960,7 @@ export default {
       }
     }
     .lightbulb-wrapper {
-      transform: translateX(-54%) translateY(-647%);
+      transform: translateX(-56%) translateY(-647%);
       .lightbulb {
         width: 5%;
       }
@@ -997,5 +997,12 @@ export default {
     padding-left: 2px;
     margin-left: 19%;
   }
+}
+
+_::-webkit-full-page-media,
+_:future,
+:root .safari_only {
+  color: #0000ff;
+  background-color: #cccccc;
 }
 </style>
