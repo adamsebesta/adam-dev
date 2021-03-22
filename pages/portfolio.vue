@@ -652,17 +652,19 @@ export default {
     },
     infoClickHandler(key) {
       let targetClass = ".caro" + key;
-      anime({
-        targets: [`${targetClass} .project-info-div .trail-wrapper`],
-        translateY: [
-          {
-            duration: 1000,
-            value: this.infoShown[key] ? "0px" : "100px"
-          }
-        ],
-        easing: "easeOutExpo",
-        delay: 100
-      });
+      if (!this.mobile) {
+        anime({
+          targets: [`${targetClass} .project-info-div .trail-wrapper`],
+          translateY: [
+            {
+              duration: 1000,
+              value: this.infoShown[key] ? "0px" : "100px"
+            }
+          ],
+          easing: "easeOutExpo",
+          delay: 100
+        });
+      }
 
       this.translateTitle(
         targetClass,
@@ -1327,46 +1329,6 @@ img {
     margin-left: 2%;
   }
 
-  // .slide-wrapper {
-  //   .mobile {
-  //     width: 200px;
-  //     height: 250px;
-  //   }
-  //   .desktop {
-  //     width: 295px;
-  //     height: 250px;
-  //   }
-  //   .slide-glass {
-  //     padding: 15px;
-
-  //     &:hover {
-  //       opacity: unset;
-  //     }
-  //     .glass-title-wrapper {
-  //       font-size: 13px;
-  //       line-height: normal;
-
-  //       .glass-subtitle {
-  //         font-size: 12px;
-  //       }
-  //       .glass-date {
-  //         font-size: 10px;
-  //       }
-  //     }
-  //     .glass-icons {
-  //       width: unset;
-  //       img {
-  //         height: 50px;
-  //         width: 50px;
-  //         pointer-events: none;
-  //       }
-  //     }
-  //     .glass-project-type {
-  //       font-size: 10px;
-  //     }
-  //   }
-  // }
-
   .slick-prev {
     transform: translate(20px, -19px);
     z-index: 1;
@@ -1388,9 +1350,10 @@ img {
     width: 100%;
   }
   .project-info-div {
-    bottom: 3%;
+    bottom: 8%;
     width: 20%;
-    left: 4%;
+    left: 9%;
+    transform: rotate(0deg);
   }
   .portfolio-background {
     width: 100%;
@@ -1439,8 +1402,9 @@ img {
   @supports (-webkit-appearance: none) {
     .mobile {
       .swiper-slide {
-        height: 450px !important;
-        margin-bottom: 300px !important;
+        width: calc(100% - 20px) !important;
+        margin: 0 auto;
+        // margin-bottom: 300px !important;
       }
     }
   }
