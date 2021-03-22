@@ -1376,9 +1376,18 @@ img {
     transform: translate(-28px, -18px);
     z-index: 1;
   }
-  .swiper-slide {
-    height: 100vh;
+
+  _::-webkit-full-page-media,
+  _:future,
+  :root .safari_only {
+    .swiper {
+      .swiper-slide {
+        height: 450px !important;
+        margin-bottom: 250px !important;
+      }
+    }
   }
+
   .slide-wrapper {
     padding: 0;
     // margin-top: 13%;
@@ -1434,6 +1443,19 @@ img {
   }
   .slick-dots {
     display: none;
+  }
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .safari_only {
+      .swiper {
+        .swiper-slide {
+          height: 450px !important;
+          margin-bottom: 250px !important;
+        }
+      }
+    }
   }
 }
 </style>
