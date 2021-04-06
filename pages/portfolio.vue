@@ -500,7 +500,7 @@ export default {
         swipe: false,
         edgeFriction: 0.35,
         infinite: false,
-        speed: 100,
+        speed: 400,
         slidesToShow: 1,
         slidesToScroll: 1
       },
