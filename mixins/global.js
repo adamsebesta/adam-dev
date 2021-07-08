@@ -3,12 +3,8 @@ export default {
     return {
       windowWidth: 1200,
       windowHeight: 1200,
-      mobile: null
-    }
-  },
-  computed: {
-    instagram() {
-      return navigator.userAgent.match(/instagram/i);
+      mobile: null,
+      instagram: null,
     }
   },
   methods: {
@@ -35,14 +31,20 @@ export default {
       } else {
         this.mobile = false;
       }
+    },
+    isInstagram() {
+      if (navigator.userAgent.match(/instagram/i) && this.windowWidth < 1025) {
+        this.instagram = true;
+      }
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.resizeWindow);
+    },
+    mounted() {
+      this.windowWrapper();
+      this.isMobile();
+      this.isInstagram();
     }
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.resizeWindow);
-  },
-  mounted() {
-    this.windowWrapper();
-    this.isMobile();
-  }
 
-};
+  }
+}

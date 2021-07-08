@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ paddingTop: instagram ? '50px' : '' }">
+  <div>
     <Nuxt />
   </div>
 </template>
