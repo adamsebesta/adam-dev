@@ -338,6 +338,7 @@ export default {
     }
   },
   mounted() {
+    this.pageWrapper();
     this.aboutAppear();
     this.movePhotoBackgrounds();
     this.scrollListenerInit();
