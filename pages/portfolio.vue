@@ -700,6 +700,7 @@ export default {
   created() {},
 
   mounted() {
+    this.pageWrapper();
     setTimeout(() => {
       if (this.mobile) {
         this.swiperOptionv.speed = 250;

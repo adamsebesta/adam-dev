@@ -450,6 +450,13 @@
     </g>
   </svg>
 </template>
+<script>
+export default {
+  mounted() {
+    this.pageWrapper();
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 body {

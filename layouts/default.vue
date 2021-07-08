@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nuxt :style="{ paddingTop: instagram ? '20px' : '0' }" />
+    <Nuxt />
   </div>
 </template>
 
@@ -12,6 +12,10 @@ Vue.mixin(global);
 
 export default {
   name: "App",
+  mounted() {
+    this.windowWrapper();
+    // this.isMobile();
+  }
 };
 </script>
 

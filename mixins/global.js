@@ -4,8 +4,8 @@ export default {
       windowWidth: 1200,
       windowHeight: 1200,
       mobile: null,
-      instagram: null,
-    }
+      instagram: null
+    };
   },
   methods: {
     setupWindow() {
@@ -13,20 +13,24 @@ export default {
       this.windowHeight = window.innerHeight;
     },
     resizeWindow() {
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         setTimeout(() => {
-
           this.setupWindow();
           this.isMobile();
-        }, 250)
-      })
+        }, 250);
+      });
     },
     windowWrapper() {
       this.setupWindow();
       this.resizeWindow();
     },
     isMobile() {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && this.windowWidth < 1025) {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        ) &&
+        this.windowWidth < 1025
+      ) {
         this.mobile = true;
       } else {
         this.mobile = false;
@@ -37,14 +41,14 @@ export default {
         this.instagram = true;
       }
     },
-    beforeDestroy() {
-      window.removeEventListener('resize', this.resizeWindow);
-    },
-    mounted() {
+    pageWrapper() {
       this.windowWrapper();
       this.isMobile();
       this.isInstagram();
     }
-
-  }
-}
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.resizeWindow);
+  },
+  mounted() {}
+};

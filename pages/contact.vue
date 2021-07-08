@@ -265,6 +265,7 @@ export default {
     }
   },
   mounted() {
+    this.pageWrapper();
     setTimeout(() => {
       this.openAnim();
     }, 500);
