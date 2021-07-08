@@ -6,6 +6,11 @@ export default {
       mobile: null
     }
   },
+  computed: {
+    instagram() {
+      return navigator.userAgent.match(/instagram/i);
+    }
+  },
   methods: {
     setupWindow() {
       this.windowWidth = window.innerWidth;

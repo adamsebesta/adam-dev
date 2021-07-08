@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ paddingTop: instagram ? '50px' : '' }">
     <Nuxt />
   </div>
 </template>
@@ -11,7 +11,7 @@ import meta from "~/static/meta.png";
 Vue.mixin(global);
 
 export default {
-  name: "App"
+  name: "App",
 };
 </script>
 
