@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nuxt />
+    <Nuxt :style="{ paddingTop: instagram ? '20px' : '0' }" />
   </div>
 </template>
 
