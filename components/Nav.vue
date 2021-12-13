@@ -361,7 +361,7 @@ export default {
     font-size: 14px;
   }
 }
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 450px) {
   .nav-bars {
     padding-bottom: 3px;
     font-size: 18px;
@@ -400,11 +400,12 @@ export default {
 
   .sidebar-menu {
     width: 100%;
-    height: 105vh;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     transform: translateY(-100%);
-    margin: -8% -5%;
     padding: 50px;
     position: absolute;
+    left: 0;
     top: 0;
     background-color: $grey;
     z-index: 1000;

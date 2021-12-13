@@ -12,9 +12,17 @@ Vue.mixin(global);
 
 export default {
   name: "App",
+  methods: {
+     set1vh() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    },
+  },
   mounted() {
     this.windowWrapper();
-    // this.isMobile();
+    this.set1vh()
+    window.addEventListener("resize", this.set1vh);
+
   }
 };
 </script>
