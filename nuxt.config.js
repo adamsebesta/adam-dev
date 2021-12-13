@@ -100,7 +100,7 @@ module.exports = {
   ],
   // ||
   publicRuntimeConfig: {
-    logicAppUrl: process.env.LOGIC_APP_URL
+    logicAppUrl: "https://adamdevapim.azure-api.net/contact/manual/paths/invoke"
   },
 
   target:'static',
