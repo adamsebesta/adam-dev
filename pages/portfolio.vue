@@ -678,7 +678,7 @@ export default {
     },
     calcYTrans() {
       return (
-        (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
+        (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.29)
       );
     },
   },
