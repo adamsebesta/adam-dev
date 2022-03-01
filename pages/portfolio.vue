@@ -14,7 +14,7 @@
           class="cursor-container"
           ref="cursorContainer"
           :style="{
-            transform: 'translateY(' + calcYTrans + '%)'
+            transform: 'translateY(' + calcYTrans + '%)',
           }"
         >
           <div class="cursor">
@@ -47,7 +47,168 @@
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel0" v-bind="settings">
-                  <div class="project-image caro0">
+                  <div class="project-image mac caro0">
+                    <div class="project-image-title-overlay">
+                      <div class="title">Spectral</div>
+                      <div class="subtitle">Website</div>
+                    </div>
+                    <div @click="infoClickHandler(0)" class="project-info-div">
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
+                      </div>
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay">
+                        <div class="project-image-overlay-title-wrapper">
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">
+                              <a
+                                href="https://www.spectral.finance/"
+                                target="blank"
+                                >Spectral</a
+                              >
+                            </p>
+                            <p class="overlay-subtitle main-depth">
+                              Vanilla implementation of figma design for crypto
+                              landing page.
+                            </p>
+                            <div class="overlay-stack">
+                              <p>HTML</p>
+                              <p>CSS</p>
+                              <p>Javascript</p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">Feb 2021</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <img
+                      v-if="!mobile"
+                      src="~/static/Spectral.png"
+                      @click="slideClick(0)"
+                      alt=""
+                      rel="preload"
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/Spectral mobile.png"
+                      alt=""
+                      rel="preload"
+                    />
+                  </div>
+
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/Spectral 1.png"
+                      v-if="!mobile"
+                      @click="slideClick(0)"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/Spectral 2.png"
+                      v-if="!mobile"
+                      @click="slideClick(0)"
+                      alt=""
+                    />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <VueSlickCarousel ref="carousel1" v-bind="settings">
+                  <div class="project-image mac caro1">
+                    <div class="project-image-title-overlay">
+                      <div class="title">Emkfit</div>
+                      <div class="subtitle">Shopify</div>
+                    </div>
+                    <div @click="infoClickHandler(1)" class="project-info-div">
+                      <div
+                        class="trail-wrapper"
+                        :style="{ overflow: 'hidden' }"
+                      >
+                        <h4>{{ infoShown[1] ? "Hide" : "Info" }}</h4>
+                      </div>
+                      <div class="trail"></div>
+                    </div>
+                    <div class="project-image-overlay-wrapper">
+                      <div class="project-image-overlay">
+                        <div
+                          class="project-image-overlay-title-wrapper"
+                          :style="
+                            windowWidth > 1350 ? { 'margin-top': '-4%' } : ''
+                          "
+                        >
+                          <div>
+                            <p class="overlay-featured">Featured Project</p>
+                            <p class="overlay-title">
+                              <a href="https://emkfit.ca/" target="blank"
+                                >Emkfit</a
+                              >
+                            </p>
+                            <p class="overlay-subtitle main-depth">
+                              Fitness web-shop offering e-books and physical
+                              products to customers.
+                            </p>
+                            <div class="overlay-stack">
+                              <p>Theme Customization</p>
+                              <p>Liquid Templates</p>
+                              <p>3rd Party App Integration</p>
+                            </div>
+                          </div>
+                          <p class="overlay-date">Feb 2021</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <img
+                      v-if="!mobile"
+                      src="~/static/Emkfit.png"
+                      @click="slideClick(1)"
+                      alt=""
+                      rel="preload"
+                    />
+                    <img
+                      v-if="mobile"
+                      src="~/static/Emkfit mobile.png"
+                      alt=""
+                      rel="preload"
+                    />
+                  </div>
+
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/Emkfit 1.png"
+                      v-if="!mobile"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="project-image" v-if="!mobile">
+                    <img
+                      src="~/static/Emkfit 2.png"
+                      v-if="!mobile"
+                      @click="slideClick(1)"
+                      alt=""
+                    />
+                  </div>
+                </VueSlickCarousel>
+              </div>
+            </swiper-slide>
+            <swiper-slide>
+              <div class="slide-wrapper">
+                <VueSlickCarousel ref="carousel2" v-bind="settings">
+                  <div class="project-image caro2">
                     <div class="project-image-title-overlay">
                       <div
                         class="title"
@@ -62,12 +223,12 @@
                         Mobile App
                       </div>
                     </div>
-                    <div @click="infoClickHandler(0)" class="project-info-div">
+                    <div @click="infoClickHandler(2)" class="project-info-div">
                       <div
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
+                        <h4>{{ infoShown[2] ? "Hide" : "Info" }}</h4>
                         <div class="trail"></div>
                       </div>
                     </div>
@@ -139,22 +300,22 @@
             </swiper-slide>
             <swiper-slide
               :style="{
-                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)'
+                transform: !mobile ? 'translate(0px,5%)' : 'translate(0px, 0%)',
               }"
             >
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel1" v-bind="settings">
-                  <div class="project-image mac caro1">
+                <VueSlickCarousel ref="carousel3" v-bind="settings">
+                  <div class="project-image mac caro3">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Web App</div>
                     </div>
-                    <div @click="infoClickHandler(1)" class="project-info-div">
+                    <div @click="infoClickHandler(3)" class="project-info-div">
                       <div
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[1] ? "Hide" : "Info" }}</h4>
+                        <h4>{{ infoShown[3] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -217,7 +378,7 @@
                     <img
                       v-if="!mobile"
                       src="~/static/BB Tool.png"
-                      @click="slideClick(1)"
+                      @click="slideClick(3)"
                       alt=""
                     />
                     <img
@@ -229,14 +390,14 @@
                   <div v-if="!mobile" class="project-image">
                     <img
                       src="~/static/BI tool.png"
-                      @click="slideClick(1)"
+                      @click="slideClick(3)"
                       alt=""
                     />
                   </div>
                   <div v-if="!mobile" class="project-image">
                     <img
                       src="~/static/BI tool 3.png"
-                      @click="slideClick(1)"
+                      @click="slideClick(3)"
                       alt=""
                     />
                   </div>
@@ -245,18 +406,18 @@
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel2" v-bind="settings">
-                  <div class="project-image caro2">
+                <VueSlickCarousel ref="carousel4" v-bind="settings">
+                  <div class="project-image caro4">
                     <div class="project-image-title-overlay">
                       <div class="title">Berlin Bytes</div>
                       <div class="subtitle">Landing Page</div>
                     </div>
-                    <div @click="infoClickHandler(2)" class="project-info-div">
+                    <div @click="infoClickHandler(4)" class="project-info-div">
                       <div
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[2] ? "Hide" : "Info" }}</h4>
+                        <h4>{{ infoShown[4] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -317,7 +478,7 @@
                     <img
                       v-if="!mobile"
                       src="~/static/BerlinBytes.png"
-                      @click="slideClick(2)"
+                      @click="slideClick(4)"
                       alt=""
                     />
                     <img
@@ -329,7 +490,7 @@
                   <div class="project-image" v-if="!mobile">
                     <img
                       src="~/static/BB home.png"
-                      @click="slideClick(2)"
+                      @click="slideClick(4)"
                       alt=""
                     />
                   </div>
@@ -338,18 +499,18 @@
             </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel3" v-bind="settings">
-                  <div class="project-image mac caro3">
+                <VueSlickCarousel ref="carousel5" v-bind="settings">
+                  <div class="project-image mac caro5">
                     <div class="project-image-title-overlay">
                       <div class="title">Streamhub</div>
                       <div class="subtitle">Web App</div>
                     </div>
-                    <div @click="infoClickHandler(3)" class="project-info-div">
+                    <div @click="infoClickHandler(5)" class="project-info-div">
                       <div
                         class="trail-wrapper"
                         :style="{ overflow: 'hidden' }"
                       >
-                        <h4>{{ infoShown[3] ? "Hide" : "Info" }}</h4>
+                        <h4>{{ infoShown[5] ? "Hide" : "Info" }}</h4>
                       </div>
                       <div class="trail"></div>
                     </div>
@@ -380,44 +541,11 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div
-                      v-if="mobile"
-                      @click="glassClickHandler('3')"
-                      class="slide-glass desktop"
-                      :style="
-                        mobile ? { opacity: glassClicked['3'] ? '1' : '0' } : {}
-                      "
-                    >
-                      <div class="glass-title-wrapper main-depth">
-                        <div>
-                          <p class="glass-title">Streamhub</p>
-                          <p class="glass-subtitle">Video Dashboard</p>
-                        </div>
-                        <p class="glass-date">July 2020</p>
-                      </div>
-                      <div class="glass-icons main-depth">
-                        <img
-                          v-tooltip="'Ruby'"
-                          src="~/static/icons/ruby.png"
-                          alt=""
-                        />
-                        <img
-                          v-tooltip="'Rails'"
-                          src="~/static/icons/rails.png"
-                          alt=""
-                        />
-                        <img
-                          v-tooltip="'Postgres'"
-                          src="~/static/icons/postgres.png"
-                          alt=""
-                        />
-                      </div>
-                      <div class="glass-project-type">Web</div>
-                    </div> -->
+
                     <img
                       v-if="!mobile"
                       src="~/static/Streamhub.png"
-                      @click="slideClick(3)"
+                      @click="slideClick(5)"
                       alt=""
                       rel="preload"
                     />
@@ -436,7 +564,7 @@
                     muted
                     loop
                     tabindex="0"
-                    @click="slideClick(3)"
+                    @click="slideClick(5)"
                   >
                     <source
                       src="https://res.cloudinary.com/dwtuoc2xm/video/upload/v1591956213/ezgif.com-crop_1_nq3xst.webm"
@@ -447,7 +575,7 @@
                     <img
                       src="~/static/Streamhub 1.png"
                       v-if="!mobile"
-                      @click="slideClick(3)"
+                      @click="slideClick(5)"
                       alt=""
                     />
                   </div>
@@ -471,7 +599,7 @@ import anime from "animejs";
 export default {
   components: { Nav, Swiper, SwiperSlide },
   directives: {
-    swiper: directive
+    swiper: directive,
   },
   head() {
     return {
@@ -480,11 +608,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -502,7 +630,7 @@ export default {
         infinite: false,
         speed: 400,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
       },
       swiperOptionv: {
         direction: "vertical",
@@ -522,22 +650,24 @@ export default {
         mousewheel: true,
         pagination: {
           el: ".swiper-pagination",
-          type: "progressbar"
-        }
+          type: "progressbar",
+        },
       },
       formValues: {},
       logo: false,
       sent: false,
       showBounce: true,
       caroCounter: {
-        // carousel0: { counter: 0, limit: 2 },
+        carousel0: { counter: 0, limit: 2 },
         carousel1: { counter: 0, limit: 2 },
         carousel2: { counter: 0, limit: 1 },
-        carousel3: { counter: 0, limit: 2 }
+        carousel3: { counter: 0, limit: 2 },
+        carousel4: { counter: 0, limit: 2 },
+        carousel5: { counter: 0, limit: 2 },
       },
       mainSwiperIndex: 0,
       totalSlides: null,
-      infoShown: { 0: null, 1: null, 2: null, 3: null }
+      infoShown: { 0: null, 1: null, 2: null, 3: null, 4: null, 5: null },
     };
   },
   computed: {
@@ -550,7 +680,7 @@ export default {
       return (
         (this.mainSwiperIndex / this.totalSlides) * (this.windowHeight / 1.3)
       );
-    }
+    },
   },
   methods: {
     moveLogo() {
@@ -609,10 +739,10 @@ export default {
         opacity: [
           {
             duration: 2000,
-            value: [0, 1]
-          }
+            value: [0, 1],
+          },
         ],
-        easing: "easeOutExpo"
+        easing: "easeOutExpo",
       });
     },
     // glassClickHandler(key) {
@@ -624,10 +754,10 @@ export default {
         translateY: [
           {
             duration: this.mobile ? 1200 : 1600,
-            value: val
-          }
+            value: val,
+          },
         ],
-        easing: "easeInOutExpo"
+        easing: "easeInOutExpo",
       });
     },
     upscrollAnim(key) {
@@ -658,11 +788,11 @@ export default {
           translateY: [
             {
               duration: 1000,
-              value: this.infoShown[key] ? "0px" : "100px"
-            }
+              value: this.infoShown[key] ? "0px" : "100px",
+            },
           ],
           easing: "easeOutExpo",
-          delay: 100
+          delay: 100,
         });
       }
 
@@ -676,26 +806,26 @@ export default {
         translateX: [
           {
             duration: 1000,
-            value: ["35%", "35%"]
-          }
+            value: ["35%", "35%"],
+          },
         ],
         translateY: this.infoShown[key] ? ["85px", "-15px"] : ["-15px", "85px"],
         easing: "easeOutExpo",
-        delay: 100
+        delay: 100,
       });
       anime({
         targets: `${targetClass} .project-image-overlay`,
         translateY: [
           {
             duration: this.mobile ? 750 : 1000,
-            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"]
-          }
+            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
+          },
         ],
         easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
-        delay: this.infoShown[key] ? 0 : 800
+        delay: this.infoShown[key] ? 0 : 800,
       });
       this.infoShown[key] = !this.infoShown[key];
-    }
+    },
   },
   created() {},
 
@@ -711,7 +841,7 @@ export default {
       this.toggleTitle(0, "down");
       this.totalSlides = this.swiper.slides.length;
     }, 750);
-  }
+  },
 };
 </script>
 
