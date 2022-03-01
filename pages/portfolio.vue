@@ -97,7 +97,7 @@
                     />
                     <img
                       v-if="mobile"
-                      src="~/static/Spectral mobile.png"
+                      src="~/static/Spectralmobile.png"
                       alt=""
                       rel="preload"
                     />
