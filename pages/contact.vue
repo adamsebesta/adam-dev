@@ -87,7 +87,6 @@
 
 <script>
 import Nav from "../components/Nav";
-import anime from "animejs";
 
 export default {
   components: { Nav },
@@ -98,11 +97,11 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
@@ -114,7 +113,7 @@ export default {
       formValues: {},
       logo: false,
       basicTimeline: null,
-      sent: false
+      sent: false,
     };
   },
   computed: {
@@ -122,154 +121,8 @@ export default {
     //   return this.$config.logicAppUrl
     // }
   },
-  methods: {
-    moveLogo() {
-      setTimeout(() => {
-        this.logo = true;
-      }, 750);
-    },
-    async submitForm() {
-      await this.$formulate.submit("contact");
-      if (!document.querySelector("li")) {
-        this.morphSumbitBtn();
-      }
-    },
-    displayThanks() {
-      anime({
-        targets: ".thanks",
-        duration: 1000,
-        opacity: 1,
-        easing: "easeInOutSine"
-      });
-    },
-    hideFields() {
-      anime({
-        targets: [".contact-email", ".contact-logo", ".formulate-input"],
-        duration: 300,
-        opacity: "0",
-        easing: "easeInOutSine",
-        delay: anime.stagger(300)
-      });
-    },
-    openAnim() {
-      let openTimeline = anime.timeline({
-        autoplay: false
-      });
-      openTimeline
-        .add({
-          targets: [".logo-small", ".formulate-input"],
-          duration: 300,
-          opacity: "1",
-          easing: "easeInOutSine",
-          delay: anime.stagger(300)
-        })
-        .add({
-          targets: [".button"],
-          duration: 300,
-          opacity: "1",
-          easing: "easeInOutSine"
-        })
-        .add({
-          targets: [".contact-email"],
-          duration: 300,
-          opacity: "1",
-          easing: "easeInOutSine"
-        });
-
-      openTimeline.play();
-    },
-    morphSumbitBtn() {
-      let that = this;
-      this.hideFields();
-      let basicTimeline = anime.timeline({
-        autoplay: false
-      });
-
-      var pathEls = document.querySelectorAll(".check");
-      for (var i = 0; i < pathEls.length; i++) {
-        var pathEl = pathEls[i];
-        var offset = anime.setDashoffset(pathEl);
-        pathEl.setAttribute("stroke-dashoffset", offset);
-      }
-
-      basicTimeline
-        .add({
-          targets: ".text",
-          duration: 1,
-          opacity: "0"
-        })
-        .add({
-          targets: ".button",
-          duration: 1000,
-          height: 10,
-          width: 300,
-          backgroundColor: "$mainBlue",
-          border: "0",
-          borderRadius: 100
-        })
-        .add({
-          targets: ".progress-bar",
-          duration: 1000,
-          width: 300,
-          easing: "linear"
-        })
-        .add({
-          targets: ".button",
-          width: 0,
-          duration: 1
-        })
-        .add({
-          targets: ".check",
-          opacity: 1
-        })
-        .add({
-          targets: ".progress-bar",
-          width: 80,
-          height: 80,
-          delay: 500,
-          duration: 750,
-          borderRadius: 80,
-          backgroundColor: "$mainBlue"
-        })
-        .add({
-          targets: ".thanks",
-          zIndex: 2
-        })
-        .add({
-          targets: pathEl,
-          strokeDashoffset: [offset, 0],
-          duration: 200,
-          easing: "easeInOutSine",
-          complete: function(anim) {
-            that.displayThanks();
-          }
-        });
-
-      basicTimeline.play();
-    },
-    async send() {
-      let res = await fetch(this.$config.logicAppUrl, {
-        method: "POST",
-        body: JSON.stringify(this.formValues),
-        headers: {
-          "Content-Type": "application/json",
-          Connection: "keep-alive"
-        }
-      });
-    },
-    reset() {
-      this.$formulate.reset("contact");
-    },
-    swapToEmail() {
-      // this.morphSumbitBtn();
-    }
-  },
-  mounted() {
-    this.pageWrapper();
-    setTimeout(() => {
-      this.openAnim();
-    }, 500);
-  }
+  methods: {},
+  mounted() {},
 };
 </script>
 

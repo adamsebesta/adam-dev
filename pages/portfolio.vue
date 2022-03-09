@@ -2,13 +2,7 @@
   <div class="page">
     <Nav />
     <div class="container-main" style="overflow: hidden">
-      <!-- <InfoBox
-        v-if="mobile"
-        :text="
-          mobile ? 'Tap image for more details' : 'Hover image for more details'
-        "
-      /> -->
-      <!-- <div @click="handleSwiper" v-if="showBounce" class="arrow"></div> -->
+      <p>Selected Works</p>
       <div v-if="!mobile" class="grab-container">
         <div
           class="cursor-container"
@@ -35,94 +29,78 @@
         </div>
       </div>
       <div class="portfolio-background">
-        <div class="project-wrapper">
-          <swiper
-            :class="'swiper ' + (mobile ? 'mobile' : '') + ' vertical'"
-            ref="mySwiper"
-            v-if="showSwiper"
-            @ready="onSwiperRedied"
-            @slide-change-transition-start="onSwiperSlideChangeTransitionStart"
-            :options="swiperOptionv"
-          >
-            <swiper-slide>
-              <div class="slide-wrapper">
-                <VueSlickCarousel ref="carousel0" v-bind="settings">
-                  <div class="project-image mac caro0">
-                    <div class="project-image-title-overlay">
-                      <div class="title">Spectral</div>
-                      <div class="subtitle">Website</div>
-                    </div>
-                    <div @click="infoClickHandler(0)" class="project-info-div">
-                      <div
-                        class="trail-wrapper"
-                        :style="{ overflow: 'hidden' }"
-                      >
-                        <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
-                      </div>
-                      <div class="trail"></div>
-                    </div>
-                    <div class="project-image-overlay-wrapper">
-                      <div class="project-image-overlay">
-                        <div class="project-image-overlay-title-wrapper">
-                          <div>
-                            <p class="overlay-featured">Featured Project</p>
-                            <p class="overlay-title">
-                              <a
-                                href="https://www.spectral.finance/"
-                                target="blank"
-                                >Spectral</a
-                              >
-                            </p>
-                            <p class="overlay-subtitle main-depth">
-                              Vanilla implementation of figma design for crypto
-                              landing page.
-                            </p>
-                            <div class="overlay-stack">
-                              <p>HTML</p>
-                              <p>CSS</p>
-                              <p>Javascript</p>
-                            </div>
-                          </div>
-                          <p class="overlay-date">Feb 2021</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <img
-                      v-if="!mobile"
-                      src="~/static/Spectral.png"
-                      @click="slideClick(0)"
-                      alt=""
-                      rel="preload"
-                    />
-                    <img
-                      v-if="mobile"
-                      src="~/static/Spectralmobile.png"
-                      alt=""
-                      rel="preload"
-                    />
-                  </div>
-
-                  <div class="project-image" v-if="!mobile">
-                    <img
-                      src="~/static/Spectral 1.png"
-                      v-if="!mobile"
-                      @click="slideClick(0)"
-                      alt=""
-                    />
-                  </div>
-
-                  <div class="project-image" v-if="!mobile">
-                    <img
-                      src="~/static/Spectral 2.png"
-                      v-if="!mobile"
-                      @click="slideClick(0)"
-                      alt=""
-                    />
-                  </div>
-                </VueSlickCarousel>
+        <div class="portfolio-wrapper">
+          <div class="portfolio-item">
+            <!-- <div class="project-image mac caro0">
+              <div class="project-image-title-overlay">
+                <div class="title">Spectral</div>
+                <div class="subtitle">Website</div>
               </div>
-            </swiper-slide>
+              <div @click="infoClickHandler(0)" class="project-info-div">
+                <div class="trail-wrapper" :style="{ overflow: 'hidden' }">
+                  <h4>{{ infoShown[0] ? "Hide" : "Info" }}</h4>
+                </div>
+                <div class="trail"></div>
+              </div>
+              <div class="project-image-overlay-wrapper">
+                <div class="project-image-overlay">
+                  <div class="project-image-overlay-title-wrapper">
+                    <div>
+                      <p class="overlay-featured">Featured Project</p>
+                      <p class="overlay-title">
+                        <a href="https://www.spectral.finance/" target="blank"
+                          >Spectral</a
+                        >
+                      </p>
+                      <p class="overlay-subtitle main-depth">
+                        Vanilla implementation of figma design for crypto
+                        landing page.
+                      </p>
+                      <div class="overlay-stack">
+                        <p>HTML</p>
+                        <p>CSS</p>
+                        <p>Javascript</p>
+                      </div>
+                    </div>
+                    <p class="overlay-date">Feb 2021</p>
+                  </div>
+                </div>
+              </div> -->
+
+            <!-- <img
+                  v-if="!mobile"
+                  src="~/static/Spectral.png"
+                  @click="slideClick(0)"
+                  alt=""
+                  rel="preload"
+                />
+                <img
+                  v-if="mobile"
+                  src="~/static/Spectralmobile.png"
+                  alt=""
+                  rel="preload"
+                />
+              </div>
+
+              <div class="project-image" v-if="!mobile">
+                <img
+                  src="~/static/Spectral 1.png"
+                  v-if="!mobile"
+                  @click="slideClick(0)"
+                  alt=""
+                />
+              </div>
+
+              <div class="project-image" v-if="!mobile">
+                <img
+                  src="~/static/Spectral 2.png"
+                  v-if="!mobile"
+                  @click="slideClick(0)"
+                  alt=""
+                />
+              </div> -->
+
+            <!-- </swiper-slide>
             <swiper-slide>
               <div class="slide-wrapper">
                 <VueSlickCarousel ref="carousel1" v-bind="settings">
@@ -252,7 +230,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div
+                     <div
                       v-if="mobile"
                       @click="glassClickHandler('0')"
                       class="slide-glass mobile"
@@ -280,7 +258,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Mobile</div>
-                    </div> -->
+                    </div> 
                     <img
                       v-if="!mobile"
                       src="~/static/construction.png"
@@ -339,7 +317,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div
+                  <div
                       v-if="mobile"
                       @click="glassClickHandler('1')"
                       class="slide-glass desktop"
@@ -374,7 +352,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Web</div>
-                    </div> -->
+                    </div> 
                     <img
                       v-if="!mobile"
                       src="~/static/BB Tool.png"
@@ -441,7 +419,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div
+                    <div
                       v-if="mobile"
                       @click="glassClickHandler('2')"
                       class="slide-glass desktop"
@@ -474,7 +452,7 @@
                         />
                       </div>
                       <div class="glass-project-type">Web</div>
-                    </div> -->
+                    </div> 
                     <img
                       v-if="!mobile"
                       src="~/static/BerlinBytes.png"
@@ -582,7 +560,8 @@
                 </VueSlickCarousel>
               </div>
             </swiper-slide>
-          </swiper>
+          </swiper> -->
+          </div>
         </div>
       </div>
       <!-- <div class="background-center" :style="{ width: '70%' }"></div> -->
@@ -593,14 +572,9 @@
 
 <script>
 import Nav from "../components/Nav";
-import { Swiper, SwiperSlide, directive, EffectFade } from "vue-awesome-swiper";
-import anime from "animejs";
 
 export default {
-  components: { Nav, Swiper, SwiperSlide },
-  directives: {
-    swiper: directive,
-  },
+  components: { Nav },
   head() {
     return {
       title: this.title,
@@ -682,166 +656,10 @@ export default {
       );
     },
   },
-  methods: {
-    moveLogo() {
-      setTimeout(() => {
-        this.logo = true;
-      }, 750);
-    },
-    slideClick(ref) {
-      let key = "carousel" + ref;
-      let caro = this.caroCounter[key];
-      if (!this.mobile && caro.counter < caro.limit) {
-        this.$refs[key].next();
-        caro.counter++;
-      } else {
-        this.$refs[key].goTo(0);
-        caro.counter = 0;
-      }
-    },
-    handleSwiper() {
-      this.swiper.slideTo(this.swiper.activeIndex + 1, 300, false);
-      if (this.swiper.activeIndex == this.swiper.slides.length - 1) {
-        this.showBounce = false;
-      }
-      this.mainSwiperIndex = this.swiper.activeIndex;
-    },
-    removeTooltipsOnScroll() {
-      // let tooltip = document.querySelector(".v-tooltip-open");
-      let popover = document.querySelector(".tooltip");
-
-      popover.style.visibility = "hidden";
-      // popover.style.visibility = "visible";
-
-      console.log(popover);
-    },
-    onSwiperSlideChangeTransitionStart(index) {
-      // this.removeTooltipsOnScroll();
-      let dir = this.mainSwiperIndex < index.activeIndex ? "down" : "up";
-      this.mainSwiperIndex = index.activeIndex;
-      this.toggleTitle(index.activeIndex, dir);
-      // this.toggleTitle(index.activeIndex, dir == "down" ? "up" : "down");
-      if (index.activeIndex == index.slides.length - 1) {
-        this.showBounce = false;
-      } else {
-        this.showBounce = true;
-      }
-      // if info pane is shown, rehide when scrolling
-      let openInfo =
-        dir == "down" ? this.mainSwiperIndex - 1 : this.mainSwiperIndex + 1;
-      if (this.infoShown[openInfo]) {
-        this.infoClickHandler(openInfo);
-      }
-    },
-    onSwiperRedied() {
-      anime({
-        targets: ".project-wrapper",
-        opacity: [
-          {
-            duration: 2000,
-            value: [0, 1],
-          },
-        ],
-        easing: "easeOutExpo",
-      });
-    },
-    // glassClickHandler(key) {
-    //   this.glassClicked[key] = !this.glassClicked[key];
-    // },
-    translateTitle(tar, val) {
-      anime({
-        targets: [`${tar} .title`, `${tar} .subtitle`],
-        translateY: [
-          {
-            duration: this.mobile ? 1200 : 1600,
-            value: val,
-          },
-        ],
-        easing: "easeInOutExpo",
-      });
-    },
-    upscrollAnim(key) {
-      let targetClass = ".caro" + key;
-      let targetClassNext = ".caro" + (key + 1);
-      this.translateTitle(targetClass, ["180", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "-180"]);
-    },
-    downscrollAnim(key) {
-      let targetClass = ".caro" + key;
-      let targetClassNext = ".caro" + (key - 1);
-      this.translateTitle(targetClass, ["-180px", "0px"]);
-      this.translateTitle(targetClassNext, ["0px", "180px"]);
-    },
-    toggleTitle(key, dir) {
-      if (dir == "up") {
-        this.upscrollAnim(key);
-      }
-      if (dir == "down") {
-        this.downscrollAnim(key);
-      }
-    },
-    infoClickHandler(key) {
-      let targetClass = ".caro" + key;
-      if (!this.mobile) {
-        anime({
-          targets: [`${targetClass} .project-info-div .trail-wrapper`],
-          translateY: [
-            {
-              duration: 1000,
-              value: this.infoShown[key] ? "0px" : "100px",
-            },
-          ],
-          easing: "easeOutExpo",
-          delay: 100,
-        });
-      }
-
-      this.translateTitle(
-        targetClass,
-        this.infoShown[key] ? ["-180px", "0px"] : ["0px", "-180px"]
-      );
-
-      anime({
-        targets: [`${targetClass} .trail`],
-        translateX: [
-          {
-            duration: 1000,
-            value: ["35%", "35%"],
-          },
-        ],
-        translateY: this.infoShown[key] ? ["85px", "-15px"] : ["-15px", "85px"],
-        easing: "easeOutExpo",
-        delay: 100,
-      });
-      anime({
-        targets: `${targetClass} .project-image-overlay`,
-        translateY: [
-          {
-            duration: this.mobile ? 750 : 1000,
-            value: this.infoShown[key] ? ["50%", "350%"] : ["350%", "50%"],
-          },
-        ],
-        easing: this.infoShown[key] ? "easeInExpo" : "easeOutExpo",
-        delay: this.infoShown[key] ? 0 : 800,
-      });
-      this.infoShown[key] = !this.infoShown[key];
-    },
-  },
+  methods: {},
   created() {},
 
-  mounted() {
-    this.pageWrapper();
-    setTimeout(() => {
-      if (this.mobile) {
-        this.swiperOptionv.speed = 250;
-      }
-      this.showSwiper = true;
-    }, 250);
-    setTimeout(() => {
-      this.toggleTitle(0, "down");
-      this.totalSlides = this.swiper.slides.length;
-    }, 750);
-  },
+  mounted() {},
 };
 </script>
 
@@ -871,12 +689,26 @@ img {
 
   z-index: 10;
 }
+.container-main {
+  height: 100%;
+}
 
 .portfolio-background {
   width: 80%;
-  height: 80vh;
+  height: 90%;
   display: flex;
   z-index: 1;
+  padding: 5rem;
+
+  .portfolio-wrapper {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(10px, 1fr) 3fr;
+    grid-template-rows: minmax(10px, 1fr) 2fr;
+    .portfolio-item {
+    }
+  }
 }
 
 .nav-wrapper {
@@ -912,7 +744,9 @@ img {
 .right {
   transform: rotate(270deg) !important;
 }
-.project-wrapper {
+.projects-wrapper {
+  display: flex;
+  flex-direction: column;
   width: 90%;
   max-width: 1300px;
   height: 100%;

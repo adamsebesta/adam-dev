@@ -4,7 +4,7 @@
       <!-- <Banner /> -->
       <Nav class="banner-nav" />
     </div>
-    <div ref="contMain" class="container-main-about">
+    <div @scroll="handleScroll" ref="contMain" class="container-main-about">
       <div class="scroll-div-about">
         <div :style="{ overflow: 'hidden' }">
           <h4>Scroll</h4>
@@ -61,7 +61,6 @@
                   v-for="i in icons"
                   :key="i[0]"
                   class="about-skills-icon appear appear2"
-                  v-tooltip="i[1]"
                   :src="require('static/icons/' + i[0])"
                   alt=""
                 />
@@ -70,10 +69,7 @@
           </div>
         </div>
         <div class="about-right">
-          <div
-            class="photo-background bg1"
-            :style="bg1 ? { transform: 'translate(100px 100px' } : ''"
-          >
+          <div class="photo-background bg0">
             <img
               class="headshot"
               src="~static/headshot.png"
@@ -82,13 +78,17 @@
             />
           </div>
           <div
-            class="photo-background bg2"
-            :style="bg2 ? { transform: 'translate(30px, 30px)' } : ''"
+            :class="'photo-background bg1' + (scrollY != 0 ? ' scrolled' : '')"
+            :style="{ transform: calcTransform(1) }"
           ></div>
           <div
-            class="photo-background bg3"
-            :style="bg3 ? { transform: 'translate(20px 20px' } : ''"
+            :class="'photo-background bg2' + (scrollY != 0 ? ' scrolled' : '')"
+            :style="{ transform: calcTransform(2) }"
           ></div>
+          <!-- <div
+            :class="'photo-background bg3' + (scrollY != 0 ? ' scrolled' : '')"
+            :style="{ transform: calcTransform(3) }"
+          ></div> -->
         </div>
       </div>
     </div>
@@ -98,7 +98,6 @@
 
 <script>
 import Nav from "../components/Nav";
-import anime from "animejs";
 import Footer from "../components/Footer.vue";
 import _ from "lodash";
 
@@ -111,15 +110,16 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.description
+          content: this.description,
         },
         { hid: "og:title", property: "og:title", content: this.title },
-        { hid: "og:image", property: "og:image", content: this.image }
-      ]
+        { hid: "og:image", property: "og:image", content: this.image },
+      ],
     };
   },
   data() {
     return {
+      scrollY: 0,
       background: null,
       title: "Adam Sebesta Development | About",
       description: "Who I am",
@@ -142,7 +142,7 @@ export default {
         ["js.png", "Javascript"],
         ["html.png", "HTML 5"],
         ["css.png", "CSS 3"],
-        ["postgres.png", "PostgreSQL"]
+        ["postgres.png", "PostgreSQL"],
       ],
       services: [
         "Web and Mobile Builds",
@@ -151,233 +151,27 @@ export default {
         "Live App Maintenance",
         "Refactoring",
         "Azure Deployment",
-        "Tutoring"
+        "Tutoring",
       ],
-      scrollCount: 0
+      scrollCount: 0,
     };
   },
   computed: {},
   methods: {
-    moveLogo() {
-      setTimeout(() => {
-        this.logo = true;
-      }, 750);
+    handleScroll(e) {
+      this.scrollY = window.scrollY;
     },
-    scrollInfo(event) {
-      let that = this;
-      // console.log(event);
-
-      let dir;
-      if (event == "up" || event == "down") {
-        dir = event;
-      } else {
-        dir = event.deltaY > 0 ? "down" : "up";
-      }
-      // console.log(this.scrollCount, this.calculateScrollValue(dir));
-      anime({
-        targets: [".about"],
-        easing: "easeInOutExpo",
-        translateY: [
-          {
-            duration: 1500,
-            value: function() {
-              return that.calculateScrollValue(dir);
-            }
-          }
-        ]
-      });
-      if (dir == "down" && this.scrollCount < 2) {
-        this.scrollCount++;
-        anime({
-          targets: [`.appear${this.scrollCount}`],
-          easing: "easeInOutExpo",
-          translateY: [
-            {
-              duration: 1500,
-              value: ["-210%", "0%"]
-            }
-          ]
-        });
-        anime({
-          targets: [`.appear${this.scrollCount - 1}`],
-          easing: "easeInOutExpo",
-          translateY: [
-            {
-              duration: 1500,
-              value: ["0%", "210%"]
-            }
-          ]
-        });
-      }
-      if (dir == "up" && this.scrollCount > 0) {
-        this.scrollCount--;
-        anime({
-          targets: [`.appear${this.scrollCount}`],
-          easing: "easeInOutExpo",
-          translateY: [
-            {
-              duration: 1500,
-              value: ["210%", "0%"]
-            }
-          ]
-        });
-        anime({
-          targets: [`.appear${this.scrollCount + 1}`],
-          easing: "easeInOutExpo",
-          translateY: [
-            {
-              duration: 1500,
-              value: ["0%", "-210%"]
-            }
-          ]
-        });
-      }
+    calcTransform(i) {
+      let percent = this.scrollY / (170 / i) + i;
+      return `translate(-${percent}%,-${percent}%)`;
     },
-    calculateScrollValue(dir) {
-      let amount = this.mobile ? 36.1 : 34;
-      let current = amount * this.scrollCount;
-      if (this.scrollCount < 2 && dir == "down") {
-        return [`'-${current}%'`, `-${current + amount}%`];
-      }
-      if (this.scrollCount > 0 && dir == "up") {
-        return [`-${current}%`, `-${current - amount}%`];
-      }
-    },
-
-    movePhotoBackgrounds() {
-      let that = this;
-
-      anime.timeline({ loop: false }).add({
-        targets: [".bg2", ".bg3"],
-        easing: "easeInOutSine",
-        translateX: [
-          {
-            duration: 1200,
-            value: function(el) {
-              return that.calcuateTranslate(el, "X");
-            }
-          }
-        ],
-        translateY: [
-          {
-            duration: 1200,
-            value: function(el) {
-              return that.calcuateTranslate(el, "Y");
-            }
-          }
-        ],
-        delay: 1000
-      });
-    },
-    calcuateTranslate(el, axis) {
-      if (axis == "Y") {
-        if (el.classList.contains("bg2")) {
-          return "-15%";
-        } else {
-          return "-30%";
-        }
-      } else {
-        if (el.classList.contains("bg2")) {
-          return "-30%";
-        } else {
-          return "-60%";
-        }
-      }
-    },
-    aboutAppear() {
-      let that = this;
-      anime
-        .timeline({ loop: false })
-
-        .add({
-          targets: [".about"],
-          easing: "easeInOutSine",
-          width: [
-            {
-              duration: 600,
-              value: "100%"
-            }
-          ]
-        })
-        .add({
-          targets: [".about", ".about-right", ".headshot", ".bg1"],
-          easing: "easeInOutSine",
-          opacity: 1
-        });
-    },
-
-    scrollListenerInit() {
-      let that = this;
-      if (!this.mobile) {
-        window.addEventListener(
-          "wheel",
-          _.debounce(this.scrollInfo, 750, {
-            leading: true,
-            trailing: false
-          })
-        );
-      } else {
-        setTimeout(() => {
-          this.$refs.contMain.addEventListener("touchstart", function(e) {
-            this.touchStart = e.changedTouches[0];
-          });
-          this.$refs.contMain.addEventListener("touchend", function(e) {
-            this.touchEnd = e.changedTouches[0];
-            // determine direction
-            // stop scroll action if tapping icons
-            if (!event.target.classList.contains("about-skills-icon")) {
-              if (this.touchEnd.screenY - this.touchStart.screenY > 0) {
-                that.scrollInfo("up");
-              } else if (this.touchEnd.screenY - this.touchStart.screenY < 0) {
-                that.scrollInfo("down");
-              }
-            }
-          });
-        }, 1000);
-      }
-    }
   },
   mounted() {
-    this.pageWrapper();
-    this.aboutAppear();
-    this.movePhotoBackgrounds();
-    this.scrollListenerInit();
-    // this.scrollInfo();
-    anime({
-      targets: [".about-headline-main", ".about-desc"],
-      easing: "easeInOutSine",
-      translateY: [
-        {
-          duration: 750,
-          value: ["100%", "0%"]
-        }
-      ],
-      delay: 750
-    });
-    anime({
-      targets: [".scroll-div-about"],
-      easing: "easeInOutSine",
-      bottom: [
-        {
-          duration: 750,
-          value: "27%"
-        }
-      ],
-      delay: 750
-    });
-
-    // anime({
-    //   targets: [".about-desc"],
-    //   easing: "easeInOutSine",
-    //   translateY: [
-    //     {
-    //       duration: 750,
-    //       value: ["100%", "0%"],
-    //     },
-    //   ],
-    //   delay: 750,
-    // });
-  }
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
 
@@ -391,30 +185,33 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: fixed;
 }
-.appear {
-  transform: translateY(-210%);
-}
+
 .main-wrapper {
   display: flex;
-  margin: 6% 0 2% 0;
   display: flex;
   width: 80%;
+  height: 100%;
   justify-content: center;
+
   .about-left {
-    width: 100%;
-    overflow: hidden;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
     .about-block {
-      height: 50vh;
-      margin-top: 34%;
+      height: 100vh;
+      display: flex;
+      margin-top: 10%;
+      flex-direction: column;
+      justify-content: center;
     }
     .about {
       font-weight: 600;
-      opacity: 0;
-      height: 100%;
-      width: 0%;
-      margin-top: -15%;
+      height: 50%;
+      width: 70%;
       // margin-left: 40px;
       text-align: left;
       color: $grey;
@@ -425,7 +222,7 @@ export default {
       .about-desc-wrapper {
         overflow: hidden;
         .about-desc {
-          transform: translateY(100%);
+          // transform: translateY(100%);
           width: 440px;
           margin-bottom: 10px;
           font-weight: 400;
@@ -456,6 +253,7 @@ export default {
           font-family: $bodyFont;
           font-weight: 400;
           color: $grey;
+          list-style: none;
           .about-services-list-item {
             font-size: 8px;
             vertical-align: middle;
@@ -494,7 +292,7 @@ export default {
     .about-headline-wrapper {
       overflow: hidden;
       .about-headline-main {
-        transform: translateY(100%);
+        // transform: translateY(100%);
         // margin-bottom: 20px;
         font-size: 105px;
         font-weight: 700;
@@ -518,63 +316,77 @@ export default {
     }
   }
   .about-right {
-    opacity: 0;
-    width: 49%;
-    height: 111vh;
-    margin-left: auto;
-    position: relative;
-    justify-content: center;
-    transform: translateX(-9%);
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 20%;
+    top: 10%;
+    justify-content: flex-end;
     display: flex;
     align-items: center;
-    margin-top: -45px;
+
     // margin-top: 5%;
     .photo-background {
       width: 100%;
-      max-width: 415px;
+      max-width: 300px;
       height: 50%;
       position: absolute;
       border-radius: 5px;
       min-height: 355px;
+
+      transition: opacity 1s ease-in-out;
+      &:not(.bg0) {
+        opacity: 0;
+      }
+      &.scrolled {
+        opacity: 1;
+      }
+    }
+    .headshot {
+      width: 90%;
+      margin: 0 auto;
+      height: 90%;
+      padding: 10px;
+      max-width: 280px;
+      // height: 50%;
+      bottom: 0%;
+      z-index: 1000000;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    .bg0 {
+      // background-color: rgba($color: #e9eeff, $alpha: 0.25);
+      // background-color: rgb(92 99 125 / 10%);
+      display: flex;
+      align-items: center;
+      background-color: rgb(126 126 126 / 25%);
+      z-index: 1;
+      box-shadow: 0 10px 30px -15px #010310;
+      // transform: translate(-2%, -2%);
     }
     .bg1 {
       // background-color: rgba($color: #e9eeff, $alpha: 0.25);
       // background-color: rgb(92 99 125 / 10%);
       display: flex;
       align-items: center;
-      background-color: rgb(126 126 126 / 29%);
-
+      background-color: rgb(126 126 126 / 22%);
       z-index: 0;
-      opacity: 0;
       box-shadow: 0 10px 30px -15px #010310;
-      transform: translate(-2%, -2%);
-      .headshot {
-        width: 90%;
-        margin: 0 auto;
-        height: 90%;
-        padding: 10px;
-        max-width: 280px;
-        // height: 50%;
-        bottom: 0%;
-        z-index: 1000000;
-        opacity: 0;
-        object-fit: cover;
-        border-radius: 15px;
-      }
+      // transform: translate(-2%, -2%);
     }
     .bg2 {
       // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-      background-color: rgb(164 164 164 / 35%);
-      transform: translate(-6%, -6%);
+      background-color: rgb(164 164 164 / 15%);
+      // transform: translate(-6%, -6%);
       box-shadow: 0 10px 30px -15px #010310;
       z-index: -1;
     }
     .bg3 {
       // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
       // background-color: rgb(13 16 39 / 91%);
-      background-color: rgb(207 207 207 / 20%);
+      background-color: rgb(207 207 207 / 10%);
       box-shadow: 0 10px 30px -15px #010310;
-      transform: translate(-12%, -12%);
+      // transform: translate(-12%, -12%);
       z-index: -2;
     }
   }
@@ -754,29 +566,25 @@ export default {
         position: absolute;
         border-radius: 5px;
         min-height: 180px;
+        transition: transform 750ms ease-in-out;
+      }
+      .headshot {
+        width: 94%;
+        margin: 0 auto;
+        padding: 10px;
+        max-width: 280px;
+        height: 100%;
+        top: 50%;
+        z-index: 1000000;
+
+        object-fit: cover;
+        border-radius: 15px;
       }
       .bg1 {
-        // background-color: rgba($color: #e9eeff, $alpha: 0.25);
-        // background-color: rgb(92 99 125 / 10%);
-
         background-color: rgb(126 126 126 / 29%);
-
         z-index: 0;
-        opacity: 0;
         box-shadow: -3px -2px 16px -15px #010310;
-        // transform: translate(-2%, -2%);
-        .headshot {
-          width: 94%;
-          margin: 0 auto;
-          padding: 10px;
-          max-width: 280px;
-          height: 100%;
-          top: 50%;
-          z-index: 1000000;
-          opacity: 0;
-          object-fit: cover;
-          border-radius: 15px;
-        }
+        transform: translate(-2%, -2%);
       }
       .bg2 {
         // background-color: rgba($color: #cbd4db, $alpha: 0.2);

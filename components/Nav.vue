@@ -1,6 +1,11 @@
 <template>
   <div>
-    <nav v-if="!mobile" class="nav-bar">
+    <nav
+      v-if="!mobile"
+      :class="
+        'nav-bar' + (page && page.location.pathname == '/' ? ' home' : '')
+      "
+    >
       <div
         :class="
           'nav-logo desktop' +
@@ -8,7 +13,7 @@
         "
         @click="navChange('/')"
       >
-        <img src="logo.png" alt="" />
+        temp
       </div>
       <div class="menu desktop">
         <!-- <div
@@ -154,8 +159,6 @@
 </template>
 
 <script>
-import anime from "animejs";
-
 export default {
   data() {
     return {
@@ -170,81 +173,6 @@ export default {
     },
   },
   methods: {
-    showMenu() {
-      anime({
-        targets: [".menu", ".nav-logo", ".nav-bars"],
-        easing: "easeInOutSine",
-        translateY: [
-          {
-            duration: 500,
-            value: ["175%", "0%"],
-          },
-        ],
-
-        delay: 750,
-      });
-      if (this.mobile) {
-        anime({
-          targets: ".nav-bar",
-          easing: "easeInOutSine",
-          translateY: ["-100%", "0%"],
-          duration: 1000,
-          delay: 1000,
-        });
-      }
-    },
-    toggleSidebar() {
-      anime({
-        targets: [".sidebar-menu"],
-        easing: "easeOutCirc",
-        opacity: [
-          {
-            duration: this.sidebarShown ? 1000 : 500,
-            value: this.sidebarShown ? ["100%", "0%"] : ["0%", "100%"],
-          },
-        ],
-        translateY: [
-          {
-            duration: 1150,
-            value: this.sidebarShown ? ["0%", "-100%"] : ["-100%", "0%"],
-          },
-        ],
-      });
-
-      anime({
-        targets: [".menu__item"],
-        easing: "easeOutSine",
-        delay: 500,
-        translateY: [
-          {
-            duration: 650,
-            value: this.sidebarShown ? ["0%", "100%"] : ["100%", "0%"],
-          },
-        ],
-      });
-      this.sidebarShown = !this.sidebarShown;
-      // if (!this.mobile) {
-      //   anime({
-      //     targets: ["#corner-logo"],
-      //     easing: "easeInOutSine",
-      //     // translateX: [
-      //     //   {
-      //     //     duration: 300,
-      //     //     value: this.menuShown ? 0 : 20
-      //     //   }
-      //     // ],
-      //     rotate: [
-      //       {
-      //         duration: 300,
-      //         value: this.menuShown ? 0 : 90
-      //       }
-      //     ]
-      //   });
-      // }
-      // setTimeout(() => {
-      //   this.menuShown = !this.menuShown;
-      // }, 200);
-    },
     async navChange(path, home) {
       if (window.location.pathname == path && !home) {
         this.toggleSidebar();
@@ -260,9 +188,9 @@ export default {
     this.pageWrapper();
     this.page = window;
     setTimeout(() => {
-      // if (window.location.pathname != "/" || this.windowWidth > 1025) {
-      this.showMenu();
-      // }
+      if (window.location.pathname == "/") {
+        // this.showMenu();
+      }
     }, 750);
   },
 };
@@ -278,6 +206,8 @@ export default {
   align-items: center;
   padding: 30px 100px 0 100px;
   width: 100%;
+  &.home {
+  }
   .nav-logo {
     z-index: 1;
     cursor: pointer;
@@ -286,7 +216,7 @@ export default {
     display: flex;
     align-items: center;
     margin-right: 50px;
-    transform: translateY(100%);
+    // transform: translateY(100%);
     // filter: grayscale(100%);
   }
   .nav-placeholder {
@@ -307,7 +237,7 @@ export default {
   display: flex;
   align-items: flex-start;
   z-index: -1;
-  transform: translateY(175%);
+  // transform: translateY(175%);
 }
 
 .menu__item {
@@ -315,7 +245,7 @@ export default {
   line-height: 1.25;
   text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
-  font-size: 16px;
+  font-size: 13px;
   display: flex;
   flex-direction: row;
   letter-spacing: 1px;
@@ -338,7 +268,7 @@ export default {
   margin-left: 2.5rem;
   height: 100%;
   cursor: pointer;
-  color: $grey;
+  color: $mainBlue;
   &.active {
     color: #434343;
   }
@@ -363,7 +293,7 @@ export default {
     padding-bottom: 3px;
     font-size: 18px;
     color: $mainBlue;
-    transform: translateY(175%);
+    // transform: translateY(175%);
   }
 
   .nav-bar {
@@ -373,7 +303,7 @@ export default {
     left: 0%;
     top: 0 !important;
     overflow: unset;
-    transform: translateY(-100%);
+    // transform: translateY(-100%);
     background: white;
     box-shadow: -3px -15px 20px 0px #010310;
 
@@ -399,7 +329,7 @@ export default {
     width: 100%;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
-    transform: translateY(-100%);
+    // transform: translateY(-100%);
     padding: 50px;
     position: absolute;
     left: 0;
@@ -468,7 +398,7 @@ export default {
       margin: 0px;
       padding-bottom: 2px;
       color: white;
-      transform: translateY(100%);
+      // transform: translateY(100%);
     }
 
     .menu-wrapper:hover .menu__item {

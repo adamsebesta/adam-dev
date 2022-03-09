@@ -4,106 +4,89 @@ module.exports = {
     title: "Adam Sebesta Development",
     meta: [
       {
-        charset: "utf-8"
+        charset: "utf-8",
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1"
+        content: "width=device-width, initial-scale=1",
       },
       {
         hid: "description",
         name: "description",
-        content: "Web and Mobile App Development."
+        content: "Web and Mobile App Development.",
       },
 
       {
         hid: "og:type",
         property: "og:type",
-        content: "website"
+        content: "website",
       },
       {
         hid: "og:url",
         property: "og:url",
-        content: "https://www.asdevelopment.ca/"
+        content: "https://www.asdevelopment.ca/",
       },
       {
         hid: "twitter:card",
         property: "twitter:card",
-        content: "summary_large_image"
+        content: "summary_large_image",
       },
       {
         hid: "twitter:url",
         property: "twitter:url",
-        content: "summary_large_image"
+        content: "summary_large_image",
       },
       {
         hid: "twitter:url",
         property: "twitter:url",
-        content: "https://www.asdevelopment.ca/"
+        content: "https://www.asdevelopment.ca/",
       },
       {
         hid: "twitter:title",
         property: "twitter:title",
-        content: "Adam Sebesta Development | Home"
+        content: "Adam Sebesta Development | Home",
       },
       {
         hid: "twitter:description",
         property: "twitter:description",
-        content: "Web and Mobile App Development"
-      }
+        content: "Web and Mobile App Development",
+      },
     ],
     link: [
       {
         rel: "icon",
         type: "image/x-icon",
-        href: "/logo.png"
+        href: "/logo.png",
       },
       {
         rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap"
+        href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap",
       },
       {
         rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap"
+        href: "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap",
       },
       // { rel: "stylesheet", href:"https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity:"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p", crossorigin:"anonymous" },
       {
         rel: "stylesheet",
-        href:
-          "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      }
-    ]
+        href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+      },
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    "@/assets/css/main.scss",
-    "vue-slick-carousel/dist/vue-slick-carousel.css",
-    "vue-slick-carousel/dist/vue-slick-carousel-theme.css"
-  ],
-  scss: ["swiper/swiper.scss"],
+  css: ["@/assets/css/main.scss"],
+  scss: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    "~/plugins/vue-formulate",
-    {
-      src: "~/plugins/vue-awesome-swiper"
-    },
-    {
-      src: "./plugins/vue-slick-carousel.js"
-    },
-    {
-      src: "./plugins/vue-tooltip.js"
-    }
-  ],
+  plugins: [],
   // ||
   publicRuntimeConfig: {
-    logicAppUrl: "https://adamdevapim.azure-api.net/contact/manual/paths/invoke"
+    logicAppUrl:
+      "https://adamdevapim.azure-api.net/contact/manual/paths/invoke",
   },
 
-  target:'static',
+  target: "static",
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -111,18 +94,17 @@ module.exports = {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
-    "@nuxtjs/tailwindcss"
   ],
   server: {
-    host: "0.0.0.0"
+    host: "0.0.0.0",
   },
 
   render: {
     bundleRenderer: {
       shouldPreload: (_, type) => {
         return type === "image";
-      }
-    }
+      },
+    },
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -131,9 +113,9 @@ module.exports = {
 
   //You will have to add this new object if it doesn't exist already
   styleResources: {
-    scss: ["./assets/scss/*.scss"]
+    scss: ["./assets/scss/*.scss"],
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
+  build: {},
 };

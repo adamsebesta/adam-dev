@@ -1,16 +1,13 @@
 {
-  "name": "adamDev",
-  "version": "1.0.0",
+  "name": "adamSebestaDevelopment",
+  "version": "2.0.0",
   "private": true,
-
   "scripts": {
-  "dev": "nuxt dev",
-  "build": "nuxt generate"
-},
+    "dev": "nuxt dev",
+    "build": "nuxt generate"
+  },
   "dependencies": {
     "7": "^0.0.1",
-    "@braid/vue-formulate": "^2.4.5",
-    "animejs": "^3.2.1",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
@@ -18,16 +15,10 @@
     "http-proxy": "^1.18.1",
     "nuxt": "^2.13.3",
     "postcss": "^8.1.9",
-    "postcss-import": "12.0.1",
-    "swiper": "^6.7.5",
-    "v-tooltip": "^2.1.2",
-    "vue-awesome-swiper": "^4.1.1",
-    "vue-formulate": "^0.12.1",
-    "vue-slick-carousel": "^1.0.6"
+    "postcss-import": "12.0.1"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
-    "@nuxtjs/tailwindcss": "^4.2.1",
     "fibers": "^5.0.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0"
