@@ -24,7 +24,7 @@ module.exports = {
       {
         hid: "og:url",
         property: "og:url",
-        content: "https://www.asdevelopment.ca/",
+        content: "https://www.adamsebesta.dev/",
       },
       {
         hid: "twitter:card",
@@ -39,7 +39,7 @@ module.exports = {
       {
         hid: "twitter:url",
         property: "twitter:url",
-        content: "https://www.asdevelopment.ca/",
+        content: "https://www.adamsebesta.dev/",
       },
       {
         hid: "twitter:title",
@@ -53,23 +53,40 @@ module.exports = {
       },
     ],
     link: [
+      // {
+      //   rel: "icon",
+      //   type: "image/x-icon",
+      //   href: "/logo.png",
+      // },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/favicon/apple-touch-icon.png",
+      },
       {
         rel: "icon",
+        sizes: "32x32",
         type: "image/x-icon",
-        href: "/logo.png",
+        href: "/favicon/favicon-32x32.png",
+      },
+      {
+        rel: "icon",
+        sizes: "16x16",
+        type: "image/x-icon",
+        href: "/favicon/favicon-16x16.png",
+      },
+      {
+        rel: "manifest",
+        href: "/favicon/site.webmanifest",
+      },
+      {
+        rel: "mask-icon",
+        color: "#5bbad5",
+        href: "/favicon/safari-pinned-tab.svg",
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Open+Sans:wght@400;600;700;800&display=swap",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600;700&display=swap",
-      },
-      // { rel: "stylesheet", href:"https://pro.fontawesome.com/releases/v5.10.0/css/all.css", integrity:"sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p", crossorigin:"anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+        href: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap",
       },
     ],
   },

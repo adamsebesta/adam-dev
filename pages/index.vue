@@ -5,10 +5,7 @@
       <Nav class="banner-nav" />
     </div>
     <div ref="contMain" class="container-main">
-      <div
-        v-if="loading"
-        :class="'half-cut ' + (entered ? 'entered' : '')"
-      ></div>
+      <div :class="'half-cut ' + (entered ? 'entered' : '')"></div>
       <div class="center-content">
         <div class="scroll-div">
           <div :style="{ overflow: 'hidden' }">
@@ -17,12 +14,12 @@
           <div class="trail"></div>
         </div>
         <div :class="'welcome ' + (entered ? 'entered' : '')">
-          <logo></logo>
-          <button @click="entered = true">click here</button>
+          <img class="logo" src="~/static/logo/logo-no-text.png" alt="" />
+          <button @click="entered = true">click to enter</button>
         </div>
         <div :class="'index-info ' + (entered ? 'show' : '')">
           <div class="heading will-transition">
-            Your <br />
+            All Your <br />
             <span class="gold"> Creative Ideas <br /> </span>
             <span> Brought To Life</span>
             <div class="lightbulb-wrapper">
@@ -36,19 +33,25 @@
           <div class="subheading will-transition">
             <p>
               Collaborative web development for small to large scale
-              applications. Highly focused on speed, responsiveness, and
-              communication.
+              applications.
+              <!-- Highly focused on speed, responsiveness, and 
+              communication.-->
             </p>
-            <div
-              ref="homeBtn"
-              class="home-btn home-btn-animated will-transition"
-              @click=""
-            >
-              <div ref="homeBtnWrapper" class="wrapper">
-                <span ref="homeBtnSpan">Contact</span>
-                <i ref="homeBtnSpan" class="fa fa-envelope" aria-hidden="true">
-                </i>
-              </div>
+            <button class="portfolio-btn will-transition" @click="">
+              <span ref="homeBtnSpan">Portfolio</span>
+            </button>
+            <button class="contact-btn will-transition" @click="">
+              <span ref="homeBtnSpan">Contact</span>
+              <chevron
+                color="#fecf02"
+                transform="translate(7px,1px) scale(0.8) rotate(90deg)"
+              ></chevron>
+            </button>
+          </div>
+          <div class="kpi-container will-transition">
+            <div class="kpi-item" v-for="k in kpis">
+              <p>{{ k.top }}</p>
+              <p>{{ k.text }}</p>
             </div>
           </div>
         </div>
@@ -66,9 +69,10 @@ import meta from "~/static/meta.png";
 import global from "~/mixins/global";
 import LogoAnim from "../components/LogoAnim.vue";
 import Logo from "../components/Logo.vue";
+import Chevron from "../components/Chevron.vue";
 
 export default {
-  components: { LogoAnim, Logo },
+  components: { Chevron, LogoAnim, Logo },
   head() {
     return {
       title: this.title,
@@ -99,15 +103,11 @@ export default {
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
-      // stars: [...Array(50)],
-      loading: true,
-      step1: false,
-      step2: false,
-      scrollCounter: 0,
-      touchStart: null,
-      touchEnd: null,
-      windowScroll: null,
-      anim: false,
+      kpis: [
+        { top: "TEST", text: "Years Experience" },
+        { top: "TEST", text: "Clients Satisfied" },
+        { top: "TEST", text: "Azure Certifications" },
+      ],
     };
   },
   methods: {},
@@ -176,29 +176,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 750ms ease-in;
+  transition: transform 1200ms ease-in-out;
   &.entered {
     transform: translateX(200%);
   }
-  .loading-img-wrapper {
-    overflow: hidden;
-    // margin-top: -10%;
-    .loading-logo-img {
-      width: 30%;
-      margin: 0 auto;
-    }
-  }
 }
 
-.background-home {
-  background: url("~static/background home4.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: absolute;
-  left: 45%;
-  width: 51%;
-  height: 100%;
-}
 .animation-wrapper {
   width: 100%;
   height: 30%;
@@ -211,38 +194,8 @@ export default {
 }
 
 .logo {
-  // position: absolute;
-  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
-  z-index: 1;
-  text-align: left;
-
-  .logo-upper {
-    color: $lightBlue;
-    font-size: 60px;
-    line-height: 1.25;
-    letter-spacing: 1px;
-    text-indent: -0.025em;
-    font-weight: 600;
-    opacity: 0;
-  }
-  .logo-lower {
-    color: $purple;
-    font-size: 32px;
-    line-height: 1.5;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: $bodyFont;
-    text-indent: -0.025em;
-    font-weight: 600;
-    margin-left: 16%;
-    margin-top: -8px;
-  }
-}
-
-.title-subheading {
-  color: $lightBlue;
-  font-size: 26px;
-  padding-top: 10rem;
+  height: 30%;
+  margin: auto;
 }
 
 .welcome {
@@ -260,7 +213,7 @@ export default {
   flex-direction: column;
   &.entered {
     transform: translateX(100%);
-    transition: transform 500ms ease-in;
+    transition: transform 1200ms ease-in-out;
   }
   .logo-img {
     min-width: 112px;
@@ -279,7 +232,7 @@ export default {
   position: absolute;
   top: 25%;
   overflow: hidden;
-  width: 850px;
+  width: 55%;
   margin: 0 auto;
   padding: 15px;
   margin-left: 10%;
@@ -290,124 +243,157 @@ export default {
   color: $grey;
   text-align: left;
   .will-transition {
-    transition: transform 750ms ease-out 300ms;
+    transition: transform 1250ms ease-in-out 300ms;
   }
   &.show {
     z-index: 1;
     .heading,
     .subheading,
-    .home-btn .wrapper,
-    .lightbulb-wrapper .lightbulb {
+    .portfolio-btn,
+    .lightbulb-wrapper .lightbulb,
+    .kpi-container {
       transform: translateY(0%);
     }
   }
 
   .heading {
-    font-size: 120px;
+    font-size: 60px;
     transform: translateY(350%);
-    font-weight: 700;
-    width: 150%;
-    line-height: 95px;
+    font-weight: 600;
+    width: 100%;
+    line-height: 90%;
     z-index: 1;
     // min-width: 400px;
+    span {
+      letter-spacing: -1px;
+    }
   }
   .subheading {
     transform: translateY(350%);
     width: 100%;
-    font-size: 14px;
     font-weight: 400;
     margin-top: 20px;
     font-family: $bodyFont;
 
     p {
-      padding-bottom: 40px;
-      font-size: 20px;
+      padding-bottom: 20px;
+      font-size: 16px;
       width: 500px;
     }
   }
-  .home-btn {
-    background: transparent;
+  .portfolio-btn {
+    background: $mainBlue;
     color: $grey;
-    overflow: hidden;
+    border-radius: 75px;
     text-align: center;
-    border: 3px solid $grey;
-    width: 30%;
+    border: none;
+    width: 100px;
+    height: 40px;
+    color: white;
     // margin-top: 40px;
     cursor: pointer;
-    border-radius: 4px;
-    padding: 15px 55px;
-    font-weight: 600;
+    font-weight: 500;
     font-family: $headingFont;
-    font-size: 16px;
+    font-size: 12px;
 
     z-index: 12;
     &:hover {
       background-color: $mainBlue;
       color: #fff;
-      border: 3px solid $mainBlue;
     }
     .wrapper {
       // display: flex;
       transform: translateY(150%);
     }
-  }
-}
-
-@media only screen and (max-width: 1450px) {
-  .index-info {
-    .heading {
-      font-size: 75px;
-      line-height: 65px;
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $mainBlue;
+      border-radius: 75px;
+      z-index: -1;
+      width: 100px;
+      height: 40px;
     }
-    .subheading {
-      p {
-        font-size: 16px;
+    &:hover::after {
+      animation: radiate 1s;
+    }
+    &:hover::before {
+      animation: radiate 0.75s;
+    }
+    @keyframes radiate {
+      to {
+        transform: scale(1.15);
+        opacity: 0;
       }
     }
   }
-
-  .lightbulb-wrapper {
-    transform: translateX(-19%) translateY(-278%);
-    .lightbulb {
-      width: 8%;
+  .contact-btn {
+    margin-left: 1.5rem;
+    background: transparent;
+    border: none;
+    font-weight: 500;
+    font-family: $headingFont;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    position: relative;
+  }
+  .kpi-container {
+    transform: translateY(500%);
+    width: 60%;
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    p:first-child {
+      font-weight: 600;
+      font-size: 20px;
+    }
+    p:nth-child(2) {
+      font-weight: 400;
+      font-size: 12px;
     }
   }
 }
 
-@media only screen and (max-width: 1130px) {
-  .index-info {
-    width: 100%;
-    text-align: left;
-    top: 34%;
-    .heading {
-      font-size: 46px;
-      line-height: 40px;
-      width: 60%;
-      min-width: 187px;
-    }
-    .subheading {
-      p {
-        font-size: 12px;
-        // width: 75%;
+// @media only screen and (max-width: 1130px) {
+//   .index-info {
+//     width: 100%;
+//     text-align: left;
+//     top: 34%;
+//     .heading {
+//       font-size: 46px;
+//       line-height: 40px;
+//       width: 60%;
+//       min-width: 187px;
+//     }
+//     .subheading {
+//       p {
+//         font-size: 12px;
+//         // width: 75%;
 
-        font-weight: 600;
-        line-height: 22px;
-        min-width: unset;
-      }
-    }
-  }
-  .btn-home {
-    width: 20%;
-  }
+//         font-weight: 600;
+//         line-height: 22px;
+//         min-width: unset;
+//       }
+//     }
+//   }
+//   .btn-home {
+//     width: 20%;
+//   }
 
-  .lightbulb-wrapper {
-    transform: translateX(-314px) translateY(-260%);
-    min-width: 640px;
-    .lightbulb {
-      width: 6%;
-    }
-  }
-}
+//   .lightbulb-wrapper {
+//     transform: translateX(-314px) translateY(-260%);
+//     min-width: 640px;
+//     .lightbulb {
+//       width: 6%;
+//     }
+//   }
+// }
 @media only screen and (max-width: 450px) {
   .center-content {
     display: flex;
@@ -451,7 +437,7 @@ export default {
       width: 90%;
       margin: 0px auto;
       min-width: unset;
-      font-weight: 600;
+      font-weight: 500;
     }
     .subheading {
       p {
@@ -468,31 +454,6 @@ export default {
       transform: translateX(-55%) translateY(-647%);
       .lightbulb {
         width: 5%;
-      }
-    }
-
-    .home-btn {
-      background: $mainBlue;
-      height: 30px;
-      color: #fff;
-      width: 90%;
-
-      margin: 0 auto;
-      // margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      font-size: 16px;
-      border-radius: 5px;
-      border-color: $mainBlue;
-      &:hover {
-        padding: 30px;
-      }
-      i {
-        font-size: 16px;
-        padding-left: 7px;
-        color: #fff;
       }
     }
   }

@@ -13,7 +13,7 @@
         "
         @click="navChange('/')"
       >
-        temp
+        <img src="~/static/logo/logo-text.png" alt="" />
       </div>
       <div class="menu desktop">
         <!-- <div
@@ -35,16 +35,6 @@
         >
           <a id="about" class="menu__item">About</a>
         </div>
-
-        <div
-          :class="
-            'menu-wrapper ' +
-            (page && page.location.pathname == '/portfolio' ? ' active' : '')
-          "
-          @click="navChange('/portfolio')"
-        >
-          <a class="menu__item">Portfolio</a>
-        </div>
         <div
           id="contact"
           :class="
@@ -54,6 +44,15 @@
           @click="navChange('/contact')"
         >
           <a class="menu__item">Contact</a>
+        </div>
+        <div
+          :class="
+            'menu-wrapper ' +
+            (page && page.location.pathname == '/portfolio' ? ' active' : '')
+          "
+          @click="navChange('/portfolio')"
+        >
+          <a class="menu__item">Portfolio</a>
         </div>
       </div>
     </nav>
@@ -203,21 +202,25 @@ export default {
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 30px 100px 0 100px;
   width: 100%;
+  height: 100px;
   &.home {
   }
   .nav-logo {
     z-index: 1;
     cursor: pointer;
-    width: 65px;
-    height: 65px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     margin-right: 50px;
     // transform: translateY(100%);
     // filter: grayscale(100%);
+    img {
+      width: 100%;
+    }
   }
   .nav-placeholder {
     width: 30px;
@@ -235,25 +238,25 @@ export default {
   // margin-left: auto;
   // margin-right: auto;
   display: flex;
-  align-items: flex-start;
+  height: 100%;
+  align-items: center;
   z-index: -1;
   // transform: translateY(175%);
 }
 
 .menu__item {
   // text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
-  line-height: 1.25;
-  text-indent: -0.025em;
   // background: linear-gradient(45deg, #0947db, #898ce9);
-  font-size: 13px;
+  font-size: 12px;
   display: flex;
   flex-direction: row;
-  letter-spacing: 1px;
+  padding-top: 5px;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
   cursor: pointer;
   text-align: left;
+  color: black;
 }
 .active {
   // width: 100%;
@@ -264,13 +267,10 @@ export default {
 }
 
 .menu-wrapper {
-  padding: 1px 1px 4px 1px;
   margin-left: 2.5rem;
   height: 100%;
   cursor: pointer;
-  color: $mainBlue;
   &.active {
-    color: #434343;
   }
 }
 

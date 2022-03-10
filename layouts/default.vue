@@ -13,17 +13,16 @@ Vue.mixin(global);
 export default {
   name: "App",
   methods: {
-     set1vh() {
+    set1vh() {
       let vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty("--vh", `${vh}px`);
     },
   },
   mounted() {
     this.windowWrapper();
-    this.set1vh()
+    this.set1vh();
     window.addEventListener("resize", this.set1vh);
-
-  }
+  },
 };
 </script>
 
@@ -40,6 +39,34 @@ export default {
 @font-face {
   font-family: "Neuzeit Grotesk";
   src: url("~static/fonts/NeuzeitGro-Bol.ttf"); /* IE9 Compat Mode */
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("~static/fonts/Montserrat-Regular.ttf"); /* IE9 Compat Mode */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("~static/fonts/Montserrat-Medium.ttf"); /* IE9 Compat Mode */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("~static/fonts/Montserrat-SemiBold.ttf"); /* IE9 Compat Mode */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("~static/fonts/Montserrat-Bold.ttf"); /* IE9 Compat Mode */
   font-weight: 700;
   font-style: normal;
 }
@@ -131,7 +158,6 @@ html {
 }
 
 .background-center {
-  background: url("~static/background home4.png");
   background-repeat: no-repeat;
   background-size: cover;
   top: 50%;
