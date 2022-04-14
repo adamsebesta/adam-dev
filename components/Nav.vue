@@ -202,17 +202,18 @@ export default {
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  padding: 30px 100px 0 100px;
+  align-items: center;
+  padding: 0px 100px 0 100px;
   width: 100%;
   height: 100px;
+  background: white;
   &.home {
   }
   .nav-logo {
     z-index: 1;
     cursor: pointer;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     display: flex;
     align-items: center;
     margin-right: 50px;
@@ -250,7 +251,7 @@ export default {
   font-size: 12px;
   display: flex;
   flex-direction: row;
-  padding-top: 5px;
+
   align-items: center;
   flex-wrap: wrap;
   position: relative;
@@ -268,7 +269,7 @@ export default {
 
 .menu-wrapper {
   margin-left: 2.5rem;
-  height: 100%;
+
   cursor: pointer;
   &.active {
   }
