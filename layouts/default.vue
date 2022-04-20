@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div style="height: 100%">
+    <Nav />
     <Nuxt />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -8,9 +10,12 @@
 import Vue from "vue";
 import global from "~/mixins/global.js";
 import meta from "~/static/meta.png";
+import Nav from "~/components/Nav.vue";
+import Footer from "~/components/Footer.vue";
 Vue.mixin(global);
 
 export default {
+  components: { Nav, Footer },
   name: "App",
   methods: {
     set1vh() {
@@ -73,6 +78,7 @@ export default {
 
 html {
   overflow: auto;
+  height: 100%;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -103,6 +109,10 @@ html {
   // background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+p {
+  font-family: $bodyFont;
+}
+
 .nuxt-link-exact-active {
   font-weight: bold;
 }
@@ -124,192 +134,20 @@ html {
 //   padding: 10px 30px;
 // }
 
-.scroll-div {
-  position: absolute;
-  z-index: 1;
-  bottom: 100px;
-  left: 8%;
-  transform: translateY(500%) rotate(270deg);
-  overflow: hidden;
-  width: 200px;
-  cursor: pointer;
-  h4 {
-    padding: 3px 0;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: $lightBlue;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .trail {
-    width: 100px;
-    height: 1px;
-    opacity: 0.6;
-    background-color: rgb(187, 187, 187);
-    vertical-align: middle;
-    transform: translate(-25%, -15px);
-    // transform-origin: 100% 50% 0px;
-    // transform: matrix(1, 0, 0, 1, 0, 0);
-  }
+#__nuxt,
+#__layout {
+  height: 100%;
 }
 .overflow {
   overflow: hidden;
 }
-
-.background-center {
-  background-repeat: no-repeat;
-  background-size: cover;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-}
-.tooltip {
-  display: block !important;
-  z-index: 10000;
-
-  .tooltip-inner {
-    background: $mainBlue;
-    color: white;
-    border-radius: 16px;
-    padding: 5px 10px 4px;
-  }
-
-  .tooltip-arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: 5px;
-    border-color: $background;
-    z-index: 1;
-  }
-
-  &[x-placement^="top"] {
-    margin-bottom: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 5px 0 5px;
-      border-left-color: transparent !important;
-      border-right-color: transparent !important;
-      border-bottom-color: transparent !important;
-      bottom: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  &[x-placement^="bottom"] {
-    margin-top: 5px;
-
-    .tooltip-arrow {
-      border-width: 0 5px 5px 5px;
-      border-left-color: transparent !important;
-      border-right-color: transparent !important;
-      border-top-color: transparent !important;
-      top: -5px;
-      left: calc(50% - 5px);
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-
-  &[x-placement^="right"] {
-    margin-left: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 5px 5px 0;
-      border-left-color: transparent !important;
-      border-top-color: transparent !important;
-      border-bottom-color: transparent !important;
-      left: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  &[x-placement^="left"] {
-    margin-right: 5px;
-
-    .tooltip-arrow {
-      border-width: 5px 0 5px 5px;
-      border-top-color: transparent !important;
-      border-right-color: transparent !important;
-      border-bottom-color: transparent !important;
-      right: -5px;
-      top: calc(50% - 5px);
-      margin-left: 0;
-      margin-right: 0;
-    }
-  }
-
-  &.popover {
-    $color: #f9f9f9;
-    &:hover .slide-glass {
-      opacity: 1;
-    }
-    .popover-inner {
-      background: $color;
-      color: $background;
-      padding: 24px;
-      border-radius: 5px;
-      box-shadow: 0 5px 30px rgba($background, 0.1);
-    }
-
-    .popover-arrow {
-      border-color: $color;
-    }
-  }
-
-  &[aria-hidden="true"] {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s, visibility 0.15s;
-  }
-
-  &[aria-hidden="false"] {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.15s;
-  }
-}
-
-.main-btn {
-  display: inline-block !important;
-  cursor: pointer !important;
-  border-radius: 2px !important;
-  letter-spacing: 0.15em !important;
-  border: 2px solid $purple !important;
-  color: $purple !important;
-  text-decoration: none !important;
-  padding: 20px 30px;
-  margin: 5px !important;
-  font-size: 14px;
-  background-color: transparent !important;
-  /* box-shadow: -1px 1px 2px 1px #01301177; */
-  &:hover {
-    color: $purple !important;
-    background-color: $lightBlue !important;
-  }
-}
-.main-depth {
-  box-shadow: 0 10px 30px -15px #010310;
-  position: relative;
-  z-index: 2;
-  padding: 25px;
-  border-radius: 5px;
-  background-color: #1a202ceb;
+.page {
+  padding-top: 100px;
 }
 
 .container-main {
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   z-index: 1;
@@ -326,7 +164,7 @@ html {
   color: $mainGold;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 450px) {
   .nav-links {
     a {
       font-size: 11px !important;

@@ -2,17 +2,10 @@
   <div class="page" ref="page">
     <div>
       <!-- <Banner /> -->
-      <Nav class="banner-nav" />
     </div>
     <div ref="contMain" class="container-main">
       <div :class="'half-cut ' + (entered ? 'entered' : '')"></div>
       <div class="center-content">
-        <div class="scroll-div">
-          <div :style="{ overflow: 'hidden' }">
-            <h4>Scroll</h4>
-          </div>
-          <div class="trail"></div>
-        </div>
         <div :class="'welcome ' + (entered ? 'entered' : '')">
           <img class="logo" src="~/static/logo/logo-no-text.png" alt="" />
           <button @click="entered = true">click to enter</button>
@@ -57,7 +50,6 @@
         </div>
       </div>
     </div>
-    <Footer class="index-footer" />
   </div>
 </template>
 

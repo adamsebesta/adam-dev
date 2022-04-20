@@ -1,14 +1,17 @@
 <template tabIndex="0">
-  <div class="page">
-    <Nav />
+  <div class="page scroll">
     <div class="container-main">
       <div class="left-container">
         <p class="fixed-title">Selected Works</p>
       </div>
       <div class="portfolio-background">
         <div class="portfolio-wrapper">
-          <nuxt-link v-for="(v, k) in portfolioItems" :to="v.to" :key="k">
-            <div :class="'portfolio-item ' + v.length">
+          <div v-for="(v, k) in portfolioItems">
+            <nuxt-link class="portfolio-item-wrapper" :to="v.to" :key="k">
+              <div
+                :class="'portfolio-item ' + v.length"
+                :style="{ backgroundImage: `url(${v.img})` }"
+              ></div>
               <div class="portfolio-item-hover">
                 <h5 class="portfolio-item-title">{{ v.title }}</h5>
                 <div class="center-con">
@@ -20,20 +23,18 @@
                   </div>
                 </div>
               </div>
-              <img :src="`${v.img}`" />
-            </div>
-          </nuxt-link>
+            </nuxt-link>
+          </div>
         </div>
       </div>
       <!-- <div class="background-center" :style="{ width: '70%' }"></div> -->
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Nav from "~/components/Nav";
-
+import staticData from "~/config/portfolio";
 export default {
   components: { Nav },
   head() {
@@ -55,53 +56,13 @@ export default {
       title: "Adam Sebesta Development | Portfolio",
       description: "My Recent Work",
       image: "~/static/meta.png",
-      portfolioItems: {
-        halotrade: {
-          title: "Halotrade",
-          stack: ["Azure", "Nuxt", "Node"],
-          img: "halotrade.jpg",
-          length: "short",
-          to: "/portfolio/halotrade",
-        },
-        spectral: {
-          title: "Spectral",
-          stack: ["HTML", "CSS", "Javascript", "Azure"],
-          img: "spectral.jpg",
-          length: "tall",
-          to: "/portfolio/spectral",
-        },
-        Roam: {
-          title: "Roam",
-          stack: ["NativeScript", "Android", "Firebase"],
-          img: "roam.jpg",
-          length: "tall",
-          to: "/portfolio/roam",
-        },
-        streamhub: {
-          title: "StreamHub",
-          stack: ["Ruby", "Rails", "Javascript"],
-          img: "streamHub.jpg",
-          length: "short",
-          to: "/portfolio/streamhub",
-        },
-        "5oz": {
-          title: "5oz",
-          stack: ["Cargo", "HTML", "CSS", "Javascript"],
-          img: "5oz.jpg",
-          length: "short",
-          to: "/portfolio/5oz",
-        },
-        emkfit: {
-          title: "EMKFIT",
-          stack: ["Shopify", "HTML", "CSS", "Javascript"],
-          img: "emkfit.jpg",
-          length: "tall",
-          to: "/portfolio/emkfit",
-        },
-      },
     };
   },
-  computed: {},
+  computed: {
+    portfolioItems() {
+      return staticData;
+    },
+  },
   methods: {},
   created() {},
 
@@ -109,7 +70,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
@@ -141,37 +102,37 @@ img {
     }
     .portfolio-background {
       width: 80%;
+      max-width: 1200px;
       height: calc(100% - 100px);
       display: flex;
       z-index: 1;
-      padding: 100px 5rem 0rem 10rem;
+      padding: 0px 5rem 0rem 10rem;
       overflow: hidden;
+      align-items: center;
       .portfolio-wrapper {
         overflow: auto;
-        height: 100%;
         width: 100%;
         // display: grid;
         columns: 3 250px;
         column-gap: 1rem;
         // display: flex;
-        .portfolio-item {
-          color: white;
-          position: relative;
-          margin: 0 1rem 1rem 0;
-          display: inline-block;
+        .portfolio-item-wrapper {
+          height: 100%;
           width: 100%;
-          text-align: center;
-          font-size: 2rem;
-          &.short {
-            height: 250px;
-          }
-          &.tall {
-            height: 350px;
-          }
+          max-width: 300px;
+
+          display: flex;
+          position: relative;
           &:hover {
+            .portfolio-item {
+              filter: blur(1px);
+              webkit-filter: blur(1px);
+            }
             .portfolio-item-hover {
               opacity: 0.9;
+              background: #00000021;
             }
+
             .arrow {
               animation-name: bounceAlpha;
               animation-duration: 1.4s;
@@ -186,11 +147,34 @@ img {
               animation-timing-function: linear;
             }
           }
+          .portfolio-item {
+            color: white;
+            position: relative;
+            border-radius: 1px;
+            margin: 0 0rem 1rem 0;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            transition: filter 200ms ease-in-out;
+            transition: -webkit-filter 200ms ease-in-out;
+            &.short {
+              height: 200px;
+            }
+            &.tall {
+              height: 275px;
+            }
+          }
           .portfolio-item-hover {
             width: 100%;
-            height: 100%;
+            height: calc(100% - 1rem);
             position: absolute;
             display: flex;
+            top: 0;
+            left: 0;
             flex-direction: column;
             justify-content: space-between;
             padding: 10px 0;
@@ -279,13 +263,30 @@ img {
               animation-timing-function: linear;
             }
           }
-          img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            overflow: hidden;
-            cursor: pointer;
-          }
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    height: unset !important;
+    .container-main {
+      flex-direction: column;
+      overflow: scroll;
+      height: unset !important;
+      .left-container {
+        position: unset;
+        margin: 1.5rem 0;
+        height: unset;
+        padding-left: 0;
+        overflow: unset;
+      }
+      .portfolio-background {
+        padding: 0;
+        margin: 0 auto;
+        overflow: unset;
+        .portfolio-item {
+          height: 275px !important;
+          margin: 0 0rem 2rem 0;
         }
       }
     }

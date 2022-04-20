@@ -16,15 +16,6 @@
         <img src="~/static/logo/logo-text.png" alt="" />
       </div>
       <div class="menu desktop">
-        <!-- <div
-          :class="
-            'menu-wrapper ' +
-            (page && page.location.pathname == '/' ? ' active' : '')
-          "
-          @click="navChange('/')"
-        >
-          <a class="menu__item">Home</a>
-        </div> -->
         <div
           ref="about"
           :class="
@@ -59,21 +50,16 @@
     <nav v-if="mobile" class="nav-bar">
       <div class="nav-info-wrapper">
         <div class="nav-logo" @click="navChange('/', home)">
-          <img src="logo-text.png" alt="" />
+          <img src="~/static/logo/logo-text.png" alt="" />
         </div>
-        <div>
-          <i
-            v-if="mobile"
-            @click="toggleSidebar"
-            class="fa fa-bars nav-bars"
-            aria-hidden="true"
-          ></i>
-        </div>
+        <button @click="toggleSidebar">
+          <burger-menu></burger-menu>
+        </button>
       </div>
 
-      <div class="sidebar-menu">
+      <div :class="'sidebar-menu' + (sidebarShown ? ' shown' : '')">
         <div class="sidebar-banner">
-          <img src="logo.png" alt="" />
+          <!-- <img src="~/static/logo/logo-no-text.png" alt="" /> -->
           <!-- <div class="close-btn-wrapper">
             <i
               class="fa fa-times"
@@ -158,7 +144,9 @@
 </template>
 
 <script>
+import BurgerMenu from "~/components/BurgerMenu";
 export default {
+  components: { BurgerMenu },
   data() {
     return {
       menuShown: false,
@@ -173,24 +161,19 @@ export default {
   },
   methods: {
     async navChange(path, home) {
-      if (window.location.pathname == path && !home) {
-        this.toggleSidebar();
-      } else {
-        this.$router.push({
-          path: path,
-        });
-      }
+      this.toggleSidebar();
+      this.$router.push({
+        path: path,
+      });
+    },
+    toggleSidebar() {
+      this.sidebarShown = !this.sidebarShown;
     },
   },
   created() {},
   mounted() {
     this.pageWrapper();
     this.page = window;
-    setTimeout(() => {
-      if (window.location.pathname == "/") {
-        // this.showMenu();
-      }
-    }, 750);
   },
 };
 </script>
@@ -203,7 +186,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 100px 0 100px;
+  padding: 0px 5% 0 5%;
   width: 100%;
   height: 100px;
   background: white;
@@ -251,13 +234,12 @@ export default {
   font-size: 12px;
   display: flex;
   flex-direction: row;
-
   align-items: center;
   flex-wrap: wrap;
   position: relative;
   cursor: pointer;
   text-align: left;
-  color: black;
+  color: #47494e;
 }
 .active {
   // width: 100%;
@@ -293,18 +275,17 @@ export default {
   .nav-bars {
     padding-bottom: 3px;
     font-size: 18px;
-    color: $mainBlue;
+    color: #47494e;
     // transform: translateY(175%);
   }
 
   .nav-bar {
     width: 100%;
-    padding: 5px 5%;
+    padding: 0px 5%;
     margin: 0px 15px 0 auto;
     left: 0%;
     top: 0 !important;
     overflow: unset;
-    // transform: translateY(-100%);
     background: white;
     box-shadow: -3px -15px 20px 0px #010310;
 
@@ -313,10 +294,15 @@ export default {
       justify-content: space-between;
       overflow: hidden;
       align-items: center;
-
+      button {
+        background: transparent;
+        outline: none;
+        border: none;
+        display: flex;
+      }
       .nav-logo {
         margin-right: 0;
-        width: 40%;
+        width: 32%;
         filter: unset;
         z-index: 1;
       }
@@ -330,18 +316,22 @@ export default {
     width: 100%;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
-    // transform: translateY(-100%);
+    transform: translateY(-100%);
     padding: 50px;
     position: absolute;
     left: 0;
     top: 0;
-    background-color: $grey;
+    background-color: white;
     z-index: 1000;
-    color: white;
+    color: #47494e;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     // opacity: 0;
+    transition: transform 500ms ease-in-out;
+    &.shown {
+      transform: translateY(0);
+    }
     .sidebar-banner {
       display: flex;
       justify-content: space-between;
@@ -359,18 +349,18 @@ export default {
 
       .mdiv {
         height: 20px;
-        width: 2.5px;
+        width: 2px;
         margin-left: 13px;
         margin-top: 5px;
-        background-color: white;
+        background-color: #47494e;
         transform: rotate(45deg);
         z-index: 1;
       }
 
       .md {
         height: 20px;
-        width: 2.5px;
-        background-color: white;
+        width: 2px;
+        background-color: #47494e;
         transform: rotate(90deg);
         z-index: 2;
       }
@@ -398,7 +388,7 @@ export default {
       font-size: 36px;
       margin: 0px;
       padding-bottom: 2px;
-      color: white;
+      color: #47494e;
       // transform: translateY(100%);
     }
 
@@ -428,8 +418,5 @@ export default {
       display: none;
     }
   }
-  // .banner-nav {
-  //   margin: 30px 30px !important;
-  // }
 }
 </style>

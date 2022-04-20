@@ -1,9 +1,5 @@
 <template>
   <div class="page">
-    <div>
-      <!-- <Banner /> -->
-      <Nav class="banner-nav" />
-    </div>
     <div @scroll="handleScroll" ref="contMain" class="container-main-about">
       <div class="scroll-div-about">
         <div :style="{ overflow: 'hidden' }">

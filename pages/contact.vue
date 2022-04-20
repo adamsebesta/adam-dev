@@ -1,7 +1,5 @@
 <template>
   <div class="page">
-    <Nav />
-
     <div class="container-main">
       <div class="thanks">
         <h3>Thank you</h3>
@@ -81,7 +79,6 @@
       </div>
       <div class="background-center"></div>
     </div>
-    <Footer />
   </div>
 </template>
 
