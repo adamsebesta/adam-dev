@@ -187,5 +187,8 @@ p {
   .main-depth {
     padding: 10px;
   }
+  .page {
+    padding-top: 80px;
+  }
 }
 </style>

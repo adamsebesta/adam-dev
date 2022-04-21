@@ -12,10 +12,10 @@
           <div class="about">
             <div class="about-text about-block">
               <div class="about-headline-wrapper overflow">
-                <p v-if="!mobile" class="about-headline-main appear appear0">
+                <h5 v-if="!mobile" class="about-headline-main appear appear0">
                   Adam <br />
                   Sebesta
-                </p>
+                </h5>
                 <p v-if="mobile" class="about-headline-main appear appear0">
                   Adam Sebesta
                 </p>
@@ -25,16 +25,18 @@
                   <span>
                     Hello, thank you for your interest! <br />
                     I am a Canadian + Estonian Full Stack Developer currently
-                    living in Berlin. Avid about the cloud and creating elegant
-                    solutions, my aim is to bring your creative ideas to life. I
-                    look forward to working with you on your next project.</span
+                    living in Berlin, Germany. Avid about the cloud and creating
+                    elegant solutions, a strong proficiency in Microsoft Azure,
+                    Shopify, and Nuxt.js, allows me to bring your creative ideas
+                    to life. I look forward to working with you on your next
+                    project.</span
                   >
                 </p>
               </div>
             </div>
             <div class="about-services about-block">
               <div class="about-headline-wrapper overflow">
-                <p class="about-headline appear appear1">Services</p>
+                <h5 class="about-headline appear appear1">Services</h5>
               </div>
               <div class="about-services-wrapper overflow">
                 <ul class="about-services appear appear1">
@@ -50,7 +52,7 @@
             </div>
             <div class="about-skills about-block">
               <div class="about-headline-wrapper overflow">
-                <p class="about-headline appear2">Skills</p>
+                <h5 class="about-headline appear2">Skills</h5>
               </div>
               <div class="about-skills-icons overflow">
                 <img
@@ -127,18 +129,18 @@ export default {
       bg2: false,
       bg3: false,
       icons: [
+        ["azure-dev.png", "Azure Developer Associate"],
+        ["azure-fun.png", "Azure Fundamentals"],
+        ["css.png", "CSS 3"],
+        ["postgres.png", "PostgreSQL"],
+        ["nuxt.png", "Nuxt.js"],
         ["vue.png", "Vue.js"],
         ["nativescript-vue.png", "Nativescript-Vue"],
         ["shopify.png", "Shopify"],
-        ["ruby.png", "Ruby"],
-        ["azure-dev.png", "Azure Developer Associate"],
-        ["azure-fun.png", "Azure Fundamentals"],
+        ["gcp.png", "Google Cloud"],
         ["firebase.png", "Firebase"],
-        ["rails.png", "Rails"],
         ["js.png", "Javascript"],
         ["html.png", "HTML 5"],
-        ["css.png", "CSS 3"],
-        ["postgres.png", "PostgreSQL"],
       ],
       services: [
         "Web and Mobile Builds",
@@ -200,7 +202,6 @@ export default {
     .about-block {
       height: 100vh;
       display: flex;
-      margin-top: 10%;
       flex-direction: column;
       justify-content: center;
     }
@@ -249,7 +250,9 @@ export default {
           font-family: $bodyFont;
           font-weight: 400;
           color: $grey;
-          list-style: none;
+          list-style: circle;
+          &::before {
+          }
           .about-services-list-item {
             font-size: 8px;
             vertical-align: middle;
@@ -277,7 +280,7 @@ export default {
           // height: 20%;
           max-height: 65px;
           max-width: 65px;
-          filter: grayscale(100%);
+          filter: grayscale(0%);
           margin: 5px;
           &:hover {
             filter: unset;
@@ -433,7 +436,6 @@ export default {
   .main-wrapper {
     .about-left {
       .about {
-        margin-top: 0;
         .about-desc-wrapper {
           .about-desc {
             font-size: 14px;
@@ -442,6 +444,33 @@ export default {
           }
         }
         .about-services {
+          ul {
+            display: block;
+            margin-left: -10px;
+          }
+
+          ul li {
+            display: block;
+            position: relative;
+          }
+
+          ul li:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          ul li:before {
+            content: "";
+            position: absolute;
+            top: 1.3em;
+            left: -20px;
+            margin-top: -0.9em;
+            background-color: #0cbaba;
+            background-image: linear-gradient(315deg, #0cbaba 0%, #380036 74%);
+
+            height: 6px;
+            width: 6px;
+            border-radius: 50%;
+          }
           ul li {
             font-size: 14px !important;
           }
@@ -454,148 +483,168 @@ export default {
   }
 }
 @media only screen and (max-width: 420px) {
-  .main-wrapper {
-    justify-content: flex-start;
-    flex-direction: column-reverse;
-    margin: 0 auto;
-    top: 0;
-    width: 95%;
-    align-items: center;
-    padding: 50px 20px;
-    .about-left {
-      width: 100%;
-      .about {
+  .container-main-about {
+    align-items: unset;
+    min-height: unset;
+    padding-top: 1.5rem;
+    .main-wrapper {
+      justify-content: flex-start;
+      flex-direction: column-reverse;
+      margin: 0 auto;
+      top: 0;
+      width: 95%;
+      align-items: center;
+      padding: 0 5%;
+      height: 100%;
+      .about-left {
         width: 100%;
-        .about-headline-main {
-          font-size: 30px;
-          font-weight: 700;
-          line-height: 33px;
-        }
-        .about-text {
-          margin-top: 20px;
-        }
-        .about-desc-wrapper {
-          .about-desc {
-            width: 100%;
-            margin-bottom: 10px;
-            span {
-              // background-color: #82ab71;
-              padding: 0px;
-            }
-            font-size: 14px;
-
-            text-align: left;
-          }
-        }
-        .about-services {
-          margin-bottom: 10px;
-          width: 300px;
-          .about-headline-wrapper {
-            margin-top: 0;
-          }
-
-          ul li {
-            padding-left: 2px;
-            font-size: 14px !important;
-            font-family: $bodyFont;
-            .about-services-list-item {
-              font-size: 6px;
-              vertical-align: middle;
-            }
-          }
-        }
-
-        /* ADAM SEBESTA */
-
-        .about-skills {
-          margin-bottom: 10px;
-          .about-skills-icons {
-            display: flex;
-            max-width: 255px;
-            min-width: 158px;
-            flex-wrap: wrap;
-          }
-          .about-skills-icon {
-            // width: 20%;
-            // height: 20%;
-            max-height: 45px;
-            max-width: 45px;
-            filter: grayscale(100%);
-            margin: 5px;
-            &:hover {
-              filter: unset;
-            }
-          }
-        }
-
-        .about-headline {
-          margin-bottom: 20px;
-          font-size: 30px;
-          font-weight: 700;
+        .about {
           width: 100%;
-          color: $mainGold;
-          margin: 10px 0;
           display: flex;
-          align-items: center;
-          // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
-          // &:after {
-          //   content: "";
-          //   display: block;
-          //   position: relative;
-          //   width: 100px;
-          //   height: 1px;
-          //   margin-left: 20px;
-          //   background-color: rgba($color: $grey, $alpha: 0.1);
-          // }
+          flex-direction: column;
+          .about-block {
+            height: unset;
+
+            h5 {
+              font-size: 28px;
+            }
+          }
+          .about-headline-main {
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 33px;
+          }
+          .about-text {
+            color: black;
+            height: unset;
+            display: block;
+          }
+          .about-desc-wrapper {
+            .about-desc {
+              width: 100%;
+              margin-bottom: 10px;
+              span {
+                // background-color: #82ab71;
+                padding: 0px;
+              }
+              font-size: 14px;
+
+              text-align: left;
+            }
+          }
+          .about-services {
+            margin-bottom: 10px;
+            width: 300px;
+            .about-headline-wrapper {
+              margin-top: 0;
+            }
+
+            ul {
+              list-style: square;
+              li {
+                padding-left: 2px;
+                font-size: 14px !important;
+                font-family: $bodyFont;
+                color: black;
+                .about-services-list-item {
+                  font-size: 6px;
+                  vertical-align: middle;
+                }
+              }
+            }
+          }
+
+          /* ADAM SEBESTA */
+
+          .about-skills {
+            .about-skills-icons {
+              display: flex;
+              max-width: 240px;
+              min-width: 158px;
+              flex-wrap: wrap;
+            }
+            .about-skills-icon {
+              // width: 20%;
+              // height: 20%;
+              max-height: 40px;
+              max-width: 40px;
+              filter: grayscale(0%);
+              margin: 5px;
+              &:hover {
+                filter: unset;
+              }
+            }
+          }
+
+          .about-headline {
+            margin-bottom: 20px;
+            font-size: 30px;
+            font-weight: 700;
+            width: 100%;
+            color: $mainGold;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
+            // &:after {
+            //   content: "";
+            //   display: block;
+            //   position: relative;
+            //   width: 100px;
+            //   height: 1px;
+            //   margin-left: 20px;
+            //   background-color: rgba($color: $grey, $alpha: 0.1);
+            // }
+          }
         }
       }
-    }
-    .about-right {
-      display: flex;
-      width: 80%;
-      height: 30vh;
-      margin-left: 34%;
-      margin-top: 28%;
-      .photo-background {
-        width: 55%;
-        height: 40%;
-        position: absolute;
-        border-radius: 5px;
-        min-height: 180px;
-        transition: transform 750ms ease-in-out;
-      }
-      .headshot {
-        width: 94%;
-        margin: 0 auto;
-        padding: 10px;
-        max-width: 280px;
-        height: 100%;
-        top: 50%;
-        z-index: 1000000;
+      .about-right {
+        display: none;
+        width: 80%;
+        height: 30vh;
+        margin-left: 34%;
+        margin-top: 28%;
+        .photo-background {
+          width: 55%;
+          height: 60%;
+          position: absolute;
+          border-radius: 5px;
+          min-height: 180px;
+          opacity: 0.8;
+        }
+        .headshot {
+          width: 80%;
+          margin: 0 auto;
+          padding: 10px;
+          max-width: 280px;
+          height: 100%;
+          top: 50%;
+          z-index: 1000000;
 
-        object-fit: cover;
-        border-radius: 15px;
-      }
-      .bg1 {
-        background-color: rgb(126 126 126 / 29%);
-        z-index: 0;
-        box-shadow: -3px -2px 16px -15px #010310;
-        transform: translate(-2%, -2%);
-      }
-      .bg2 {
-        // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-        background-color: rgb(164 164 164 / 35%);
-        transform: translate(-6%, -6%);
-        box-shadow: -3px -2px 16px -15px #010310;
-        z-index: -1;
-      }
-      .bg3 {
-        // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
-        // background-color: rgb(13 16 39 / 91%);
-        background-color: rgb(207 207 207 / 20%);
-        box-shadow: -3px -2px 16px -15px #010310;
-        transform: translate(-12%, -12%);
-        z-index: -2;
+          object-fit: cover;
+          border-radius: 15px;
+        }
+        .bg1 {
+          background-color: rgb(126 126 126 / 29%);
+          z-index: 0;
+          box-shadow: -3px -2px 16px -15px #010310;
+          transform: translate(-2%, -2%);
+        }
+        .bg2 {
+          // background-color: rgba($color: #cbd4db, $alpha: 0.2);
+          background-color: rgb(164 164 164 / 35%);
+          transform: translate(-6%, -6%);
+          box-shadow: -3px -2px 16px -15px #010310;
+          z-index: -1;
+        }
+        .bg3 {
+          // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
+          // background-color: rgb(13 16 39 / 91%);
+          background-color: rgb(207 207 207 / 20%);
+          box-shadow: -3px -2px 16px -15px #010310;
+          transform: translate(-12%, -12%);
+          z-index: -2;
+        }
       }
     }
   }

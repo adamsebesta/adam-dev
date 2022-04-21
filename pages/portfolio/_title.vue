@@ -34,7 +34,7 @@
       <div
         class="background-image"
         :style="{
-          backgroundImage: `url(http://localhost:3000/${projectTitle}_prev.jpg)`,
+          backgroundImage: `url(../${projectTitle}_prev.jpg)`,
         }"
       ></div>
       <!-- <div class="translate-box" @click="toggleReveal"> -->

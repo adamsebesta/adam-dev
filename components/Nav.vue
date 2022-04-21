@@ -2,15 +2,10 @@
   <div>
     <nav
       v-if="!mobile"
-      :class="
-        'nav-bar' + (page && page.location.pathname == '/' ? ' home' : '')
-      "
+      :class="'nav-bar' + ($route.path == '/' ? ' home' : '')"
     >
       <div
-        :class="
-          'nav-logo desktop' +
-          (page && page.location.pathname == '/' ? ' active' : '')
-        "
+        :class="'nav-logo desktop' + ($route.path == '/' ? ' active' : '')"
         @click="navChange('/')"
       >
         <img src="~/static/logo/logo-text.png" alt="" />
@@ -18,10 +13,7 @@
       <div class="menu desktop">
         <div
           ref="about"
-          :class="
-            'menu-wrapper ' +
-            (page && page.location.pathname == '/about' ? ' active' : '')
-          "
+          :class="'menu-wrapper ' + ($route.path == '/about' ? ' active' : '')"
           @click="navChange('/about')"
         >
           <a id="about" class="menu__item">About</a>
@@ -29,8 +21,7 @@
         <div
           id="contact"
           :class="
-            'menu-wrapper ' +
-            (page && page.location.pathname == '/contact' ? ' active' : '')
+            'menu-wrapper ' + ($route.path == '/contact' ? ' active' : '')
           "
           @click="navChange('/contact')"
         >
@@ -38,8 +29,7 @@
         </div>
         <div
           :class="
-            'menu-wrapper ' +
-            (page && page.location.pathname == '/portfolio' ? ' active' : '')
+            'menu-wrapper ' + ($route.path == '/portfolio' ? ' active' : '')
           "
           @click="navChange('/portfolio')"
         >
@@ -49,7 +39,7 @@
     </nav>
     <nav v-if="mobile" class="nav-bar">
       <div class="nav-info-wrapper">
-        <div class="nav-logo" @click="navChange('/', home)">
+        <div class="nav-logo" @click="$router.push('/')">
           <img src="~/static/logo/logo-text.png" alt="" />
         </div>
         <button @click="toggleSidebar">
@@ -75,10 +65,7 @@
         </div>
         <div class="menu">
           <div
-            :class="
-              'menu-wrapper ' +
-              (page && page.location.pathname == '/' ? ' active' : '')
-            "
+            :class="'menu-wrapper ' + ($route.path == '/' ? ' active' : '')"
             @click="navChange('/')"
           >
             <a class="menu__item">Home</a>
@@ -86,8 +73,7 @@
           <div
             ref="about"
             :class="
-              'menu-wrapper ' +
-              (page && page.location.pathname == '/about' ? ' active' : '')
+              'menu-wrapper ' + ($route.path == '/about' ? ' active' : '')
             "
             @click="navChange('/about')"
           >
@@ -96,8 +82,7 @@
 
           <div
             :class="
-              'menu-wrapper ' +
-              (page && page.location.pathname == '/portfolio' ? ' active' : '')
+              'menu-wrapper ' + ($route.path == '/portfolio' ? ' active' : '')
             "
             @click="navChange('/portfolio')"
           >
@@ -106,8 +91,7 @@
           <div
             id="contact"
             :class="
-              'menu-wrapper ' +
-              (page && page.location.pathname == '/contact' ? ' active' : '')
+              'menu-wrapper ' + ($route.path == '/contact' ? ' active' : '')
             "
             @click="navChange('/contact')"
           >
@@ -161,7 +145,10 @@ export default {
   },
   methods: {
     async navChange(path, home) {
-      this.toggleSidebar();
+      console.log("here");
+      if (!home) {
+        this.toggleSidebar();
+      }
       this.$router.push({
         path: path,
       });
@@ -288,12 +275,16 @@ export default {
     overflow: unset;
     background: white;
     box-shadow: -3px -15px 20px 0px #010310;
+    height: 80px;
 
     .nav-info-wrapper {
       display: flex;
       justify-content: space-between;
       overflow: hidden;
       align-items: center;
+      .nav-logo {
+        height: unset;
+      }
       button {
         background: transparent;
         outline: none;
@@ -302,7 +293,7 @@ export default {
       }
       .nav-logo {
         margin-right: 0;
-        width: 32%;
+        width: 28%;
         filter: unset;
         z-index: 1;
       }
@@ -328,7 +319,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     // opacity: 0;
-    transition: transform 500ms ease-in-out;
+    transition: transform 700ms ease-in-out;
     &.shown {
       transform: translateY(0);
     }
