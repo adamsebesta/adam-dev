@@ -559,15 +559,15 @@ export default {
           .about-skills {
             .about-skills-icons {
               display: flex;
-              max-width: 240px;
+              max-width: 200px;
               min-width: 158px;
               flex-wrap: wrap;
             }
             .about-skills-icon {
               // width: 20%;
               // height: 20%;
-              max-height: 40px;
-              max-width: 40px;
+              max-height: 35px;
+              max-width: 35px;
               filter: grayscale(0%);
               margin: 5px;
               &:hover {
