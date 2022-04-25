@@ -1,27 +1,64 @@
 <template>
-  <div>
-    <landing> </landing>
-    <about
-      ref="about"
-      @enableScroll="enableScroll"
-      :activePage="activePage"
-    ></about>
-    <portfolio></portfolio>
-    <connect></connect>
+  <div id="landing" class="page landing" ref="page">
+    <div>
+      <!-- <Banner /> -->
+    </div>
+    <!-- <div ref="contMain" class="container-main">
+      <div :class="'half-cut ' + (entered ? 'entered' : '')"></div>
+      <div class="center-content">
+        <div :class="'welcome ' + (entered ? 'entered' : '')">
+          <img class="logo" src="~/static/logo/logo-no-text.png" alt="" />
+          <button @click="entered = true">click to enter</button>
+        </div>
+        <div :class="'index-info ' + (entered ? 'show' : '')">
+          <div class="heading will-transition">
+            All Your <br />
+            <span class="gold"> Creative Ideas <br /> </span>
+            <span> Brought To Life</span>
+            <div class="lightbulb-wrapper">
+              <img
+                class="lightbulb will-transition"
+                src="~/static/lightbulb.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="subheading will-transition">
+            <p>
+              Collaborative web development for small to large scale
+              applications.
+              Highly focused on speed, responsiveness, and 
+              communication.
+            </p>
+            <button class="portfolio-btn will-transition" @click="">
+              <span ref="homeBtnSpan">Portfolio</span>
+            </button>
+            <button class="contact-btn will-transition" @click="">
+              <span ref="homeBtnSpan">Contact</span>
+              <chevron
+                color="#fecf02"
+                transform="translate(7px,1px) scale(0.8) rotate(90deg)"
+              ></chevron>
+            </button>
+          </div>
+          <div class="kpi-container will-transition">
+            <div class="kpi-item" v-for="k in kpis">
+              <p>{{ k.top }}</p>
+              <p>{{ k.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import Landing from "~/components/index/Landing.vue";
-import About from "~/components/index/About.vue";
-import Portfolio from "~/components/index/Portfolio.vue";
-import Connect from "~/components/index/Connect.vue";
+import _ from "lodash";
 import meta from "~/static/meta.png";
-import scrollMixin from "~/mixins/scrollMixin";
 
 export default {
-  components: { Landing, About, Portfolio, Connect },
-  mixins: [scrollMixin],
+  components: {},
   head() {
     return {
       title: this.title,
@@ -49,70 +86,30 @@ export default {
   data() {
     return {
       entered: false,
-      hash: false,
-      scrollEnabled: true,
       title: "Adam Sebesta Development | Home",
       description: "Web and Mobile App Development",
       image: "/meta.png",
+      kpis: [
+        { top: "TEST", text: "Years Experience" },
+        { top: "TEST", text: "Clients Satisfied" },
+        { top: "TEST", text: "Azure Certifications" },
+      ],
     };
   },
-  methods: {
-    initSetScrollPercentage() {
-      window.addEventListener("scroll", this.setScrollPercentage);
-    },
-    setScrollPercentage() {
-      this.scrollPercentage = window.scrollY / this.nuxtHeight;
-      if (this.activePage == "about" && this.scrollEnabled && !this.scrolled) {
-        // window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
-        // this.disableScroll();
-      }
-      // if (this.scrolled) {
-      //   window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
-      //   this.disableScroll();
-      // }
-    },
-  },
-  computed: {
-    scrolled() {
-      return this.$store.state.scrolledAbout;
-    },
-    nuxtHeight() {
-      return document.getElementById("__nuxt").offsetHeight || 0;
-    },
-    activePage() {
-      let sp = this.scrollPercentage;
-      // if (sp < 0.25) {
-      //   return "landing";
-      // }
-      if (sp > 0.15 && sp < 0.5) {
-        return "about";
-      }
-
-      if (sp > 0.5 && sp < 0.75) {
-        return "portfolio";
-      }
-
-      if (sp > 0.75) {
-        return "connect";
-      }
-    },
-  },
-  created() {
-    if (this.$route.hash) this.$router.push("/");
-  },
+  methods: {},
+  created() {},
   mounted() {
     // if (localStorage.getItem("wasVisited") === null) {
-    window.scrollTo(0, 0);
     localStorage.setItem("wasVisited", "1");
     // this.initLogo();
-    this.initSetScrollPercentage();
   },
   beforeDestroy() {},
 };
 </script>
 
 <style lang="scss">
-.page {
+.landing {
+  outline: 1px solid $mainBlue;
 }
 .container-main {
   // background-color: red;
@@ -126,7 +123,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: absolute;
+  position: fixed;
   overscroll-behavior: none;
 }
 .index-footer {

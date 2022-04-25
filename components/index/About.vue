@@ -1,12 +1,12 @@
 <template>
-  <div class="page">
-    <div @scroll="handleScroll" ref="contMain" class="container-main-about">
-      <div class="scroll-div-about">
+  <div id="about" class="page about">
+    <div ref="about" class="container-main-about">
+      <!-- <div class="scroll-div-about">
         <div :style="{ overflow: 'hidden' }">
           <h4>Scroll</h4>
         </div>
         <div class="trail"></div>
-      </div>
+      </div> -->
       <div class="main-wrapper">
         <div class="about-left">
           <div class="about">
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="about-right">
-          <div class="photo-background bg0">
+          <!-- <div class="photo-background bg0">
             <img
               class="headshot"
               src="~static/headshot.png"
@@ -76,13 +76,17 @@
             />
           </div>
           <div
-            :class="'photo-background bg1' + (scrollY != 0 ? ' scrolled' : '')"
+            :class="
+              'photo-background bg1' + (scrollCount != 0 ? ' scrolled' : '')
+            "
             :style="{ transform: calcTransform(1) }"
           ></div>
           <div
-            :class="'photo-background bg2' + (scrollY != 0 ? ' scrolled' : '')"
+            :class="
+              'photo-background bg2' + (scrollCount != 0 ? ' scrolled' : '')
+            "
             :style="{ transform: calcTransform(2) }"
-          ></div>
+          ></div> -->
           <!-- <div
             :class="'photo-background bg3' + (scrollY != 0 ? ' scrolled' : '')"
             :style="{ transform: calcTransform(3) }"
@@ -90,17 +94,15 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
-import Nav from "../components/Nav";
-import Footer from "../components/Footer.vue";
 import _ from "lodash";
 
 export default {
   transition: "page",
+  props: { activePage: String },
   head() {
     return {
       title: this.title,
@@ -157,26 +159,52 @@ export default {
   computed: {},
   methods: {
     handleScroll(e) {
-      this.scrollY = window.scrollY;
+      let dir;
+
+      if (event.deltaY < 0) {
+        dir = "up";
+      } else if (event.deltaY > 0) {
+        dir = "down";
+      }
+
+      if (dir == "up" && this.scrollCount == 35) {
+      }
+      if (dir == "up" && this.scrollCount < 35) {
+        this.scrollCount -= 1;
+      }
+      if (dir == "down" && this.scrollCount < 35) {
+        this.scrollCount += 1;
+      }
+
+      // this.scrollCount == 0 ||
+      if (this.scrollCount == 35) {
+        this.$emit("enableScroll");
+        console.log("enable");
+        return;
+      }
     },
     calcTransform(i) {
-      let percent = this.scrollY / (170 / i) + i;
+      let percent = this.scrollCount / (2 / i) + i * 1;
       return `translate(-${percent}%,-${percent}%)`;
     },
+    calcTextTransform() {
+      // let percent = this.scrollCount / (4 / i) + i * 2;
+      return `translate(0,-${this.scrollCount * 2}%)`;
+    },
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
+  mounted() {},
+  beforeDestroy() {},
 };
 </script>
 
 <style lang="scss" scoped>
+.about {
+  height: unset !important;
+}
 .container-main-about {
   margin: 0 auto;
   min-height: 100vh;
+  scroll-snap-stop: always;
   width: 100%;
   display: flex;
   z-index: 1;
@@ -191,7 +219,16 @@ export default {
   width: 80%;
   height: 100%;
   justify-content: center;
+  background-image: url("~/static/about-background.jpg");
+  z-index: -1;
+  /* Set a specific height */
+  min-height: 500px;
 
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   .about-left {
     width: 80%;
     height: 100%;
@@ -199,8 +236,9 @@ export default {
     flex-direction: column;
     justify-content: space-evenly;
 
+    transition: transform 300ms ease-in-out;
     .about-block {
-      height: 100vh;
+      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -217,7 +255,6 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       .about-desc-wrapper {
-        overflow: hidden;
         .about-desc {
           // transform: translateY(100%);
           width: 440px;
@@ -289,11 +326,10 @@ export default {
       }
     }
     .about-headline-wrapper {
-      overflow: hidden;
       .about-headline-main {
         // transform: translateY(100%);
         // margin-bottom: 20px;
-        font-size: 105px;
+        font-size: 80px;
         font-weight: 700;
         color: $mainGold;
         margin: 10px 0;
@@ -313,122 +349,6 @@ export default {
         // }
       }
     }
-  }
-  .about-right {
-    width: 50%;
-    height: 100%;
-    position: fixed;
-    right: 20%;
-    top: 10%;
-    justify-content: flex-end;
-    display: flex;
-    align-items: center;
-
-    // margin-top: 5%;
-    .photo-background {
-      width: 100%;
-      max-width: 300px;
-      height: 50%;
-      position: absolute;
-      border-radius: 5px;
-      min-height: 355px;
-
-      transition: opacity 1s ease-in-out;
-      &:not(.bg0) {
-        opacity: 0;
-      }
-      &.scrolled {
-        opacity: 1;
-      }
-    }
-    .headshot {
-      width: 90%;
-      margin: 0 auto;
-      height: 90%;
-      padding: 10px;
-      max-width: 280px;
-      // height: 50%;
-      bottom: 0%;
-      z-index: 1000000;
-      object-fit: cover;
-      border-radius: 15px;
-    }
-    .bg0 {
-      // background-color: rgba($color: #e9eeff, $alpha: 0.25);
-      // background-color: rgb(92 99 125 / 10%);
-      display: flex;
-      align-items: center;
-      background-color: rgb(126 126 126 / 25%);
-      z-index: 1;
-      box-shadow: 0 10px 30px -15px #010310;
-      // transform: translate(-2%, -2%);
-    }
-    .bg1 {
-      // background-color: rgba($color: #e9eeff, $alpha: 0.25);
-      // background-color: rgb(92 99 125 / 10%);
-      display: flex;
-      align-items: center;
-      background-color: rgb(126 126 126 / 22%);
-      z-index: 0;
-      box-shadow: 0 10px 30px -15px #010310;
-      // transform: translate(-2%, -2%);
-    }
-    .bg2 {
-      // background-color: rgba($color: #cbd4db, $alpha: 0.2);
-      background-color: rgb(164 164 164 / 15%);
-      // transform: translate(-6%, -6%);
-      box-shadow: 0 10px 30px -15px #010310;
-      z-index: -1;
-    }
-    .bg3 {
-      // background-color: rgba($color: #3fc1d9, $alpha: 0.1);
-      // background-color: rgb(13 16 39 / 91%);
-      background-color: rgb(207 207 207 / 10%);
-      box-shadow: 0 10px 30px -15px #010310;
-      // transform: translate(-12%, -12%);
-      z-index: -2;
-    }
-  }
-}
-.fa.square::before {
-  vertical-align: super;
-  margin-right: 2px;
-}
-
-#about-background {
-  opacity: 0.1;
-  position: absolute;
-  z-index: -2;
-}
-
-.scroll-div-about {
-  position: fixed;
-  left: 3%;
-  bottom: 8%;
-
-  z-index: 1;
-  transform: translateY(500%) rotate(270deg);
-  overflow: hidden;
-  width: 200px;
-  cursor: pointer;
-  h4 {
-    padding: 3px 0;
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: $lightBlue;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .trail {
-    width: 100px;
-    height: 1px;
-    opacity: 0.6;
-    background-color: rgb(187, 187, 187);
-    vertical-align: middle;
-    transform: translate(-25%, -15px);
-    // transform-origin: 100% 50% 0px;
-    // transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
 
@@ -476,9 +396,6 @@ export default {
           }
         }
       }
-    }
-    .about-right {
-      display: none;
     }
   }
 }
@@ -647,10 +564,6 @@ export default {
         }
       }
     }
-  }
-  .scroll-div-about {
-    left: 22%;
-    bottom: 10%;
   }
 }
 </style>

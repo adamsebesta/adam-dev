@@ -1,5 +1,5 @@
 <template tabIndex="0">
-  <div class="page scroll">
+  <div id="portfolio" class="page portfolio scroll">
     <div class="container-main">
       <div class="left-container">
         <p class="fixed-title">Selected Works</p>
@@ -13,7 +13,7 @@
                 :style="{ backgroundImage: `url(${v.img})` }"
               ></div>
               <div class="portfolio-item-hover">
-                <h5 class="portfolio-item-title">{{ v.title }}</h5>
+                <p class="portfolio-item-title">{{ v.title }}</p>
                 <div class="center-con">
                   <div class="round">
                     <div id="cta">
@@ -89,7 +89,7 @@ img {
 .page {
   .container-main {
     .left-container {
-      position: fixed;
+      position: absolute;
       left: 0;
       top: 0;
       height: 100%;
@@ -184,7 +184,7 @@ img {
               top: 10px;
               left: 10px;
               font-size: 1rem;
-              font-weight: 600 !important;
+              font-weight: 400 !important;
               color: white;
               font-size: 16px;
               text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
@@ -268,11 +268,12 @@ img {
     }
   }
   @media only screen and (max-width: 450px) {
-    height: unset !important;
+    height: 100% !important;
+
     .container-main {
       flex-direction: column;
-      overflow: scroll;
-      height: unset !important;
+      height: unset;
+      position: unset;
       .left-container {
         position: unset;
         margin: 1.5rem 0;
@@ -284,11 +285,12 @@ img {
         padding: 0;
         margin: 0 auto;
         overflow: unset;
+        width: 90%;
         .portfolio-wrapper {
           .portfolio-item-wrapper {
             max-width: unset;
             .portfolio-item {
-              height: 275px !important;
+              height: 235px !important;
               margin: 0 0rem 2rem 0;
             }
             .portfolio-item-hover {

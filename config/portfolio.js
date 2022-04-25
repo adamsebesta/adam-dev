@@ -56,7 +56,7 @@ and Youtube Gaming into one hub.
   emkfit: {
     textColor: "black",
     desc: `Implemented a full Shopify build for the talented fitness coach Emkfit. I was responsible for theme sourcing, store/configuration, liquid templating, testing, and deployment. I am still currently involved with ongoing required updates.`,
-    title: "EMKFIT",
+    title: "Emkfit",
     stack: ["Shopify", "HTML", "CSS", "Javascript"],
     img: "emkfit_prev.jpg",
     length: "tall",

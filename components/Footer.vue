@@ -29,19 +29,19 @@ export default {};
 
 <style lang="scss" scoped>
 .footer-main {
-  position: fixed;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  bottom: 0;
-  height: 135px;
+  // bottom: 0;
+  height: 100px;
   width: 100%;
   z-index: 1;
-  padding: 0px 100px;
+  padding: 0px 5%;
   // margin-bottom: 10px;
-  box-shadow: 0 10px 30px -15px #010310;
-  transform: translateY(100%);
+  // box-shadow: 0 10px 30px -15px #010310;
+  // transform: translateY(100%);
 }
 
 .footer-logo {
@@ -51,9 +51,8 @@ export default {};
 
 .copyright {
   .copyright-info {
-    font-size: 14px;
-    color: $mainBlue;
-    opacity: 0.4;
+    font-size: 12px;
+    color: black;
   }
 }
 .social-wrapper {
@@ -71,7 +70,7 @@ export default {};
 .social-wrapper i {
   padding: 0px 10px;
   font-size: 20px;
-  color: $mainBlue;
+  color: black;
 }
 
 .social-wrapper a:nth-child(1) {
@@ -105,7 +104,6 @@ export default {};
     .copyright-info {
       font-size: 8px;
       color: $lightBlue;
-      opacity: 0.4;
     }
   }
   .social-wrapper i {
@@ -124,6 +122,11 @@ export default {};
     margin-top: unset;
     text-shadow: unset;
     transform: unset;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .footer-main {
+    display: none;
   }
 }
 </style>

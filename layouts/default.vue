@@ -2,7 +2,7 @@
   <div style="height: 100%">
     <Nav />
     <Nuxt />
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
@@ -136,13 +136,14 @@ p {
 
 #__nuxt,
 #__layout {
-  height: 100%;
 }
 .overflow {
   overflow: hidden;
 }
 .page {
   padding-top: 100px;
+  height: calc(var(--vh, 1vh) * 100) !important;
+  position: relative;
 }
 
 .container-main {

@@ -4,7 +4,7 @@ export default {
       windowWidth: 1200,
       windowHeight: 1200,
       mobile: null,
-      instagram: null
+      instagram: null,
     };
   },
   methods: {
@@ -45,10 +45,10 @@ export default {
       this.windowWrapper();
       this.isMobile();
       this.isInstagram();
-    }
+    },
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.resizeWindow);
   },
-  mounted() {}
+  mounted() {},
 };

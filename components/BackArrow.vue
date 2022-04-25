@@ -83,7 +83,7 @@ export default {
   &__text {
     color: var(--color);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     text-transform: capitalize;
   }
 

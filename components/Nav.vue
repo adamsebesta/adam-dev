@@ -11,30 +11,30 @@
         <img src="~/static/logo/logo-text.png" alt="" />
       </div>
       <div class="menu desktop">
-        <div
+        <nuxt-link
           ref="about"
-          :class="'menu-wrapper ' + ($route.path == '/about' ? ' active' : '')"
-          @click="navChange('/about')"
-        >
-          <a id="about" class="menu__item">About</a>
-        </div>
-        <div
-          id="contact"
+          :class="'menu__item ' + ($route.path == '/about' ? ' active' : '')"
+          href="#about"
+          :to="{ path: '/', hash: '#about' }"
+          >About
+        </nuxt-link>
+
+        <nuxt-link
+          ref="portfolio"
           :class="
-            'menu-wrapper ' + ($route.path == '/contact' ? ' active' : '')
+            'menu__item ' + ($route.path == '/portfolio' ? ' active' : '')
           "
-          @click="navChange('/contact')"
-        >
-          <a class="menu__item">Contact</a>
-        </div>
-        <div
-          :class="
-            'menu-wrapper ' + ($route.path == '/portfolio' ? ' active' : '')
-          "
-          @click="navChange('/portfolio')"
-        >
-          <a class="menu__item">Portfolio</a>
-        </div>
+          href="#portfolio"
+          :to="{ path: '/', hash: '#portfolio' }"
+          >Portfolio
+        </nuxt-link>
+        <nuxt-link
+          ref="connect"
+          :class="'menu__item ' + ($route.path == '/connect' ? ' active' : '')"
+          href="#connect"
+          :to="{ path: '/', hash: '#connect' }"
+          >Connect
+        </nuxt-link>
       </div>
     </nav>
     <nav v-if="mobile" class="nav-bar">
@@ -64,40 +64,41 @@
           </div>
         </div>
         <div class="menu">
-          <div
-            :class="'menu-wrapper ' + ($route.path == '/' ? ' active' : '')"
-            @click="navChange('/')"
-          >
-            <a class="menu__item">Home</a>
-          </div>
-          <div
+          <nuxt-link
+            ref="landing"
+            :class="'menu__item ' + ($route.path == '/' ? ' active' : '')"
+            href="#landing"
+            :to="{ path: '/', hash: '#landing' }"
+            >Home
+          </nuxt-link>
+          <nuxt-link
             ref="about"
-            :class="
-              'menu-wrapper ' + ($route.path == '/about' ? ' active' : '')
-            "
-            @click="navChange('/about')"
-          >
-            <a id="about" class="menu__item">About</a>
-          </div>
+            :class="'menu__item ' + ($route.path == '/about' ? ' active' : '')"
+            href="#about"
+            :to="{ path: '/', hash: '#about' }"
+            >About
+          </nuxt-link>
 
-          <div
+          <nuxt-link
+            ref="portfolio"
             :class="
-              'menu-wrapper ' + ($route.path == '/portfolio' ? ' active' : '')
+              'menu__item ' + ($route.path == '/portfolio' ? ' active' : '')
             "
-            @click="navChange('/portfolio')"
-          >
-            <a class="menu__item">Portfolio</a>
-          </div>
-          <div
-            id="contact"
+            href="#portfolio"
+            :to="{ path: '/', hash: '#portfolio' }"
+            >Portfolio
+          </nuxt-link>
+          <nuxt-link
+            ref="connect"
             :class="
-              'menu-wrapper ' + ($route.path == '/contact' ? ' active' : '')
+              'menu__item ' + ($route.path == '/connect' ? ' active' : '')
             "
-            @click="navChange('/contact')"
-          >
-            <a class="menu__item">Contact</a>
-          </div>
+            href="#connect"
+            :to="{ path: '/', hash: '#connect' }"
+            >Connect
+          </nuxt-link>
         </div>
+
         <div class="sidebar-footer">
           <div class="">
             <span class="copyright-info"
@@ -145,7 +146,6 @@ export default {
   },
   methods: {
     async navChange(path, home) {
-      console.log("here");
       if (!home) {
         this.toggleSidebar();
       }
@@ -176,7 +176,7 @@ export default {
   padding: 0px 5% 0 5%;
   width: 100%;
   height: 100px;
-  background: white;
+  background: transparent;
   &.home {
   }
   .nav-logo {
@@ -226,7 +226,16 @@ export default {
   position: relative;
   cursor: pointer;
   text-align: left;
-  color: #47494e;
+  color: black;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0 1.5rem;
+  &:last-of-type {
+    padding-right: 0;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
 }
 .active {
   // width: 100%;
@@ -234,18 +243,6 @@ export default {
   // border-bottom: 1px solid $grey;
   // padding: 1px 3px 1px 3px;
   pointer-events: none;
-}
-
-.menu-wrapper {
-  margin-left: 2.5rem;
-
-  cursor: pointer;
-  &.active {
-  }
-}
-
-.menu-wrapper:hover .menu__item {
-  opacity: 0.5;
 }
 
 #corner-logo {
@@ -381,12 +378,6 @@ export default {
       padding-bottom: 2px;
       color: #47494e;
       // transform: translateY(100%);
-    }
-
-    .menu-wrapper:hover .menu__item {
-      transform: translateY(-1px);
-    }
-    .menu-wrapper {
       padding-bottom: -1;
       margin: 5px;
       height: unset;
@@ -403,6 +394,7 @@ export default {
       }
     }
   }
+
   .desktop {
     display: none;
     img {

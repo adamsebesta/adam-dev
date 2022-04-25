@@ -107,11 +107,13 @@ export default {
 }
 .page {
   overflow: hidden;
+  height: 80%;
   .container-main {
     display: flex;
     position: relative;
     justify-content: space-between;
     width: 90%;
+
     .toggle-text {
       position: absolute;
       bottom: 50px;

@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
+  <div id="connect" class="page connect">
     <div class="container-main">
       <div v-if="!sent" class="form-background">
-        <h5>Contact</h5>
+        <h5>Connect</h5>
         <div class="contact-email">
           <a href="mailto:info@adamsebesta.dev?subject=Inquiry"
             >info@adamsebesta.dev</a
@@ -14,10 +14,8 @@
 </template>
 
 <script>
-import Nav from "../components/Nav";
-
 export default {
-  components: { Nav },
+  components: {},
   head() {
     return {
       title: this.title,
