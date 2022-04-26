@@ -8,12 +8,12 @@
         (scrollPercentage > 0 ? ' scrolled' : '')
       "
     >
-      <div
+      <nuxt-link
         :class="'nav-logo desktop' + ($route.path == '/' ? ' active' : '')"
-        @click="navChange('/')"
+        :to="{ path: '/', hash: '#landing' }"
       >
         <img src="~/static/logo/logo-text.png" alt="" />
-      </div>
+      </nuxt-link>
       <div class="menu desktop">
         <nuxt-link
           v-for="(v, k) in links"
