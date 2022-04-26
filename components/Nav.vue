@@ -2,7 +2,11 @@
   <div>
     <nav
       v-if="!mobile"
-      :class="'nav-bar' + ($route.path == '/' ? ' home' : '')"
+      :class="
+        'nav-bar' +
+        ($route.path == '/' ? ' home' : '') +
+        (scrollPercentage > 0 ? ' scrolled' : '')
+      "
     >
       <div
         :class="'nav-logo desktop' + ($route.path == '/' ? ' active' : '')"
@@ -12,28 +16,13 @@
       </div>
       <div class="menu desktop">
         <nuxt-link
-          ref="about"
-          :class="'menu__item ' + ($route.path == '/about' ? ' active' : '')"
-          href="#about"
-          :to="{ path: '/', hash: '#about' }"
-          >About
-        </nuxt-link>
-
-        <nuxt-link
-          ref="portfolio"
-          :class="
-            'menu__item ' + ($route.path == '/portfolio' ? ' active' : '')
-          "
-          href="#portfolio"
-          :to="{ path: '/', hash: '#portfolio' }"
-          >Portfolio
-        </nuxt-link>
-        <nuxt-link
-          ref="connect"
-          :class="'menu__item ' + ($route.path == '/connect' ? ' active' : '')"
-          href="#connect"
-          :to="{ path: '/', hash: '#connect' }"
-          >Connect
+          v-for="(v, k) in links"
+          v-if="!v.mobileOnly"
+          :key="k"
+          :ref="k"
+          :class="'menu__item ' + ($route.path == '/' ? ' active' : '')"
+          :to="v.route"
+          >{{ k }}
         </nuxt-link>
       </div>
     </nav>
@@ -64,39 +53,15 @@
           </div>
         </div>
         <div class="menu">
-          <nuxt-link
-            ref="landing"
+          <a
+            v-for="(v, k) in links"
+            :key="k"
+            :ref="k"
             :class="'menu__item ' + ($route.path == '/' ? ' active' : '')"
-            href="#landing"
-            :to="{ path: '/', hash: '#landing' }"
-            >Home
-          </nuxt-link>
-          <nuxt-link
-            ref="about"
-            :class="'menu__item ' + ($route.path == '/about' ? ' active' : '')"
-            href="#about"
-            :to="{ path: '/', hash: '#about' }"
-            >About
-          </nuxt-link>
-
-          <nuxt-link
-            ref="portfolio"
-            :class="
-              'menu__item ' + ($route.path == '/portfolio' ? ' active' : '')
-            "
-            href="#portfolio"
-            :to="{ path: '/', hash: '#portfolio' }"
-            >Portfolio
-          </nuxt-link>
-          <nuxt-link
-            ref="connect"
-            :class="
-              'menu__item ' + ($route.path == '/connect' ? ' active' : '')
-            "
-            href="#connect"
-            :to="{ path: '/', hash: '#connect' }"
-            >Connect
-          </nuxt-link>
+            @click="handleMobileNavClick(v.route)"
+          >
+            {{ k }}
+          </a>
         </div>
 
         <div class="sidebar-footer">
@@ -130,13 +95,21 @@
 
 <script>
 import BurgerMenu from "~/components/BurgerMenu";
+import scrollMixin from "~/mixins/scrollMixin";
 export default {
   components: { BurgerMenu },
+  mixins: [scrollMixin],
   data() {
     return {
       menuShown: false,
       page: null,
       sidebarShown: false,
+      links: {
+        home: { route: { path: "/", hash: "#landing" }, mobileOnly: true },
+        about: { route: { path: "/", hash: "#about" } },
+        portfolio: { route: { path: "/", hash: "#portfolio" } },
+        connect: { route: { path: "/", hash: "#connect" } },
+      },
     };
   },
   computed: {
@@ -145,13 +118,11 @@ export default {
     },
   },
   methods: {
-    async navChange(path, home) {
-      if (!home) {
-        this.toggleSidebar();
-      }
-      this.$router.push({
-        path: path,
-      });
+    handleMobileNavClick(route) {
+      this.toggleSidebar();
+      setTimeout(() => {
+        this.$router.push(route);
+      }, 500);
     },
     toggleSidebar() {
       this.sidebarShown = !this.sidebarShown;
@@ -177,7 +148,8 @@ export default {
   width: 100%;
   height: 100px;
   background: transparent;
-  &.home {
+  &.scrolled {
+    background: white;
   }
   .nav-logo {
     z-index: 1;
@@ -220,6 +192,7 @@ export default {
   // background: linear-gradient(45deg, #0947db, #898ce9);
   font-size: 12px;
   display: flex;
+  text-transform: capitalize;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
@@ -242,7 +215,7 @@ export default {
   // height: 100%;
   // border-bottom: 1px solid $grey;
   // padding: 1px 3px 1px 3px;
-  pointer-events: none;
+  // pointer-events: none;
 }
 
 #corner-logo {
@@ -376,7 +349,7 @@ export default {
       font-size: 36px;
       margin: 0px;
       padding-bottom: 2px;
-      color: #47494e;
+      color: black;
       // transform: translateY(100%);
       padding-bottom: -1;
       margin: 5px;
@@ -384,7 +357,9 @@ export default {
       display: flex;
       flex-direction: column;
       overflow: hidden;
-
+      &:last-of-type {
+        padding-right: 1.5rem;
+      }
       &.active {
         // background: linear-gradient(45deg, #0947db, #898ce9);
         // padding: 1px 3px 1px 3px;

@@ -219,16 +219,26 @@ export default {
   width: 80%;
   height: 100%;
   justify-content: center;
-  background-image: url("~/static/about-background.jpg");
-  z-index: -1;
   /* Set a specific height */
   min-height: 500px;
 
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-image: url("~/static/about-background.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .about-left {
     width: 80%;
     height: 100%;
@@ -272,9 +282,8 @@ export default {
       }
 
       .about-services {
-        font-size: 105px;
         font-weight: 700;
-        color: $mainGold;
+        color: black;
         margin-bottom: 10px;
         width: 450px;
         .about-headline-wrapper {
@@ -303,21 +312,20 @@ export default {
 
       .about-skills {
         margin-bottom: 10px;
-        font-size: 105px;
         font-weight: 700;
-        color: $mainGold;
+        color: black;
         .about-skills-icons {
           display: flex;
-          max-width: 355px;
-          min-width: 258px;
+          max-width: 250px;
+          min-width: 230px;
           flex-wrap: wrap;
         }
         .about-skills-icon {
           // width: 20%;
           // height: 20%;
-          max-height: 65px;
-          max-width: 65px;
-          filter: grayscale(0%);
+          max-height: 45px;
+          max-width: 45px;
+          filter: grayscale(70%);
           margin: 5px;
           &:hover {
             filter: unset;
@@ -326,15 +334,16 @@ export default {
       }
     }
     .about-headline-wrapper {
+      font-size: 80px;
       .about-headline-main {
         // transform: translateY(100%);
         // margin-bottom: 20px;
-        font-size: 80px;
+
         font-weight: 700;
-        color: $mainGold;
+        color: black;
         margin: 10px 0;
         display: flex;
-        line-height: 101px;
+        line-height: 100%;
         width: 101%;
         align-items: center;
         // text-shadow: -1px -1px 1px rgba(153, 177, 255, 0.536);
@@ -498,7 +507,7 @@ export default {
             font-size: 30px;
             font-weight: 700;
             width: 100%;
-            color: $mainGold;
+            color: black;
             margin: 10px 0;
             display: flex;
             align-items: center;

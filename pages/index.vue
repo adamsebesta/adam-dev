@@ -56,29 +56,12 @@ export default {
       image: "/meta.png",
     };
   },
-  methods: {
-    initSetScrollPercentage() {
-      window.addEventListener("scroll", this.setScrollPercentage);
-    },
-    setScrollPercentage() {
-      this.scrollPercentage = window.scrollY / this.nuxtHeight;
-      if (this.activePage == "about" && this.scrollEnabled && !this.scrolled) {
-        // window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
-        // this.disableScroll();
-      }
-      // if (this.scrolled) {
-      //   window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
-      //   this.disableScroll();
-      // }
-    },
-  },
+  methods: {},
   computed: {
     scrolled() {
       return this.$store.state.scrolledAbout;
     },
-    nuxtHeight() {
-      return document.getElementById("__nuxt").offsetHeight || 0;
-    },
+
     activePage() {
       let sp = this.scrollPercentage;
       // if (sp < 0.25) {
@@ -97,15 +80,11 @@ export default {
       }
     },
   },
-  created() {
-    if (this.$route.hash) this.$router.push("/");
-  },
+  created() {},
   mounted() {
     // if (localStorage.getItem("wasVisited") === null) {
-    window.scrollTo(0, 0);
     localStorage.setItem("wasVisited", "1");
     // this.initLogo();
-    this.initSetScrollPercentage();
   },
   beforeDestroy() {},
 };

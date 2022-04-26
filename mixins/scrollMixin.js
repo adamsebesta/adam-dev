@@ -8,7 +8,26 @@ export default {
       supportsPassive: false,
     };
   },
+  computed: {
+    nuxtHeight() {
+      return document.getElementById("__nuxt").offsetHeight || 0;
+    },
+  },
   methods: {
+    initSetScrollPercentage() {
+      window.addEventListener("scroll", this.setScrollPercentage);
+    },
+    setScrollPercentage() {
+      this.scrollPercentage = window.scrollY / this.nuxtHeight;
+      if (this.activePage == "about" && this.scrollEnabled && !this.scrolled) {
+        // window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
+        // this.disableScroll();
+      }
+      // if (this.scrolled) {
+      //   window.scrollTo({ top: this.nuxtHeight * 0.25, behaviour: "smooth" });
+      //   this.disableScroll();
+      // }
+    },
     disableScroll() {
       window.addEventListener("DOMMouseScroll", this.preventDefault, false); // older FF
       window.addEventListener(
@@ -53,6 +72,7 @@ export default {
     },
   },
   mounted() {
+    this.initSetScrollPercentage();
     var supportsPassive;
     try {
       window.addEventListener(

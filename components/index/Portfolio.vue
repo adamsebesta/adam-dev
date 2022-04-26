@@ -291,7 +291,7 @@ img {
             max-width: unset;
             .portfolio-item {
               height: 235px !important;
-              margin: 0 0rem 2rem 0;
+              margin: 0 0rem 1.5rem 0;
             }
             .portfolio-item-hover {
               height: calc(100% - 2rem);
